@@ -6,6 +6,7 @@ import {NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ExploreScreen from './navigation/exploreScreen';
 import FavorScreen from './navigation/favorScreen';
+import LoginScreen from './navigation/loginScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -47,7 +48,7 @@ export default function App() {
     end={{ x: 0, y: 0 }}
     >
     
-    <NavigationContainer  theme={MyTheme}>
+    {/* <NavigationContainer  theme={MyTheme}>
 
    
     <Tab.Navigator
@@ -104,9 +105,9 @@ export default function App() {
       ></Tab.Screen>
 
     </Tab.Navigator>
-    </NavigationContainer>
+    </NavigationContainer> */}
     
-
+      <LoginScreen/>
    
     </LinearGradient>
     </View>
