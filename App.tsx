@@ -3,12 +3,14 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient';
 import {NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ExploreScreen from './navigation/exploreScreen';
 import FavorScreen from './navigation/favorScreen';
 import LoginScreen from './navigation/loginScreen';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 
 const MyTheme = {
@@ -35,22 +37,10 @@ const icons: Record<RouteName, {focused: any; unfocused: any}> = {
     unfocused: require('./assets/4.png')
   }
 }
-export default function App() {
+
+
+function TabNavigator() {
   return (
-  
-      <View  style={styles.container} >
-
-   
-    <LinearGradient
-    colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']}
-    style={styles.gradient}
-    start={{ x: 0, y: 1}}
-    end={{ x: 0, y: 0 }}
-    >
-    
-    {/* <NavigationContainer  theme={MyTheme}>
-
-   
     <Tab.Navigator
   
      
@@ -105,9 +95,33 @@ export default function App() {
       ></Tab.Screen>
 
     </Tab.Navigator>
-    </NavigationContainer> */}
+  );
+}
+export default function App() {
+  return (
+  
+      <View  style={styles.container} >
+
+   
+    <LinearGradient
+    colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']}
+    style={styles.gradient}
+    start={{ x: 0, y: 1}}
+    end={{ x: 0, y: 0 }}
+    >
     
-      <LoginScreen/>
+    <NavigationContainer  theme={MyTheme}>
+    
+
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="userProfile" component={TabNavigator} />
+
+    </Stack.Navigator>
+   
+    </NavigationContainer>
+    
+      {/* <LoginScreen/> */}
    
     </LinearGradient>
     </View>
