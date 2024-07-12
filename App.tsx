@@ -23,7 +23,7 @@ const MyTheme = {
   },
 };
 
-type RouteName = 'Favor' | 'Explore';
+type RouteName = 'Favor' | 'ExploreContent';
 
 const icons: Record<RouteName, {focused: any; unfocused: any}> = {
   Favor: {
@@ -31,7 +31,7 @@ const icons: Record<RouteName, {focused: any; unfocused: any}> = {
     unfocused: require('./assets/6.png')
   }, 
 
-  Explore: {
+  ExploreContent: {
 
     focused: require('./assets/4.png'),
     unfocused: require('./assets/4.png')
@@ -66,7 +66,7 @@ function TabNavigator() {
       
      
       <Tab.Screen 
-      name='Explore' 
+      name='ExploreContent' 
       component={ExploreScreen}
       options={{
         title: '',
@@ -115,7 +115,7 @@ export default function App() {
 
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="userProfile" component={TabNavigator} />
+      <Stack.Screen name="UserExploreScreen" component={TabNavigator} />
 
     </Stack.Navigator>
    

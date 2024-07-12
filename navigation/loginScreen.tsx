@@ -17,7 +17,7 @@ export default function LoginScreen() {
 
     const handleLoginData = async() =>{ 
         try {
-            const res = await fetch(`http://localhost:3000/api/login-token`,
+            const res = await fetch(`https://f891-2a02-2455-81d5-1a00-c950-910e-a930-d54d.ngrok-free.app/api/login-token`,
              
                 {
                     method: "POST",
@@ -36,16 +36,19 @@ export default function LoginScreen() {
                 }
     
                 const token = await res.json()
-                await AsyncStorage.setItem('token', token)
-                alert('token received ')
-                navigation.navigate('userProfile' as never)
+                const userData =  await AsyncStorage.setItem('token',JSON.stringify({
+                    token: token
+                }))
+
+                navigation.navigate('UserExploreScreen' as never)
 
 
 
                 console.log(token);
 
         }catch(error){
-            console.log('Catches error on Requesting Login from Client');
+            console.info(error);
+            console.log('Catches error on Requesting Login from Client', error);
         }
        
     }

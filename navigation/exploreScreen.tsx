@@ -2,6 +2,7 @@ import { View, Text,StyleSheet } from "react-native"
 // import Menu from "../../component/menu"
 // import Content from "../../component/content"
 import UserExploreContent from '../component/userExploreContent'
+import GetUserData from "../component/getUserData"
 
 export default function ExploreScreen() {
     return(
@@ -13,7 +14,8 @@ export default function ExploreScreen() {
 
          {/* </View> */}
 
-         <UserExploreContent/>
+         {/* <UserExploreContent/> */}
+         <GetUserData/>
 
             
         </View>
