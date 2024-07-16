@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native'
 import ExploreScreen from "./exploreScreen";
 
 
+
 export default function LoginScreen() {
     const [email, setonChangeEmail] = useState('') 
     const [password, setonChangePassword] = useState('') 
@@ -17,7 +18,9 @@ export default function LoginScreen() {
 
     const handleLoginData = async() =>{ 
         try {
-            const res = await fetch(`https://f891-2a02-2455-81d5-1a00-c950-910e-a930-d54d.ngrok-free.app/api/login-token`,
+
+            const API_URL = process.env.EXPO_PUBLIC_API_URL
+            const res = await fetch(`${API_URL}/api/login-token`,
              
                 {
                     method: "POST",
