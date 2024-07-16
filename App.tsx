@@ -8,6 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ExploreScreen from './navigation/exploreScreen';
 import FavorScreen from './navigation/favorScreen';
 import LoginScreen from './navigation/loginScreen';
+import UserInterestScreen from './navigation/interestScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -110,7 +111,7 @@ export default function App() {
     end={{ x: 0, y: 0 }}
     >
     
-    <NavigationContainer  theme={MyTheme}>
+    {/* <NavigationContainer  theme={MyTheme}>
     
 
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -119,11 +120,13 @@ export default function App() {
 
     </Stack.Navigator>
    
-    </NavigationContainer>
+    </NavigationContainer> */}
     
       {/* <LoginScreen/> */}
-   
+      {/* <UserInterestScreen/> */}
+      <UserInterestScreen/>
     </LinearGradient>
+    
     </View>
     
   );
