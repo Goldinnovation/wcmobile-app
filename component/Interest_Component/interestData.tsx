@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { View, Text, StyleSheet, Pressable, FlatList,  TouchableOpacity} from "react-native"
+import { View, Text, StyleSheet, Pressable, FlatList,  TouchableOpacity, ScrollView} from "react-native"
 import Checkbox from "expo-checkbox";
+import UserInterestList from "../../assets/lnterestList/userInterestList";
 
 
 
@@ -11,29 +12,7 @@ export default function InterestDataList(){
     const [updateColor, setUpdateColor] = useState(null)
     const [pickedIntesrest, setPickedInterest] = useState<string[]>([])
 
-    const InterestArr = [ 
-        { id: 1, 
-          name: "Movie"
-        },
-        {
-            id: "2", 
-          name: "Hip-Hop"
-
-        },
-        {
-            id: "3", 
-          name:  "Techno"
-        }, 
-         {
-            id: "4", 
-          name:  "Art"
-
-         }, 
-         {
-            id: "5", 
-          name:  "Comedy "
-
-         },]
+    
 
 
 
@@ -72,30 +51,15 @@ export default function InterestDataList(){
                 <View style={styles.selectHeader}>
                 <Text style={styles.selectHeader_Text}>Choose your Interests</Text>
                 </View> 
-                <View style={styles.selectOptions}>
-{/*                 
-                <Pressable
-                style={[styles.Interestproperty, checkedItems && styles.InterestpropertyChecked]} 
-                onPress={() => setInterestValueChecked(!checkedItems)} */}
+                <View style = {{ height: 400, justifyContent: "center", alignItems: "center"}}>
 
                 
-                {/* > */}
-                    {/* { interestValue ?
-
-                    // <Text style={{color: "white"}} > Movie </Text> 
-
-                   :
-                    <Text style={{color: "black"}}> Movie </Text>
-                    } */}
-                    {/* <FlatList
-                     data={InterestArr}
-                     renderItem={({item}) => <Text>{item.name}</Text>}
-                     keyExtractor={(item) => item.id}
-                    /> */}
-
-                {/* </Pressable> */}
+                <View style={styles.selectOptions}>
                 <FlatList
-                     data={InterestArr}
+                // style={styles.Selectlist}
+                     data={UserInterestList}
+                     numColumns={3}
+                    contentContainerStyle={{ gap: 9}}
                      renderItem={({item, index}) =>(
                         <TouchableOpacity
                         key={ index.toString()}
@@ -131,6 +95,10 @@ export default function InterestDataList(){
                  
 
                 </View>
+
+                </View>
+
+
                 <View style={styles.selectvalueAndBtn}>
                 <Text>11111</Text>
                 </View>
@@ -148,12 +116,18 @@ const styles = StyleSheet.create({
         // backgroundColor: "pink",
         // paddingTop: 40,
         justifyContent: "center"
+       
+       
+
     },
     selectLayer: {
 
         // backgroundColor: "yellow",
         width: "100%", 
-        height: 600
+        height: 600,
+        // flexDirection: "row",
+       
+
         
 
     }, 
@@ -173,26 +147,49 @@ const styles = StyleSheet.create({
     }, 
     selectOptions: {
         // backgroundColor: "rgba(255, 255, 255, 0.1)",
+        // backgroundColor: "green",
+
         width: "100%", 
-        // : "0 4px 30px rgba(0, 0, 0, 0.1)"
         height: 400,
-        shadowColor: " rgba(0, 0, 0, 0.1)",
-        shadowRadius: 4,
+        // shadowColor: " rgba(0, 0, 0, 0.1)",
+        // shadowRadius: 4,
+        flex: 1,
+        marginTop: 20,
+      
+        
+       
+       
+       
+
        
      
         
 
     },
+    // Selectlist:{
+        // backgroundColor: "pink",
+        // flexDirection: 'row',
+        // width: "100%",
+        // height: 200,
+        // flexWrap: "wrap",
+        // marginTop: 25,
+        
+
+        // justifyContent: "center"
+
+        
+    // },
     InterestItem:{
         backgroundColor: "rgba(255, 255, 255, 0.4)",
-         width:"30%", 
+         width: 100, 
          height: 30,
          justifyContent: "center",
          alignItems:"center",
          borderWidth: 2,
          borderRadius: 50,
-         margin: 10,
-         borderColor: "rgb(180, 180, 180)"
+         margin: 11,
+         borderColor: "rgb(180, 180, 180)",
+        
 
     },
     InterestpropertyChecked: {
