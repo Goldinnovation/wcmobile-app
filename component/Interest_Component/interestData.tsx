@@ -1,16 +1,20 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { View, Text, StyleSheet, Pressable, FlatList,  TouchableOpacity, ScrollView} from "react-native"
 import Checkbox from "expo-checkbox";
 import UserInterestList from "../../assets/lnterestList/userInterestList";
+import { LinearGradient } from "expo-linear-gradient";
+
+
 
 
 
 
 
 export default function InterestDataList(){
-    const [checkedItems, setInterestValueChecked] = useState(null);
-    const [updateColor, setUpdateColor] = useState(null)
+   
     const [pickedIntesrest, setPickedInterest] = useState<string[]>([])
+    const [selectedInterest,setSelectedInterest] = useState<number>(0)
+    const [totallenofInterest, setTotallenofInterest] = useState<number>(0)
 
     
 
@@ -38,6 +42,33 @@ export default function InterestDataList(){
        
     }
 
+   useEffect(() => {
+
+    if(pickedIntesrest){
+        // console.log(pickedIntesrest.length);
+
+        const pickedInterestbyUserlen = pickedIntesrest.length
+       setSelectedInterest(pickedInterestbyUserlen)
+        
+       
+        
+        const totalInterestoptionlen = Object.keys(UserInterestList).length
+        setTotallenofInterest(totalInterestoptionlen)
+        // console.log(Object.keys(UserInterestList).length);
+    }
+
+   }, [pickedIntesrest])
+
+//    useEffect(() => {
+
+//    })
+
+//    if(selectedInterest === 5){
+//     console.log("r");
+//    }
+
+    // console.log(selectedInterest);
+
    
     
   
@@ -51,7 +82,7 @@ export default function InterestDataList(){
                 <View style={styles.selectHeader}>
                 <Text style={styles.selectHeader_Text}>Choose your Interests</Text>
                 </View> 
-                <View style = {{ height: 400, justifyContent: "center", alignItems: "center"}}>
+                <View style = {{ height: 350, justifyContent: "center", alignItems: "center"}}>
 
                 
                 <View style={styles.selectOptions}>
@@ -68,15 +99,17 @@ export default function InterestDataList(){
                         >
                             <View style={[styles.InterestItem,
 
-                                { backgroundColor: pickedIntesrest.includes(item.name) ?  "rgb(255,99,71)": "rgba(255, 255, 255, 0.4)", 
-                                    borderColor: pickedIntesrest.includes(item.name) ? ' borderColor: "rgb(255,99,71)"' : 'rgb(180, 180, 180)',
+                                { backgroundColor: pickedIntesrest.includes(item.name) ?  "rgb(117, 0, 4)": "rgba(255, 255, 255, 0.4)", 
+                                    borderColor: pickedIntesrest.includes(item.name) ? ' borderColor: "rgb(117, 0, 4)"' : 'rgb(180, 180, 180)',
                                     borderWidth: 2,
                                     
                                 },
                                 
                             ]}>
                                
-                                <Text style={{color: "white"}}> {item.name}</Text>
+                                <Text style={{color: pickedIntesrest.includes(item.name) ?  "white": "black",
+                                    
+                                    fontWeight: 700}}> {item.name}</Text>
                                
                             </View>
 
@@ -90,7 +123,6 @@ export default function InterestDataList(){
                        
 
 
-                {/* <Text style={styles.Interestproperty}>movie</Text> */}
                  
                  
 
@@ -100,7 +132,29 @@ export default function InterestDataList(){
 
 
                 <View style={styles.selectvalueAndBtn}>
-                <Text>11111</Text>
+               
+                <View style={styles.pickedInterestText}>
+                    <Text style={{color: "white", fontWeight: 700}}>Select minimum 5 different Interests: {selectedInterest}  </Text>
+
+                </View>
+                <View style={styles.pickedInterestSubText}>
+                    <Text style={{color: "white", fontWeight: 200, fontSize: 12, }}>The interest options can be modified at any time through the app's settings menu</Text>
+
+                </View>
+                <View style={styles.InterestBtnLayer}>
+                
+                    <TouchableOpacity style={selectedInterest >= 5 ? styles.readyToGobtn : styles.InterestBtn }>
+                        <Text style={{
+                            color: selectedInterest >=5 ? "white": "black",
+                            fontWeight: selectedInterest >= 5 ? "700": "400",
+
+                            
+                            }}>Ready To Go</Text>
+                    </TouchableOpacity>
+                    
+
+
+                </View>
                 </View>
 
 
@@ -154,7 +208,7 @@ const styles = StyleSheet.create({
         // shadowColor: " rgba(0, 0, 0, 0.1)",
         // shadowRadius: 4,
         flex: 1,
-        marginTop: 20,
+        marginTop: 15,
       
         
        
@@ -206,7 +260,63 @@ const styles = StyleSheet.create({
         // backgroundColor: "grey",
         width: "100%", 
         height:120
+    },
+    pickedInterestText: {
+        // backgroundColor: "orange",
+        // backgroundColor: "rgba(255, 255, 255, 0.1)",
+        alignItems: "center",
+        width: "100%",
+        height: 30,
+        justifyContent: "center"
+    }, 
+    pickedInterestSubText: {
+        // backgroundColor: "orange",
+        alignItems: "center",
+        width: "100%",
+        height: 40,
+        justifyContent: "center",
+        flexWrap: "wrap",
+        padding: 5,
+        paddingLeft: 20
+
+    },
+    InterestBtnLayer: {
+        // backgroundColor: "orange",
+        width: "100%",
+        height: 100,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 10
+
+    }, 
+    InterestBtn: {
+        backgroundColor: "rgba(255, 255, 255, 0.3)",
+        width: "70%",
+        height: 50, 
+        borderWidth: 2,
+        borderRadius:7,
+        alignItems: "center", 
+        justifyContent: "center",
+        borderColor: "rgba(255, 255, 255, 0.2)"
+
+
+    }, 
+    readyToGobtn: {
+        backgroundColor: "rgba(24,116,205, 0.7)",
+        width: "70%",
+        height: 50, 
+        borderWidth: 2,
+        borderRadius:7,
+        alignItems: "center", 
+        justifyContent: "center",
+        borderColor: "rgba(2, 35, 214, 0.2)"
+
+    }, 
+    linearGradient: {
+        flex: 1,
     }
+
+
 })
 
 

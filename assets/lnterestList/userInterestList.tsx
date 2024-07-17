@@ -18,7 +18,7 @@ const userInterestList = [
   },
   {
     id: "6",
-    name: "Techno",
+    name: "Festivals",
   },
   {
     id: "7",
@@ -56,18 +56,7 @@ const userInterestList = [
     id: "15",
     name: "Flea market",
   },
-  {
-    id: "16",
-    name: "Meet Up",
-  },
-  {
-    id: "17",
-    name: "Science",
-  },
-  {
-    id: "18",
-    name: "chess",
-  },
+
 ];
 
 export default userInterestList;
