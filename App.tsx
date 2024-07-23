@@ -9,12 +9,21 @@ import ExploreScreen from './navigation/exploreScreen';
 import FavorScreen from './navigation/favorScreen';
 import LoginScreen from './navigation/loginScreen';
 import UserInterestScreen from './navigation/interestScreen';
+import { useInterest } from './middleware/InterestState';
+import { InterestState } from './middleware/InterestState';
+
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 
+
+
+
+
 const MyTheme = {
+
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
@@ -98,7 +107,42 @@ function TabNavigator() {
     </Tab.Navigator>
   );
 }
+
+
+function AppNavigator() {
+  const {interestApproved} = useInterest()
+
+  return(
+    <NavigationContainer  theme={MyTheme}>
+     
+      {
+        interestApproved ? (
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+             <Stack.Screen name="Login" component=
+             {LoginScreen} />
+            <Stack.Screen name="UserExploreScreen" component={TabNavigator} />
+          </Stack.Navigator>
+       
+        ) : 
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+           <Stack.Screen name="Login" component=
+             {LoginScreen} />
+            <Stack.Screen name="interestScreeen" component={UserInterestScreen} />
+        </Stack.Navigator>
+     
+        
+      }
+  
+   
+    </NavigationContainer>
+
+  )
+
+}
+
 export default function App() {
+
+
   return (
   
       <View  style={styles.container} >
@@ -110,23 +154,16 @@ export default function App() {
     start={{ x: 0, y: 1}}
     end={{ x: 0, y: 0 }}
     >
-    
-    {/* <NavigationContainer  theme={MyTheme}>
-    
+    <InterestState>
+    <AppNavigator/>
 
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="UserExploreScreen" component={TabNavigator} />
-
-    </Stack.Navigator>
-   
-    </NavigationContainer> */}
+    </InterestState>
+    
     
       {/* <LoginScreen/> */}
       {/* <UserInterestScreen/> */}
-      <UserInterestScreen/>
+      {/* <UserInterestScreen/> */}
     </LinearGradient>
-    
     </View>
     
   );

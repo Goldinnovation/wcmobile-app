@@ -5,14 +5,32 @@ import { Colors } from "react-native/Libraries/NewAppScreen"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native'
 import ExploreScreen from "./exploreScreen";
+import { useInterest } from "../middleware/InterestState";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { StackActions } from "@react-navigation/native";
+import UserInterestScreen from "./interestScreen";
+import { ParamListBase } from "@react-navigation/native";
+
+
+interface ResponseType{
+    ok: boolean, 
+    message?: string
+}
+
+
 
 
 
 export default function LoginScreen() {
     const [email, setonChangeEmail] = useState('') 
-    const [password, setonChangePassword] = useState('') 
+    const [password, setonChangePassword] = useState('')
+    const [checksStatus, setCheckStatus] = useState({})
+    const { setInterestApproved} = useInterest()
 
-    const navigation = useNavigation()
+    
+
+
+    const navigation = useNavigation<StackNavigationProp<ParamListBase>>()
 
 
 
@@ -20,7 +38,7 @@ export default function LoginScreen() {
         try {
 
             const API_URL = process.env.EXPO_PUBLIC_API_URL
-            const res = await fetch(`${API_URL}/api/login-token`,
+            const response = await fetch(`${API_URL}/api/login-token`,
              
                 {
                     method: "POST",
@@ -33,21 +51,43 @@ export default function LoginScreen() {
                      })
     
                 });
+                const  res: ResponseType = await response.json()
     
-                if(!res.ok){
-                    throw new Error('Login failed on response')
+                if(res?.message === "Interest Section is empty" ){
+                    console.log('inside res ok ');
+
+                    
+                        setInterestApproved(false)
+                        //  navigation.navigate('interestScreeen' as never) 
+                         navigation.replace("interestScreeen")
+
+                        
+                    
+                }else{
+                     console.log('inside explore');
+                     setInterestApproved(true)
+
+                    //  navigation.navigate('UserExploreScreen' as never)
+                     navigation.replace("UserExploreScreen")
+
                 }
-    
-                const token = await res.json()
                 const userData =  await AsyncStorage.setItem('token',JSON.stringify({
-                    token: token
+                    token: res
                 }))
 
-                navigation.navigate('UserExploreScreen' as never)
+                
+            
 
 
+                
+    
+               
+              
 
-                console.log(token);
+
+                // navigation.navigate('UserExploreScreen' as never)
+
+                // console.log(res);
 
         }catch(error){
             console.info(error);

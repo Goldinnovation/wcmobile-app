@@ -76,6 +76,8 @@ export default function InterestDataList(){
 
     return(
         <View style={styles.container}>
+        
+
            
             <View style={styles.selectLayer}>
 
@@ -159,6 +161,7 @@ export default function InterestDataList(){
 
 
             </View>
+            
         </View>
     )
 }
@@ -169,16 +172,24 @@ const styles = StyleSheet.create({
         flex: 1,
         // backgroundColor: "pink",
         // paddingTop: 40,
-        justifyContent: "center"
+        justifyContent: "center",
+        position: "relative"
        
        
 
     },
+    // gradient: {
+    //     ...StyleSheet.absoluteFillObject,
+
+    // },
     selectLayer: {
 
         // backgroundColor: "yellow",
         width: "100%", 
         height: 600,
+        // flex: 1,
+        // justifyContent: "center"
+
         // flexDirection: "row",
        
 
