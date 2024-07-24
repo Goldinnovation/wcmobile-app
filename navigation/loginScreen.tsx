@@ -12,6 +12,7 @@ import UserInterestScreen from "./interestScreen";
 import { ParamListBase } from "@react-navigation/native";
 
 
+
 interface ResponseType{
     ok: boolean, 
     message?: string
@@ -52,6 +53,7 @@ export default function LoginScreen() {
     
                 });
                 const  res: ResponseType = await response.json()
+                console.log(res);
     
                 if(res?.message === "Interest Section is empty" ){
                     console.log('inside res ok ');
@@ -59,6 +61,7 @@ export default function LoginScreen() {
                     
                         setInterestApproved(false)
                         //  navigation.navigate('interestScreeen' as never) 
+                         
                          navigation.replace("interestScreeen")
 
                         
@@ -74,6 +77,8 @@ export default function LoginScreen() {
                 const userData =  await AsyncStorage.setItem('token',JSON.stringify({
                     token: res
                 }))
+
+                console.log(userData);
 
                 
             
@@ -98,7 +103,7 @@ export default function LoginScreen() {
     return(
 
         <View style={styles.container}>
-                <View style={styles.loginLayer}>
+                  <View style={styles.loginLayer}>
                 
                 <View style={styles.loginInputLayer}>
                 <Text style={{fontWeight: "bold", fontSize: 23, textAlign:"center", color:"white"}}>login with you Account</Text>
@@ -143,6 +148,7 @@ export default function LoginScreen() {
                 </View>
              
                 </View>
+
         </View>
 
     )

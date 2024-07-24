@@ -27,7 +27,6 @@ interface GlobalLoginContent {
 
   export const useInterest = (): GlobalLoginContent =>{
     const context = useContext(Interestcontext)
-    console.log(context);
     if(context === undefined){
         throw new Error('Interest of Error on context ')
     }else{
