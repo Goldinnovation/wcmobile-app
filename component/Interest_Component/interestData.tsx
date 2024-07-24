@@ -29,7 +29,7 @@ export default function InterestDataList() {
   const [selectedInterest, setSelectedInterest] = useState<number>(0);
   const [totallenofInterest, setTotallenofInterest] = useState<number>(0);
 
-  // const navigation = useNavigation()
+  const navigation = useNavigation()
 
 
 
@@ -83,13 +83,13 @@ export default function InterestDataList() {
       })
 
       const data = await res.json()
-      // if(data?.message === "Interest are successfully stored"){
-      //   navigation.navigate('UserExploreScreen' as never)
-      // }else{
-      //   console.log('Error on respond data of handleInterestData ')
-      //   navigation.navigate('Login' as never)
+      if(data?.message === "Interest are successfully stored"){
+        navigation.navigate('UserExploreScreen' as never)
+      }else{
+        console.log('Error on respond data of handleInterestData ')
+        navigation.navigate('Login' as never)
 
-      // }
+      }
       console.log(data);
 
  }catch(error){

@@ -5,7 +5,7 @@ import { Colors } from "react-native/Libraries/NewAppScreen"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native'
 import ExploreScreen from "./exploreScreen";
-import { useInterest } from "../middleware/InterestState";
+// import { useInterest } from "../middleware/InterestState";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { StackActions } from "@react-navigation/native";
 import UserInterestScreen from "./interestScreen";
@@ -26,7 +26,7 @@ export default function LoginScreen() {
     const [email, setonChangeEmail] = useState('') 
     const [password, setonChangePassword] = useState('')
     const [checksStatus, setCheckStatus] = useState({})
-    const { setInterestApproved} = useInterest()
+    // const { setInterestApproved} = useInterest()
 
     
 
@@ -59,7 +59,7 @@ export default function LoginScreen() {
                     console.log('inside res ok ');
 
                     
-                        setInterestApproved(false)
+                        // setInterestApproved(false)
                         //  navigation.navigate('interestScreeen' as never) 
                          
                          navigation.replace("interestScreeen")
@@ -68,7 +68,7 @@ export default function LoginScreen() {
                     
                 }else{
                      console.log('inside explore');
-                     setInterestApproved(true)
+                    //  setInterestApproved(true)
 
                     //  navigation.navigate('UserExploreScreen' as never)
                      navigation.replace("UserExploreScreen")
