@@ -24,51 +24,9 @@ export default function LoginScreen() {
   const [password, setonChangePassword] = useState("");
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
-  //     try {
-  //       const API_URL = process.env.EXPO_PUBLIC_API_URL;
-  //       const response = await fetch(
-  //         `${API_URL}/api/login-token`,
-
-  //         {
-  //           method: "POST",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //           body: JSON.stringify({
-  //             loginEmail: email,
-  //             loginPassword: password,
-  //           }),
-  //         }
-  //       );
-  //       const res: ResponseType = await response.json();
-  //       console.log(res);
-
-  //       if (res?.message === "Interest Section is empty") {
-  //         console.log("redirecting to interest screen");
-
-  //         navigation.replace("interestScreeen");
-  //       } else {
-  //         console.log("redirecting to explore screen");
-
-  //         navigation.replace("UserExploreScreen");
-  //       }
-  //       const userData = await AsyncStorage.setItem(
-  //         "token",
-  //         JSON.stringify({
-  //           token: res,
-  //         })
-  //       );
-
-  //       console.log(userData);
-  //     } catch (error) {
-  //       console.info(error);
-  //       console.log("Catches error on Requesting Login from Client", error);
-  //     }
-  //   };
-
   const handleLoginData = async () => {
     try {
-
+        console.log('inside');
       const result = await useLoginPost(email, password);
       if (result.message && result.token) {
         result?.message === "Interest Section is empty"
@@ -87,7 +45,7 @@ export default function LoginScreen() {
         );
       }
     } catch (error) {
-      console.log("Error on handleLoginData submit form", error);
+      console.log("Error on handleLoginData submit fetch, Server Res issue", error);
     }
   };
   return (

@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import { View, Text } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
-import { useExploreGet } from "../../api/exploreScreen_Api.tsx/exploreDataApi";
+import { useExploreGet } from "../../api/exploreScreen_Api/exploreDataApi";
+
+
 
 export default function GetUserData() {
   const [data, setData] = useState(null);

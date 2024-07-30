@@ -20,6 +20,7 @@ export async function useLoginPost(email: string, password: string): Promise<any
       }
     );
     const res: ResponseType = await response.json();
+    console.log(res);
 
     return res;
   } catch (error) {

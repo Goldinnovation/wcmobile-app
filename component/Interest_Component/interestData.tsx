@@ -13,6 +13,7 @@ import UserInterestList from "../../assets/lnterestList/userInterestList";
 import { LinearGradient } from "expo-linear-gradient";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
+import { useInterestPost } from "../../api/interestScreen_Api/interestDataApi";
 
 
 
@@ -27,7 +28,8 @@ import { useNavigation } from "@react-navigation/native";
 export default function InterestDataList() {
   const [pickedIntesrest, setPickedInterest] = useState<string[]>([]);
   const [selectedInterest, setSelectedInterest] = useState<number>(0);
-  const [totallenofInterest, setTotallenofInterest] = useState<number>(0);
+  const [updatebtnStatus, setUpdateBtnStatus] = useState(true)
+  // const [totallenofInterest, setTotallenofInterest] = useState<number>(0);
 
   const navigation = useNavigation()
 
@@ -49,48 +51,40 @@ export default function InterestDataList() {
 
   useEffect(() => {
     if (pickedIntesrest) {
-      // console.log(pickedIntesrest.length);
+
+      // Represents the selected numbers of interest 
 
       const pickedInterestbyUserlen = pickedIntesrest.length;
       setSelectedInterest(pickedInterestbyUserlen);
+      console.log(selectedInterest);
+      selectedInterest >=5 ? setUpdateBtnStatus(false) : setUpdateBtnStatus(true)
 
-      const totalInterestoptionlen = Object.keys(UserInterestList).length;
-      setTotallenofInterest(totalInterestoptionlen);
-      // console.log(Object.keys(UserInterestList).length);
+     
+
     }
-  }, [pickedIntesrest]);
+  }, [pickedIntesrest, selectedInterest]);
+
+
+
 
   const handleInterestData = async() => {
 
  try{
-      console.log("inside request call");
       const storedToken = await AsyncStorage.getItem('token')   
       const token = storedToken ? JSON.parse(storedToken).token : null;
-      const API_URL = process.env.EXPO_PUBLIC_API_URL
+      const usertoken = token.token
 
-      const res = await fetch(`${API_URL}/api/userInterest`, {
-        method: "POST",
-        headers: {
-          "Content-Type":"application/json",
-          'Authorization': `Bearer ${token.token}`
+      // Calling the api 
+     
+      const result = await useInterestPost(usertoken, pickedIntesrest)
+      console.log("result arrived:",result);
+
+      result?.message === "Interest are successfully stored" 
+      ? navigation.navigate('UserExploreScreen' as never)
+      : navigation.navigate('Login' as never)
 
 
-      }, 
-      body: JSON.stringify({
-          token,
-          pickedIntesrest
-      })
-      })
-
-      const data = await res.json()
-      if(data?.message === "Interest are successfully stored"){
-        navigation.navigate('UserExploreScreen' as never)
-      }else{
-        console.log('Error on respond data of handleInterestData ')
-        navigation.navigate('Login' as never)
-
-      }
-      console.log(data);
+     
 
  }catch(error){
      console.error('Error on Request api handler handleInterestData', error)
@@ -99,7 +93,8 @@ export default function InterestDataList() {
 
 
   }
-  console.log(pickedIntesrest);
+
+ 
 
   
 
@@ -176,7 +171,7 @@ export default function InterestDataList() {
           <View style={styles.selectvalueAndBtn}>
             <View style={styles.pickedInterestText}>
               <Text style={{ color: "white", fontWeight: 700 }}>
-                Select minimum 5 different Interests: {selectedInterest}{" "}
+                Select minimum 5 different Interests: {selectedInterest}
               </Text>
             </View>
             <View style={styles.pickedInterestSubText}>
@@ -193,6 +188,7 @@ export default function InterestDataList() {
                     : styles.InterestBtn
                 }
                 onPress={handleInterestData}
+                disabled={updatebtnStatus}
               >
                 <Text
                   style={{
