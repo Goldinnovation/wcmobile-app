@@ -9,8 +9,7 @@ import ExploreScreen from './navigation/exploreScreen';
 import FavorScreen from './navigation/favorScreen';
 import LoginScreen from './navigation/loginScreen';
 import UserInterestScreen from './navigation/interestScreen';
-// import { useInterest } from './middleware/InterestState';
-// import { InterestState } from './middleware/InterestState';
+
 
 
 
@@ -110,28 +109,11 @@ function TabNavigator() {
 
 
 function AppNavigator() {
-  // const {interestApproved} = useInterest()
 
   return(
     <NavigationContainer  theme={MyTheme}>
      
-      {/* {
-        interestApproved ? ( */}
-          {/* <Stack.Navigator screenOptions={{ headerShown: false }}>
-             <Stack.Screen name="Login" component=
-             {LoginScreen} />
-            <Stack.Screen name="UserExploreScreen" component={TabNavigator} />
-          </Stack.Navigator> */}
-       
-        {/* ) :  */}
-        {/* <Stack.Navigator screenOptions={{ headerShown: false }}>
-           <Stack.Screen name="Login" component=
-             {LoginScreen} />
-            <Stack.Screen name="interestScreeen" component={UserInterestScreen} />
-        </Stack.Navigator> */}
-     
-        
-      {/* } */}
+   
       <Stack.Navigator screenOptions={{ headerShown: false }}>
            <Stack.Screen name="Login" component=
              {LoginScreen} />
@@ -161,15 +143,8 @@ export default function App() {
     start={{ x: 0, y: 1}}
     end={{ x: 0, y: 0 }}
     >
-    {/* <InterestState> */}
     <AppNavigator/>
 
-    {/* </InterestState> */}
-    
-    
-      {/* <LoginScreen/> */}
-      {/* <UserInterestScreen/> */}
-      {/* <UserInterestScreen/> */}
     </LinearGradient>
     </View>
     
