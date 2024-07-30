@@ -1,12 +1,8 @@
 
-interface res{
-    token: string
-}
 
 
 
-
-
+// Get the explore event data
 export async function useExploreGet(token: string){
     try{
           const API_URL= process.env.EXPO_PUBLIC_API_URL

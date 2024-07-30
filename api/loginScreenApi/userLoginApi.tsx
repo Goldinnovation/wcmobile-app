@@ -1,15 +1,7 @@
-interface ResponseType {
-  ok: boolean;
-  message?: string;
-  email: any;
-}
 
 
 
-
-
-
-// Post Request 
+// Post Request to the login server section
 export async function useLoginPost(email: string, password: string): Promise<any> {
   try {
     const API_URL = process.env.EXPO_PUBLIC_API_URL;
