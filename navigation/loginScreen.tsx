@@ -12,7 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { ParamListBase } from "@react-navigation/native";
-import { useLoginPost } from "../api/loginScreenApi/userLoginApi";
+import { useLoginPost } from "../api/loginScreen_Api/userLoginApi";
 
 interface ResponseType {
   ok: boolean;
@@ -68,7 +68,7 @@ export default function LoginScreen() {
 
   const handleLoginData = async () => {
     try {
-        
+
       const result = await useLoginPost(email, password);
       if (result.message && result.token) {
         result?.message === "Interest Section is empty"
