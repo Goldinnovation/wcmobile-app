@@ -56,7 +56,6 @@ export default function InterestDataList() {
 
       const pickedInterestbyUserlen = pickedIntesrest.length;
       setSelectedInterest(pickedInterestbyUserlen);
-      console.log(selectedInterest);
       selectedInterest >=5 ? setUpdateBtnStatus(false) : setUpdateBtnStatus(true)
 
      

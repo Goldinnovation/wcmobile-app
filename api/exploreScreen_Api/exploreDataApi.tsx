@@ -1,4 +1,4 @@
-
+import axios from "axios";
 
 
 
@@ -20,6 +20,7 @@ export async function useExploreGet(token: string){
                       }
 
                     const data = await res.json() 
+                    // console.log(data);
                     return data
 
     }catch(error){
