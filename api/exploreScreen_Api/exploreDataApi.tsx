@@ -1,30 +1,28 @@
 import axios from "axios";
 
+/* Get the explore event data */
+export async function useExploreGet(token: string) {
+  try {
+    const API_URL = process.env.EXPO_PUBLIC_API_URL;
+    const res = axios
+      .get(`${API_URL}/api/events`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(function (response) {
+        // console.log(response.data)
+        return response;
+      })
+      .catch(function (error) {
+        console.log(
+          "Error on Get Method API request from useExploreGet function"
+        );
+      });
 
-
-// Get the explore event data
-export async function useExploreGet(token: string){
-    try{
-          const API_URL= process.env.EXPO_PUBLIC_API_URL
-                    const res = await fetch(`${API_URL}/api/events`, {
-                        method: "GET",
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        }
-        
-                    })
-                    if (!res.ok) {
-                        console.log('bing');
-                        throw new Error(`HTTP status ${res.status}`);
-                      }
-
-                    const data = await res.json() 
-                    // console.log(data);
-                    return data
-
-    }catch(error){
-        console.log('Error on API useExploreGet Request:', error);
-    }
-    
+    return res;
+  } catch (error) {
+    console.log("Error on API useExploreGet Request:", error);
+  }
 }

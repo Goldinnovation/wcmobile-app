@@ -2,7 +2,8 @@ import axios from "axios";
 
 
 
-// Post Request to the login server section
+/* Post Request to the login server section */
+
 export async function useLoginPost(email: string, password: string): Promise<any> {
   try {
     const API_URL = process.env.EXPO_PUBLIC_API_URL;
