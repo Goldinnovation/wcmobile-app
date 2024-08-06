@@ -5,7 +5,7 @@ export async function useExploreGet(token: string) {
   try {
     const API_URL = process.env.EXPO_PUBLIC_API_URL;
     const res = axios
-      .get(`${API_URL}/api/events`, {
+      .get(`${API_URL}/api/explore`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -13,7 +13,7 @@ export async function useExploreGet(token: string) {
       })
       .then(function (response) {
         // console.log(response.data)
-        return response;
+        return response.data;
       })
       .catch(function (error) {
         console.log(
