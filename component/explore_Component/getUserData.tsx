@@ -85,7 +85,7 @@ export default function GetUserData() {
             <View style={styles.contentLayer_below_item1_info}>
               <View>
                 {/* <Image
-                  source={require("../assets/7.jpg")}
+                  source={require("assets/7.jpg")}
                   style={styles.imageFlyer_profilepic}
                 /> */}
               </View>
@@ -104,7 +104,9 @@ export default function GetUserData() {
             </View>
           </View>
 
-          
+          <View style={styles.eventContentTag}>
+           <Text>hallo</Text>
+          </View>
                   
           <View style={styles.eventlable_layer}>
             <View style={styles.eventlable_item}>
@@ -140,7 +142,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     // backgroundColor:"orange",
     // justifyContent: "center",
-    padding: "2%",
+    // padding: "2%",
     width: "100%",
     height: 390,
     flexDirection: "row",
@@ -176,7 +178,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   contentLayer_below: {
-    width: "100%",
+    // width: "100%",
+    // padding: "2%",
     // backgroundColor: "green",
     height: 200,
     flexDirection: "column",
@@ -231,6 +234,10 @@ const styles = StyleSheet.create({
     gap: 5,
     marginRight: "1%",
   },
+  eventContentTag: {
+    backgroundColor: "skyblue",
+    height: 100,
+  },
   eventlable_layer: {
     backgroundColor: "pink",
     // width: "100%",
@@ -263,7 +270,7 @@ const styles = StyleSheet.create({
     height: 370,
     // margin: "1%",
     // marginRight: "1%",
-    borderRadius: 7,
+    // borderRadius: 7,
   },
   imageFlyer_Small: {
     width: "30%",
