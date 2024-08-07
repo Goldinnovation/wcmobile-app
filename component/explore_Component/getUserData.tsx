@@ -3,6 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
 import { useExploreGet } from "../../api/exploreScreen_Api/exploreDataApi";
 import { View, ScrollView, Image, StyleSheet, Text } from "react-native";
+import Slider from '@react-native-community/slider';
 
 interface eventProps {
   eventId: string;
@@ -25,6 +26,9 @@ interface eventProps {
 
 export default function GetUserData() {
   const [data, setData] = useState<eventArr | []>([]);
+   const [value, setValue] = useState(0);
+
+ 
 
   //   Gets the explore events data from the server
   useEffect(() => {
@@ -49,10 +53,6 @@ export default function GetUserData() {
         <ScrollView contentContainerStyle={styles.scrollViewContent}>
           {data?.map((item, index) => (
             <View key={index}>
-
-            
-
-              
               <View style={styles.contentLayer_below_item1_infoText}>
                 <Text
                   style={{
@@ -66,60 +66,96 @@ export default function GetUserData() {
                 </Text>
               </View>
 
-            
-          
-
-
-
               <View style={styles.imageContainer}>
-             <View style={styles.contentLayer_center}>
-            <Image
-              source={{uri: item.ImageCoverUpload}}
-              style={styles.image}
-            />
-          </View>
-         
-        </View>
-        <View style={styles.contentLayer_below}>
-          <View style={styles.contentLayer_below_item1}>
-            <View style={styles.contentLayer_below_item1_info}>
-              <View>
-                {/* <Image
-                  source={require("assets/7.jpg")}
-                  style={styles.imageFlyer_profilepic}
-                /> */}
-              </View>
-
-              <View style={styles.userDescription}>
-                <View>
-                  <Text style={{ color: "white" }}>PrincessNokia</Text>
-                </View>
-                <View style={styles.scrollCircle}>
-                  <View style={styles.contentLayer_side_2}></View>
-                  <View style={styles.contentLayer_side_1}></View>
-                  <View style={styles.contentLayer_side_1}></View>
-                  <View style={styles.contentLayer_side_1}></View>
+                <View style={styles.contentLayer_center}>
+                  <Image
+                    source={{ uri: item.ImageCoverUpload }}
+                    style={styles.image}
+                    // height={370}
+                  />
                 </View>
               </View>
-            </View>
-          </View>
+              <View style={styles.contentLayer_below}>
+              
+                  <View style={styles.contentLayer_below_item1_info}>
 
-          <View style={styles.eventContentTag}>
-           <Text>hallo</Text>
-          </View>
+                    <View style={styles.conentLayer_left_up}>
+                    <View>
+                      <Image
+                        source={require("../../assets/7.jpg")}
+                        style={styles.imageFlyer_profilepic}
+                      />
+                    </View>
+
+                    <View style={styles.user_name_and_Description}>
+                        <View style={styles.user_name}>
+                        <Text style={{ color: "white" }}>PrincessNokia</Text>
+
+                        </View>
+
+                        <View style={styles.user_Description}>
+                        <Text style={{color: "white", fontSize: 11}}>{item.eventDescriptionContent}</Text>
+
+                        </View>
+
+
+                      
                   
-          <View style={styles.eventlable_layer}>
-            <View style={styles.eventlable_item}>
-              <Text
-                style={{ color: "white", fontWeight: "bold", opacity: 0.7 }}
-              >
-                underground
-              </Text>
-            </View>
-          </View>
+                    </View>
 
-       
-        </View>
+                    </View>
+
+                    <View style={styles.conentLayer_right_up}>
+                      <View style={styles.scrollCircle}>
+                        <View style={styles.contentLayer_side_2}></View>
+                        <View style={styles.contentLayer_side_1}></View>
+                        <View style={styles.contentLayer_side_1}></View>
+                        <View style={styles.contentLayer_side_1}></View>
+                      </View>
+                    </View>
+                    
+                  </View>
+                
+
+                <View style={styles.eventContentTag}>
+                 <View style={styles.ContentLeftDescription}>
+                  {/* <Text style={{color: "white"}}>{item.eventDescriptionContent}</Text> */}
+
+                 </View>
+                 <View style={styles.ContentrightSelection}>
+                  
+                 <View>
+                    <Slider 
+                     value={0}                         // set the current slider's value
+                     minimumValue={1}                  // Minimum value
+                     maximumValue={10}                  // Maximum value
+                     step={2} 
+                     onValueChange={value => setValue(value)}
+                     style={{width:295, height: 100}}
+                     minimumTrackTintColor="grey"
+                     maximumTrackTintColor="#000000"
+                     thumbTintColor="grey"
+                         
+                    />
+                    {/* <Text>value:  {value}</Text> */}
+               </View>
+                  </View>
+                </View>
+
+                <View style={styles.eventlable_layer}>
+                  <View style={styles.eventlable_item}>
+                    <Text
+                      style={{
+                        color: "white",
+                        fontWeight: "bold",
+                        opacity: 0.7,
+                      }}
+                    >
+                      {item.eventType}
+                    </Text>
+                  </View>
+                </View>
+              </View>
             </View>
           ))}
         </ScrollView>
@@ -140,11 +176,11 @@ const styles = StyleSheet.create({
     paddingVertical: 20, // Add some vertical padding for better spacing
   },
   imageContainer: {
-    // backgroundColor:"orange",
+    backgroundColor:"orange",
     // justifyContent: "center",
     // padding: "2%",
-    width: "100%",
-    height: 390,
+    // width: "100%",
+    height: 370,
     flexDirection: "row",
 
     // Use margin for gap in child elements
@@ -185,13 +221,12 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   contentLayer_below_item1: {
-    width: "100%",
+    // width: "100%",
     // height: 100,
-    // backgroundColor: "orange",
     // padding: 5
   },
   contentLayer_below_item2: {
-    width: "100%",
+    // width: "100%",
     height: 120,
     // backgroundColor: "purple",
     flexDirection: "row",
@@ -199,20 +234,48 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   contentLayer_below_item1_info: {
-    // backgroundColor: "green",
-    alignItems: "center",
+    // backgroundColor: "grey",
+    // alignItems: "center",
     width: "100%",
     flexDirection: "row",
-    gap: 7,
-    padding: 2,
-    marginTop: "1%",
+    marginLeft: 2,
+    height:73,
+    // gap: 7,
+    // padding: 3,
+    marginTop: 5,
   },
-  userDescription: {
-    backgroundColor: "orange",
-    width: "96%",
+  conentLayer_left_up: {
+    // backgroundColor: "green",
+    width: "80%", 
+    display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    gap: 7,
+    padding: 4
+
+  },
+  conentLayer_right_up: {
+    // backgroundColor: "#4287f5",
+    width: "20%",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    padding: 9
+
+  },
+  user_name_and_Description: {
+    // backgroundColor: "purple",
+    width: "90%",
+    // flexDirection: "row",
+    // alignItems: "center",
+    // justifyContent: "space-between",
+    height: 70
+  },
+  user_name: {
+    // backgroundColor: "blue",
+    marginTop: 10
+  },
+  user_Description: {
+    // backgroundColor: "red",
+    height: 28
   },
   tabIcon: {
     // backgroundColor: "pink",
@@ -227,23 +290,42 @@ const styles = StyleSheet.create({
     padding: 2,
   },
   scrollCircle: {
-    backgroundColor: "yellow",
+    // backgroundColor: "yellow",
     width: "30%",
     flexDirection: "row",
     justifyContent: "flex-end",
     gap: 5,
     marginRight: "1%",
+    marginTop: 12
   },
   eventContentTag: {
-    backgroundColor: "skyblue",
-    height: 100,
+    // backgroundColor: "skyblue",
+    height: 70,
+    // flexDirection: "row"
+    alignItems:"center"
+
+  },
+  ContentLeftDescription:{
+    // backgroundColor: "orange",
+    // width: "50%"
+    padding: 5,
+    marginLeft: 36
+
+  },
+  ContentrightSelection: {
+    // backgroundColor: "grey",
+    width: "50%",
+    // justifyContent: "center",
+    alignItems: "center"
+
   },
   eventlable_layer: {
-    backgroundColor: "pink",
+    // backgroundColor: "pink",
     // width: "100%",
-    height: 50,
+    height: 48,
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: 20
   },
   eventlable_item: {
     height: 30,
@@ -262,6 +344,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 7,
+    marginTop: 10
     
   },
 
@@ -283,7 +366,7 @@ const styles = StyleSheet.create({
     width: 30,
     height: 35,
     borderRadius: 100,
-    marginLeft: 2,
+    // marginLeft: 20,
     marginTop: 1,
   },
   tabImage: {

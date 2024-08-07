@@ -14,7 +14,7 @@ const userInterestList = [
   },
   {
     id: "5",
-    name: "Comedy ",
+    name: "Comedy",
   },
   {
     id: "6",
