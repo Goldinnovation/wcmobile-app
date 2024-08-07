@@ -52,9 +52,30 @@ export default function GetUserData() {
       {data ? (
         <ScrollView contentContainerStyle={styles.scrollViewContent}>
           {data?.map((item, index) => (
-            <View key={index}>
+            <View key={index} style={styles.children}>
+             
               <View style={styles.contentLayer_below_item1_infoText}>
-                <Text
+              <View style={styles.contentLayer_header_location}>
+              
+              <Image
+                        source={require("../../assets/p1.png")}
+                        style={styles.iconlocation}
+              />
+
+              <Text
+                  style={{
+                    color: "white",
+                    // marginLeft: "1%",
+                    fontWeight: "bold",
+                    opacity: 0.9,
+                  }}
+                >
+                  {item.cityType}
+                </Text>
+
+              </View>
+              {/* <View  style={styles.contentLayer_header_eventName}>
+              <Text
                   style={{
                     color: "white",
                     // marginLeft: "1%",
@@ -64,6 +85,9 @@ export default function GetUserData() {
                 >
                   {item.eventTitle}
                 </Text>
+
+              </View> */}
+               
               </View>
 
               <View style={styles.imageContainer}>
@@ -112,37 +136,54 @@ export default function GetUserData() {
                         <View style={styles.contentLayer_side_1}></View>
                         <View style={styles.contentLayer_side_1}></View>
                       </View>
+                    <View style={styles.iconOption_layer}>
+                    <Image
+                        source={require("../../assets/v1.png")}
+                        style={styles.iconOption_1}
+                      />
+
+                
+
+                      </View>
                     </View>
                     
                   </View>
                 
 
-                <View style={styles.eventContentTag}>
-                 <View style={styles.ContentLeftDescription}>
-                  {/* <Text style={{color: "white"}}>{item.eventDescriptionContent}</Text> */}
-
-                 </View>
-                 <View style={styles.ContentrightSelection}>
-                  
-                 <View>
-                    <Slider 
+                {/* <View style={styles.eventContentTag}> */}
+                 
+                 {/* <View style={styles.ContentrightSelection}>        */}
+                    {/* <Slider 
                      value={0}                         // set the current slider's value
                      minimumValue={1}                  // Minimum value
                      maximumValue={10}                  // Maximum value
                      step={2} 
                      onValueChange={value => setValue(value)}
-                     style={{width:295, height: 100}}
-                     minimumTrackTintColor="grey"
+                     style={{width:355, height: 100}}
+                     minimumTrackTintColor="white"
                      maximumTrackTintColor="#000000"
-                     thumbTintColor="grey"
+                     thumbTintColor="white"
                          
-                    />
-                    {/* <Text>value:  {value}</Text> */}
-               </View>
-                  </View>
-                </View>
+                    /> */}
+                    
+                  {/* </View> */}
+                  {/* <View   style={styles.iconOption_layer}> */}
+                    {/* <View>
+                    <Image
+                        source={require("../../assets/netzwerk.png")}
+                        style={styles.iconOption_1}
+                      />
+
+                
+
+                      </View> */}
+                  {/* </View> */}
+                {/* </View> */}
 
                 <View style={styles.eventlable_layer}>
+                  {/* <View  style={styles.eventlable_item_left}>
+                    <Text>1</Text>
+                  </View> */}
                   <View style={styles.eventlable_item}>
                     <Text
                       style={{
@@ -154,6 +195,9 @@ export default function GetUserData() {
                       {item.eventType}
                     </Text>
                   </View>
+                  {/* <View  style={styles.eventlable_item_right}>
+                      <Text>2</Text>
+                  </View> */}
                 </View>
               </View>
             </View>
@@ -170,18 +214,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // backgroundColor: "pink",
+    // marginBottom: 20
   },
   scrollViewContent: {
     alignItems: "center",
     paddingVertical: 20, // Add some vertical padding for better spacing
+    // marginBottom: 20
+  },
+
+  children: {
+    marginBottom: 30
   },
   imageContainer: {
     backgroundColor:"orange",
     // justifyContent: "center",
     // padding: "2%",
     // width: "100%",
-    height: 370,
+    height: 450,
     flexDirection: "row",
+    marginTop: 2
 
     // Use margin for gap in child elements
   },
@@ -256,14 +307,16 @@ const styles = StyleSheet.create({
   conentLayer_right_up: {
     // backgroundColor: "#4287f5",
     width: "20%",
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    padding: 9
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+
+    // padding: 9
 
   },
   user_name_and_Description: {
     // backgroundColor: "purple",
-    width: "90%",
+    width: "87%",
     // flexDirection: "row",
     // alignItems: "center",
     // justifyContent: "space-between",
@@ -291,22 +344,24 @@ const styles = StyleSheet.create({
   },
   scrollCircle: {
     // backgroundColor: "yellow",
-    width: "30%",
+    // width: "30%",
     flexDirection: "row",
     justifyContent: "flex-end",
     gap: 5,
-    marginRight: "1%",
-    marginTop: 12
+
+    // marginRight: "1%",
+    marginTop: 7
   },
   eventContentTag: {
     // backgroundColor: "skyblue",
-    height: 70,
-    // flexDirection: "row"
-    alignItems:"center"
+    height: 90,
+    flexDirection: "row",
+    alignItems:"center",
+   justifyContent: "center"
 
   },
   ContentLeftDescription:{
-    // backgroundColor: "orange",
+    backgroundColor: "orange",
     // width: "50%"
     padding: 5,
     marginLeft: 36
@@ -314,7 +369,7 @@ const styles = StyleSheet.create({
   },
   ContentrightSelection: {
     // backgroundColor: "grey",
-    width: "50%",
+    // width: "50%",
     // justifyContent: "center",
     alignItems: "center"
 
@@ -324,9 +379,18 @@ const styles = StyleSheet.create({
     // width: "100%",
     height: 48,
     alignItems: "center",
+    flexDirection:"row",
+    // justifyContent: "space-between",
     justifyContent: "center",
-    marginBottom: 20
+    marginBottom: 30
   },
+  eventlable_item_left:{
+    	backgroundColor: "black",
+      height: 35,
+      width: "15%",
+      borderTopRightRadius: 100,
+      borderBottomRightRadius: 100
+  }, 
   eventlable_item: {
     height: 30,
     backgroundColor: "black",
@@ -335,22 +399,43 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  eventlable_item_right: {
+    backgroundColor: "black",
+      height: 35,
+      width: "15%",
+      borderTopLeftRadius: 100,
+      borderBottomLeftRadius: 100
+  },
   contentLayer_FlyerHeader_Area: {
     backgroundColor: "green",
     width: "100%",
   },
   contentLayer_below_item1_infoText: {
     // backgroundColor: "skyblue",
-    alignItems: "center",
-    justifyContent: "center",
+    // alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    // padding: 3,
     marginBottom: 7,
-    marginTop: 10
+    // marginTop: 3
     
+  },
+  contentLayer_header_location: {
+    // backgroundColor: "pink",
+    flexDirection: "row",
+    alignItems: "center",
+    marginRight: 8
+
+  },
+  contentLayer_header_eventName:{
+    flexDirection:"row",
+    alignItems:"center"
+
   },
 
   image: {
     width: "100%",
-    height: 370,
+    height: 450,
     // margin: "1%",
     // marginRight: "1%",
     // borderRadius: 7,
@@ -373,4 +458,23 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
+  iconOption_layer: {
+    // backgroundColor: "black",
+    // height: 50,
+    // width: 50,
+    // borderRadius: 100,
+    // alignItems: "center",
+    // flexDirection: "row",
+    // justifyContent: "space-around"
+    marginTop: 7
+
+  },
+  iconOption_1: {
+    width: 25,
+    height: 25
+  },
+  iconlocation: {
+    width: 20,
+    height: 20
+  }
 });
