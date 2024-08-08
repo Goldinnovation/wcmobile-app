@@ -48,9 +48,9 @@ export default function GetUserData() {
 
    }
 
-   const handletoggleCLose = () => {
-    setOpen(false)
-   }
+  //  const handletoggleCLose = () => {
+  //   setOpen(false)
+  //  }
   const renderContent = () => (
     <View
       style={{
@@ -84,7 +84,7 @@ export default function GetUserData() {
     <View style={styles.container}>
       {data ? (
         <ScrollView contentContainerStyle={styles.scrollViewContent}
-         onScroll={handletoggleCLose}
+        //  onScroll={handletoggleCLose}
          scrollEventThrottle={96} 
          decelerationRate="normal"
         //  disableIntervalMomentum={true}
@@ -175,16 +175,37 @@ export default function GetUserData() {
                     <View>
                       <Image
                         source={require("../../assets/7.jpg")}
-                        style={styles.imageFlyer_profilepic}
+                        style={{
+                          width: 30,
+                          height: 35,
+                          borderRadius: 100,
+                          // marginLeft: 20,
+                          position: "relative", 
+                          top: isOpen ? "4%" : "25%",
+                          marginTop: 1,
+                        }}
                       />
                     </View>
 
-                    <View style={styles.user_name_and_Description}>
+                    <View style={{
+                      //  backgroundColor: "rgba(221,221,221,0.3)",
+                       width: "87%",
+                       // flexDirection: "row",
+                       // alignItems: "center",
+                       // justifyContent: "space-between",
+                       position: "relative", 
+                       top: isOpen ? "6%" : "9%",
+                       height: 70,
+                    }}>
                       <View style={styles.user_name}>
                         <Text style={{ color: "white" }}>PrincessNokia</Text>
                       </View>
 
-                      <View style={styles.user_Description}>
+                      <View style={{
+                        //  backgroundColor: "red",
+                         height:  isOpen ? 35 : 28,
+                         width: isOpen ? "100%" : "90%",
+                      }}>
                         <Text style={{ color: "white", fontSize: 11 }}>
                           {item.eventDescriptionContent}
                         </Text>
@@ -192,18 +213,66 @@ export default function GetUserData() {
                     </View>
                   </View>
 
-                  <View style={styles.conentLayer_right_up}>
+                  <View style={{
+                    //  backgroundColor: "rgba(221,221,221,0.5)",
+                     width: "20%",
+                     flexDirection: "column",
+                     justifyContent: "center",
+                     alignItems: "center",
+                     position: "relative", 
+                     top: isOpen ? "-6%" : "-3%",
+
+                  }}>
                     <View style={styles.scrollCircle}>
                       <View style={styles.contentLayer_side_2}></View>
                       <View style={styles.contentLayer_side_1}></View>
                       <View style={styles.contentLayer_side_1}></View>
                       <View style={styles.contentLayer_side_1}></View>
                     </View>
-                    <View style={styles.iconOption_layer}>
-                      <Image
-                        source={require("../../assets/v1.png")}
-                        style={styles.iconOption_1}
-                      />
+                    <View style={{
+                       //backgroundColor:  "pink", //"rgba(204,204,204,0.4)",
+                      height: isOpen ? 40 : 60,
+                      width: isOpen ? 140: 88,
+                      borderRadius: 7,
+                      alignItems: "center",
+                      flexDirection: isOpen ?  "row" : "column",
+                      justifyContent:  isOpen ? "center" : "flex-start",
+                      // marginTop: 7,
+                      gap: 7,
+                      left: isOpen ? "-45%" : "-20%",
+                      position: "relative", 
+                      top: isOpen ? "99%" : "57%",
+                    }}>
+                      <View style={{
+                        backgroundColor: "rgba(204,204,204,0.2)",
+                        borderRadius: 4,
+                        alignItems: "center",
+                        height: 20,
+                        width: 55,
+                        // flexDirection: "row",
+                        position: "relative", 
+                        // top: isOpen ? "50%" : "60%",
+                        left: isOpen ? "-3%" : "22%",
+                        justifyContent: "center",
+                      }}>
+                        <Text style={{color: "white"}}>{item.eventTime}</Text>
+                      </View>
+                      <View style={{
+                           backgroundColor: "rgba(204,204,204,0.2)",
+                           borderRadius: 4,
+                           alignItems: "center",
+                           height: 20,
+                           width: 70,
+                           // flexDirection: "row",
+                           position: "relative", 
+                        // top: isOpen ? "50%" : "60%",
+                           left: isOpen ? "-3%" : "14%",
+                           justifyContent: "center",
+                      }}
+                      >
+                        <Text style={{color: "white"}}>{item.cityType}</Text>
+                      </View>
+                     {/* <Text style={{color: "white"}}>Berlin</Text> */}
                     </View>
                   </View>
                 </View>
@@ -215,7 +284,15 @@ export default function GetUserData() {
                   <>
                    <Animated.View  entering={FadeInDown}>
 
-                   <View style={styles.contentLayer_below_item2}>
+                   <View style={{
+                        height: 110,
+                        // backgroundColor: "purple",
+                        flexDirection: "row",
+                        marginTop: 5,
+                        gap: 8,
+                        position: "relative", 
+                        top: isOpen ? "9%" : "2%"
+                   }}> 
                         <Image
                           source={require("../../assets/flyer/1.jpg")}
                           style={styles.imageFlyer_Small}
@@ -242,7 +319,9 @@ export default function GetUserData() {
                    // justifyContent: "space-between",
                    justifyContent: "center",
                    // marginBottom: 30,
-                   marginTop: isOpen ? 1 : 9
+                   marginTop: isOpen ? 1 : 9,
+                   position: "relative", 
+                   top: isOpen ? "9%" : "2%"
                 }}>
                  
                   <TouchableOpacity
@@ -377,7 +456,7 @@ const styles = StyleSheet.create({
     padding: 4,
   },
   conentLayer_right_up: {
-    // backgroundColor: "#4287f5",
+    backgroundColor: "#4287f5",
     width: "20%",
     flexDirection: "column",
     justifyContent: "center",
@@ -386,7 +465,7 @@ const styles = StyleSheet.create({
     // padding: 9
   },
   user_name_and_Description: {
-    // backgroundColor: "purple",
+    backgroundColor: "rgba(221,221,221,0.3)",
     width: "87%",
     // flexDirection: "row",
     // alignItems: "center",
@@ -398,7 +477,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   user_Description: {
-    // backgroundColor: "red",
+    backgroundColor: "red",
     height: 28,
   },
   tabIcon: {
