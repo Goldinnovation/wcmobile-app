@@ -1,16 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
 import { useExploreGet } from "../../api/exploreScreen_Api/exploreDataApi";
-import { View, ScrollView, Image, StyleSheet, Text } from "react-native";
-import Slider from '@react-native-community/slider';
+import {
+  View,
+  ScrollView,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from "react-native";
+import Slider from "@react-native-community/slider";
+import Animated, { FadeInDown, SlideInDown, SlideInUp } from 'react-native-reanimated';
+
 
 interface eventProps {
   eventId: string;
   eventHost: string;
   eventTitle: string;
-  eventType: string;
   eventDate: string;
+  eventType: string;
   eventDescriptionContent: string;
   eventTime: string;
   ImageCoverUpload: string;
@@ -21,14 +30,38 @@ interface eventProps {
   selectedRangeofEvents: number;
 }
 
- type eventArr =  eventProps[]
-
+type eventArr = eventProps[];
+type BottomSheetRef = {
+  snapTo: (index: number) => void;
+}
 
 export default function GetUserData() {
   const [data, setData] = useState<eventArr | []>([]);
-   const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0);
+  const [isOpen, setOpen] = useState(false);
+  const sheetRef = useRef<BottomSheetRef>(null);
 
- 
+
+
+   const handleToggle = () => {
+       setOpen(!isOpen)
+
+   }
+
+   const handletoggleCLose = () => {
+    setOpen(false)
+   }
+  const renderContent = () => (
+    <View
+      style={{
+        backgroundColor: 'white',
+        padding: 16,
+        height: 450,
+      }}
+    >
+      <Text>Swipe down to close</Text>
+    </View>
+  );
 
   //   Gets the explore events data from the server
   useEffect(() => {
@@ -50,31 +83,47 @@ export default function GetUserData() {
   return (
     <View style={styles.container}>
       {data ? (
-        <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <ScrollView contentContainerStyle={styles.scrollViewContent}
+         onScroll={handletoggleCLose}
+         scrollEventThrottle={96} 
+         decelerationRate="normal"
+        //  disableIntervalMomentum={true}
+         >
           {data?.map((item, index) => (
-            <View key={index} style={styles.children}>
-             
-              <View style={styles.contentLayer_below_item1_infoText}>
-              <View style={styles.contentLayer_header_location}>
-              
-              <Image
-                        source={require("../../assets/p1.png")}
-                        style={styles.iconlocation}
-              />
+            <View key={index} style={{
+              padding: isOpen ? 7: 1,
+              marginBottom: isOpen ? 95 : 50,
+              // backgroundColor: "green",
+              height: isOpen ? 540 : 595
+            }}>
 
-              <Text
-                  style={{
-                    color: "white",
-                    // marginLeft: "1%",
-                    fontWeight: "bold",
-                    opacity: 0.9,
-                  }}
-                >
-                  {item.cityType}
-                </Text>
+              {/* <View style={styles.contentLayer_below_item1_infoText}> */}
+                {/* {
+                  !isOpen && (
+                    <>
+                     <View style={styles.contentLayer_header_location}>
+                  <Image
+                    source={require("../../assets/p1.png")}
+                    style={styles.iconlocation}
+                  />
 
-              </View>
-              {/* <View  style={styles.contentLayer_header_eventName}>
+                  <Text
+                    style={{
+                      color: "white",
+                      // marginLeft: "1%",
+                      fontWeight: "bold",
+                      opacity: 0.9,
+                    }}
+                  >
+                    {item.cityType}
+                  </Text>
+                </View>
+
+                    </>
+                  )
+                } */}
+               
+                {/* <View  style={styles.contentLayer_header_eventName}>
               <Text
                   style={{
                     color: "white",
@@ -87,23 +136,42 @@ export default function GetUserData() {
                 </Text>
 
               </View> */}
-               
-              </View>
+              {/* </View> */}
 
-              <View style={styles.imageContainer}>
+              <View style={{
+                 margin: "auto",
+                 paddingLeft: 3,
+                 paddingRight: 3,
+                 // width: "100%",
+                 height: isOpen ? 350 : 498,
+                 flexDirection: "row",
+                 marginTop: 2,
+
+              }}>
                 <View style={styles.contentLayer_center}>
                   <Image
                     source={{ uri: item.ImageCoverUpload }}
-                    style={styles.image}
+                    style={{
+                      width: "100%",
+                      height: isOpen ? 350 : 500,
+                      borderRadius: 9,
+                    }}
                     // height={370}
                   />
                 </View>
               </View>
-              <View style={styles.contentLayer_below}>
-              
-                  <View style={styles.contentLayer_below_item1_info}>
-
-                    <View style={styles.conentLayer_left_up}>
+              <View style={{
+                 // width: "100%",
+                    position: "relative",
+                    top: isOpen ? "8%" : "2%",
+                    // bottom: isOpen,
+                    padding: 3,
+                    // backgroundColor: "green",
+                    height: isOpen ? 250 : 150,
+                    flexDirection: "column",
+              }}>
+                <View style={styles.contentLayer_below_item1_info}>
+                  <View style={styles.conentLayer_left_up}>
                     <View>
                       <Image
                         source={require("../../assets/7.jpg")}
@@ -112,79 +180,75 @@ export default function GetUserData() {
                     </View>
 
                     <View style={styles.user_name_and_Description}>
-                        <View style={styles.user_name}>
+                      <View style={styles.user_name}>
                         <Text style={{ color: "white" }}>PrincessNokia</Text>
-
-                        </View>
-
-                        <View style={styles.user_Description}>
-                        <Text style={{color: "white", fontSize: 11}}>{item.eventDescriptionContent}</Text>
-
-                        </View>
-
-
-                      
-                  
-                    </View>
-
-                    </View>
-
-                    <View style={styles.conentLayer_right_up}>
-                      <View style={styles.scrollCircle}>
-                        <View style={styles.contentLayer_side_2}></View>
-                        <View style={styles.contentLayer_side_1}></View>
-                        <View style={styles.contentLayer_side_1}></View>
-                        <View style={styles.contentLayer_side_1}></View>
                       </View>
+
+                      <View style={styles.user_Description}>
+                        <Text style={{ color: "white", fontSize: 11 }}>
+                          {item.eventDescriptionContent}
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+
+                  <View style={styles.conentLayer_right_up}>
+                    <View style={styles.scrollCircle}>
+                      <View style={styles.contentLayer_side_2}></View>
+                      <View style={styles.contentLayer_side_1}></View>
+                      <View style={styles.contentLayer_side_1}></View>
+                      <View style={styles.contentLayer_side_1}></View>
+                    </View>
                     <View style={styles.iconOption_layer}>
-                    <Image
+                      <Image
                         source={require("../../assets/v1.png")}
                         style={styles.iconOption_1}
                       />
-
-                
-
-                      </View>
                     </View>
-                    
                   </View>
-                
+                </View>
 
                 {/* <View style={styles.eventContentTag}> */}
+
+                {/* <View style={styles.ContentrightSelection}>        */}
+                {isOpen && (
+                  <>
+                   <Animated.View  entering={FadeInDown}>
+
+                   <View style={styles.contentLayer_below_item2}>
+                        <Image
+                          source={require("../../assets/flyer/1.jpg")}
+                          style={styles.imageFlyer_Small}
+                        />
+                        <Image
+                          source={require("../../assets/flyer/2.jpg")}
+                          style={styles.imageFlyer_Small}
+                        />
+                        <Image
+                          source={require("../../assets/flyer/4.jpg")}
+                          style={styles.imageFlyer_Small}
+                        />
+                      </View>
+                    </Animated.View>
+                  </>
+                )}
+
+              
+
+                <View style={{
+                   height: 48,
+                   alignItems: "center",
+                   flexDirection: "row",
+                   // justifyContent: "space-between",
+                   justifyContent: "center",
+                   // marginBottom: 30,
+                   marginTop: isOpen ? 1 : 9
+                }}>
                  
-                 {/* <View style={styles.ContentrightSelection}>        */}
-                    {/* <Slider 
-                     value={0}                         // set the current slider's value
-                     minimumValue={1}                  // Minimum value
-                     maximumValue={10}                  // Maximum value
-                     step={2} 
-                     onValueChange={value => setValue(value)}
-                     style={{width:355, height: 100}}
-                     minimumTrackTintColor="white"
-                     maximumTrackTintColor="#000000"
-                     thumbTintColor="white"
-                         
-                    /> */}
-                    
-                  {/* </View> */}
-                  {/* <View   style={styles.iconOption_layer}> */}
-                    {/* <View>
-                    <Image
-                        source={require("../../assets/netzwerk.png")}
-                        style={styles.iconOption_1}
-                      />
-
-                
-
-                      </View> */}
-                  {/* </View> */}
-                {/* </View> */}
-
-                <View style={styles.eventlable_layer}>
-                  {/* <View  style={styles.eventlable_item_left}>
-                    <Text>1</Text>
-                  </View> */}
-                  <View style={styles.eventlable_item}>
+                  <TouchableOpacity
+                    style={styles.eventlable_item}
+                    onPress={handleToggle}
+                  >
                     <Text
                       style={{
                         color: "white",
@@ -194,11 +258,13 @@ export default function GetUserData() {
                     >
                       {item.eventType}
                     </Text>
-                  </View>
-                  {/* <View  style={styles.eventlable_item_right}>
-                      <Text>2</Text>
-                  </View> */}
+                  </TouchableOpacity>
+                  
                 </View>
+              
+               
+
+                
               </View>
             </View>
           ))}
@@ -220,19 +286,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 20, // Add some vertical padding for better spacing
     // marginBottom: 20
+     
   },
 
   children: {
-    marginBottom: 30
+    padding: 10,
+    marginBottom: 20,
+    
   },
   imageContainer: {
-    backgroundColor:"orange",
+    // backgroundColor:"orange",
     // justifyContent: "center",
-    // padding: "2%",
+    margin: "auto",
+    paddingLeft: 3,
+    paddingRight: 3,
     // width: "100%",
     height: 450,
     flexDirection: "row",
-    marginTop: 2
+    marginTop: 2,
 
     // Use margin for gap in child elements
   },
@@ -266,7 +337,9 @@ const styles = StyleSheet.create({
   },
   contentLayer_below: {
     // width: "100%",
-    // padding: "2%",
+    position: "relative",
+    top: "-11%",
+    padding: 3,
     // backgroundColor: "green",
     height: 200,
     flexDirection: "column",
@@ -290,19 +363,18 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     marginLeft: 2,
-    height:73,
+    height: 73,
     // gap: 7,
     // padding: 3,
     marginTop: 5,
   },
   conentLayer_left_up: {
     // backgroundColor: "green",
-    width: "80%", 
+    width: "80%",
     display: "flex",
     flexDirection: "row",
     gap: 7,
-    padding: 4
-
+    padding: 4,
   },
   conentLayer_right_up: {
     // backgroundColor: "#4287f5",
@@ -312,7 +384,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
 
     // padding: 9
-
   },
   user_name_and_Description: {
     // backgroundColor: "purple",
@@ -320,15 +391,15 @@ const styles = StyleSheet.create({
     // flexDirection: "row",
     // alignItems: "center",
     // justifyContent: "space-between",
-    height: 70
+    height: 70,
   },
   user_name: {
     // backgroundColor: "blue",
-    marginTop: 10
+    marginTop: 10,
   },
   user_Description: {
     // backgroundColor: "red",
-    height: 28
+    height: 28,
   },
   tabIcon: {
     // backgroundColor: "pink",
@@ -350,47 +421,45 @@ const styles = StyleSheet.create({
     gap: 5,
 
     // marginRight: "1%",
-    marginTop: 7
+    marginTop: 7,
   },
   eventContentTag: {
     // backgroundColor: "skyblue",
     height: 90,
     flexDirection: "row",
-    alignItems:"center",
-   justifyContent: "center"
-
+    alignItems: "center",
+    justifyContent: "center",
   },
-  ContentLeftDescription:{
+  ContentLeftDescription: {
     backgroundColor: "orange",
     // width: "50%"
     padding: 5,
-    marginLeft: 36
-
+    marginLeft: 36,
   },
   ContentrightSelection: {
     // backgroundColor: "grey",
     // width: "50%",
     // justifyContent: "center",
-    alignItems: "center"
-
+    alignItems: "center",
   },
   eventlable_layer: {
     // backgroundColor: "pink",
     // width: "100%",
     height: 48,
     alignItems: "center",
-    flexDirection:"row",
+    flexDirection: "row",
     // justifyContent: "space-between",
     justifyContent: "center",
-    marginBottom: 30
+    // marginBottom: 30,
+    marginTop: 9
   },
-  eventlable_item_left:{
-    	backgroundColor: "black",
-      height: 35,
-      width: "15%",
-      borderTopRightRadius: 100,
-      borderBottomRightRadius: 100
-  }, 
+  eventlable_item_left: {
+    backgroundColor: "black",
+    height: 35,
+    width: "15%",
+    borderTopRightRadius: 100,
+    borderBottomRightRadius: 100,
+  },
   eventlable_item: {
     height: 30,
     backgroundColor: "black",
@@ -401,10 +470,10 @@ const styles = StyleSheet.create({
   },
   eventlable_item_right: {
     backgroundColor: "black",
-      height: 35,
-      width: "15%",
-      borderTopLeftRadius: 100,
-      borderBottomLeftRadius: 100
+    height: 35,
+    width: "15%",
+    borderTopLeftRadius: 100,
+    borderBottomLeftRadius: 100,
   },
   contentLayer_FlyerHeader_Area: {
     backgroundColor: "green",
@@ -418,19 +487,16 @@ const styles = StyleSheet.create({
     // padding: 3,
     marginBottom: 7,
     // marginTop: 3
-    
   },
   contentLayer_header_location: {
     // backgroundColor: "pink",
     flexDirection: "row",
     alignItems: "center",
-    marginRight: 8
-
+    marginRight: 8,
   },
-  contentLayer_header_eventName:{
-    flexDirection:"row",
-    alignItems:"center"
-
+  contentLayer_header_eventName: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 
   image: {
@@ -438,7 +504,7 @@ const styles = StyleSheet.create({
     height: 450,
     // margin: "1%",
     // marginRight: "1%",
-    // borderRadius: 7,
+    borderRadius: 9,
   },
   imageFlyer_Small: {
     width: "30%",
@@ -466,15 +532,14 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     // flexDirection: "row",
     // justifyContent: "space-around"
-    marginTop: 7
-
+    marginTop: 7,
   },
   iconOption_1: {
     width: 25,
-    height: 25
+    height: 25,
   },
   iconlocation: {
     width: 20,
-    height: 20
-  }
+    height: 20,
+  },
 });
