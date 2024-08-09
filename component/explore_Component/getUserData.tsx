@@ -143,7 +143,7 @@ export default function GetUserData() {
                  paddingLeft: 3,
                  paddingRight: 3,
                  // width: "100%",
-                 height: isOpen ? 350 : 498,
+                 height: isOpen ? 350 : 490,
                  flexDirection: "row",
                  marginTop: 2,
 
@@ -153,7 +153,7 @@ export default function GetUserData() {
                     source={{ uri: item.ImageCoverUpload }}
                     style={{
                       width: "100%",
-                      height: isOpen ? 350 : 500,
+                      height: isOpen ? 350 : 490,
                       borderRadius: 9,
                     }}
                     // height={370}
@@ -194,16 +194,33 @@ export default function GetUserData() {
                        // alignItems: "center",
                        // justifyContent: "space-between",
                        position: "relative", 
-                       top: isOpen ? "6%" : "9%",
+                       top: isOpen ? "5%" : "8%",
                        height: 70,
                     }}>
                       <View style={styles.user_name}>
-                        <Text style={{ color: "white" }}>PrincessNokia</Text>
+                        <Text style={{
+                           color: "white",
+                           fontSize: 13,
+                            fontWeight: "600",
+                           
+                           }}>PrincessNokia</Text>
+                      </View>
+
+                      <View style={{
+                        //  backgroundColor: "orange",
+                         height:  isOpen ? 17 : 20,
+                         width: isOpen ? "100%" : "70%",
+                      }}>
+                          <Text style={{
+                            fontSize: 13,
+                            fontWeight: "400",
+                            color: "white"
+                          }}>Event: {item.eventTitle}</Text>
                       </View>
 
                       <View style={{
                         //  backgroundColor: "red",
-                         height:  isOpen ? 35 : 28,
+                         height:  isOpen ? 35 : 20,
                          width: isOpen ? "100%" : "90%",
                       }}>
                         <Text style={{ color: "white", fontSize: 11 }}>
@@ -239,22 +256,30 @@ export default function GetUserData() {
                       justifyContent:  isOpen ? "center" : "flex-start",
                       // marginTop: 7,
                       gap: 7,
-                      left: isOpen ? "-45%" : "-20%",
+                      left: isOpen ? "-49%" : "-20%",
                       position: "relative", 
-                      top: isOpen ? "99%" : "57%",
+                      top: isOpen ? "115%" : "50%",
                     }}>
                       <View style={{
                         backgroundColor: "rgba(204,204,204,0.2)",
                         borderRadius: 4,
                         alignItems: "center",
                         height: 20,
-                        width: 55,
-                        // flexDirection: "row",
+                        width:  isOpen ? 60 : 61,
+                        flexDirection: "row",
                         position: "relative", 
+                        gap: 3, 
                         // top: isOpen ? "50%" : "60%",
                         left: isOpen ? "-3%" : "22%",
                         justifyContent: "center",
                       }}>
+                         <Image
+                          source={require("../../assets/t1.png")}
+                          style={{
+                            width: 12,
+                            height: 12,
+                          }}
+                          />
                         <Text style={{color: "white"}}>{item.eventTime}</Text>
                       </View>
                       <View style={{
@@ -262,14 +287,23 @@ export default function GetUserData() {
                            borderRadius: 4,
                            alignItems: "center",
                            height: 20,
-                           width: 70,
-                           // flexDirection: "row",
-                           position: "relative", 
+                           width: isOpen ? 78 :  78,
+                           flexDirection: "row",
+                           position: "relative",
+                           padding: 1,
+                           gap: 2, 
                         // top: isOpen ? "50%" : "60%",
                            left: isOpen ? "-3%" : "14%",
                            justifyContent: "center",
                       }}
                       >
+                         <Image
+                          source={require("../../assets/p1.png")}
+                          style={{
+                            width: 12,
+                            height: 12,
+                          }}
+                          />
                         <Text style={{color: "white"}}>{item.cityType}</Text>
                       </View>
                      {/* <Text style={{color: "white"}}>Berlin</Text> */}
@@ -289,9 +323,9 @@ export default function GetUserData() {
                         // backgroundColor: "purple",
                         flexDirection: "row",
                         marginTop: 5,
-                        gap: 8,
+                        gap: 8.5,
                         position: "relative", 
-                        top: isOpen ? "9%" : "2%"
+                        top: isOpen ? "12%" : "2%"
                    }}> 
                         <Image
                           source={require("../../assets/flyer/1.jpg")}
@@ -321,7 +355,7 @@ export default function GetUserData() {
                    // marginBottom: 30,
                    marginTop: isOpen ? 1 : 9,
                    position: "relative", 
-                   top: isOpen ? "9%" : "2%"
+                   top: isOpen ? "11%" : "2%"
                 }}>
                  
                   <TouchableOpacity
