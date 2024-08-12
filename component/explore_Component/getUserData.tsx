@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import Slider from "@react-native-community/slider";
 import Animated, { FadeInDown, SlideInDown, SlideInUp } from 'react-native-reanimated';
-
+import { userCategoryReq } from "../../api/exploreScreen_Api/CategoryDataApi";
 
 interface eventProps {
   eventId: string;
@@ -39,12 +39,36 @@ export default function GetUserData() {
   const [data, setData] = useState<eventArr | []>([]);
   const [value, setValue] = useState(0);
   const [isOpen, setOpen] = useState(false);
+  const [categoryData, setCategoryData] = useState<eventArr | []>([])
   const sheetRef = useRef<BottomSheetRef>(null);
 
 
 
-   const handleToggle = () => {
-       setOpen(!isOpen)
+   const handleCategoryReq = async(e: string) => {
+
+
+    try{
+      const storedToken = await AsyncStorage.getItem("token");
+      const token = storedToken ? JSON.parse(storedToken).token : null;
+      const userToken = token.token;
+      const userselected_Category = e
+      if(isOpen === false && userToken && userselected_Category){
+        const CategoryData = await userCategoryReq(userToken, userselected_Category)
+        console.log(CategoryData);
+        setCategoryData(CategoryData)
+        setOpen(true)
+
+      }else{
+        setOpen(false)
+      }
+
+    }catch(error){
+      console.error('Error on hanleCategory Rey', error)
+    }
+    // const CategoryData = await userCategoryReq()
+
+    //    console.log(e);
+    //    setOpen(!isOpen)
 
    }
 
@@ -324,28 +348,58 @@ export default function GetUserData() {
                   <>
                    <Animated.View  entering={FadeInDown}>
 
-                   <View style={{
-                        height: 110,
-                        // backgroundColor: "purple",
+             
+                    {
+                      categoryData ? 
+                      (
+                        <ScrollView horizontal={true}  style={{
+                          height: 110,
+                          // backgroundColor: "purple",
+                          flexDirection: "row",
+                          marginTop: 5,
+                          gap: 8.5,
+                          position: "relative", 
+                          top: isOpen ? "12%" : "2%",
+                          // width: "100%",
+                     }}> 
+                     {/* <Text>asasd</Text> */}
+                      <View style={{
+                        // backgroundColor: "orange",
+                        width: 700,
+                        display: "flex",
+                        // flexDirection: "row"
                         flexDirection: "row",
-                        marginTop: 5,
-                        gap: 8.5,
-                        position: "relative", 
-                        top: isOpen ? "12%" : "2%"
-                   }}> 
-                        <Image
-                          source={require("../../assets/flyer/1.jpg")}
-                          style={styles.imageFlyer_Small}
-                        />
-                        <Image
-                          source={require("../../assets/flyer/2.jpg")}
-                          style={styles.imageFlyer_Small}
-                        />
-                        <Image
-                          source={require("../../assets/flyer/4.jpg")}
-                          style={styles.imageFlyer_Small}
-                        />
+                        gap: 10
+                      }}>
+                         {/* <Text>asasd</Text> */}
+                      { categoryData.map((categoryItem, index) => (
+                          <View key={index}  style={{
+                            // backgroundColor: "red"
+                          }}>
+                            <Image
+                            source={{ uri: categoryItem.ImageCoverUpload }}
+                            style={{
+                              width: 110,
+                              height: 110 ,
+                              
+                              borderRadius: 9,
+                            }}/>
+                          </View>
+                        ))}
+
                       </View>
+                  
+                        
+                              
+                              
+                       </ScrollView> 
+
+                      ):(
+                         <Text>loading</Text>
+                      )}
+                    
+
+                  
                     </Animated.View>
                   </>
                 )}
@@ -366,7 +420,7 @@ export default function GetUserData() {
                  
                   <TouchableOpacity
                     style={styles.eventlable_item}
-                    onPress={handleToggle}
+                    onPress={(e) => handleCategoryReq(item.eventType)}
                   >
                     <Text
                       style={{

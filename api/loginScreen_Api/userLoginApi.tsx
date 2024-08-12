@@ -13,7 +13,7 @@ export async function useLoginPost(email: string, password: string): Promise<any
            loginPassword: password,
          })
          .then(function (response) {
-           console.log(response.data);
+          //  console.log(response.data);
            return response.data;
          })
          .catch(function (error) {

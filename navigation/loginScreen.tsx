@@ -26,9 +26,7 @@ export default function LoginScreen() {
 
   const handleLoginData = async () => {
     try {
-        console.log('inside');
       const result = await useLoginPost(email, password);
-      console.log("logindata_res_result:", result);
       if (result.message && result.token) {
         result?.message === "Interest Section is empty"
           ? navigation.replace("interestScreeen")
