@@ -40,11 +40,12 @@ export default function GetUserData() {
   const [value, setValue] = useState(0);
   const [isOpen, setOpen] = useState(false);
   const [categoryData, setCategoryData] = useState<eventArr | []>([])
+  const [eventData, setEventData] = useState<eventProps | null>(null)
   const sheetRef = useRef<BottomSheetRef>(null);
 
 
 
-   const handleCategoryReq = async(e: string) => {
+   const handleCategoryReq = async(e: string,eId: string, item: eventProps) => {
 
 
     try{
@@ -52,11 +53,17 @@ export default function GetUserData() {
       const token = storedToken ? JSON.parse(storedToken).token : null;
       const userToken = token.token;
       const userselected_Category = e
+      const eventId = eId
+      const eventObj = item
       if(isOpen === false && userToken && userselected_Category){
         const CategoryData = await userCategoryReq(userToken, userselected_Category)
-        console.log(CategoryData);
-        setCategoryData(CategoryData)
+        const filteredEvent = CategoryData.filter((prevEvent: eventProps) => prevEvent.eventId !== eventId)
+        console.log(filteredEvent);
+        // console.log(CategoryData);
+        setCategoryData(filteredEvent)
         setOpen(true)
+        setEventData((prev) => (prev === eventObj ? null : eventObj))
+
 
       }else{
         setOpen(false)
@@ -420,7 +427,7 @@ export default function GetUserData() {
                  
                   <TouchableOpacity
                     style={styles.eventlable_item}
-                    onPress={(e) => handleCategoryReq(item.eventType)}
+                    onPress={(e) => handleCategoryReq(item.eventType, item.eventId,item)}
                   >
                     <Text
                       style={{
