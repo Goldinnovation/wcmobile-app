@@ -181,23 +181,29 @@ export default function GetUserData() {
                           borderRadius: 100,
                           // marginLeft: 20,
                           position: "relative", 
-                          top: isOpen ? "4%" : "25%",
+                          top: isOpen ? "-30%" : "-30%",
                           marginTop: 1,
                         }}
                       />
                     </View>
 
                     <View style={{
-                      //  backgroundColor: "rgba(221,221,221,0.3)",
+                      //  backgroundColor: "pink",
                        width: "87%",
                        // flexDirection: "row",
                        // alignItems: "center",
                        // justifyContent: "space-between",
                        position: "relative", 
-                       top: isOpen ? "5%" : "8%",
+                       top: isOpen ? "2%" : "2%",
+                       left: isOpen ? "-55%" : "-55%",
                        height: 70,
                     }}>
-                      <View style={styles.user_name}>
+                      <View style={{
+                        marginTop: 10,
+                        position: "relative", 
+                        top: isOpen ? "-35%" : "-34%",
+                        left: isOpen ? "14%" : "14%",
+                      }}>
                         <Text style={{
                            color: "white",
                            fontSize: 13,
@@ -237,7 +243,7 @@ export default function GetUserData() {
                      justifyContent: "center",
                      alignItems: "center",
                      position: "relative", 
-                     top: isOpen ? "-6%" : "-3%",
+                     top: isOpen ? "-5%" : "-2%",
 
                   }}>
                     <View style={styles.scrollCircle}>
@@ -247,7 +253,7 @@ export default function GetUserData() {
                       <View style={styles.contentLayer_side_1}></View>
                     </View>
                     <View style={{
-                       //backgroundColor:  "pink", //"rgba(204,204,204,0.4)",
+                      //  backgroundColor:  "pink", //"rgba(204,204,204,0.4)",
                       height: isOpen ? 40 : 60,
                       width: isOpen ? 140: 88,
                       borderRadius: 7,
@@ -256,9 +262,9 @@ export default function GetUserData() {
                       justifyContent:  isOpen ? "center" : "flex-start",
                       // marginTop: 7,
                       gap: 7,
-                      left: isOpen ? "-49%" : "-20%",
+                      left: isOpen ? "-62%" : "-20%",
                       position: "relative", 
-                      top: isOpen ? "115%" : "50%",
+                      top: isOpen ? "107%" : "40%",
                     }}>
                       <View style={{
                         backgroundColor: "rgba(204,204,204,0.2)",
@@ -270,7 +276,7 @@ export default function GetUserData() {
                         position: "relative", 
                         gap: 3, 
                         // top: isOpen ? "50%" : "60%",
-                        left: isOpen ? "-3%" : "22%",
+                        left: isOpen ? "-3%" : "17%",
                         justifyContent: "center",
                       }}>
                          <Image
@@ -293,7 +299,7 @@ export default function GetUserData() {
                            padding: 1,
                            gap: 2, 
                         // top: isOpen ? "50%" : "60%",
-                           left: isOpen ? "-3%" : "14%",
+                           left: isOpen ? "-3%" : "4%",
                            justifyContent: "center",
                       }}
                       >
@@ -531,7 +537,7 @@ const styles = StyleSheet.create({
     // width: "30%",
     flexDirection: "row",
     justifyContent: "flex-end",
-    gap: 5,
+    gap: 7,
 
     // marginRight: "1%",
     marginTop: 7,
