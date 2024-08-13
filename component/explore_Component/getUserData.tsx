@@ -38,14 +38,15 @@ type BottomSheetRef = {
 export default function GetUserData() {
   const [data, setData] = useState<eventArr | []>([]);
   const [value, setValue] = useState(0);
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false)
   const [categoryData, setCategoryData] = useState<eventArr | []>([])
   const [eventData, setEventData] = useState<eventProps | null>(null)
   const sheetRef = useRef<BottomSheetRef>(null);
+  const [key, setKey] = useState("")
 
 
 
-   const handleCategoryReq = async(e: string,eId: string, item: eventProps) => {
+   const handleCategoryReq = async(e: string, eId: string, item: eventProps) => {
 
 
     try{
@@ -55,18 +56,22 @@ export default function GetUserData() {
       const userselected_Category = e
       const eventId = eId
       const eventObj = item
-      if(isOpen === false && userToken && userselected_Category){
+      if(userToken && userselected_Category){
         const CategoryData = await userCategoryReq(userToken, userselected_Category)
         const filteredEvent = CategoryData.filter((prevEvent: eventProps) => prevEvent.eventId !== eventId)
-        console.log(filteredEvent);
+        // console.log(filteredEvent);
         // console.log(CategoryData);
         setCategoryData(filteredEvent)
-        setOpen(true)
-        setEventData((prev) => (prev === eventObj ? null : eventObj))
+        setOpen(!isOpen)
+        
+        // setOpen( prev=> ({
+        //   ...prev, [eventId]: false
+        // })
+       
+        // )
+        // setEventData((prev) => (prev === eventObj ? null : eventObj))
 
 
-      }else{
-        setOpen(false)
       }
 
     }catch(error){
@@ -79,21 +84,8 @@ export default function GetUserData() {
 
    }
 
-  //  const handletoggleCLose = () => {
-  //   setOpen(false)
-  //  }
-  const renderContent = () => (
-    <View
-      style={{
-        backgroundColor: 'white',
-        padding: 16,
-        height: 450,
-      }}
-    >
-      <Text>Swipe down to close</Text>
-    </View>
-  );
-
+   
+ 
   //   Gets the explore events data from the server
   useEffect(() => {
     const fetchEventData = async () => {
@@ -101,9 +93,13 @@ export default function GetUserData() {
       const token = storedToken ? JSON.parse(storedToken).token : null;
       const userToken = token.token;
       if (userToken) {
-        const result = await useExploreGet(userToken);
+        const exploreFetchedData = await useExploreGet(userToken);
         // console.log(result);
-        setData(result);
+        
+        setData(exploreFetchedData);
+
+       setOpen(false)
+
       } else {
         console.error("Token not found");
       }
@@ -111,6 +107,25 @@ export default function GetUserData() {
 
     fetchEventData();
   }, []);
+
+
+
+  const handleSelectedEvent = (CategoryItem: eventProps, itemindex: number) => {
+    const selectedEvent = CategoryItem;
+    const coverEventIndex = itemindex;
+    console.log(selectedEvent);
+    console.log(coverEventIndex);
+    if (selectedEvent) {
+      console.log("inside");
+      const newData = [...data];
+
+      newData[coverEventIndex] = selectedEvent;
+      setData(newData);
+    }
+  };
+
+
+
   return (
     <View style={styles.container}>
       {data ? (
@@ -263,7 +278,35 @@ export default function GetUserData() {
                         <Text style={{ color: "white", fontSize: 11 }}>
                           {item.eventDescriptionContent}
                         </Text>
+
+
                       </View>
+                      <View style={{
+                           backgroundColor: "rgba(204,204,204,0.2)",
+                           borderRadius: 4,
+                           alignItems: "center",
+                           height: 20,
+                           width: isOpen ? 78 :  78,
+                           flexDirection: "row",
+                           position: "relative",
+                           padding: 1,
+                           gap: 2, 
+                           display: isOpen ? "flex" :"none",
+                           top: isOpen ? "1.9%" : "2%",
+                           left: isOpen ? "1%" : "90%",
+                           justifyContent: "center",
+                      }}
+                      >
+                         <Image
+                          source={require("../../assets/p1.png")}
+                          style={{
+                            width: 12,
+                            height: 12,
+                          }}
+                          />
+                        <Text style={{color: "white"}}>{item.cityType}</Text>
+                      </View>
+                     
                     </View>
                   </View>
 
@@ -324,24 +367,24 @@ export default function GetUserData() {
                            borderRadius: 4,
                            alignItems: "center",
                            height: 20,
-                           width: isOpen ? 78 :  78,
+                           width: isOpen ? 78 :  98,
                            flexDirection: "row",
                            position: "relative",
                            padding: 1,
                            gap: 2, 
                         // top: isOpen ? "50%" : "60%",
-                           left: isOpen ? "-3%" : "4%",
+                           left: isOpen ? "-3%" : "-20%",
                            justifyContent: "center",
                       }}
                       >
-                         <Image
+                         {/* <Image
                           source={require("../../assets/p1.png")}
                           style={{
                             width: 12,
                             height: 12,
                           }}
-                          />
-                        <Text style={{color: "white"}}>{item.cityType}</Text>
+                          /> */}
+                        <Text style={{color: "white"}}>{item.eventDate}</Text>
                       </View>
                      {/* <Text style={{color: "white"}}>Berlin</Text> */}
                     </View>
@@ -351,7 +394,7 @@ export default function GetUserData() {
                 {/* <View style={styles.eventContentTag}> */}
 
                 {/* <View style={styles.ContentrightSelection}>        */}
-                {isOpen && (
+                { isOpen  &&(
                   <>
                    <Animated.View  entering={FadeInDown}>
 
@@ -372,17 +415,22 @@ export default function GetUserData() {
                      {/* <Text>asasd</Text> */}
                       <View style={{
                         // backgroundColor: "orange",
-                        width: 700,
+                        width: "100%",
                         display: "flex",
                         // flexDirection: "row"
                         flexDirection: "row",
                         gap: 10
                       }}>
                          {/* <Text>asasd</Text> */}
-                      { categoryData.map((categoryItem, index) => (
-                          <View key={index}  style={{
+                      { categoryData.map((categoryItem, categoryindex) => (
+                          <View key={categoryindex}  
+                          style={{
+                            
                             // backgroundColor: "red"
                           }}>
+                            <TouchableOpacity
+                            onPress={(e) => handleSelectedEvent(categoryItem, index )}
+                            >
                             <Image
                             source={{ uri: categoryItem.ImageCoverUpload }}
                             style={{
@@ -390,7 +438,10 @@ export default function GetUserData() {
                               height: 110 ,
                               
                               borderRadius: 9,
+                              
                             }}/>
+                            </TouchableOpacity>
+                           
                           </View>
                         ))}
 
@@ -426,6 +477,7 @@ export default function GetUserData() {
                 }}>
                  
                   <TouchableOpacity
+                  key={item.eventId}
                     style={styles.eventlable_item}
                     onPress={(e) => handleCategoryReq(item.eventType, item.eventId,item)}
                   >
