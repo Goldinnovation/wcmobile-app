@@ -38,12 +38,12 @@ type BottomSheetRef = {
 export default function GetUserData() {
   const [data, setData] = useState<eventArr | []>([]);
   const [value, setValue] = useState(0);
-  const [isOpen, setOpen] = useState(false)
+  const [isOpen, setOpen] = useState("")
   const [categoryData, setCategoryData] = useState<eventArr | []>([])
   const [eventData, setEventData] = useState<eventProps | null>(null)
   const sheetRef = useRef<BottomSheetRef>(null);
   const [key, setKey] = useState("")
-
+  const[state, setNumState ] = useState(0)
 
 
    const handleCategoryReq = async(e: string, eId: string, item: eventProps) => {
@@ -56,13 +56,17 @@ export default function GetUserData() {
       const userselected_Category = e
       const eventId = eId
       const eventObj = item
-      if(userToken && userselected_Category){
+      console.log(categoryData);
+     
+      if(state === 0){
         const CategoryData = await userCategoryReq(userToken, userselected_Category)
         const filteredEvent = CategoryData.filter((prevEvent: eventProps) => prevEvent.eventId !== eventId)
         // console.log(filteredEvent);
         // console.log(CategoryData);
         setCategoryData(filteredEvent)
-        setOpen(!isOpen)
+        setOpen(eventId)
+        setNumState(1)
+      
         
         // setOpen( prev=> ({
         //   ...prev, [eventId]: false
@@ -71,6 +75,10 @@ export default function GetUserData() {
         // )
         // setEventData((prev) => (prev === eventObj ? null : eventObj))
 
+
+      }else{
+        setOpen("")
+        setNumState(0)
 
       }
 
@@ -98,7 +106,7 @@ export default function GetUserData() {
         
         setData(exploreFetchedData);
 
-       setOpen(false)
+      //  setOpen(false)
 
       } else {
         console.error("Token not found");
@@ -110,7 +118,7 @@ export default function GetUserData() {
 
 
 
-  const handleSelectedEvent = (CategoryItem: eventProps, itemindex: number) => {
+  const handleSelectedEvent = (CategoryItem: eventProps, itemindex: number, categoryId: string) => {
     const selectedEvent = CategoryItem;
     const coverEventIndex = itemindex;
     console.log(selectedEvent);
@@ -121,26 +129,30 @@ export default function GetUserData() {
 
       newData[coverEventIndex] = selectedEvent;
       setData(newData);
+      setOpen(categoryId)
     }
   };
 
+  const handletoggleCLose = () => {
+    setOpen("")
+  }
 
 
   return (
     <View style={styles.container}>
       {data ? (
         <ScrollView contentContainerStyle={styles.scrollViewContent}
-        //  onScroll={handletoggleCLose}
+         onScroll={handletoggleCLose}
          scrollEventThrottle={96} 
          decelerationRate="normal"
         //  disableIntervalMomentum={true}
          >
           {data?.map((item, index) => (
             <View key={index} style={{
-              padding: isOpen ? 7: 1,
-              marginBottom: isOpen ? 95 : 50,
+              padding: isOpen === item.eventId ? 7: 1,
+              marginBottom: isOpen === item.eventId ? 95 : 50,
               // backgroundColor: "green",
-              height: isOpen ? 540 : 595
+              height: isOpen === item.eventId ? 540 : 595
             }}>
 
               {/* <View style={styles.contentLayer_below_item1_infoText}> */}
@@ -189,7 +201,7 @@ export default function GetUserData() {
                  paddingLeft: 3,
                  paddingRight: 3,
                  // width: "100%",
-                 height: isOpen ? 350 : 490,
+                 height: isOpen === item.eventId? 350 : 490,
                  flexDirection: "row",
                  marginTop: 2,
 
@@ -199,7 +211,7 @@ export default function GetUserData() {
                     source={{ uri: item.ImageCoverUpload }}
                     style={{
                       width: "100%",
-                      height: isOpen ? 350 : 490,
+                      height: isOpen === item.eventId ? 350 : 490,
                       borderRadius: 9,
                     }}
                     // height={370}
@@ -209,11 +221,11 @@ export default function GetUserData() {
               <View style={{
                  // width: "100%",
                     position: "relative",
-                    top: isOpen ? "8%" : "2%",
+                    top: isOpen === item.eventId ? "8%" : "2%",
                     // bottom: isOpen,
                     padding: 3,
                     // backgroundColor: "green",
-                    height: isOpen ? 250 : 150,
+                    height:isOpen === item.eventId ? 250 : 150,
                     flexDirection: "column",
               }}>
                 <View style={styles.contentLayer_below_item1_info}>
@@ -227,7 +239,7 @@ export default function GetUserData() {
                           borderRadius: 100,
                           // marginLeft: 20,
                           position: "relative", 
-                          top: isOpen ? "-30%" : "-30%",
+                          top: isOpen === item.eventId ? "-30%" : "-30%",
                           marginTop: 1,
                         }}
                       />
@@ -240,15 +252,15 @@ export default function GetUserData() {
                        // alignItems: "center",
                        // justifyContent: "space-between",
                        position: "relative", 
-                       top: isOpen ? "2%" : "2%",
-                       left: isOpen ? "-55%" : "-55%",
+                       top: isOpen === item.eventId ? "2%" : "2%",
+                       left: isOpen === item.eventId ? "-55%" : "-55%",
                        height: 70,
                     }}>
                       <View style={{
                         marginTop: 10,
                         position: "relative", 
-                        top: isOpen ? "-35%" : "-34%",
-                        left: isOpen ? "14%" : "14%",
+                        top: isOpen === item.eventId ? "-35%" : "-34%",
+                        left: isOpen === item.eventId ? "14%" : "14%",
                       }}>
                         <Text style={{
                            color: "white",
@@ -260,8 +272,8 @@ export default function GetUserData() {
 
                       <View style={{
                         //  backgroundColor: "orange",
-                         height:  isOpen ? 17 : 20,
-                         width: isOpen ? "100%" : "70%",
+                         height:  isOpen === item.eventId ? 17 : 20,
+                         width: isOpen === item.eventId? "100%" : "70%",
                       }}>
                           <Text style={{
                             fontSize: 13,
@@ -272,8 +284,8 @@ export default function GetUserData() {
 
                       <View style={{
                         //  backgroundColor: "red",
-                         height:  isOpen ? 35 : 20,
-                         width: isOpen ? "100%" : "90%",
+                         height:  isOpen === item.eventId ? 35 : 20,
+                         width: isOpen === item.eventId ? "100%" : "90%",
                       }}>
                         <Text style={{ color: "white", fontSize: 11 }}>
                           {item.eventDescriptionContent}
@@ -286,14 +298,14 @@ export default function GetUserData() {
                            borderRadius: 4,
                            alignItems: "center",
                            height: 20,
-                           width: isOpen ? 78 :  78,
+                           width: isOpen === item.eventId ? 78 :  78,
                            flexDirection: "row",
                            position: "relative",
                            padding: 1,
                            gap: 2, 
-                           display: isOpen ? "flex" :"none",
-                           top: isOpen ? "1.9%" : "2%",
-                           left: isOpen ? "1%" : "90%",
+                           display: isOpen === item.eventId ? "flex" :"none",
+                           top: isOpen === item.eventId ? "1.9%" : "2%",
+                           left: isOpen === item.eventId ? "1%" : "90%",
                            justifyContent: "center",
                       }}
                       >
@@ -328,29 +340,29 @@ export default function GetUserData() {
                     </View>
                     <View style={{
                       //  backgroundColor:  "pink", //"rgba(204,204,204,0.4)",
-                      height: isOpen ? 40 : 60,
-                      width: isOpen ? 140: 88,
+                      height: isOpen === item.eventId ? 40 : 60,
+                      width: isOpen === item.eventId ? 140: 88,
                       borderRadius: 7,
                       alignItems: "center",
-                      flexDirection: isOpen ?  "row" : "column",
-                      justifyContent:  isOpen ? "center" : "flex-start",
+                      flexDirection: isOpen === item.eventId ?  "row" : "column",
+                      justifyContent:  isOpen === item.eventId ? "center" : "flex-start",
                       // marginTop: 7,
                       gap: 7,
-                      left: isOpen ? "-62%" : "-20%",
+                      left: isOpen === item.eventId ? "-62%" : "-20%",
                       position: "relative", 
-                      top: isOpen ? "107%" : "40%",
+                      top: isOpen === item.eventId ? "107%" : "40%",
                     }}>
                       <View style={{
                         backgroundColor: "rgba(204,204,204,0.2)",
                         borderRadius: 4,
                         alignItems: "center",
                         height: 20,
-                        width:  isOpen ? 60 : 61,
+                        width:  isOpen === item.eventId ? 60 : 61,
                         flexDirection: "row",
                         position: "relative", 
                         gap: 3, 
                         // top: isOpen ? "50%" : "60%",
-                        left: isOpen ? "-3%" : "17%",
+                        left: isOpen === item.eventId ? "-3%" : "17%",
                         justifyContent: "center",
                       }}>
                          <Image
@@ -373,7 +385,7 @@ export default function GetUserData() {
                            padding: 1,
                            gap: 2, 
                         // top: isOpen ? "50%" : "60%",
-                           left: isOpen ? "-3%" : "-20%",
+                           left: isOpen === item.eventId ? "-3%" : "-20%",
                            justifyContent: "center",
                       }}
                       >
@@ -394,7 +406,7 @@ export default function GetUserData() {
                 {/* <View style={styles.eventContentTag}> */}
 
                 {/* <View style={styles.ContentrightSelection}>        */}
-                { isOpen  &&(
+                { isOpen === item.eventId  &&(
                   <>
                    <Animated.View  entering={FadeInDown}>
 
@@ -429,7 +441,7 @@ export default function GetUserData() {
                             // backgroundColor: "red"
                           }}>
                             <TouchableOpacity
-                            onPress={(e) => handleSelectedEvent(categoryItem, index )}
+                            onPress={(e) => handleSelectedEvent(categoryItem, index, categoryItem.eventId )}
                             >
                             <Image
                             source={{ uri: categoryItem.ImageCoverUpload }}
@@ -471,9 +483,9 @@ export default function GetUserData() {
                    // justifyContent: "space-between",
                    justifyContent: "center",
                    // marginBottom: 30,
-                   marginTop: isOpen ? 1 : 9,
+                   marginTop: isOpen === item.eventId ? 1 : 9,
                    position: "relative", 
-                   top: isOpen ? "11%" : "2%"
+                   top: isOpen === item.eventId ? "11%" : "2%"
                 }}>
                  
                   <TouchableOpacity
