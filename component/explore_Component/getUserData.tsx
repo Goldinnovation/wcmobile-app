@@ -135,6 +135,7 @@ export default function GetUserData() {
 
   const handletoggleCLose = () => {
     setOpen("")
+    setNumState(0)
   }
 
 
@@ -254,7 +255,7 @@ export default function GetUserData() {
                        position: "relative", 
                        top: isOpen === item.eventId ? "2%" : "2%",
                        left: isOpen === item.eventId ? "-55%" : "-55%",
-                       height: 70,
+                       height: 40,
                     }}>
                       <View style={{
                         marginTop: 10,
@@ -284,8 +285,8 @@ export default function GetUserData() {
 
                       <View style={{
                         //  backgroundColor: "red",
-                         height:  isOpen === item.eventId ? 35 : 20,
-                         width: isOpen === item.eventId ? "100%" : "90%",
+                         height:  isOpen === item.eventId ? 25 : 20,
+                         width: isOpen === item.eventId ? "100%" : "75%",
                       }}>
                         <Text style={{ color: "white", fontSize: 11 }}>
                           {item.eventDescriptionContent}
@@ -293,6 +294,34 @@ export default function GetUserData() {
 
 
                       </View>
+                      <TouchableOpacity style={{
+                           backgroundColor: "rgba(204,204,204,0.2)",
+                           borderRadius: 4,
+                           alignItems: "center",
+                           height: 20,
+                           width: isOpen === item.eventId ? 78 :  78,
+                           flexDirection: "row",
+                           position: "relative",
+                           padding: 1,
+                           gap: 2, 
+                          //  display: isOpen === item.eventId ? "flex" :"none",
+                           top: isOpen === item.eventId ? "1.9%" : "2%",
+                           left: isOpen === item.eventId ? "-9%" : "0%",
+                           justifyContent: "center",
+                           borderWidth: 1, 
+                           borderColor: "rgba(28, 126, 220,0.77)",
+                      }}
+                      onPress={() => handleCategoryReq(item.eventType, item.eventId,item)}
+                      >
+                         {/* <Image
+                          source={require("../../assets/p1.png")}
+                          style={{
+                            width: 12,
+                            height: 12,
+                          }}
+                          /> */}
+                        <Text style={{color: "white"}}>#{item.eventType}</Text>
+                      </TouchableOpacity>
                       <View style={{
                            backgroundColor: "rgba(204,204,204,0.2)",
                            borderRadius: 4,
@@ -303,21 +332,25 @@ export default function GetUserData() {
                            position: "relative",
                            padding: 1,
                            gap: 2, 
-                           display: isOpen === item.eventId ? "flex" :"none",
-                           top: isOpen === item.eventId ? "1.9%" : "2%",
-                           left: isOpen === item.eventId ? "1%" : "90%",
+                          //  display: isOpen === item.eventId ? "flex" :"none",
+                           top: isOpen === item.eventId ? "-6.3%" : "-6%",
+                           left: isOpen === item.eventId ? "200%" : "210%",
                            justifyContent: "center",
+                           borderWidth: 1, 
+                           borderColor: "rgba(68, 182, 120,0.7)",
                       }}
                       >
-                         <Image
+                         {/* <Image
                           source={require("../../assets/p1.png")}
                           style={{
                             width: 12,
                             height: 12,
                           }}
-                          />
-                        <Text style={{color: "white"}}>{item.cityType}</Text>
+                          /> */}
+                        <Text style={{color: "white"}}>#Rock</Text>
                       </View>
+                     
+
                      
                     </View>
                   </View>
@@ -353,39 +386,43 @@ export default function GetUserData() {
                       top: isOpen === item.eventId ? "107%" : "40%",
                     }}>
                       <View style={{
-                        backgroundColor: "rgba(204,204,204,0.2)",
+                        // backgroundColor: "rgba(204,204,204,0.2)",
                         borderRadius: 4,
                         alignItems: "center",
-                        height: 20,
-                        width:  isOpen === item.eventId ? 60 : 61,
-                        flexDirection: "row",
+                        height: 40,
+                        // display: isOpen === item.eventId ? "flex" : "none",
+                        width:  isOpen === item.eventId ? 60 : 41,
+                        // flexDirection: "row",
                         position: "relative", 
                         gap: 3, 
-                        // top: isOpen ? "50%" : "60%",
-                        left: isOpen === item.eventId ? "-3%" : "17%",
+                        top: isOpen ? "-40%" : "-1%",
+                        left: isOpen === item.eventId ? "240%" : "20%",
                         justifyContent: "center",
                       }}>
                          <Image
-                          source={require("../../assets/t1.png")}
+                          source={require("../../assets/b.png")}
                           style={{
-                            width: 12,
-                            height: 12,
+                            width: 25,
+                            height: 25,
                           }}
                           />
-                        <Text style={{color: "white"}}>{item.eventTime}</Text>
+                        {/* <Text style={{color: "white", fontSize: 7, textAlign: "center"}}>Discover</Text> */}
                       </View>
                       <View style={{
-                           backgroundColor: "rgba(204,204,204,0.2)",
+                           backgroundColor:  isOpen === item.eventId ?  "rgba(0, 0, 0,0.3)"  : "rgba(0, 0, 0,0.7)",
                            borderRadius: 4,
                            alignItems: "center",
+                          //  display: isOpen === item.eventId ? "flex" : "none",
                            height: 20,
-                           width: isOpen ? 78 :  98,
+                           width: isOpen ? 98 :  98,
                            flexDirection: "row",
                            position: "relative",
                            padding: 1,
                            gap: 2, 
-                        // top: isOpen ? "50%" : "60%",
-                           left: isOpen === item.eventId ? "-3%" : "-20%",
+                           borderWidth: 1, 
+                           borderColor: "rgba(255, 255, 250,0.3)",
+                           top: isOpen ? "-26%" : "-610%",
+                           left: isOpen === item.eventId ? "-7%" : "-5%",
                            justifyContent: "center",
                       }}
                       >
@@ -396,7 +433,7 @@ export default function GetUserData() {
                             height: 12,
                           }}
                           /> */}
-                        <Text style={{color: "white"}}>{item.eventDate}</Text>
+                        <Text style={{color: "white"}}>WorldWide</Text>
                       </View>
                      {/* <Text style={{color: "white"}}>Berlin</Text> */}
                     </View>
@@ -415,13 +452,13 @@ export default function GetUserData() {
                       categoryData ? 
                       (
                         <ScrollView horizontal={true}  style={{
-                          height: 110,
+                          height: 120,
                           // backgroundColor: "purple",
                           flexDirection: "row",
                           marginTop: 5,
                           gap: 8.5,
                           position: "relative", 
-                          top: isOpen ? "12%" : "2%",
+                          top: isOpen ? "10%" : "2%",
                           // width: "100%",
                      }}> 
                      {/* <Text>asasd</Text> */}
@@ -447,11 +484,24 @@ export default function GetUserData() {
                             source={{ uri: categoryItem.ImageCoverUpload }}
                             style={{
                               width: 110,
-                              height: 110 ,
+                              height: 105 ,
                               
                               borderRadius: 9,
                               
                             }}/>
+                            <View style={{
+                              // backgroundColor: "pink",
+                            }}>
+                            <Text style={{
+                              textAlign: "center", 
+                              color: "white", 
+                              fontSize: 7,
+                              marginTop: 7
+                            }}>
+                              {categoryItem.eventTitle}
+                            </Text>
+                            </View>
+                            
                             </TouchableOpacity>
                            
                           </View>
@@ -482,15 +532,23 @@ export default function GetUserData() {
                    flexDirection: "row",
                    // justifyContent: "space-between",
                    justifyContent: "center",
+                   display: isOpen === item.eventId ? "flex" : "none",
                    // marginBottom: 30,
                    marginTop: isOpen === item.eventId ? 1 : 9,
                    position: "relative", 
-                   top: isOpen === item.eventId ? "11%" : "2%"
+                   top: isOpen === item.eventId ? "8%" : "2%"
                 }}>
                  
                   <TouchableOpacity
                   key={item.eventId}
-                    style={styles.eventlable_item}
+                    style={{
+                      height: 25,
+                      backgroundColor: "black",
+                      width: "40%",
+                      borderRadius: 100,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
                     onPress={(e) => handleCategoryReq(item.eventType, item.eventId,item)}
                   >
                     <Text
