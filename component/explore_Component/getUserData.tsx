@@ -44,8 +44,18 @@ export default function GetUserData() {
   const sheetRef = useRef<BottomSheetRef>(null);
   const [key, setKey] = useState("")
   const[state, setNumState ] = useState(0)
+  const [IconHeartClick, setIconHeartClick] = useState(false)
+  const [IconFavorClick, setIconFavorClick] = useState(false)
 
 
+
+  const handleIconheartPress = () => {
+    setIconHeartClick(!IconHeartClick)
+  }
+
+  const handleFavorPress = () => {
+    setIconFavorClick(!IconFavorClick)
+  }
    const handleCategoryReq = async(e: string, eId: string, item: eventProps) => {
 
 
@@ -57,6 +67,10 @@ export default function GetUserData() {
       const eventId = eId
       const eventObj = item
       console.log(categoryData);
+
+
+
+     
      
       if(state === 0){
         const CategoryData = await userCategoryReq(userToken, userselected_Category)
@@ -143,17 +157,17 @@ export default function GetUserData() {
     <View style={styles.container}>
       {data ? (
         <ScrollView contentContainerStyle={styles.scrollViewContent}
-         onScroll={handletoggleCLose}
+        //  onScroll={handletoggleCLose}
          scrollEventThrottle={96} 
          decelerationRate="normal"
         //  disableIntervalMomentum={true}
          >
           {data?.map((item, index) => (
             <View key={index} style={{
-              padding: isOpen === item.eventId ? 7: 1,
-              marginBottom: isOpen === item.eventId ? 95 : 50,
+              padding: isOpen === item.eventId ? 0: 1,
+              marginBottom: isOpen === item.eventId ? 50 : 50,
               // backgroundColor: "green",
-              height: isOpen === item.eventId ? 540 : 595
+              height: isOpen === item.eventId ? 600 : 630
             }}>
 
               {/* <View style={styles.contentLayer_below_item1_infoText}> */}
@@ -197,41 +211,74 @@ export default function GetUserData() {
               </View> */}
               {/* </View> */}
 
-              <View style={{
-                 margin: "auto",
-                 paddingLeft: 3,
-                 paddingRight: 3,
-                 // width: "100%",
-                 height: isOpen === item.eventId? 350 : 490,
-                 flexDirection: "row",
-                 marginTop: 2,
+              <ScrollView
+              horizontal={true} 
+              
+               style={{
+                // backgroundColor: "orange",
+
+                //  margin: "auto",
+                 padding: isOpen === item.eventId ?  0 : 3,
+                 paddingLeft: isOpen === item.eventId ? 9 : 3,
+                 paddingRight: isOpen === item.eventId ?  9 : 3 ,
+                 paddingTop: isOpen === item.eventId ?  9 : 3 ,
+                //  width: "100%",
+                 height: isOpen === item.eventId ? 200 : 490,
+                //  flexDirection: "row",
+                //  marginTop: 2,
 
               }}>
-                <View style={styles.contentLayer_center}>
+                
                   <Image
                     source={{ uri: item.ImageCoverUpload }}
                     style={{
-                      width: "100%",
+                      width: isOpen === item.eventId ? 355 : 367,
+                      // height: 490,
+                     
                       height: isOpen === item.eventId ? 350 : 490,
                       borderRadius: 9,
+                      //  paddingRight: 30,
                     }}
-                    // height={370}
+                 
                   />
-                </View>
-              </View>
+                
+
+              
+              </ScrollView>
               <View style={{
                  // width: "100%",
                     position: "relative",
-                    top: isOpen === item.eventId ? "8%" : "2%",
+                    top: isOpen === item.eventId ? "-28%" : "-6.5%",
                     // bottom: isOpen,
                     padding: 3,
-                    // backgroundColor: "green",
-                    height:isOpen === item.eventId ? 250 : 150,
+                    // backgroundColor: "rgba(207,207,208,0.7)",
+                    height: isOpen === item.eventId ? 120 : 130,
                     flexDirection: "column",
               }}>
-                <View style={styles.contentLayer_below_item1_info}>
-                  <View style={styles.conentLayer_left_up}>
-                    <View>
+                <View style={{
+                  //  backgroundColor: "rgba(207,207,208,0.7)",
+                   width: "100%",
+                   flexDirection: "row",
+                   height: 117,
+                  
+                }}>
+                  <View style={{
+                    //  backgroundColor: "rgba(106, 190, 110,0.7)",
+                    width: "80%",
+                    display: "flex",
+                   
+                    
+                  }}>
+                    <View
+                     style={{
+                      // backgroundColor: "rgba(18, 114, 50, 0.7)",
+                      display: "flex",
+                      flexDirection: "row",
+                      gap: 7,
+                      position: "relative",
+                      top: isOpen === item.eventId ? "-2%" : "-4%",
+                        left: isOpen === item.eventId ? "12%" : "5%",
+                    }}>
                       <Image
                         source={require("../../assets/7.jpg")}
                         style={{
@@ -239,29 +286,17 @@ export default function GetUserData() {
                           height: 35,
                           borderRadius: 100,
                           // marginLeft: 20,
-                          position: "relative", 
-                          top: isOpen === item.eventId ? "-30%" : "-30%",
+                          // position: "relative", 
+                          // top: isOpen === item.eventId ? "-30%" : "-30%",
                           marginTop: 1,
                         }}
                       />
-                    </View>
-
-                    <View style={{
-                      //  backgroundColor: "pink",
-                       width: "87%",
-                       // flexDirection: "row",
-                       // alignItems: "center",
-                       // justifyContent: "space-between",
-                       position: "relative", 
-                       top: isOpen === item.eventId ? "2%" : "2%",
-                       left: isOpen === item.eventId ? "-55%" : "-55%",
-                       height: 40,
-                    }}>
-                      <View style={{
+                        <View style={{
                         marginTop: 10,
-                        position: "relative", 
-                        top: isOpen === item.eventId ? "-35%" : "-34%",
-                        left: isOpen === item.eventId ? "14%" : "14%",
+                        // position: "relative",
+                        // display: isOpen === item.eventId ? "flex" : "none"
+                        // top: isOpen === item.eventId ? "-35%" : "-34%",
+                        // left: isOpen === item.eventId ? "14%" : "14%",
                       }}>
                         <Text style={{
                            color: "white",
@@ -270,46 +305,94 @@ export default function GetUserData() {
                            
                            }}>PrincessNokia</Text>
                       </View>
+                      
+                    </View>
 
-                      <View style={{
-                        //  backgroundColor: "orange",
-                         height:  isOpen === item.eventId ? 17 : 20,
-                         width: isOpen === item.eventId? "100%" : "70%",
+                    <View style={{
+                      //  backgroundColor: "blue",
+                      //  width: "100%",
+                      //  marginLeft: 10,
+                       // flexDirection: "row",
+                       // alignItems: "center",
+                       // justifyContent: "space-between",
+                      //  position: "relative", 
+                       top: isOpen === item.eventId ? "11%" : "2%",
+                       left: isOpen === item.eventId ? "2%" : "0%",
+                       height: isOpen === item.eventId ?  50 : 0,
+                    }}>
+                    
+
+                          <View style={{
+                            // backgroundColor: "orange",
+                            height:  isOpen === item.eventId ? 17 : 20,
+                            width: isOpen === item.eventId? "100%" : "70%",
+                            position: "relative", 
+                              left: isOpen === item.eventId ? "2%" : "2%",
+                              marginTop: 2
+                          }}>
+                              <Text style={{
+                                fontSize: 13,
+                                fontWeight: "500",
+                                color: "white"
+                              }}>Event: {item.eventTitle}</Text>
+                          </View>
+
+                            <View style={{
+                              // backgroundColor: "red",
+                              height:  isOpen === item.eventId ? 25 : 19,
+                              width: isOpen === item.eventId ? "60%" : "74%",
+                              position: "relative", 
+                              left: isOpen === item.eventId ? "2%" : "2%",
+                            }}>
+                              <Text style={{ color: "white", fontSize: 11 }}>
+                                {item.eventDescriptionContent}
+                              </Text>
+                              
+
+
+                            </View>
+
+                            <View style={{
+                        // backgroundColor: "green",
+                        width: "100%",
+                        flexDirection:  isOpen === item.eventId ? "row-reverse" : "row",
+                        gap: 5,
+                        height:isOpen === item.eventId ? 23 : 30,
+                        alignItems: "center",
+                        position: "relative", 
+                        top: isOpen === item.eventId ? "2%" : "0%",
+                        left: isOpen === item.eventId ? "8%" : "8%",
+                    
                       }}>
-                          <Text style={{
-                            fontSize: 13,
-                            fontWeight: "400",
-                            color: "white"
-                          }}>Event: {item.eventTitle}</Text>
-                      </View>
 
-                      <View style={{
-                        //  backgroundColor: "red",
-                         height:  isOpen === item.eventId ? 25 : 20,
-                         width: isOpen === item.eventId ? "100%" : "75%",
-                      }}>
-                        <Text style={{ color: "white", fontSize: 11 }}>
-                          {item.eventDescriptionContent}
-                        </Text>
-
-
-                      </View>
+                    <View style={
+                      {
+                        // backgroundColor: "yellow",
+                        flexDirection: "row",
+                        gap: 8,
+                        height:isOpen === item.eventId ? 23 : 30,
+                        alignItems: "center",
+                        width: isOpen === item.eventId ? "55.5%" : "60%",
+                        left: isOpen === item.eventId ? "-18.8%" : "0%",
+                      }
+                     }>
                       <TouchableOpacity style={{
-                           backgroundColor: "rgba(204,204,204,0.2)",
+                           backgroundColor: isOpen === item.eventId ? "rgba(0, 48, 131, 1)" : "rgba(0, 0, 0,0.4)",
+                          //  backgroundColor: isOpen === item.eventId ? "rgba(0, 101, 255,0.5)" : "rgba(204,204,204,0.2)",
                            borderRadius: 4,
                            alignItems: "center",
                            height: 20,
                            width: isOpen === item.eventId ? 78 :  78,
                            flexDirection: "row",
-                           position: "relative",
-                           padding: 1,
-                           gap: 2, 
-                          //  display: isOpen === item.eventId ? "flex" :"none",
-                           top: isOpen === item.eventId ? "1.9%" : "2%",
-                           left: isOpen === item.eventId ? "-9%" : "0%",
+                          //  position: "relative",
+                          //  padding: 1,
+                          //  gap: 2, 
+                          // //  display: isOpen === item.eventId ? "flex" :"none",
+                          //  top: isOpen === item.eventId ? "1.9%" : "2%",
+                          //  left: isOpen === item.eventId ? "660%" : "0%",
                            justifyContent: "center",
-                           borderWidth: 1, 
-                           borderColor: "rgba(28, 126, 220,0.77)",
+                           borderWidth:  isOpen === item.eventId ?  1 :   1, 
+                           borderColor:  isOpen === item.eventId ?   "rgba(204,204,204,0.2)": "rgba(0, 101, 255,0.3)",
                       }}
                       onPress={() => handleCategoryReq(item.eventType, item.eventId,item)}
                       >
@@ -322,22 +405,22 @@ export default function GetUserData() {
                           /> */}
                         <Text style={{color: "white"}}>#{item.eventType}</Text>
                       </TouchableOpacity>
-                      <View style={{
-                           backgroundColor: "rgba(204,204,204,0.2)",
+                      <TouchableOpacity style={{
+                           backgroundColor: isOpen === item.eventId ? "rgba(0, 0, 0,0.4)" : "rgba(0, 0, 0,0.4)",
                            borderRadius: 4,
                            alignItems: "center",
                            height: 20,
                            width: isOpen === item.eventId ? 78 :  78,
                            flexDirection: "row",
-                           position: "relative",
-                           padding: 1,
-                           gap: 2, 
-                          //  display: isOpen === item.eventId ? "flex" :"none",
-                           top: isOpen === item.eventId ? "-6.3%" : "-6%",
-                           left: isOpen === item.eventId ? "200%" : "210%",
+                          //  position: "relative",
+                          //  padding: 1,
+                          //  gap: 2, 
+                          // //  display: isOpen === item.eventId ? "flex" :"none",
+                          //  top: isOpen === item.eventId ? "-6.3%" : "-6%",
+                          //  left: isOpen === item.eventId ? "450%" : "210%",
                            justifyContent: "center",
-                           borderWidth: 1, 
-                           borderColor: "rgba(68, 182, 120,0.7)",
+                           borderWidth: isOpen === item.eventId ?  1 :  1, 
+                           borderColor:  isOpen === item.eventId ?   "rgba(68, 182, 120,0.3)" :"rgba(68, 182, 120,0.3)",
                       }}
                       >
                          {/* <Image
@@ -348,68 +431,11 @@ export default function GetUserData() {
                           }}
                           /> */}
                         <Text style={{color: "white"}}>#Rock</Text>
-                      </View>
-                     
-
-                     
+                      </TouchableOpacity>
                     </View>
-                  </View>
-
-                  <View style={{
-                    //  backgroundColor: "rgba(221,221,221,0.5)",
-                     width: "20%",
-                     flexDirection: "column",
-                     justifyContent: "center",
-                     alignItems: "center",
-                     position: "relative", 
-                     top: isOpen ? "-5%" : "-2%",
-
-                  }}>
-                    <View style={styles.scrollCircle}>
-                      <View style={styles.contentLayer_side_2}></View>
-                      <View style={styles.contentLayer_side_1}></View>
-                      <View style={styles.contentLayer_side_1}></View>
-                      <View style={styles.contentLayer_side_1}></View>
-                    </View>
-                    <View style={{
-                      //  backgroundColor:  "pink", //"rgba(204,204,204,0.4)",
-                      height: isOpen === item.eventId ? 40 : 60,
-                      width: isOpen === item.eventId ? 140: 88,
-                      borderRadius: 7,
-                      alignItems: "center",
-                      flexDirection: isOpen === item.eventId ?  "row" : "column",
-                      justifyContent:  isOpen === item.eventId ? "center" : "flex-start",
-                      // marginTop: 7,
-                      gap: 7,
-                      left: isOpen === item.eventId ? "-62%" : "-20%",
-                      position: "relative", 
-                      top: isOpen === item.eventId ? "107%" : "40%",
-                    }}>
+                   
                       <View style={{
-                        // backgroundColor: "rgba(204,204,204,0.2)",
-                        borderRadius: 4,
-                        alignItems: "center",
-                        height: 40,
-                        // display: isOpen === item.eventId ? "flex" : "none",
-                        width:  isOpen === item.eventId ? 60 : 41,
-                        // flexDirection: "row",
-                        position: "relative", 
-                        gap: 3, 
-                        top: isOpen ? "-40%" : "-1%",
-                        left: isOpen === item.eventId ? "240%" : "20%",
-                        justifyContent: "center",
-                      }}>
-                         <Image
-                          source={require("../../assets/b.png")}
-                          style={{
-                            width: 25,
-                            height: 25,
-                          }}
-                          />
-                        {/* <Text style={{color: "white", fontSize: 7, textAlign: "center"}}>Discover</Text> */}
-                      </View>
-                      <View style={{
-                           backgroundColor:  isOpen === item.eventId ?  "rgba(0, 0, 0,0.3)"  : "rgba(0, 0, 0,0.7)",
+                           backgroundColor:  isOpen === item.eventId ?  "rgba(0, 0, 0,0.4)"  : "rgba(0, 0, 0,0.7)",
                            borderRadius: 4,
                            alignItems: "center",
                           //  display: isOpen === item.eventId ? "flex" : "none",
@@ -418,29 +444,199 @@ export default function GetUserData() {
                            flexDirection: "row",
                            position: "relative",
                            padding: 1,
-                           gap: 2, 
-                           borderWidth: 1, 
-                           borderColor: "rgba(255, 255, 250,0.3)",
-                           top: isOpen ? "-26%" : "-610%",
-                           left: isOpen === item.eventId ? "-7%" : "-5%",
+                           gap: 5, 
+                           borderWidth:  isOpen === item.eventId ? 0 :1, 
+                           borderColor:  isOpen === item.eventId ?   "rgba(255, 255, 250,0.2)": "rgba(255, 255, 250,0.3)",
+                           top: isOpen === item.eventId ? "0%" : "-1770%",
+                           left: isOpen === item.eventId ? "11%" : "27%",
                            justifyContent: "center",
                       }}
                       >
-                         {/* <Image
-                          source={require("../../assets/p1.png")}
+                         <Image
+                          source={require("../../assets/w1.png")}
                           style={{
                             width: 12,
                             height: 12,
                           }}
-                          /> */}
+                          />
                         <Text style={{color: "white"}}>WorldWide</Text>
                       </View>
-                     {/* <Text style={{color: "white"}}>Berlin</Text> */}
+
+                      
+
+                    </View>
+
+                      
+                    
+                     
+
+                     
+                    </View>
+                  </View>
+
+                  <View style={{
+                    //  backgroundColor: "rgba(221,221,221,0.5)",
+                    // backgroundColor: "blue",
+                     width: "20%",
+                     gap: 7,
+
+                    //  flexDirection: "column",
+                    //  justifyContent: "center",
+                    //  alignItems: "center",
+                    //  position: "relative", 
+                    //  top: isOpen ? "-5%" : "-2%",
+
+                  }}>
+                    <View style={{
+                        // backgroundColor: "yellow",
+                        // width: "30%",
+                        flexDirection: "row",
+                        // justifyContent: "flex-end",
+                        gap: 7,
+                        // marginRight: "1%",
+                        marginTop: 4,
+                        left: isOpen === item.eventId ? "9%" : "9%",
+                        top: isOpen === item.eventId ? "5%" : "-4%",
+                        position: "relative", 
+                    }}>
+                      <View style={styles.contentLayer_side_2}></View>
+                      <View style={styles.contentLayer_side_1}></View>
+                      <View style={styles.contentLayer_side_1}></View>
+                      <View style={styles.contentLayer_side_1}></View>
+                    </View>
+                    <View style={{
+                      //  backgroundColor:  "pink", //"rgba(204,204,204,0.4)",
+                      height: isOpen === item.eventId ? 50 : 50,
+                      width: isOpen === item.eventId ? 130: 130,
+                      // borderRadius: 7,
+                      // alignItems: "center",
+                      flexDirection: isOpen === item.eventId ?  "row" : "row",
+                      justifyContent:  isOpen === item.eventId ? "space-around" : "space-around",
+                      // marginTop: 7,
+                      gap: -2.5,
+                      left: isOpen === item.eventId ? "-55%" : "-50%",
+                      position: "relative", 
+                      top: isOpen === item.eventId ? "45%" : "30%",
+                    }}>
+
+                    <TouchableOpacity style={{
+                        // backgroundColor: "green",
+                          position: "relative",
+                          height: 40,
+                          // top: isOpen === item.eventId ? "-35%" : "-76%",
+                          // left: isOpen === item.eventId ? "-10%" : "-65%",
+                          
+                      }}
+                      onPress={handleIconheartPress}
+                      
+                      >
+                        {
+                          IconHeartClick 
+                          ?
+                          <View>
+                           <Image
+                          source={require("../../assets/h1.png")}
+                          style={{
+                            width: 25,
+                            height: 25,
+                          }}
+                          />
+                          <Text style={{
+                            color: "white",
+                            fontSize: 10,
+                            textAlign: "center",
+                            fontWeight: "500",
+                            marginTop:  isOpen === item.eventId ?  4 : 3
+                            
+                          }}>223</Text> 
+                          </View>
+                          : 
+                          <View>
+                          <Image
+                         source={require("../../assets/h.png")}
+                         style={{
+                           width: 25,
+                           height: 25,
+                         }}
+                         />
+                         <Text style={{
+                           color: "white",
+                           fontSize: 10,
+                           textAlign: "center",
+                           fontWeight: "500",
+                           marginTop:  isOpen === item.eventId ?  4 : 3
+                           
+                         }}>222</Text> 
+                         </View>
+                        }
+                        
+                        
+                        
+                      </TouchableOpacity> 
+                     <TouchableOpacity style={{
+                        // backgroundColor: "blue",
+                        borderRadius: 4,
+                        alignItems: "center",
+                        height: 40,
+                        // marginRight:  isOpen === item.eventId ? -2 : 4,
+                      
+                        justifyContent: "center",
+                      }}
+                      onPress={handleFavorPress}
+                      >
+                        {
+                          IconFavorClick 
+                          ? 
+                          <View>
+                            <Image
+                          source={require("../../assets/s1.png")}
+                          style={{
+                            width: 25,
+                            height: 25,
+                            position: "relative",
+                            top: isOpen === item.eventId ? "-2%" : "4%", 
+                          }}
+                          /> 
+                         <Text style={{
+                            color: "white",
+                            fontSize: 10,
+                            textAlign: "center",
+                            fontWeight: "500",
+                            marginTop:  isOpen === item.eventId ?  3 : 3
+                         }}>113</Text> 
+                          </View>
+                          :
+                          <View>
+                            <Image
+                          source={require("../../assets/s.png")}
+                          style={{
+                            width: 25,
+                            height: 25,
+                            position: "relative",
+                            top: isOpen === item.eventId ? "-2%" : "4%", 
+                          }}
+                          /> 
+                         <Text style={{
+                            color: "white",
+                            fontSize: 10,
+                            textAlign: "center",
+                            fontWeight: "500",
+                            marginTop:  isOpen === item.eventId ?  3 : 3
+                         }}>112</Text> 
+
+                          </View>
+
+                        }
+                         
+                      </TouchableOpacity>
+
+                     
+                     
                     </View>
                   </View>
                 </View>
 
-                {/* <View style={styles.eventContentTag}> */}
+                {/* <View style={styles.eventContentTag}>
 
                 {/* <View style={styles.ContentrightSelection}>        */}
                 { isOpen === item.eventId  &&(
@@ -452,13 +648,14 @@ export default function GetUserData() {
                       categoryData ? 
                       (
                         <ScrollView horizontal={true}  style={{
-                          height: 120,
+                          height: 130,
                           // backgroundColor: "purple",
                           flexDirection: "row",
-                          marginTop: 5,
-                          gap: 8.5,
+                          // marginTop: 5,
+                          // gap: 45,
+                          padding: 6,
                           position: "relative", 
-                          top: isOpen ? "10%" : "2%",
+                          top: "2%"
                           // width: "100%",
                      }}> 
                      {/* <Text>asasd</Text> */}
@@ -468,7 +665,7 @@ export default function GetUserData() {
                         display: "flex",
                         // flexDirection: "row"
                         flexDirection: "row",
-                        gap: 10
+                        gap: 13
                       }}>
                          {/* <Text>asasd</Text> */}
                       { categoryData.map((categoryItem, categoryindex) => (
@@ -484,7 +681,7 @@ export default function GetUserData() {
                             source={{ uri: categoryItem.ImageCoverUpload }}
                             style={{
                               width: 110,
-                              height: 105 ,
+                              height: 100 ,
                               
                               borderRadius: 9,
                               
@@ -536,7 +733,7 @@ export default function GetUserData() {
                    // marginBottom: 30,
                    marginTop: isOpen === item.eventId ? 1 : 9,
                    position: "relative", 
-                   top: isOpen === item.eventId ? "8%" : "2%"
+                   top: isOpen === item.eventId ? "-1%" : "2%"
                 }}>
                  
                   <TouchableOpacity
@@ -544,7 +741,7 @@ export default function GetUserData() {
                     style={{
                       height: 25,
                       backgroundColor: "black",
-                      width: "40%",
+                      width: "20%",
                       borderRadius: 100,
                       justifyContent: "center",
                       alignItems: "center",
@@ -553,12 +750,13 @@ export default function GetUserData() {
                   >
                     <Text
                       style={{
-                        color: "white",
+                        color: "red",
                         fontWeight: "bold",
                         opacity: 0.7,
                       }}
                     >
-                      {item.eventType}
+                      {/* {item.eventType} */}
+                      x
                     </Text>
                   </TouchableOpacity>
                   
@@ -660,12 +858,12 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   contentLayer_below_item1_info: {
-    // backgroundColor: "grey",
+    backgroundColor: "grey",
     // alignItems: "center",
     width: "100%",
     flexDirection: "row",
     marginLeft: 2,
-    height: 73,
+    height: 113,
     // gap: 7,
     // padding: 3,
     marginTop: 5,
