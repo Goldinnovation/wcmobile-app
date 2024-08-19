@@ -17,6 +17,7 @@ import { userCategoryReq } from "../../api/exploreScreen_Api/CategoryDataApi";
 interface eventProps {
   eventId: string;
   eventHost: string;
+   eventHostName: string,
   eventTitle: string;
   eventDate: string;
   eventType: string;
@@ -31,9 +32,6 @@ interface eventProps {
 }
 
 type eventArr = eventProps[];
-type BottomSheetRef = {
-  snapTo: (index: number) => void;
-}
 
 export default function GetUserData() {
   const [data, setData] = useState<eventArr | []>([]);
@@ -41,7 +39,6 @@ export default function GetUserData() {
   const [isOpen, setOpen] = useState("")
   const [categoryData, setCategoryData] = useState<eventArr | []>([])
   const [eventData, setEventData] = useState<eventProps | null>(null)
-  const sheetRef = useRef<BottomSheetRef>(null);
   const [key, setKey] = useState("")
   const[state, setNumState ] = useState(0)
   const [IconHeartClick, setIconHeartClick] = useState(false)
@@ -66,7 +63,7 @@ export default function GetUserData() {
       const userselected_Category = e
       const eventId = eId
       const eventObj = item
-      console.log(categoryData);
+      // console.log(categoryData);
 
 
 
@@ -75,21 +72,11 @@ export default function GetUserData() {
       if(state === 0){
         const CategoryData = await userCategoryReq(userToken, userselected_Category)
         const filteredEvent = CategoryData.filter((prevEvent: eventProps) => prevEvent.eventId !== eventId)
-        // console.log(filteredEvent);
-        // console.log(CategoryData);
+     
         setCategoryData(filteredEvent)
         setOpen(eventId)
         setNumState(1)
       
-        
-        // setOpen( prev=> ({
-        //   ...prev, [eventId]: false
-        // })
-       
-        // )
-        // setEventData((prev) => (prev === eventObj ? null : eventObj))
-
-
       }else{
         setOpen("")
         setNumState(0)
@@ -99,10 +86,6 @@ export default function GetUserData() {
     }catch(error){
       console.error('Error on hanleCategory Rey', error)
     }
-    // const CategoryData = await userCategoryReq()
-
-    //    console.log(e);
-    //    setOpen(!isOpen)
 
    }
 
@@ -135,10 +118,9 @@ export default function GetUserData() {
   const handleSelectedEvent = (CategoryItem: eventProps, itemindex: number, categoryId: string) => {
     const selectedEvent = CategoryItem;
     const coverEventIndex = itemindex;
-    console.log(selectedEvent);
-    console.log(coverEventIndex);
+    
     if (selectedEvent) {
-      console.log("inside");
+      // console.log("inside");
       const newData = [...data];
 
       newData[coverEventIndex] = selectedEvent;
@@ -222,13 +204,11 @@ export default function GetUserData() {
                  paddingLeft: isOpen === item.eventId ? 9 : 3,
                  paddingRight: isOpen === item.eventId ?  9 : 3 ,
                  paddingTop: isOpen === item.eventId ?  9 : 3 ,
-                //  width: "100%",
                  height: isOpen === item.eventId ? 200 : 490,
-                //  flexDirection: "row",
-                //  marginTop: 2,
+               
 
               }}>
-                
+{/*                 
                   <Image
                     source={{ uri: item.ImageCoverUpload }}
                     style={{
@@ -240,7 +220,235 @@ export default function GetUserData() {
                       //  paddingRight: 30,
                     }}
                  
+                  /> */}
+                  <View>   
+                    <Image
+                    source={{ uri: item.ImageCoverUpload }}
+                    style={{
+                      width: isOpen === item.eventId ? 355 : 367,
+                      // height: 490,
+                     
+                      height: isOpen === item.eventId ? 350 : 490,
+                      borderRadius: 9,
+                      //  paddingRight: 30,
+                    }}
+                 
                   />
+                  </View>
+                  <View style={{
+                    // backgroundColor: "black",
+                  
+                    marginLeft: isOpen === item.eventId ? 4: 3 ,
+                    marginRight:  isOpen === item.eventId ? 10: 3,
+                    paddingLeft: isOpen === item.eventId ? 11 : 3,
+                    paddingRight: isOpen === item.eventId ?  9 : 3 ,
+                    // width: isOpen === item.eventId ? 355 : 367,
+                    // height: isOpen === item.eventId ? 350 : 490,
+                  }}>   
+                    
+                    <Image
+                    source={{ uri: item.ImageCoverUpload }}
+                    style={{
+                      width: isOpen === item.eventId ? 355 : 367,
+                      // height: 490,
+                     
+                      height: isOpen === item.eventId ? 350 : 490,
+                      borderRadius: 9,
+                      //  paddingRight: 30,
+                    }}
+                 
+                  />
+                   <View style={{
+                    backgroundColor: isOpen === item.eventId ? "rgba(20,20,20,0.99)" :"rgba(20,20,20,0.99)", 
+                    position:"absolute", 
+                    width: isOpen === item.eventId ? 355 : 367,
+                    height: isOpen === item.eventId ? 350 : 490,
+                    marginLeft:isOpen === item.eventId ? 8 : 0,
+                    // marginRight: 3,
+                    top: "0%",
+                    left: "0.8%",
+                    borderRadius: 9,
+                   }}>
+                    <View style={{
+                      // backgroundColor: "pink",
+                      height: 200
+                    }}>
+                   
+
+                    <View style={{
+                      // backgroundColor: "red",
+                      height: 100,
+                      marginTop: 65,
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}>
+                        <Image
+                        source={require("../../assets/7.jpg")}
+                        style={{
+                          width: 100,
+                          height: 100,
+                          borderRadius: 100,
+                          // marginLeft: 20,
+                          // position: "relative", 
+                          // top: isOpen === item.eventId ? "-30%" : "-30%",
+                          // marginTop: 1,
+                        }}/>
+
+
+                    </View>
+                    <View style={{
+                        //  backgroundColor: "orange",
+                         height: 50,
+                         
+                        
+                         
+                        //  flexDirection: "column",
+                         justifyContent: "center",
+                         alignItems: "center"
+                        
+                    }}>
+                      <View style={{
+                        // backgroundColor: "green",
+                        marginLeft: 10
+                      }}>
+                      <Text style={{
+                        color: "white",
+                        fontSize: 25,
+                        // textAlign: "center"
+                      }}>{item.eventHostName}</Text>
+                      </View>
+                      
+
+                      <View style={{
+                          // backgroundColor: "purple",
+                          position: "relative",
+                          top: -49,
+                          left: 43,
+                          height: 15,
+                          width: 30,
+                          marginLeft: 5,
+                          borderWidth: 1, 
+                          padding:  "auto",
+                          // borderBlockColor: "white",
+                          borderColor: "lightgrey"
+                    }}>
+                      <Text style={{
+                        color: "lightgrey",
+                        textAlign: "center",
+                        fontSize: 10
+                      }}>Host</Text>
+                    </View>
+                    </View>
+
+                    
+                    
+
+                    </View>
+                    <View style={{
+                      // backgroundColor: "green",
+                      height: 280
+                    }}>
+                     
+                      <View style={{
+                        // backgroundColor: "grey",
+                        justifyContent: "center",
+                        padding: 4,
+                        height: 28,
+                     
+                      }}>
+                        <View style={{
+                          backgroundColor: "rgba(240,240,240,1)",
+                          borderWidth: 1, 
+                          borderRadius: 50, 
+                          borderColor: "white",
+                          width: 100,
+                          overflow: "visible"
+                        }}>
+                        <Text style={{
+                          color: "black",
+                          textAlign: "center"
+
+                        }}>Description:</Text>
+                        </View>
+                          
+                      </View>
+
+                      <View style={{
+                        //  backgroundColor: "pink",
+                         height: 170,
+                         padding: 9,
+                         margin: 5,
+                        //  marginLeft: 1
+                        //  borderTopWidth: 1, 
+                        //  borderTopColor: "rgba(255, 255, 255,0.9)"
+                        
+                      }}>
+                        <Text style={{
+                          color: "white",
+                       
+                        }}>{item.eventDescriptionContent}</Text>
+                      </View>
+                      <View style={{
+                        //  backgroundColor: "orange",
+                         height: 30,
+                         flexDirection: "row",
+                         alignItems: "center",
+                         justifyContent: "space-around",
+                         display: isOpen === item.eventId ? "none" : "flex"
+                      }}>
+                       
+                        <View style={{
+                          width: "23%", 
+                          height: 20,
+                          borderWidth: 1, 
+                          borderRadius: 50, 
+                          backgroundColor:"red"
+                          // borderWidth: 1,
+                          // borderRadius: 50
+
+                        }}>
+                        <Text style={{
+                          color: "white",
+                          textAlign: "center"
+                        }}>#{item.eventType}</Text>
+                        </View>
+                        <View style={{
+                          width: "20%",
+                          height: 20,
+                         
+                          borderRadius: 50, 
+                          backgroundColor:"skyblue"
+                        
+                          
+                        }}>
+                        <Text style={{
+                          textAlign: "center",
+                          color: "white"
+                        }}>#Rock</Text>
+                        </View>
+                        <View style={{
+                          width: "20%",
+                          height: 20,
+                          
+                          borderRadius: 50, 
+                          backgroundColor:"rgb(68, 182, 119)"
+                          
+                          
+                        }}>
+                        <Text style={{
+                          color: "white",
+                          textAlign: "center"
+                        }}>#Movie</Text>
+                        </View>
+                       
+                      </View>
+                    
+                    </View>
+                   
+
+                   </View>
+                  </View>
                 
 
               
