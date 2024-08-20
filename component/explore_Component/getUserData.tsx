@@ -94,7 +94,6 @@ export default function GetUserData() {
 
 
   const handleEventInfo = ( e: string) => {
-    console.log(e);
    dispatch({type: e})
     
    
@@ -456,12 +455,54 @@ export default function GetUserData() {
 
                               <View style={{
                                 // backgroundColor: "red",
+                                width: "92%",
                                 height: 20,
+                                flexDirection: "row", 
+                                justifyContent: "space-between",
+                                 alignItems: "center"
                               }}>
-                              <Text style={{
+                                <View> 
+                                <Text style={{
                                 color: "white"
-                              }}>Payment: Free</Text>
+                              }}>Payment: 25€</Text>
+                                </View>
+                                <View style={{
+                                    // backgroundColor: "orange",
+                                    width: "20%",
+                                  flexDirection: "row", 
+                                  justifyContent: "space-around",
+                                  alignItems: "center"
+                                }}>
+                                  <View>
+                                  <Image
+                                  source={require("../../assets/bc1.png")}
+                                  style={{
+                                    width: 20,
+                                    height: 20,
+                                  
+                                  }}/>
+                                  <Text style={{color: "white", fontSize: 5, textAlign: "center"}}>Card</Text>
+                                  </View>
+                               
 
+                                  <View>
+                                  <Image
+                                  source={require("../../assets/fn2.png")}
+                                  style={{
+                                    width: 25,
+                                    height: 25,
+                                  
+                                  }}/>
+                                  <Text style={{color: "white", 
+                                    fontSize: 5, 
+                                    textAlign: "center",
+                                    position: "relative",
+                                    top: -2.3
+                                    
+                                    }}>Cash</Text>
+                                  </View>
+                                  
+                                </View>
                               </View>
                             </View>
                           )
@@ -469,10 +510,117 @@ export default function GetUserData() {
 
                         {
                           redstate.eventDateTime && (
-                            <View>
+                            <View style={{
+                              gap:4
+                            }}>
+                              <View style={{
+                                backgroundColor: "rgba(203,203,203,0.5)",
+                                height: 30,
+                                alignItems: "center",
+                                flexDirection: "row", 
+                                padding: 3,
+                                borderBottomWidth: 1,
+                                borderBottomColor: "black"
+
+                              }}>
+                                 <Image
+                              source={require("../../assets/k2.png")}
+                              style={{
+                                width: 13,
+                                height: 13,
+                                // borderRadius: 100,
+                              
+                              }}/>
+                                    <Text style={{
+                                    color: "white"
+                                  }}> {item.eventDate}</Text>
+                              </View>
+                              <View style={{
+                                flexDirection: "row", 
+                                height: 30,
+                                backgroundColor: "rgba(203,203,203,0.5)",
+                                alignItems: "center",
+                                padding: 3,
+                                borderBottomWidth: 1,
+                                borderBottomColor: "black"
+                              }}>
+                              <Image
+                              source={require("../../assets/t1.png")}
+                              style={{
+                                width: 13,
+                                height: 13,
+                                // borderRadius: 100,
+                              
+                              }}/>
                               <Text style={{
                                 color: "white"
-                              }}>{item.eventDate}</Text>
+                              }}> {item.eventTime}</Text>
+                              </View>
+                              <View style={{
+                                flexDirection: "row", 
+                                height: 30,
+                                backgroundColor: "rgba(203,203,203,0.5)",
+                                alignItems: "center",
+                                padding: 3,
+                                justifyContent: "space-between"
+                              }}>
+                                <View style={{
+                                  // backgroundColor: "red",
+                                  width: "30%",
+                                  flexDirection: "row"
+
+                                }}>
+                                  <Image
+                                source={require("../../assets/wo1.png")}
+                                style={{
+                                  width: 15,
+                                  height: 15,
+                                  // borderRadius: 100,
+                                
+                                }}/>
+                                <Text style={{
+                                  color: "white"
+                                }}> 22C</Text>
+
+                                </View>
+                                <View style={
+                                  {
+                                    // backgroundColor: "green",
+                                     width: "20%", 
+                                     flexDirection: "row",
+                                     height: 30,
+                                      gap: 10,
+                                     alignItems: "center"
+                                  }
+                                }>
+                                <View>   
+                                  <Image
+                                source={require("../../assets/tsh1.png")}
+                                style={{
+                                  width: 20,
+                                  height: 20,
+                                  // borderRadius: 100,
+                                
+                                }}/>
+                                
+                                </View>
+                                <View>
+                                  <Image
+                                source={require("../../assets/sli1.png")}
+                                style={{
+                                  width: 25,
+                                  height: 25,
+                                  // borderRadius: 100,
+                                
+                                }}/>
+                                </View>
+                                 
+
+
+
+                                </View>
+                              
+                              </View>
                               
                             </View>
                           )
@@ -502,14 +650,13 @@ export default function GetUserData() {
                        
                         <TouchableOpacity style={{
                           width: "20%", 
-                          height: 45,
+                          height: 30,
+                          // padding: 5,
                           alignItems: "center",
                           justifyContent: "center",
-                          borderBottomWidth: redstate.eventDescription ?  1 : 0,
-                          borderBottomColor: redstate.eventDescription ? "white" : " "
-                          // backgroundColor:"red"
-                          // borderWidth: 1,
-                          // borderRadius: 50
+                          borderWidth:redstate.eventDescription ?  1 : 0, 
+                          borderColor: redstate.eventDescription ? "white"  : "none", 
+                          borderRadius: redstate.eventDescription ?  50 : 0
 
                         }}
 
@@ -517,21 +664,24 @@ export default function GetUserData() {
                         
                         >
                           <Image
-                        source={require("../../assets/di1.png")}
+                        source={require("../../assets/dii.png")}
                         style={{
-                          width: 35,
-                          height: 35,
-                          borderRadius: 100,
+                          width: 23,
+                          height: 23,
+                          // borderRadius: 100,
                          
                         }}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={{
+                        //  backgroundColor: "pink",
                          width: "20%", 
-                         height: 45,
+                         height: 30,
+                        //  padding: 5,
                          alignItems: "center",
                          justifyContent: "center",
-                        borderBottomWidth: redstate.eventDateTime ?  1 : 0,
-                          borderBottomColor: redstate.eventDateTime ? "white" : "none"
+                         borderWidth:redstate.eventDateTime ?  1 : 0, 
+                          borderColor: redstate.eventDateTime ? "white"  : "none", 
+                          borderRadius: redstate.eventDateTime ?  50 : 0
                         
                           
                         }}
@@ -540,21 +690,23 @@ export default function GetUserData() {
                         
                         >
                           <Image
-                        source={require("../../assets/td.png")}
+                        source={require("../../assets/td2.png")}
                         style={{
-                          width: 35,
-                          height: 35,
+                          width: 25,
+                          height: 25,
                           // borderRadius: 100,
                          
                         }}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={{
                            width: "20%", 
-                           height: 45,
+                           height: 30,
                            alignItems: "center",
                            justifyContent: "center",
-                           borderBottomWidth:redstate.eventLocation ?  1 : 0,
-                           borderBottomColor:redstate.eventLocation ? "white" : "none"
+                      
+                          borderWidth:redstate.eventLocation ?  1 : 0, 
+                          borderColor: redstate.eventLocation ? "white"  : "none", 
+                          borderRadius: redstate.eventLocation ?  50 : 0
                           
                           // backgroundColor:"red"
                           
@@ -563,10 +715,10 @@ export default function GetUserData() {
                         
                         >
                           <Image
-                        source={require("../../assets/k.png")}
+                        source={require("../../assets/pin1.png")}
                         style={{
-                          width: 40,
-                          height: 40,
+                          width: 25,
+                          height: 25,
                           // borderRadius: 100,
                          
                         }}/>
