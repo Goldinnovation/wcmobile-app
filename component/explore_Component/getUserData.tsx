@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useReducer, useRef } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
 import { useExploreGet } from "../../api/exploreScreen_Api/exploreDataApi";
@@ -33,6 +33,40 @@ interface eventProps {
 
 type eventArr = eventProps[];
 
+const initialState = {
+  eventDescription: true,
+  eventDateTime: false,
+  eventLocation: false,
+  eventOptionHeader: "Description"
+}
+
+
+interface State {
+  eventDescription: boolean,
+  eventDateTime: boolean,
+  eventLocation: boolean
+  eventOptionHeader: string
+}
+
+interface Action{
+  type: string;
+}
+
+
+
+const reducer = (state: State, action: Action) => {
+  switch (action.type) {
+    case "info":
+      return { eventDescription: true, eventDateTime: false, eventLocation: false, eventOptionHeader: "Description"  };
+    case "time":
+      return { eventDescription: false, eventDateTime: true, eventLocation: false, eventOptionHeader: "Time&Date" };
+    case 'location':
+      return { eventDescription: false, eventDateTime: false, eventLocation: true, eventOptionHeader: "Location" };
+    default:
+      return { eventDescription: true, eventDateTime: false, eventLocation: false, eventOptionHeader: "Description" };
+  }
+};
+
 export default function GetUserData() {
   const [data, setData] = useState<eventArr | []>([]);
   const [value, setValue] = useState(0);
@@ -44,6 +78,10 @@ export default function GetUserData() {
   const [IconHeartClick, setIconHeartClick] = useState(false)
   const [IconFavorClick, setIconFavorClick] = useState(false)
 
+  const [redstate, dispatch] = useReducer(reducer, initialState)
+
+
+
 
 
   const handleIconheartPress = () => {
@@ -53,7 +91,21 @@ export default function GetUserData() {
   const handleFavorPress = () => {
     setIconFavorClick(!IconFavorClick)
   }
+
+
+  const handleEventInfo = ( e: string) => {
+    console.log(e);
+   dispatch({type: e})
+    
+   
+  }
+  
+
+
+
    const handleCategoryReq = async(e: string, eId: string, item: eventProps) => {
+
+
 
 
     try{
@@ -70,11 +122,12 @@ export default function GetUserData() {
      
      
       if(state === 0){
+        setOpen(eventId)
         const CategoryData = await userCategoryReq(userToken, userselected_Category)
         const filteredEvent = CategoryData.filter((prevEvent: eventProps) => prevEvent.eventId !== eventId)
      
         setCategoryData(filteredEvent)
-        setOpen(eventId)
+        
         setNumState(1)
       
       }else{
@@ -369,14 +422,14 @@ export default function GetUserData() {
                           color: "black",
                           textAlign: "center"
 
-                        }}>Description:</Text>
+                        }}>{redstate.eventOptionHeader}:</Text>
                         </View>
                           
                       </View>
 
                       <View style={{
                         //  backgroundColor: "pink",
-                         height: 170,
+                         height: 150,
                          padding: 9,
                          margin: 5,
                         //  marginLeft: 1
@@ -384,63 +437,140 @@ export default function GetUserData() {
                         //  borderTopColor: "rgba(255, 255, 255,0.9)"
                         
                       }}>
-                        <Text style={{
-                          color: "white",
-                       
-                        }}>{item.eventDescriptionContent}</Text>
+                        {
+                          redstate.eventDescription && (
+                            <View style={{
+                              //  backgroundColor: "green",
+                              //  height: 130,
+                            }}>
+                              
+                              <View style={{
+                                //  backgroundColor: "skyblue",
+                                //  overflow: "scroll",
+                                 height: 115,
+                              }}>
+                              <Text style={{
+                                color: "white"
+                              }}>{item.eventDescriptionContent}</Text>
+                              </View>
+
+                              <View style={{
+                                // backgroundColor: "red",
+                                height: 20,
+                              }}>
+                              <Text style={{
+                                color: "white"
+                              }}>Payment: Free</Text>
+
+                              </View>
+                            </View>
+                          )
+                        }
+
+                        {
+                          redstate.eventDateTime && (
+                            <View>
+                              <Text style={{
+                                color: "white"
+                              }}>{item.eventDate}</Text>
+                              
+                            </View>
+                          )
+                        }
+
+                        {
+                          redstate.eventLocation 
+                          && (
+                            <View>
+                              <Text style={{
+                                color: "white"
+                              }}>{item.eventAddress}</Text>
+                            </View>
+                          )
+
+                        }
+
                       </View>
                       <View style={{
                         //  backgroundColor: "orange",
-                         height: 30,
+                         height: 50,
                          flexDirection: "row",
                          alignItems: "center",
                          justifyContent: "space-around",
                          display: isOpen === item.eventId ? "none" : "flex"
                       }}>
                        
-                        <View style={{
-                          width: "23%", 
-                          height: 20,
-                          borderWidth: 1, 
-                          borderRadius: 50, 
-                          backgroundColor:"red"
+                        <TouchableOpacity style={{
+                          width: "20%", 
+                          height: 45,
+                          alignItems: "center",
+                          justifyContent: "center",
+                          borderBottomWidth: redstate.eventDescription ?  1 : 0,
+                          borderBottomColor: redstate.eventDescription ? "white" : " "
+                          // backgroundColor:"red"
                           // borderWidth: 1,
                           // borderRadius: 50
 
-                        }}>
-                        <Text style={{
-                          color: "white",
-                          textAlign: "center"
-                        }}>#{item.eventType}</Text>
-                        </View>
-                        <View style={{
-                          width: "20%",
-                          height: 20,
+                        }}
+
+                        onPress={() => handleEventInfo('info')}
+                        
+                        >
+                          <Image
+                        source={require("../../assets/di1.png")}
+                        style={{
+                          width: 35,
+                          height: 35,
+                          borderRadius: 100,
                          
-                          borderRadius: 50, 
-                          backgroundColor:"skyblue"
+                        }}/>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{
+                         width: "20%", 
+                         height: 45,
+                         alignItems: "center",
+                         justifyContent: "center",
+                        borderBottomWidth: redstate.eventDateTime ?  1 : 0,
+                          borderBottomColor: redstate.eventDateTime ? "white" : "none"
                         
                           
-                        }}>
-                        <Text style={{
-                          textAlign: "center",
-                          color: "white"
-                        }}>#Rock</Text>
-                        </View>
-                        <View style={{
-                          width: "20%",
-                          height: 20,
+                        }}
+
+                        onPress={() => handleEventInfo('time')}
+                        
+                        >
+                          <Image
+                        source={require("../../assets/td.png")}
+                        style={{
+                          width: 35,
+                          height: 35,
+                          // borderRadius: 100,
+                         
+                        }}/>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{
+                           width: "20%", 
+                           height: 45,
+                           alignItems: "center",
+                           justifyContent: "center",
+                           borderBottomWidth:redstate.eventLocation ?  1 : 0,
+                           borderBottomColor:redstate.eventLocation ? "white" : "none"
                           
-                          borderRadius: 50, 
-                          backgroundColor:"rgb(68, 182, 119)"
+                          // backgroundColor:"red"
                           
-                          
-                        }}>
-                        <Text style={{
-                          color: "white",
-                          textAlign: "center"
-                        }}>#Movie</Text>
-                        </View>
+                        }}
+                        onPress={() => handleEventInfo('location')}
+                        
+                        >
+                          <Image
+                        source={require("../../assets/k.png")}
+                        style={{
+                          width: 40,
+                          height: 40,
+                          // borderRadius: 100,
+                         
+                        }}/>
+                        </TouchableOpacity>
                        
                       </View>
                     
