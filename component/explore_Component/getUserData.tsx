@@ -195,6 +195,8 @@ export default function GetUserData() {
           //  onScroll={handletoggleCLose}
           scrollEventThrottle={96}
           decelerationRate="normal"
+          style={{
+          }}
         >
           {data?.map((item, index) => (
             <View
@@ -203,24 +205,35 @@ export default function GetUserData() {
                 padding: isOpen === item.eventId ? 0 : 1,
                 marginBottom: isOpen === item.eventId ? 50 : 50,
                 // backgroundColor: "green",
-                height: isOpen === item.eventId ? 600 : 630,
+                height: isOpen === item.eventId ? 600 : 600,
               }}
             >
+              
+              <View style={{
+               height: isOpen === item.eventId ? 345 : 515,
+               padding: isOpen === item.eventId ? 11 : 3,
+                //  backgroundColor: "skyblue",
+
+              }}>
               <ScrollView
                 horizontal={true}
                 style={{
-                  // backgroundColor: "orange",
+                  // backgroundColor:isOpen === item.eventId ? "orange": "pink",
                   //  margin: "auto",
-                  padding: isOpen === item.eventId ? 0 : 3,
-                  paddingLeft: isOpen === item.eventId ? 9 : 3,
-                  paddingRight: isOpen === item.eventId ? 9 : 3,
-                  paddingTop: isOpen === item.eventId ? 9 : 3,
-                  height: isOpen === item.eventId ? 200 : 490,
+                  // padding: isOpen === item.eventId ? 0 : 3,
+                  // paddingLeft: isOpen === item.eventId ? 9 : 3,
+                  // paddingRight: isOpen === item.eventId ? 9 : 3,
+                  // paddingTop: isOpen === item.eventId ? 9 : 3,
+                  // height: isOpen === item.eventId ? 300 : 520,
+                  flexGrow: 1
                 }}
               >
                 {/*first cover slide */}
                   
-                <View>
+                <View style={{
+                  // backgroundColor: "skyblue",
+                  // height: isOpen === item.eventId ? 200 : 490,
+                }}>
 
                   {/* event host information(name and Img)  */}
                    {/*first event slide   */}
@@ -335,10 +348,12 @@ export default function GetUserData() {
                   <Image
                     source={{ uri: item.ImageCoverUpload }}
                     style={{
-                      width: isOpen === item.eventId ? 355 : 367,
+                      width: isOpen === item.eventId ? 350 : 367,
                       // height: 490,
 
-                      height: isOpen === item.eventId ? 350 : 490,
+                      // height: isOpen === item.eventId ? 350 : 490,
+                      height: isOpen === item.eventId ? 315 : 500,
+
                       borderRadius: 9,
                       //  paddingRight: 30,
                     }}
@@ -351,10 +366,11 @@ export default function GetUserData() {
                   style={{
                     // backgroundColor: "black",
 
-                    marginLeft: isOpen === item.eventId ? 4 : 3,
-                    marginRight: isOpen === item.eventId ? 10 : 3,
+                    marginLeft: isOpen === item.eventId ? 10 : 10,
+                    marginRight: isOpen === item.eventId ? 10 : 10,
                     paddingLeft: isOpen === item.eventId ? 11 : 3,
                     paddingRight: isOpen === item.eventId ? 9 : 3,
+                    padding: isOpen === item.eventId ? 0 : 3,
                     // width: isOpen === item.eventId ? 355 : 367,
                     // height: isOpen === item.eventId ? 350 : 490,
                   }}
@@ -362,10 +378,10 @@ export default function GetUserData() {
                   <Image
                     source={{ uri: item.ImageCoverUpload }}
                     style={{
-                      width: isOpen === item.eventId ? 355 : 367,
+                      width: isOpen === item.eventId ? 345 : 367,
                       // height: 490,
 
-                      height: isOpen === item.eventId ? 350 : 390,
+                      height: isOpen === item.eventId ? 315 : 490,
                       borderRadius: 9,
                       //  paddingRight: 30,
                     }}
@@ -375,10 +391,10 @@ export default function GetUserData() {
                       backgroundColor:
                         isOpen === item.eventId
                           ? "rgba(20,20,20,0.99)"
-                          : "rgba(20,20,20,0.99)",
+                          : "black",
                       position: "absolute",
-                      width: isOpen === item.eventId ? 355 : 367,
-                      height: isOpen === item.eventId ? 350 : 390,
+                      width: isOpen === item.eventId ? 345 : 367,
+                      height: isOpen === item.eventId ? 315 : 498,
                       marginLeft: isOpen === item.eventId ? 8 : 0,
                       // marginRight: 3,
                       top: "0%",
@@ -925,8 +941,9 @@ export default function GetUserData() {
                                   gap: 10,
                                   alignItems: "center",
                                   position: "relative",
-                                  top: "140%",
-                                  left: "-23%"
+                                  top: "120%",
+                                  left: "-20%",
+                              
                                 }}
                               >
                                
@@ -935,8 +952,10 @@ export default function GetUserData() {
                                     source={require("../../assets/im.jpg")}
                                     style={{
                                       width: 105,
-                                      height: 55,
+                                      height: 75,
                                       borderRadius: 9,
+                                      borderWidth: 1,
+                                      borderColor: "aqua"
                                     }}
                                   />
                                 </View>
@@ -970,9 +989,11 @@ export default function GetUserData() {
                     // width: "100%",
                     // backgroundColor: "green",
                     // marginTop: 10
+                    
+
                     position: "relative", 
                     zIndex: 3,
-                    top: 30
+                    top: -20
                   }}>
                     <View style={{
                       backgroundColor: "black",
@@ -982,7 +1003,9 @@ export default function GetUserData() {
                       justifyContent: "space-around",
                       // gap: 10,''
                       alignItems: "center",
-                      flexDirection: "row"
+                      flexDirection: "row",
+                      borderWidth: 1, 
+                    borderColor: "rgba(255, 255, 255,0.5)",
 
                       
 
@@ -1050,18 +1073,19 @@ export default function GetUserData() {
                
                 
               </ScrollView>
+              </View>
 
 
               <View
                 style={{
                   // width: "100%",
-                  position: "relative",
-                  top: isOpen === item.eventId ? "-21%" : "-6.5%",
+                  // position: "relative",
+                  // top: isOpen === item.eventId ? "-21%" : "-6.5%",
                   // bottom: isOpen,
                   padding: 3,
                   // backgroundColor: "rgba(207,207,208,0.7)",
-                  height: isOpen === item.eventId ? 120 : 130,
-                  flexDirection: "column",
+                  // height: isOpen === item.eventId ? 120 : 80,
+                  // flexDirection: "column",
                 }}
               >
                 <View
@@ -1070,8 +1094,8 @@ export default function GetUserData() {
                     width: "100%",
                     //  zIndex: -5,
                     flexDirection: "row",
-                    height: 87,
-                    top: isOpen === item.eventId ? "-2%" : "9%",
+                    height: 90,
+                    top: isOpen === item.eventId ? "-6%" : "0%",
                   }}
                 >
                   <View
@@ -1081,46 +1105,8 @@ export default function GetUserData() {
                       display: "flex",
                     }}
                   >
-                    {/* <View
-                     style={{
-                      // backgroundColor: "rgba(18, 114, 50, 0.7)",
-                      flexDirection: "row",
-                      gap: 7,
-                      width: "20%",
-                      position: "relative",
-                      // display: isOpen === item.eventId ? "flex" : "none",
-                      top: isOpen === item.eventId ? "-2%" : "-4%",
-                        left: isOpen === item.eventId ? "12%" : "5%",
-                    }}>
-                      <Image
-                        source={require("../../assets/7.jpg")}
-                        style={{
-                          width: 30,
-                          height: 35,
-                          borderRadius: 100,
-                          // marginLeft: 20,
-                          // position: "relative", 
-                          // top: isOpen === item.eventId ? "-30%" : "-30%",
-                          marginTop: 1,
-                        }}
-                      /> */}
-                    {/* <View style={{
-                        marginTop: 10,
-                        // position: "relative",
-                        display: isOpen === item.eventId ? "flex" : "none"
-                        // top: isOpen === item.eventId ? "-35%" : "-34%",
-                        // left: isOpen === item.eventId ? "14%" : "14%",
-                      }}>
-                        <Text style={{
-                           color: "white",
-                           fontSize: 13,
-                            fontWeight: "600",
-
-                           
-                           }}>PrincessNokia</Text>
-                      </View>
-                       */}
-                    {/* </View> */}
+                    
+                    
 
                     <View
                       style={{
@@ -1193,7 +1179,7 @@ export default function GetUserData() {
                             height: isOpen === item.eventId ? 23 : 30,
                             alignItems: "center",
                             width: isOpen === item.eventId ? "55.5%" : "60%",
-                            left: isOpen === item.eventId ? "-18.8%" : "0%",
+                            left: isOpen === item.eventId ? "-18.8%" : "2%",
                           }}
                         >
                           <TouchableOpacity
@@ -1484,7 +1470,7 @@ export default function GetUserData() {
                             // gap: 45,
                             padding: 6,
                             position: "relative",
-                            top: "1%",
+                            top: "-5%",
                             // width: "100%",
                           }}
                         >
@@ -1570,7 +1556,7 @@ export default function GetUserData() {
                     // marginBottom: 30,
                     marginTop: isOpen === item.eventId ? 1 : 9,
                     position: "relative",
-                    top: isOpen === item.eventId ? "-1%" : "2%",
+                    top: isOpen === item.eventId ? "-6%" : "2%",
                   }}
                 >
                   <TouchableOpacity
@@ -1599,6 +1585,8 @@ export default function GetUserData() {
                   </TouchableOpacity>
                 </View>
               </View>
+
+              
             </View>
           ))}
         </ScrollView>
