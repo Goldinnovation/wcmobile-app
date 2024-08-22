@@ -918,14 +918,20 @@ export default function GetUserData() {
                                 style={{
                                   // backgroundColor: "red",
                                   width: "70%",
-                                  flexWrap: "wrap",
-                                  height: 23,
+                                  // flexWrap: "wrap",
+                                  height: 43,
                                   flexDirection: "row",
+                                  alignItems: "center",
+                                  gap: 4
                                  
                                   
                                 }}
                               >
-                                <Image
+                                <View style={{
+                                  //  backgroundColor: "orange",
+
+                                }}>
+                                   <Image
                                   source={require("../../assets/ci.png")}
                                   style={{
                                     width: 15,
@@ -933,14 +939,50 @@ export default function GetUserData() {
                                     // borderRadius: 100,
                                   }}
                                 />
-                                <Text
+                                </View>
+                                <View  style={{
+                                  //  backgroundColor: "green",
+                                  
+                                   display:"flex",
+                                   flexWrap: "wrap",
+                                   width: "70%"
+
+                                }}>
+                                  <View>
+                                  <Text
                                   style={{
                                     color: "white",
+                                   
                                   }}
                                 >
                                   {"  "}
-                                  {item.eventAddress}, {item.eventZipcode} {item.cityType}
+                                  {item.eventAddress}, {item.eventZipcode}
+                                  
+                                   
                                 </Text>
+                                  </View>
+                                  <View style={{
+                                    //  backgroundColor: "pink",
+                                     marginLeft: 7.1
+                                  
+                                  }}>
+                                  <Text
+                                  style={{
+                                    color: "white",
+                                   
+                                  }}
+                                >
+                                 
+                                  
+                                   {item.cityType}
+                                </Text>
+
+                                  </View>
+                               
+
+                                </View>
+                               
+                               
                               </View>
                               <View
                                 style={{
