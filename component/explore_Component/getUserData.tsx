@@ -164,6 +164,7 @@ export default function GetUserData() {
         // console.log(result);
         
         setData(exploreFetchedData);
+        console.log(exploreFetchedData.length);
 
       //  setOpen(false)
 
