@@ -13,6 +13,7 @@ import {
 import Slider from "@react-native-community/slider";
 import Animated, { FadeInDown, SlideInDown, SlideInUp } from 'react-native-reanimated';
 import { userCategoryReq } from "../../api/exploreScreen_Api/CategoryDataApi";
+import { userFavoredEvent } from "../../api/favorScreen_Api/userFavoredEvent";
 
 interface eventProps {
   eventId: string;
@@ -87,8 +88,17 @@ export default function GetUserData() {
     setIconHeartClick(!IconHeartClick)
   }
 
-  const handleFavorPress = () => {
+  const handleFavorPress = async(eventId: string) => {
+
+    console.log(eventId);
     setIconFavorClick(!IconFavorClick)
+    const storedToken = await AsyncStorage.getItem("token");
+    const token = storedToken ? JSON.parse(storedToken).token : null;
+    const userToken = token.token;
+    if(userToken && eventId){
+      const sendUserFavorDataResult = await userFavoredEvent(userToken, eventId)
+      console.log(sendUserFavorDataResult);
+    }
   }
 
 
@@ -1928,7 +1938,7 @@ export default function GetUserData() {
 
                           justifyContent: "center",
                         }}
-                        onPress={handleFavorPress}
+                        onPress={() => handleFavorPress(item.eventId)}
                       >
                         {IconFavorClick ? (
                           <View>
