@@ -36,7 +36,7 @@ type eventArr = eventProps[];
 const initialState = {
   eventDescription: true,
   eventDetails: false,
-  eventLocation: false,
+  eventSound: false,
   eventOptionHeader: "Description"
 }
 
@@ -44,7 +44,7 @@ const initialState = {
 interface State {
   eventDescription: boolean,
   eventDetails: boolean,
-  eventLocation: boolean
+  eventSound: boolean
   eventOptionHeader: string
 }
 
@@ -57,13 +57,13 @@ interface Action{
 const reducer = (state: State, action: Action) => {
   switch (action.type) {
     case "info":
-      return { eventDescription: true, eventDetails: false, eventLocation: false, eventOptionHeader: "Description"  };
-    case "Details":
-      return { eventDescription: false, eventDetails: true, eventLocation: false, eventOptionHeader: "Details" };
-    case 'location':
-      return { eventDescription: false, eventDetails: false, eventLocation: true, eventOptionHeader: "Location" };
+      return { eventDescription: true, eventDetails: false, eventSound: false, eventOptionHeader: "Description"  };
+    case "Event Details":
+      return { eventDescription: false, eventDetails: true, eventSound: false, eventOptionHeader: "Event Details" };
+    case 'EventSound':
+      return { eventDescription: false, eventDetails: false, eventSound: true, eventOptionHeader: "Event Sound" };
     default:
-      return { eventDescription: true, eventDetails: false, eventLocation: false, eventOptionHeader: "Description" };
+      return { eventDescription: true, eventDetails: false, eventSound: false, eventOptionHeader: "Description" };
   }
 };
 export default function GetUserData() {
@@ -371,11 +371,13 @@ export default function GetUserData() {
                     paddingLeft: isOpen === item.eventId ? 11 : 3,
                     paddingRight: isOpen === item.eventId ? 9 : 3,
                     padding: isOpen === item.eventId ? 0 : 3,
+                    width: isOpen === item.eventId ? 345 : 364,
+                    height: isOpen === item.eventId ? 315 : 437,
                     // width: isOpen === item.eventId ? 355 : 367,
                     // height: isOpen === item.eventId ? 350 : 490,
                   }}
                 >
-                  <Image
+                  {/* <Image
                     source={{ uri: item.ImageCoverUpload }}
                     style={{
                       width: isOpen === item.eventId ? 345 : 367,
@@ -385,21 +387,30 @@ export default function GetUserData() {
                       borderRadius: 9,
                       //  paddingRight: 30,
                     }}
-                  />
+                  /> */}
                   <View
                     style={{
                       backgroundColor:
                         isOpen === item.eventId
                           ? "rgba(20,20,20,0.99)"
-                          : "black",
+                          : "rgba(149,149,149,0.3)", //rgba(149,149,149,0.3)
                       position: "absolute",
-                      width: isOpen === item.eventId ? 345 : 367,
-                      height: isOpen === item.eventId ? 315 : 443,
+                      width: isOpen === item.eventId ? 345 : 360,
+                      height: isOpen === item.eventId ? 315 : 420,
                       marginLeft: isOpen === item.eventId ? 8 : 0,
                       // marginRight: 3,
                       top: "0%",
-                      left: "0.8%",
+                      left: "3%",
                       borderRadius: 9,
+                      borderWidth: 1, 
+                     borderColor: "rgba(255, 255, 255,0.5)",
+                     shadowColor: "black",
+                     shadowOffset: { width: 0, height: 2 },
+                     shadowOpacity: 0.5,
+                     shadowRadius: 4,
+
+                      elevation: 5,
+                     
                     }}
                   >
                     <View
@@ -428,9 +439,10 @@ export default function GetUserData() {
                              ? "rgba(20,20,20,0.99)"
                              : "rgba(20,20,20,0.4)",
                          position: "absolute",
-                         width: isOpen === item.eventId ? 355 : 367,
+                         width: isOpen === item.eventId ? 355 : 358,
                          height: isOpen === item.eventId ? 20 : 90,
-                       
+                        borderBottomWidth: 1,
+                        borderColor: "rgba(255, 255, 255,0.5)",
                         borderTopLeftRadius: 9,
                         borderTopRightRadius: 9,
                          zIndex: 1
@@ -441,12 +453,14 @@ export default function GetUserData() {
                       <Image
                               source={{ uri: item.ImageCoverUpload }}
                               style={{
-                                width: isOpen === item.eventId ? 355 : 367,
+                                width: isOpen === item.eventId ? 355 : 358,
                                 // height: 490,
 
                                 height: isOpen === item.eventId ? 20 : 90,
                                 borderTopLeftRadius: 9,
-                                borderTopRightRadius: 9
+                                borderTopRightRadius: 9,
+                                borderBottomWidth: 1,
+                                borderColor: "rgba(255, 255, 255,0.9)"
                                 //  paddingRight: 30,
                               }}
                             />
@@ -631,54 +645,78 @@ export default function GetUserData() {
                                <View
                             style={{
                               // backgroundColor: "green",
-                              height: 390,
+                              height: 350,
                             }}
                     >
-                      <View
-                        style={{
-                          // backgroundColor: "grey",
-                          // justifyContent: "center",
-                          // alignItems: "center",
-                          padding: 4,
-                          height: 28,
-                        }}
-                      >
-                        <View
-                          style={{
-                            // backgroundColor: "rgba(240,240,240,1)",
-                            borderRadius: 4,
-                            // borderColor: "white",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            width: "50%",
-                            borderWidth: 1, 
-                            borderColor: "white"
-                            // overflow: "visible",
-                          }}
-                        >
-                          <Text
-                            style={{
-                              color: "white",
-                              // textAlign: "center",
-                            }}
-                          >
-                           {redstate.eventOptionHeader} 
-                          </Text>
-                        </View>
-                      </View>
+                    
 
                       <View
                         style={{
                           //  backgroundColor: "pink",
-                          height: isOpen === item.eventId ?  90 : 350,
-                          padding: 9,
-                          margin: 5,
+                          height: isOpen === item.eventId ?  90 : 289,
+                          // padding: 9,
+                          // margin: 5,
+                          // marginTop: 33
                           //  marginLeft: 1
                           //  borderTopWidth: 1,
                           //  borderTopColor: "rgba(255, 255, 255,0.9)"
                         }}
                       >
-                        
+                        <View
+                        style={{
+                          // backgroundColor: "grey",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          // padding: 4,
+                          height: 58,
+                          // flexDirection: "column"
+                            //   borderBottomWidth: 1,
+                            // borderColor: "rgba(255, 255, 255,0.5)"
+                        }}
+                      >
+                        <View
+                          style={{
+                            // backgroundColor: "green",
+                            // borderRadius: 50,
+                            // borderColor: "white",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            width: "100%",
+                            // marginTop: 15,
+                            // height: 2,
+                            
+                            // borderWidth: 1, 
+                            // 
+                            // borderBottomWidth: 1,
+                            // borderColor: "white"
+                            // overflow: "visible",
+                          }}
+                        >
+                          
+                          <Text
+                            style={{
+                              color: "rgba(221,221,221,0.8)",
+                              fontSize: 28,
+                              // position: "absolute",
+                              // top: -17
+                              // textAlign: "center",
+                            }}
+                          >
+                           {redstate.eventOptionHeader} 
+                          </Text>
+
+                          
+                         
+                          {/* <Image
+                                source={require("../../assets/a1.png")}
+                                style={{
+                                  width: 43,
+                                  height: 43,
+                                  // borderRadius: 100,
+                                }}
+                              /> */}
+                        </View>
+                      </View>
 
                         {/* Total section - Details */}
                           <View
@@ -696,10 +734,25 @@ export default function GetUserData() {
                                 alignItems: "center",
                                 flexDirection: "row",
                                 padding: 3,
+                                borderTopWidth: 1,
+                                borderTopColor: "rgba(255, 255, 255,0.5)",
                                 borderBottomWidth: 1,
-                                borderBottomColor: "white",
+                                borderBottomColor: "rgba(255, 255, 255,0.5)"
                               }}
                             >
+
+                              <View style={{
+                                // backgroundColor: "red", 
+                                width: "75%",
+                                flexDirection: "row",
+                                height: 30,
+                                alignItems: "center",
+                                borderRightWidth: 1, 
+                                borderRightColor: "rgba(255, 255, 255,0.5)",
+                                padding: 3,
+
+
+                              }}> 
                               <Image
                                 source={require("../../assets/k2.png")}
                                 style={{
@@ -716,19 +769,23 @@ export default function GetUserData() {
                                 {"  "}
                                 {item.eventDate}
                               </Text>
-                            </View>
 
-                          {/* Time section - Details */}
 
-                            <View
+                              </View>
+                             
+
+                                {/* Time section - Details */}
+                              <View
                               style={{
                                 flexDirection: "row",
                                 height: 30,
                                 // backgroundColor: "rgba(203,203,203,0.5)",
                                 alignItems: "center",
                                 padding: 3,
-                                borderBottomWidth: 1,
-                                borderBottomColor: "white",
+                                width: "26%",
+                                marginLeft: 6
+                                // borderBottomWidth: 1,
+                                // borderBottomColor: "rgba(255, 255, 255,0.5)",
                               }}
                             >
                               <Image
@@ -742,12 +799,18 @@ export default function GetUserData() {
                               <Text
                                 style={{
                                   color: "white",
+                                  // marginLeft: 6
                                 }}
                               >
                                 {"  "}
                                 {item.eventTime}
                               </Text>
                             </View>
+                            </View>
+
+                        
+
+                           
 
                             {/* Weather seciton-Details  */}
 
@@ -760,7 +823,7 @@ export default function GetUserData() {
                                 padding: 3,
                                 justifyContent: "space-between",
                                 borderBottomWidth: 1,
-                                borderBottomColor: "white",
+                                borderBottomColor: "rgba(255, 255, 255,0.5)",
                               }}
                             >
                               <View
@@ -783,7 +846,7 @@ export default function GetUserData() {
                                     color: "white",
                                   }}
                                 >
-                                  {" "}
+                                  {"  "}
                                   22C
                                 </Text>
                               </View>
@@ -830,7 +893,7 @@ export default function GetUserData() {
                                 padding: 3,
                                 justifyContent: "space-between",
                                 borderBottomWidth: 1,
-                                borderBottomColor: "white"
+                                borderBottomColor: "rgba(255, 255, 255,0.5)"
                               }}
                             >
                               <View
@@ -904,13 +967,13 @@ export default function GetUserData() {
                             <View
                               style={{
                                 flexDirection: "row",
-                                height: 53,
+                                height: 57,
                                 // backgroundColor: "rgba(203,203,203,0.5)",
                                 alignItems: "center",
                                 padding: 3,
                                 justifyContent: "space-between",
                                 borderBottomWidth: 1,
-                                borderBottomColor: "white"
+                                borderBottomColor: "rgba(255, 255, 255,0.5)"
                                 
                               }}
                             >
@@ -945,7 +1008,9 @@ export default function GetUserData() {
                                   
                                    display:"flex",
                                    flexWrap: "wrap",
-                                   width: "70%"
+                                   width: "70%",
+                                   position: "relative",
+                                   left: "-10%"
 
                                 }}>
                                   <View>
@@ -1016,7 +1081,7 @@ export default function GetUserData() {
 
 
 
-                            {/* Dj section - Details */}
+                            {/* Team section - Details */}
 
                             <View
                               style={{
@@ -1043,7 +1108,308 @@ export default function GetUserData() {
                                 }}
                               >
                                 {"  "}
-                                Team:
+                                Plan:
+                              </Text>
+                             
+                            </View>
+
+                            {/* <View style={{
+                              // backgroundColor: "red",
+                              height: 65,
+                              flexDirection: "row",
+                              justifyContent: "space-around",
+                              alignItems: "center",
+                              // flexWrap: "wrap"
+                            }}>
+                              <View>
+                                <Image
+                                    source={require("../../assets/profileImg/1.jpg")}
+                                    style={{
+                                      width: 45,
+                                      height: 45,
+                                      borderRadius: 50,
+                                     
+                                    }}
+                                  />
+                                  <Text style={{color:"white", textAlign: "center", fontSize: 8, marginTop: 5}}>Planner</Text>
+                                  </View>
+                              <View>
+                              <Image
+                                    source={require("../../assets/profileImg/2.jpg")}
+                                    style={{
+                                      width: 45,
+                                      height: 45,
+                                      borderRadius: 50,
+                                     
+                                    }}
+                                  />
+                                <Text style={{color:"white",textAlign: "center", fontSize: 8,marginTop: 5 }}>Music</Text>
+
+                              </View>
+                              <View>
+                              <Image
+                                    source={require("../../assets/profileImg/3.jpg")}
+                                    style={{
+                                      width: 45,
+                                      height: 45,
+                                      borderRadius: 50,
+                                     
+                                    }}
+                                  />
+                                 <Text style={{color:"white", textAlign: "center", fontSize: 8, marginTop: 5}}>Light</Text>
+
+                              </View>
+                              
+                              <View>
+                              <Image
+                                    source={require("../../assets/profileImg/5.jpg")}
+                                    style={{
+                                      width: 45,
+                                      height: 45,
+                                      borderRadius: 50,
+                                     
+                                    }}
+                                  />
+                                <Text style={{color:"white", textAlign: "center", fontSize: 8, marginTop: 5}}>Sound</Text>
+
+                              </View>
+                              <View>
+                              <Image
+                                    source={require("../../assets/profileImg/6.jpg")}
+                                    style={{
+                                      width: 45,
+                                      height: 45,
+                                      borderRadius: 50,
+                                     
+                                    }}
+                                  />
+                               <Text style={{color:"white", textAlign: "center", fontSize: 8, marginTop: 5}}>Planner</Text>
+                              </View>
+
+
+                            </View> */}
+
+
+
+                            
+                          </View>
+                       
+
+                        
+                      </View>
+                      
+                    </View>
+
+                            </View>
+                          )
+                        }
+
+                        { redstate.eventSound && (
+                          <View style={{   
+                          }}>
+                            {/* Host Image */}
+                             <View
+                            style={{
+                              // backgroundColor: "red",
+                              height: 80,
+                              // marginTop: 65,
+                              flexDirection: "row",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              position:"relative",
+                              top:  isOpen === item.eventId ? "1%" : "15%",
+                              zIndex: 2
+                            }}
+                          >
+                            <Image
+                              source={require("../../assets/profileImg/2.jpg")}
+                              style={{
+                                width: 100,
+                                height: 100,
+                                borderRadius: 100,
+                                position:"absolute",
+                                zIndex: 2
+                              
+                              }}
+                            />
+                            </View>
+
+                            {/* Username Area - eventSound */}
+                            <View
+                            style={{
+                              //  backgroundColor: "orange",
+                              height: 40,
+
+                              //  flexDirection: "column",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              position:"relative",
+                              top:  isOpen === item.eventId ? "1%" : "18%"
+                            }}
+                          >
+                            <View
+                              style={{
+                                // backgroundColor: "green",
+                                marginLeft: 10,
+                              }}
+                            >
+                              <Text
+                                style={{
+                                  color: "white",
+                                  fontSize: 25,
+                                  // textAlign: "center"
+                                }}
+                              >
+                                {item.eventHostName}
+                              </Text>
+                            </View>
+                          
+                        
+                          </View> 
+                          {/* Artist Deatils Section - eventSound */}
+                           <View
+                          style={{
+                            // backgroundColor: "green",
+                            height: 135,
+                            position:"relative",
+                            top:  isOpen === item.eventId ? "1%" : "-7%"
+                          }}
+                        >
+                          <View
+                            style={{
+                              // backgroundColor: "grey",
+                              // justifyContent: "center",
+                              padding: 4,
+                              height: 38,
+                            }}
+                          >
+                            <View
+                              style={{
+                                // backgroundColor: "rgba(240,240,240,1)",
+
+                                // borderRadius: 50,
+                                // borderColor: "white",
+                                width: "12%",
+                                // flexDirection: "row",
+                                alignItems: "center",
+                                gap: 30,
+                                justifyContent: "center",
+                                position: "relative", 
+                                top:isOpen === item.eventId ? "1%" : "-208%",
+                                left: isOpen === item.eventId ? "1%" : "86%"
+
+
+                              
+                                // overflow: "visible",
+                              }}
+                            >
+                                    <Image
+                                source={require("../../assets/sc1.png")}
+                                style={{
+                                  width: 25,
+                                  height: 25,
+                                  // borderRadius: 100,
+                                }}
+                              />
+                                <Image
+                                source={require("../../assets/ig1.png")}
+                                style={{
+                                  width: 25,
+                                  height: 25,
+                                  // borderRadius: 100,
+                                }}
+                              />
+
+                                <Image
+                                source={require("../../assets/ti1.png")}
+                                style={{
+                                  width: 25,
+                                  height: 25,
+                                  // borderRadius: 100,
+                                }}
+                              />
+                             
+                            </View>
+                          </View>
+
+                          <View
+                            style={{
+                              //  backgroundColor: "pink",
+                              height: isOpen === item.eventId ?  90 : 98,
+                              padding: 9,
+                              margin: 5,
+                              //  marginLeft: 1
+                              //  borderTopWidth: 1,
+                              //  borderTopColor: "rgba(255, 255, 255,0.9)"
+                            }}
+                          >
+                            {redstate.eventDescription && (
+                              <View
+                                style={
+                                  {
+                                    //  backgroundColor: "green",
+                                    //  height: 130,
+                                  }
+                                }
+                              >
+                                <View
+                                  style={{
+                                    //  backgroundColor: "skyblue",
+                                    //  overflow: "scroll",
+                                    height: 115,
+                                  }}
+                                >
+                                  <Text
+                                    style={{
+                                      color: "white",
+                                    }}
+                                  >
+                                    {item.eventDescriptionContent}
+                                  </Text>
+                                </View>
+
+                              
+                              </View>
+                            )}
+                          </View>
+                        
+                          </View> 
+
+                          {/* Artist selection Area - eventSound */}
+                          <View style={{
+                            // backgroundColor: "orange",
+                              position:"relative",
+                              	top:  isOpen === item.eventId ? "1%" : "-7%",
+                                borderTopWidth: 1, 
+                                borderTopColor: "white"
+                          }}>
+                          <View
+                              style={{
+                                flexDirection: "row",
+                                height: 30,
+                                // backgroundColor: "rgba(203,203,203,0.5)",
+                                alignItems: "center",
+                                padding: 3,
+                               
+                                // borderBottomWidth: 1,
+                                // borderBottomColor: "white",
+                              }}
+                            >
+                              <Image
+                                source={require("../../assets/dj1.png")}
+                                style={{
+                                  width: 15,
+                                  height: 15,
+                                  // borderRadius: 100,
+                                }}
+                              />
+                              <Text
+                                style={{
+                                  color: "white",
+                                }}
+                              >
+                                {"  "}
+                                DJ:
                               </Text>
                              
                             </View>
@@ -1124,29 +1490,19 @@ export default function GetUserData() {
 
                             </View>
 
-
-
-                            
+                           
                           </View>
-                       
-
-                        
-                      </View>
-                      
-                    </View>
-
-                            </View>
-                          )
-                        }
+                        </View>
+                        )}
                      
                         
                          
-                         
+                  
                         </View>
-                        
-                  </View>
+                
 
-                  {/* Menu bar second slide */}
+                  </View>
+                                  {/* Menu bar second slide */}
 
                   <View style={{
                     justifyContent: "center",
@@ -1159,10 +1515,12 @@ export default function GetUserData() {
 
                     position: "relative", 
                     zIndex: 3,
-                    top: 20
+                    top: 455
                   }}>
                     <View style={{
-                      backgroundColor: "black",
+                      // backgroundColor: "rgba(145,145,145,0.3)",
+                      backgroundColor: "rgba(149,149,149,0.3)",
+
                       width: 220, 
                       height: 35,
                       borderRadius: 100,
@@ -1197,7 +1555,7 @@ export default function GetUserData() {
 
 
                      <TouchableOpacity
-                     onPress={ () => handleEventInfo("Details")}
+                     onPress={ () => handleEventInfo("Event Details")}
                      >
                      <Image
                         source={require("../../assets/pin1.png")}
@@ -1213,7 +1571,9 @@ export default function GetUserData() {
                      </TouchableOpacity>
 
 
-                     <TouchableOpacity>
+                     <TouchableOpacity 
+                      onPress={ () => handleEventInfo("EventSound")}
+                     >
                      <Image
                         source={require("../../assets/fr1.png")}
                         style={{
@@ -1230,6 +1590,9 @@ export default function GetUserData() {
 
                     </View>
                   </View>
+                  
+
+                 
                 </View>
 
 
@@ -1261,7 +1624,7 @@ export default function GetUserData() {
                     //  zIndex: -5,
                     flexDirection: "row",
                     height: 90,
-                    top: isOpen === item.eventId ? "-6%" : "0%",
+                    top: isOpen === item.eventId ? "-6%" : "-3%",
                   }}
                 >
                   <View
@@ -1312,7 +1675,7 @@ export default function GetUserData() {
                       <View
                         style={{
                           // backgroundColor: "red",
-                          height: isOpen === item.eventId ? 25 : 19,
+                          height: isOpen === item.eventId ? 25 : 35,
                           width: isOpen === item.eventId ? "60%" : "74%",
                           position: "relative",
                           left: isOpen === item.eventId ? "2%" : "2%",
