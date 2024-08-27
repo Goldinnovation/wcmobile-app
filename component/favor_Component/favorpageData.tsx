@@ -103,11 +103,113 @@ export default function FavorData(){
                 </View>
                 </View> */}
 
+                {/* Current Day Events  */}
+                
+                <View style={{
+                    // flexDirection: "row",
+                    gap: 0,
+                    height: 100,
+                    padding: 5,
+                    // backgroundColor: "skyblue",
+                    alignItems: "center"
+
+                }}>
+                      <View style={{
+                        // backgroundColor: "green",
+                        // height: 60,
+                        // gap: 15,
+                        // justifyContent: "center"
+                        position:"relative", 
+                        left: 170,
+                        top: -10
+                    }}>
+                        <View style={{
+                             justifyContent: "center",
+                             alignItems: "center"
+                        }}>
+                        <Image
+                        source={require("../../assets/k2.png")}
+                        style={{
+                          width: 15,
+                          // height: 490,
+
+                          height: 15,
+                          
+                         
+                          //  paddingRight: 30,
+                        }}/>
+
+                        </View>
+                        
+                    </View>
+
+
+                  
+                    <ScrollView
+                    horizontal={true}
+                    style={{
+                        flexGrow: 1,
+                        // backgroundColor: "pink",
+                    }}
+                    >
+                        <View style={{
+                            width: 600,
+                            flexDirection: "row",
+                            gap: 27,
+                            height: 70,
+                            // backgroundColor: "pink",
+                            // alignItems: "center"
+                        }}> 
+
+                        {eventFavorData.map((currentDayEventItem, i) => (
+                             <View key={i}>
+                                 <View style={{
+                                            // backgroundColor: "orange",
+                                            // width: "100%"
+                                            // height: 50
+                                            // 
+                                        }}>
+                                            <View>
+                                            <Image
+                                            source={{ uri: currentDayEventItem.ImageCoverUpload }}
+                                            style={{
+                                                height: 70,
+                                                width: 70,
+                                                borderRadius: 100
+                                        
+                                                //  paddingRight: 30,
+                                            }}
+                                           />
+
+                                            </View>
+                                </View>
+                                
+
+                             </View>
+
+                        ))}
+                      
+                   
+
+                        </View>
+                      
+
+
+                        
+                    
+                    </ScrollView>
+                   
+                   
+
+
+                </View>
                
+
+               {/* Tags for Events */}
                 <View style={{
                     flexDirection: "row",
                     gap: 24,
-                    height: 60,
+                    height: 50,
                     padding: 5,
                     // backgroundColor: "green",
                     alignItems: "center"
@@ -122,78 +224,119 @@ export default function FavorData(){
                     }}
                     >
                         <View style={{
-                            width: 600,
+                            width: 720,
                             flexDirection: "row",
-                            gap: 24,
-                            height: 45,
+                            gap: 31,
+                            height: 40,
                             // backgroundColor: "pink",
                               alignItems: "center"
                         }}> 
+                         <View style={{
+                        // borderWidth: 1,
+                        borderRadius: 50,
+                        // borderColor: "rgba(255, 255, 255,0.5)",
+                        height: 25,
+                        // padding: 5,
+                        width: "14%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        backgroundColor:"rgba(0, 0, 0,0.4)"
+                    }}>
+                        <Text style={{
+                            textAlign: "center",
+                            color: "white"
+
+                        }}>Rock</Text>
+                    </View>
                         <View style={{
-                        borderWidth: 1,
-                        borderRadius: 5,
+                        // borderWidth: 1,
+                        borderRadius: 50,
+                        // borderColor: "rgba(255, 255, 255,0.5)",
                         height: 25,
                         // padding: 5,
                         width: "14%",
                         justifyContent: "center",
-                        alignItems: "center"
+                        alignItems: "center",
+                        backgroundColor:"rgba(0, 0, 0,0.4)"
                     }}>
                         <Text style={{
-                            textAlign: "center"
+                            textAlign: "center",
+                            color: "white"
+
+                        }}>Rock</Text>
+                        </View>
+                        <View style={{
+                        // borderWidth: 1,
+                        borderRadius: 50,
+                        // borderColor: "rgba(255, 255, 255,0.5)",
+                        height: 25,
+                        // padding: 5,
+                        width: "14%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        backgroundColor:"rgba(0, 0, 0,0.4)"
+                    }}>
+                        <Text style={{
+                            textAlign: "center",
+                            color: "white"
+
                         }}>Rock</Text>
                     </View>
                     <View style={{
-                        borderWidth: 1,
-                        borderRadius: 5,
+                        // borderWidth: 1,
+                        borderRadius: 50,
+                        // borderColor: "rgba(255, 255, 255,0.5)",
                         height: 25,
                         // padding: 5,
                         width: "14%",
                         justifyContent: "center",
-                        alignItems: "center"
+                        alignItems: "center",
+                        backgroundColor:"rgba(0, 0, 0,0.4)"
                     }}>
                         <Text style={{
-                            textAlign: "center"
+                            textAlign: "center",
+                            color: "white"
+
                         }}>Rock</Text>
                     </View>
                     <View style={{
-                        borderWidth: 1,
-                        borderRadius: 5,
+                        // borderWidth: 1,
+                        borderRadius: 50,
+                        // borderColor: "rgba(255, 255, 255,0.5)",
                         height: 25,
                         // padding: 5,
                         width: "14%",
                         justifyContent: "center",
-                        alignItems: "center"
+                        alignItems: "center",
+                        backgroundColor:"rgba(0, 0, 0,0.4)"
                     }}>
                         <Text style={{
-                            textAlign: "center"
+                            textAlign: "center",
+                            color: "white"
+
                         }}>Rock</Text>
                     </View>
                     <View style={{
-                        borderWidth: 1,
-                        borderRadius: 5,
+                        // borderWidth: 1,
+                        borderRadius: 50,
+                        // borderColor: "rgba(255, 255, 255,0.5)",
                         height: 25,
                         // padding: 5,
                         width: "14%",
                         justifyContent: "center",
-                        alignItems: "center"
+                        alignItems: "center",
+                        backgroundColor:"rgba(0, 0, 0,0.4)"
                     }}>
                         <Text style={{
-                            textAlign: "center"
+                            textAlign: "center",
+                            color: "white"
+
                         }}>Rock</Text>
                     </View>
-                    <View style={{
-                        borderWidth: 1,
-                        borderRadius: 5,
-                        height: 25,
-                        // padding: 5,
-                        width: "14%",
-                        justifyContent: "center",
-                        alignItems: "center"
-                    }}>
-                        <Text style={{
-                            textAlign: "center"
-                        }}>Rock</Text>
-                    </View>
+                    
+                   
+                    
+                    
                  
                    
 
@@ -214,7 +357,7 @@ export default function FavorData(){
                
                 <View style={{
                     // backgroundColor: "pink",
-                    height: 600,
+                    height: 470,
                     flexDirection: "row",
                 }}>
               
@@ -234,7 +377,7 @@ export default function FavorData(){
                                    
                                     flexWrap: "wrap",
                                     gap: 25,
-                                    rowGap: 80,
+                                    rowGap: 25,
                                     padding: 5
                                 }}> 
                                 {
@@ -249,28 +392,91 @@ export default function FavorData(){
                                      >
                                         <View style={{
                                             // backgroundColor: "orange",
-                                            // width: "100%"
-                                            height: 290
+                                            width: 170,
+                                            height: 220
+
                                             // 
                                         }}>
                                             <View>
                                             <Image
                                             source={{ uri: item.ImageCoverUpload }}
                                             style={{
-                                                height: 250,
-                                                width: 170
+                                                height: 150,
+                                                width: 170,
+                                                borderRadius: 5,
                                         
                                                 //  paddingRight: 30,
                                             }}
                                            />
 
                                             </View>
+
                                             <View style={{
-                                                marginTop: 5
+                                                flexDirection: "row",
+                                                marginTop: 5,
+                                                // backgroundColor: "pink",
+                                                height: 40
+
                                             }}>
-                                                <Text style={{color: "white", textAlign: "center"}}>{item.eventTitle}</Text>
+                                            <View style={{
+                                                // backgroundColor: "red",
+                                                width: "80%",
+                                                gap: 3
+
+                                            }}>
+                                            <View style={{
+                                                // marginTop: 5
+                                            }}>
+                                                <Text style={{color: "white"}}>{item.eventTitle}</Text>
 
                                             </View>
+                                           
+                                            <View style={{
+                                                // backgroundColor: "red",
+                                                // borderWidth: 1,
+                                                borderRadius: 2,
+                                                // borderColor: "rgba(255, 255, 255,0.5)",
+                                                width: "59%",
+                                                height: 15,
+                                                 alignItems: "center", 
+                                                justifyContent: "center",
+                                                backgroundColor:"rgba(0, 0, 0,0.4)"
+                                             
+
+                                            }}>
+                                                <Text style={{
+                                                    color: "white",
+                                                    textAlign: "center",
+                                                    fontSize: 10
+                                                }}>{item.eventType}</Text>
+
+                                            </View>
+
+                                            </View>
+                                            <View
+                                            style={{
+                                                width: "20%",
+                                                // backgroundColor: "blue",
+                                                alignItems: "center",
+                                                justifyContent: "center"
+                                            }}
+                                            >
+                                            <Image
+                                                source={require("../../assets/s1.png")}
+                                                style={{
+                                                width: 25,
+                                                // height: 490,
+
+                                                height: 25,
+                                                
+                                                
+                                                //  paddingRight: 30,
+                                                }}/>
+                                            </View>
+
+                                            </View>
+               
+                                            
                                         
 
                                         </View>
