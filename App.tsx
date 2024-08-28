@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Button, TouchableWithoutFeedback } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient';
 import {NavigationContainer, DefaultTheme } from '@react-navigation/native';
@@ -9,7 +9,8 @@ import ExploreScreen from './navigation/exploreScreen';
 import FavorScreen from './navigation/favorScreen';
 import LoginScreen from './navigation/loginScreen';
 import UserInterestScreen from './navigation/interestScreen';
-import UserIcon from "./assets/bb1.png";
+import ExploreFilter from './component/Main_Component/exposeFilter';
+import { useState } from 'react';
 
 
 
@@ -49,7 +50,23 @@ const icons: Record<RouteName, {focused: any; unfocused: any}> = {
 }
 
 
+
+
 function TabNavigator() {
+
+  const [filter, setFilter] = useState(false)
+
+
+  const handleClickFilterExplore = () => {
+    // console.log('Hello');
+    setFilter(!filter)
+  }
+
+  const handleCloseClick = () => {
+    setFilter(!filter)
+  }
+
+
   return (
     <Tab.Navigator
   
@@ -89,34 +106,52 @@ function TabNavigator() {
         ),
         headerRight: () => (
           <TouchableOpacity style={{
-            // backgroundColor: "pink",
-            width: 60,
+          //  backgroundColor:  filter ?  "pink" : "red",
+            width:  30,
+            // display: filter ? "flex" : "flex",
             height: 30,
             alignItems: "center",
-            marginRight: 13,
-            gap: 15,
+            marginRight: 7,
+            // gap: 15,
             justifyContent: "center",
             flexDirection: "row"
           }}>     
-          <TouchableOpacity  
+          <View style={{
+           
+           }}>
+            {
+               filter && (
+                <View>
+                     <ExploreFilter callFIlter={filter}  onClose={handleCloseClick}/>
+
+
+                   
+                </View>
+
+               )
+            }
+             
+
+           </View>
+           
+          <TouchableWithoutFeedback  
           style={{
             position: "relative",
-            top: 1
+            // top: 1,
+            flexDirection: filter ? "row" : "column",
+            // backgroundColor: "skyblue"
           }}
-          onPress={() => alert('This is a selection!')}>
+          onPress={() => handleClickFilterExplore()}>
+            
           <Image
           source={require("./assets/fi1.png")}
           style={{height: 28, width: 28}}
           />
-          </TouchableOpacity>    
-          
-         <TouchableOpacity  onPress={() => alert('This is a kalender!')}>
-         <Image
-          source={require("./assets/k2.png")}
-          style={{height: 22, width: 22}}
-          />
-         </TouchableOpacity>
-        
+           
+             
+          </TouchableWithoutFeedback>  
+            
+      
 
           </TouchableOpacity>
         ),
@@ -204,6 +239,8 @@ function TabNavigator() {
 
 
 function AppNavigator() {
+
+
 
   return(
     <NavigationContainer  theme={MyTheme}>
