@@ -164,7 +164,7 @@ export default function GetUserData() {
         // console.log(result);
         
         setData(exploreFetchedData);
-        console.log(exploreFetchedData.length);
+        // console.log(exploreFetchedData.length);
 
       //  setOpen(false)
 
@@ -1802,6 +1802,8 @@ export default function GetUserData() {
                           </TouchableOpacity>
                         </View>
 
+                       
+                        
                         <View
                           style={{
                             backgroundColor:
@@ -2146,6 +2148,8 @@ const styles = StyleSheet.create({
   scrollViewContent: {
     alignItems: "center",
     paddingVertical: 20, // Add some vertical padding for better spacing
+    // backgroundColor: "black",
+
     // marginBottom: 20
      
   },

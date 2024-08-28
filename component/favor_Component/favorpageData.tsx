@@ -108,20 +108,21 @@ export default function FavorData(){
                 <View style={{
                     // flexDirection: "row",
                     gap: 0,
-                    height: 100,
+                    height: 80,
                     padding: 5,
                     // backgroundColor: "skyblue",
-                    alignItems: "center"
+                    alignItems: "center",
+                    marginTop: 10
 
                 }}>
-                      <View style={{
+                      {/* <View style={{
                         // backgroundColor: "green",
                         // height: 60,
                         // gap: 15,
                         // justifyContent: "center"
                         position:"relative", 
-                        left: 170,
-                        top: -10
+                        left: 165,
+                        top: -1
                     }}>
                         <View style={{
                              justifyContent: "center",
@@ -141,7 +142,7 @@ export default function FavorData(){
 
                         </View>
                         
-                    </View>
+                    </View> */}
 
 
                   
@@ -212,7 +213,9 @@ export default function FavorData(){
                     height: 50,
                     padding: 5,
                     // backgroundColor: "green",
-                    alignItems: "center"
+                    alignItems: "center",
+                    marginTop: 5
+
 
                 }}>
 

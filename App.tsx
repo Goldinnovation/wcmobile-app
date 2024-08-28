@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Button } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient';
 import {NavigationContainer, DefaultTheme } from '@react-navigation/native';
@@ -9,6 +9,7 @@ import ExploreScreen from './navigation/exploreScreen';
 import FavorScreen from './navigation/favorScreen';
 import LoginScreen from './navigation/loginScreen';
 import UserInterestScreen from './navigation/interestScreen';
+import UserIcon from "./assets/bb1.png";
 
 
 
@@ -79,6 +80,47 @@ function TabNavigator() {
       component={ExploreScreen}
       options={{
         title: '',
+        headerLeft: () => (
+          <Button
+            onPress={() => alert('This is a button!')}
+            title="Worthsec"
+            color="white"
+          />
+        ),
+        headerRight: () => (
+          <TouchableOpacity style={{
+            // backgroundColor: "pink",
+            width: 60,
+            height: 30,
+            alignItems: "center",
+            marginRight: 13,
+            gap: 15,
+            justifyContent: "center",
+            flexDirection: "row"
+          }}>     
+          <TouchableOpacity  
+          style={{
+            position: "relative",
+            top: 1
+          }}
+          onPress={() => alert('This is a selection!')}>
+          <Image
+          source={require("./assets/fi1.png")}
+          style={{height: 28, width: 28}}
+          />
+          </TouchableOpacity>    
+          
+         <TouchableOpacity  onPress={() => alert('This is a kalender!')}>
+         <Image
+          source={require("./assets/k2.png")}
+          style={{height: 22, width: 22}}
+          />
+         </TouchableOpacity>
+        
+
+          </TouchableOpacity>
+        ),
+        
         headerStyle: {
           backgroundColor: 'transparent',},
           headerTintColor: 'grey',
@@ -93,6 +135,59 @@ function TabNavigator() {
       component={FavorScreen}
       options={{
         title: '',
+        headerLeft: () => (
+          <TouchableOpacity style={{
+          //  backgroundColor: "pink",
+           width:  50,           
+           alignItems: "center",
+            justifyContent: "center",
+            height: 50,
+            flexDirection: "row",
+            position:"relative", 
+            left: 5,
+            top: 3
+
+          }}>
+             {/* <Image
+          source={require("./assets/bb1.png")}
+          style={{height: 20, width: 20,}}
+          /> */}
+
+          </TouchableOpacity>
+        ),
+        headerRight: () => (
+          <TouchableOpacity style={{
+            // backgroundColor: "pink",
+            width: 60,
+            height: 30,
+            alignItems: "center",
+            marginRight: 13,
+            gap: 15,
+            justifyContent: "center",
+            flexDirection: "row"
+          }}>     
+          <TouchableOpacity  
+          style={{
+            position: "relative",
+            top: 1
+          }}
+          onPress={() => alert('This is a selection!')}>
+          <Image
+          source={require("./assets/fi1.png")}
+          style={{height: 28, width: 28}}
+          />
+          </TouchableOpacity>    
+          
+         <TouchableOpacity  onPress={() => alert('This is a kalender!')}>
+         <Image
+          source={require("./assets/k2.png")}
+          style={{height: 22, width: 22}}
+          />
+         </TouchableOpacity>
+        
+
+          </TouchableOpacity>
+        ),
         headerStyle: {
           backgroundColor: 'transparent',},
           headerTintColor: 'grey',
