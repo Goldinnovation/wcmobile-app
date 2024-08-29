@@ -474,7 +474,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                               {
                                 openDate
                                 ? <Text style={{color: "white", fontSize: 16}}> {date.toLocaleDateString()}</Text>
-                                :  <Text style={{ color: "white", fontSize: 16}}>24-10-29</Text>
+                                :  <Text style={{ color: "white", fontSize: 16, opacity: 0.5}}>00.00.0000</Text>
                               }
                               
                              </TouchableOpacity>
@@ -513,7 +513,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                             </View> */}
                               <Dropdown
                                 style={[styles.dropdownZone, timeIsFocus && { borderColor: 'blue' }]}
-                                placeholderStyle={styles.placeholderStyle}
+                                placeholderStyle={styles.placeholderStyleTime}
                                 selectedTextStyle={styles.selectedTextStyleTime}
                                 // inputSearchStyle={styles.inputSearchStyle}
                                 itemContainerStyle={styles.itemContainerStylesTime}
@@ -750,6 +750,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "white"
   },
+  placeholderStyleTime: {
+     fontSize: 16,
+    color: "white",
+    opacity: 0.5
+  }, 
   selectedTextStyle: {
     fontSize: 16,
     // backgroundColor:"red",

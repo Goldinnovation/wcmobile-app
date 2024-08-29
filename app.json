@@ -5,7 +5,8 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "automatic", 
+    "userInterfaceStyle": "automatic",  
+    "_commentto_userInterfaceStyle": "changed the value from light to automatic", 
     
     "platforms": ["ios", "android","web"],
     "splash": {
@@ -31,4 +32,6 @@
       "favicon": "./assets/favicon.png"
     }
   }
+  
 }
+
