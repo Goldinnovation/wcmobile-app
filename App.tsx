@@ -106,7 +106,7 @@ function TabNavigator() {
         ),
         headerRight: () => (
           <TouchableOpacity style={{
-          //  backgroundColor:  filter ?  "pink" : "red",
+          //  backgroundColor:  filter ?  "pink" : "red",rr
             width:  30,
             // display: filter ? "flex" : "flex",
             height: 30,
@@ -145,7 +145,7 @@ function TabNavigator() {
             
           <Image
           source={require("./assets/fi1.png")}
-          style={{height: 28, width: 28}}
+          style={{height: 30, width: 30}}
           />
            
              
