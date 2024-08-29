@@ -1,23 +1,49 @@
 import { useEffect, useState } from "react";
-import { View, Text, Modal, Image } from "react-native";
+import { View, Text, Modal, Image, Platform} from "react-native";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Button } from "react-native";
 import { Dropdown } from 'react-native-element-dropdown';
 import { TouchableOpacity } from "react-native-gesture-handler";
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+
 
 interface state {
   callFIlter: boolean;
   onClose: () => void;
 }
 
+type ModeType = "date" | "time" | "datetime"
+
 const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
   const [eventType, setEventType] = useState("");
   const [togglePopUp, setTogglePopUp] = useState(false);
   const [value, setValue] = useState(null);
+  const [TimeValue, setTimeValue] = useState(null)
   const [isFocus, setIsFocus] = useState(false);
+  const [timeIsFocus, settimeisFocus] = useState(false)
+  const [date, setDate] = useState(new Date())
+  const [openDate, setOpenDateInfo] = useState(false)
 
+  
+ 
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date: any) => {
+    console.log(date);
+    setOpenDateInfo(true)
+    setDate(date)
+    hideDatePicker();
+  };
+ 
   // console.log(callFIlter);
 
   const data = [
@@ -29,6 +55,15 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
     { label: 'Item 6', value: '6' },
     { label: 'Item 7', value: '7' },
     { label: 'Item 8', value: '8' },
+  ];
+
+  const TimeData = [
+    { label: 'Now', value: '1' },
+    { label: 'Morning', value: '2' },
+    { label: 'Afternoon', value: '3' },
+    { label: 'Evening', value: '4' },
+
+   
   ];
   useEffect(() => {
     if (callFIlter) {
@@ -379,7 +414,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                 }}>
                    {/* Select Date - Icon Img-  Explore filter  */}
                    <View style={{
-                    width: "10%",
+                    width: "15%",
                     // backgroundColor: "grey",
                     justifyContent:"center",
                     padding: 4
@@ -392,11 +427,130 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                   {/* Select Date - Selector -  Explore filter  */}
 
                   <View style={{
-                    width: "90%",
-                    // backgroundColor: "orange"
+                    width: "85%",
+                    // backgroundColor: "orange",
+                    // justifyContent: "center",
+                    alignItems:"center",
+                    flexDirection: "row",
+                    gap: 9
+
 
                   }}>
-                    <Text>2</Text>
+                     {/* <Text>selected: {date.toLocaleString()}</Text> */}
+                     
+                            
+                            <View style={{
+                              // backgroundColor: "red",
+                              width: "57%",
+                              // height: 100,
+                              // position: "absolute", 
+                              // zIndex: 7
+                            }}>
+                             <View style={{
+                              height: 30, 
+                              // backgroundColor: "red",
+                              width: "100%",
+                              borderColor: 'gray',
+                              borderWidth: 0.5,
+                              borderRadius: 8,
+                              // paddingHorizontal: 8,
+                              backgroundColor:  "black",
+                              // alignItems: "center", 
+                              justifyContent: "center"
+
+
+
+                             }}>
+                          {/* <Button title="Show Date Picker" onPress={showDatePicker} /> */}
+                             <TouchableOpacity
+                            style={{
+                              // width: "30%",
+                              // backgroundColor: "orange",
+                              alignItems: "center", 
+                              justifyContent: "center"
+                            }}
+                             onPress={showDatePicker}
+                             >
+                              {
+                                openDate
+                                ? <Text style={{color: "white", fontSize: 16}}> {date.toLocaleDateString()}</Text>
+                                :  <Text style={{ color: "white", fontSize: 16}}>24-10-29</Text>
+                              }
+                              
+                             </TouchableOpacity>
+
+
+                             </View>
+
+                              <DateTimePickerModal
+                                isVisible={isDatePickerVisible}
+                                mode="date"
+                                onConfirm={handleConfirm}
+                                onCancel={hideDatePicker}
+                              />
+                               
+                              
+                            </View>
+
+
+                             <View style={{
+                              width: "85%",
+
+                             }}>
+                             {/* <View style={{
+                              height: 30, 
+                              // backgroundColor: "red",
+                              width: "46%",
+                              borderColor: 'gray',
+                              borderWidth: 0.5,
+                              borderRadius: 8,
+                              flexDirection:"row",
+                              alignItems: "center",
+                              // paddingHorizontal: 8,
+                              backgroundColor:  "black"
+                            }}>
+                             
+                            </View> */}
+                              <Dropdown
+                                style={[styles.dropdownZone, timeIsFocus && { borderColor: 'blue' }]}
+                                placeholderStyle={styles.placeholderStyle}
+                                selectedTextStyle={styles.selectedTextStyleTime}
+                                // inputSearchStyle={styles.inputSearchStyle}
+                                itemContainerStyle={styles.itemContainerStylesTime}
+                                containerStyle={styles.ContainerStyles}
+                                // iconStyle={styles.iconStyle}
+                                activeColor="rgba(255, 255, 255,0.1)"
+                                itemTextStyle={styles.itemTextStyleTime}
+                                data={TimeData}
+                                // search
+                                maxHeight={200}
+                                labelField="label"
+                                valueField="value"
+                                placeholder={!timeIsFocus ? 'Time' : '...'}
+                                searchPlaceholder="Search..."
+                                value={TimeValue}
+                                onFocus={() => settimeisFocus(true)}
+                                onBlur={() => settimeisFocus(false)}
+                                onChange={(itemTime: any) => {
+                                  setTimeValue(itemTime.value);
+                                  settimeisFocus(false);
+                                }}
+                        
+                        />
+                            
+
+                            
+
+                             </View>
+                            
+
+
+                            {/* Time - Area - Explore filter  */}
+                          
+
+                           
+                          
+                    {/* <Text>2</Text> */}
                     </View>
                   
                 </View>
@@ -411,7 +565,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                 }}>
                   {/* Select Eventtype - Icon Img-  Explore filter  */}
                   <View style={{
-                    width: "10%",
+                    width: "15%",
                     // backgroundColor: "grey",
                     justifyContent:"center",
                     padding: 4
@@ -424,12 +578,13 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                   {/* Select Eventtype - Selector -  Explore filter  */}
 
                   <View style={{
-                    width: "90%",
+                    width: "85%",
                     // backgroundColor: "orange",
                     alignItems: "center",
                     justifyContent: "center"
 
                   }}>
+                    {/* <Button title="Show Date Picker" onPress={showDatePicker} /> */}
                     <Dropdown
                 style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
                 placeholderStyle={styles.placeholderStyle}
@@ -454,14 +609,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                   setValue(item.value);
                   setIsFocus(false);
                 }}
-          //       renderLeftIcon={() => (
-          //         <AntDesign
-          //           style={styles.icon}
-          //           color={isFocus ? 'blue' : 'black'}
-          //           name="Safety"
-          //           size={20}
-          //         />
-          // )}
+         
         />
                    
                     </View>
@@ -478,7 +626,35 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
 
                {/* Location + Maximum Distance - Explore filter   */}
               <View style={{
+                 // backgroundColor: "orange",
+                 padding: 4
               }}>
+                {/* Location + Maximum Distance Header - Explore Filter */}
+
+              <View style={{
+                // backgroundColor: "green",
+                marginBottom: 4, 
+                marginTop: 2
+              }}><Text style={{
+                color:"white",
+                fontSize: 12,
+                fontWeight: 200,
+
+              }}>Specify your Location and desired Radius</Text>
+              </View>
+
+              {/* Location + Maximum Distance Content Area - Explore Filter */}
+
+              <View style={{
+                backgroundColor: "pink", 
+                height: 100,
+                padding: 5,
+                flexDirection: "row",
+                gap: 2
+              }}>
+
+              </View>
+
 
               </View>
             </View>
@@ -541,12 +717,22 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     height: 30,
-    width: 250,
+    width: "100%",
     borderColor: 'gray',
     borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
     backgroundColor:  "black"//"rgba(255, 255, 255,0.8)",
+  },
+
+  dropdownZone: {
+    height: 30,
+    width: "46%",
+    borderColor: 'gray',
+    borderWidth: 0.5,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    backgroundColor:  "black"
   },
   icon: {
     marginRight: 5,
@@ -571,6 +757,12 @@ const styles = StyleSheet.create({
 
     
   },
+
+  selectedTextStyleTime: {
+    fontSize: 13,
+    // backgroundColor:"red",
+    color: "white"
+  },
   iconStyle: {
     width: 20,
     height: 20,
@@ -588,6 +780,13 @@ const styles = StyleSheet.create({
 
    
   },
+
+  itemContainerStylesTime: {
+    height: 50,
+    //  backgroundColor: "grey",
+     borderBottomWidth: 1,
+     borderBottomColor: "rgba(255, 255, 255,0.1)"
+  },
   ContainerStyles: {
     borderRadius: 8,
     marginTop: 10,
@@ -596,10 +795,24 @@ const styles = StyleSheet.create({
   }, 
   itemTextStyle: {
     color: "white",
+    
   }, 
+  itemTextStyleTime: {
+    color: "white",
+    fontSize: 10
+  },
+  styleDatePicker: {
+    backgroundColor: "black",
+    width: 200,
+    borderWidth: 1,
+    borderColor:"rgba(18,18,18,0.98)",
+    
+    
+  }
   // activeColor: {
     // backgroundColor: "pink"
   // }
+
 
 
 });
