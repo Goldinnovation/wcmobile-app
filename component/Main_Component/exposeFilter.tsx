@@ -26,11 +26,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
   const [date, setDate] = useState(new Date())
   const [openDate, setOpenDateInfo] = useState(false)
   const [slidevalue, setSlideValue] = useState(0)
-  const [eventMoodtoggle, setEventMoodToggle] = useState(false)
-  
-
-  // console.log(slidevalue);
- 
+  const [eventMoodtoggle, setEventMoodToggle] = useState(false) 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
   const showDatePicker = () => {
@@ -254,14 +250,14 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                 {/* Event Mood - Physical Events - Img section - Explore Filter */}
 
                    <View style={{
-                    backgroundColor: eventMoodtoggle ? "rgba(255, 1, 1,0.8)" : "transparent",
+                    // backgroundColor: eventMoodtoggle ? "rgba(255, 1, 1,0.8)" : "transparent",
                     justifyContent: "center", 
                     alignItems: "center", 
                     padding: 2,
                     width: "90%",
                     height: 70,
                     borderWidth: 1, 
-                    borderColor: eventMoodtoggle ? "transparent" : "rgba(255, 255, 255,0.5)",
+                    borderColor: eventMoodtoggle ? "rgba(255, 1, 1,0.8)" : "rgba(255, 255, 255,0.5)",
                     borderRadius: 5
 
                     
@@ -271,12 +267,25 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                     <TouchableOpacity
                     onPress={handleClickEventMood}
                     >
-                    <Image
-                        source={require("../../assets/bal1.png")}
-                        style={{height: 55, width: 55,
-                           opacity:eventMoodtoggle ? 1 : 0.5
-                          }}
-                       />
+                    {
+                      
+                      eventMoodtoggle 
+                      ?   <Image
+                      source={require("../../assets/bal2.png")}
+                      style={{height: 55, width: 55,
+                         opacity:eventMoodtoggle && 1
+                        }}
+                     />
+                     : 
+                     <Image
+                     source={require("../../assets/bal1.png")}
+                     style={{height: 55, width: 55,
+                        opacity:eventMoodtoggle ? 1 : 0.5
+                       }}
+                    />
+
+                    }
+                    
 
                     </TouchableOpacity>
                     
@@ -474,11 +483,11 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                               height: 30, 
                               // backgroundColor: "red",
                               width: "100%",
-                              borderColor: 'gray',
+                              borderColor: isDatePickerVisible ? "blue" : 'gray',
                               borderWidth: 0.5,
                               borderRadius: 8,
                               // paddingHorizontal: 8,
-                              backgroundColor:  "black",
+                              backgroundColor: "black",
                               // alignItems: "center", 
                               justifyContent: "center"
 
@@ -639,7 +648,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                 maxHeight={200}
                 labelField="label"
                 valueField="value"
-                placeholder={!isFocus ? 'Select item' : '...'}
+                placeholder={!isFocus ? 'Select an Event Type' : '...'}
                 searchPlaceholder="Search..."
                 value={value}
                 onFocus={() => setIsFocus(true)}
@@ -727,11 +736,24 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                   >My Current Location</Text>
                 </View>
                 <View style={{
-                  // flexDirection: "row"
+                  flexDirection: "row",
+                  // backgroundColor:"pink",
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                  gap: 3
                 }}>
+                  <View>
+                  <Image
+                        source={require("../../assets/p1.png")}
+                        style={{height: 11, width: 11,}}
+                       />
+                  </View>
+                  <View>
                   <Text
                   style={{color:"white", textAlign:"right", opacity: 0.7}}
                   >Tokyo, Japan</Text>
+                  </View>
+                 
                   
                 </View>
                </View>
@@ -813,7 +835,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
               }}
               
               >
-                <Text style={{color: "white"}}>Start Filter</Text>
+                <Text style={{color: "white"}}>Start Transition</Text>
               </TouchableOpacity>
             </View>
 
