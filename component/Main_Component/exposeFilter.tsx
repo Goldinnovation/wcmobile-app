@@ -262,14 +262,16 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                    }}>
                     <Image
                         source={require("../../assets/bal1.png")}
-                        style={{height: 55, width: 55}}
+                        style={{height: 55, width: 55, opacity: 0.5}}
                        />
            
                    </View>
                     {/* Event Mood - Physical Events - Text section - Explore Filter */}
                    <View style={{
                     padding: 3,
-                    marginTop: 2
+                    marginTop: 2,
+                   
+
 
                    }}>
                     <Text style={{color: "white", fontSize: 9}}>Physical</Text>
@@ -305,7 +307,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                    }}>
                     <Image
                         source={require("../../assets/gal1.png")}
-                        style={{height: 50, width: 50}}
+                        style={{height: 50, width: 50, opacity: 0.5}}
                        />
            
                    </View>
@@ -348,7 +350,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                    }}>
                     <Image
                         source={require("../../assets/sat1.png")}
-                        style={{height: 47, width: 47}}
+                        style={{height: 47, width: 47, opacity:0.5}}
                        />
            
                    </View>
@@ -512,7 +514,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                              
                             </View> */}
                               <Dropdown
-                                style={[styles.dropdownZone, timeIsFocus && { borderColor: 'blue' }]}
+                                style={[styles.dropdownTime, timeIsFocus && { borderColor: 'blue' }]}
                                 placeholderStyle={styles.placeholderStyleTime}
                                 selectedTextStyle={styles.selectedTextStyleTime}
                                 // inputSearchStyle={styles.inputSearchStyle}
@@ -526,7 +528,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                                 maxHeight={200}
                                 labelField="label"
                                 valueField="value"
-                                placeholder={!timeIsFocus ? 'Time' : '...'}
+                                placeholder={!timeIsFocus ? 'period of time' : '...'}
                                 searchPlaceholder="Search..."
                                 value={TimeValue}
                                 onFocus={() => settimeisFocus(true)}
@@ -646,12 +648,82 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
               {/* Location + Maximum Distance Content Area - Explore Filter */}
 
               <View style={{
-                backgroundColor: "pink", 
-                height: 100,
+                // backgroundColor: "pink", 
+                height: 120,
                 padding: 5,
-                flexDirection: "row",
+                // flexDirection: "row",
                 gap: 2
               }}>
+
+                {/* Location Area - ExploreFilter */}
+               <View style={{
+                width: "100%",
+                height: 50,
+                // backgroundColor: "green",
+                flexDirection: "row"
+
+               }}>
+                <View 
+                style={{
+                  // backgroundColor:"red",
+                  width:"11%",
+                  justifyContent:"center",
+                  padding: 4
+
+
+                }}> 
+                 
+                 <Image
+                      source={require("../../assets/p1.png")}
+                      style={{height: 22, width: 22}}
+                      />
+                </View>
+
+
+                <View style={{ 
+                  // backgroundColor: "skyblue", 
+                  width:"39%",
+                  justifyContent:"center",
+
+                }}>
+                  <Text style={{color:"white"}}>Location</Text> 
+                </View>
+
+                <View style={{
+                // backgroundColor: "purple",
+                	width: "50%",
+                  justifyContent:"center",
+
+               }}>
+                <View>
+                  <Text
+                  style={{color:"white", textAlign:"right", opacity: 0.9}}
+                  >My Current Location</Text>
+                </View>
+                <View style={{
+                  // flexDirection: "row"
+                }}>
+                  <Text
+                  style={{color:"white", textAlign:"right", opacity: 0.7}}
+                  >Tokyo, Japan</Text>
+                  
+                </View>
+               </View>
+
+                
+               </View>
+               
+
+               {/* Maximum Distance Area - ExploreFilter */}
+               <View style={{
+                width: "100%",
+                height: 60, 
+                backgroundColor: "orange"
+
+               }}>
+               <Text>2</Text>
+
+               </View>
 
               </View>
 
@@ -725,9 +797,9 @@ const styles = StyleSheet.create({
     backgroundColor:  "black"//"rgba(255, 255, 255,0.8)",
   },
 
-  dropdownZone: {
+  dropdownTime: {
     height: 30,
-    width: "46%",
+    width: "46.9%",
     borderColor: 'gray',
     borderWidth: 0.5,
     borderRadius: 8,
@@ -748,10 +820,12 @@ const styles = StyleSheet.create({
   },
   placeholderStyle: {
     fontSize: 16,
-    color: "white"
+    color: "white",
+    opacity: 0.5
+
   },
   placeholderStyleTime: {
-     fontSize: 16,
+     fontSize: 9,
     color: "white",
     opacity: 0.5
   }, 
