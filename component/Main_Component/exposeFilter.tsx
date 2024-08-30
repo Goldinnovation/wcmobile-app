@@ -6,6 +6,7 @@ import { Button } from "react-native";
 import { Dropdown } from 'react-native-element-dropdown';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import Slider from '@react-native-community/slider';
 
 
 interface state {
@@ -24,8 +25,11 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
   const [timeIsFocus, settimeisFocus] = useState(false)
   const [date, setDate] = useState(new Date())
   const [openDate, setOpenDateInfo] = useState(false)
+  const [slidevalue, setSlideValue] = useState(0)
 
   
+
+  // console.log(slidevalue);
  
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
@@ -199,7 +203,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
             <View
               style={{
                 // backgroundColor: "rgba(57, 135, 111,0.5)",
-                height: 400,
+                height: 440,
               }}
             >
                  {/* Event Mood - Explore Filter */}
@@ -475,10 +479,10 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                              >
                               {
                                 openDate
-                                ? <Text style={{color: "white", fontSize: 16}}> {date.toLocaleDateString()}</Text>
-                                :  <Text style={{ color: "white", fontSize: 16, opacity: 0.5}}>00.00.0000</Text>
+                                ? <Text style={{color: "white", fontSize: 13}}> {date.toLocaleDateString()}</Text>
+                                :  <Text style={{ color: "white", fontSize:9, opacity: 0.5}}>00.00.0000</Text>
                               }
-                              
+                            
                              </TouchableOpacity>
 
 
@@ -663,26 +667,13 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                 flexDirection: "row"
 
                }}>
-                <View 
-                style={{
-                  // backgroundColor:"red",
-                  width:"11%",
-                  justifyContent:"center",
-                  padding: 4
-
-
-                }}> 
-                 
-                 <Image
-                      source={require("../../assets/p1.png")}
-                      style={{height: 22, width: 22}}
-                      />
-                </View>
+               
 
 
                 <View style={{ 
                   // backgroundColor: "skyblue", 
-                  width:"39%",
+                  width:"40%",
+                  padding: 4,
                   justifyContent:"center",
 
                 }}>
@@ -691,7 +682,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
 
                 <View style={{
                 // backgroundColor: "purple",
-                	width: "50%",
+                	width: "60%",
                   justifyContent:"center",
 
                }}>
@@ -717,12 +708,45 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                {/* Maximum Distance Area - ExploreFilter */}
                <View style={{
                 width: "100%",
-                height: 60, 
-                backgroundColor: "orange"
+                height: 100, 
+                // backgroundColor: "orange"
 
                }}>
-               <Text>2</Text>
+                  <View style={{
+                    //  backgroundColor: "red",
+                    width: "100%",
+                    height: 30,
+                    padding: 4,
+                    justifyContent: "center"
 
+                  }}>
+                    <Text style={{color:"white"}}>Maximum Distance</Text>
+                  </View>
+                  <View style={{
+                    height: 50,
+                    // backgroundColor: "skyblue",
+                    justifyContent: "center"
+                  }}>
+                   <Slider
+                        style={{width: 300, height: 40}}
+                        minimumValue={0}
+                        maximumValue={25}
+                        step={1}
+                        minimumTrackTintColor="#FFFFFF"
+                        maximumTrackTintColor="rgba(89,89,89,1)"
+                        value={slidevalue}
+                        onValueChange={setSlideValue}
+                      />
+                  </View>
+
+                  <View style={{
+                    // height: 20,
+                    // backgroundColor:"red"
+                    padding: 4
+                  }}><Text style={{color: "white"}}>
+                    {slidevalue}km
+                    </Text>
+                    </View>
                </View>
 
               </View>
@@ -771,14 +795,14 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.8)", // Semi-transparent background
       // justifyContent: 'center',
       alignItems: 'center',
-    paddingTop: 109,
+    paddingTop: 106,
   },
   popup: {
       backgroundColor: 'rgba(0, 0, 0, 0.71)',
       borderWidth:1,
       borderColor: "rgba(255, 255, 255,0.5)",
     width: 350,  // flex: 1,
-     height: 570,
+     height: 596,
     padding: 10,
     borderRadius: 10,
     elevation: 10, 
@@ -887,10 +911,11 @@ const styles = StyleSheet.create({
     borderColor:"rgba(18,18,18,0.98)",
     
     
+  }, 
+  slider: {
+    
   }
-  // activeColor: {
-    // backgroundColor: "pink"
-  // }
+ 
 
 
 
