@@ -26,7 +26,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
   const [date, setDate] = useState(new Date())
   const [openDate, setOpenDateInfo] = useState(false)
   const [slidevalue, setSlideValue] = useState(0)
-
+  const [eventMoodtoggle, setEventMoodToggle] = useState(false)
   
 
   // console.log(slidevalue);
@@ -42,23 +42,27 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
   };
 
   const handleConfirm = (date: any) => {
-    console.log(date);
+    // console.log(date);
     setOpenDateInfo(true)
     setDate(date)
     hideDatePicker();
   };
+
+
+  const handleClickEventMood = () => {
+    setEventMoodToggle(!eventMoodtoggle)
+  }
  
   // console.log(callFIlter);
 
   const data = [
-    { label: 'Item 1', value: '1' },
-    { label: 'Item 2', value: '2' },
-    { label: 'Item 3', value: '3' },
-    { label: 'Item 4', value: '4' },
-    { label: 'Item 5', value: '5' },
-    { label: 'Item 6', value: '6' },
-    { label: 'Item 7', value: '7' },
-    { label: 'Item 8', value: '8' },
+    { label: 'Exhibition', value: '1' },
+    { label: 'Party', value: '2' },
+    { label: 'Movie', value: '3' },
+    { label: 'Activity', value: '4' },
+    { label: 'Festival', value: '5' },
+    { label: 'Shows', value: '6' },
+    { label: 'Comedy', value: '7' },
   ];
 
   const TimeData = [
@@ -250,24 +254,32 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                 {/* Event Mood - Physical Events - Img section - Explore Filter */}
 
                    <View style={{
-                    // backgroundColor: "red",
+                    backgroundColor: eventMoodtoggle ? "rgba(255, 1, 1,0.8)" : "transparent",
                     justifyContent: "center", 
                     alignItems: "center", 
                     padding: 2,
                     width: "90%",
                     height: 70,
                     borderWidth: 1, 
-                    borderColor:"rgba(255, 255, 255,0.5)",
+                    borderColor: eventMoodtoggle ? "transparent" : "rgba(255, 255, 255,0.5)",
                     borderRadius: 5
 
                     
 
 
                    }}>
+                    <TouchableOpacity
+                    onPress={handleClickEventMood}
+                    >
                     <Image
                         source={require("../../assets/bal1.png")}
-                        style={{height: 55, width: 55, opacity: 0.5}}
+                        style={{height: 55, width: 55,
+                           opacity:eventMoodtoggle ? 1 : 0.5
+                          }}
                        />
+
+                    </TouchableOpacity>
+                    
            
                    </View>
                     {/* Event Mood - Physical Events - Text section - Explore Filter */}
@@ -423,22 +435,28 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                     width: "15%",
                     // backgroundColor: "grey",
                     justifyContent:"center",
-                    padding: 4
+                    padding: 4,
+                    position: "absolute",
+                    left: "3%",
+                    top: "20%",
+                    zIndex: 3
+
                   }}>
                       <Image
                       source={require("../../assets/k2.png")}
-                      style={{height: 22, width: 22}}
+                      style={{height: 15, width: 15}}
                       />
                     </View>
                   {/* Select Date - Selector -  Explore filter  */}
 
                   <View style={{
-                    width: "85%",
+                    width: "100%",
                     // backgroundColor: "orange",
                     // justifyContent: "center",
                     alignItems:"center",
                     flexDirection: "row",
-                    gap: 9
+                    gap: 6, 
+                    padding: 4
 
 
                   }}>
@@ -447,7 +465,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                             
                             <View style={{
                               // backgroundColor: "red",
-                              width: "57%",
+                              width: "50%",
                               // height: 100,
                               // position: "absolute", 
                               // zIndex: 7
@@ -480,7 +498,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                               {
                                 openDate
                                 ? <Text style={{color: "white", fontSize: 13}}> {date.toLocaleDateString()}</Text>
-                                :  <Text style={{ color: "white", fontSize:9, opacity: 0.5}}>00.00.0000</Text>
+                                :  <Text style={{ color: "white", fontSize: 11, opacity: 0.5}}>00.00.0000</Text>
                               }
                             
                              </TouchableOpacity>
@@ -498,26 +516,33 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                               
                             </View>
 
+                            <View style={{
+                              width: "15%",
+                              // backgroundColor: "grey",
+                              justifyContent:"center",
+                              padding: 4,
+                              position: "absolute",
+                              left: "55%",
+                              top: "26%",
+                              zIndex: 3
 
+                            }}>
+                                <Image
+                                source={require("../../assets/dn1.png")}
+                                style={{height: 15, width: 15}}
+                                />
+                              </View>
                              <View style={{
-                              width: "85%",
+                              width: "48.2%",
+                              // backgroundColor: "red",
+
 
                              }}>
-                             {/* <View style={{
-                              height: 30, 
-                              // backgroundColor: "red",
-                              width: "46%",
-                              borderColor: 'gray',
-                              borderWidth: 0.5,
-                              borderRadius: 8,
-                              flexDirection:"row",
-                              alignItems: "center",
-                              // paddingHorizontal: 8,
-                              backgroundColor:  "black"
-                            }}>
-                             
-                            </View> */}
-                              <Dropdown
+                              <View style={{
+
+                                  // width: "100%"
+                              }}>
+                                 <Dropdown
                                 style={[styles.dropdownTime, timeIsFocus && { borderColor: 'blue' }]}
                                 placeholderStyle={styles.placeholderStyleTime}
                                 selectedTextStyle={styles.selectedTextStyleTime}
@@ -543,6 +568,9 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                                 }}
                         
                         />
+                                
+                              </View>
+                            
                             
 
                             
@@ -567,6 +595,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                   // backgroundColor: "purple",
                   height: 40,
                   flexDirection: "row",
+                  padding: 4
 
                 }}>
                   {/* Select Eventtype - Icon Img-  Explore filter  */}
@@ -574,17 +603,21 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                     width: "15%",
                     // backgroundColor: "grey",
                     justifyContent:"center",
-                    padding: 4
+                    padding: 4,
+                    position: "absolute",
+                    left: "2.5%",
+                    top: "25%",
+                    zIndex: 3
                   }}>
                       <Image
                       source={require("../../assets/pz1.png")}
-                      style={{height: 22, width: 22}}
+                      style={{height: 15, width: 15}}
                       />
                     </View>
                   {/* Select Eventtype - Selector -  Explore filter  */}
 
                   <View style={{
-                    width: "85%",
+                    width: "100%",
                     // backgroundColor: "orange",
                     alignItems: "center",
                     justifyContent: "center"
@@ -684,6 +717,8 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                 // backgroundColor: "purple",
                 	width: "60%",
                   justifyContent:"center",
+                  padding: 4,
+
 
                }}>
                 <View>
@@ -725,7 +760,8 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                   <View style={{
                     height: 50,
                     // backgroundColor: "skyblue",
-                    justifyContent: "center"
+                    justifyContent: "center",
+                    padding: 4,
                   }}>
                    <Slider
                         style={{width: 300, height: 40}}
@@ -823,7 +859,7 @@ const styles = StyleSheet.create({
 
   dropdownTime: {
     height: 30,
-    width: "46.9%",
+    width: "100%",
     borderColor: 'gray',
     borderWidth: 0.5,
     borderRadius: 8,
@@ -843,20 +879,23 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   placeholderStyle: {
-    fontSize: 16,
+    fontSize: 11,
     color: "white",
-    opacity: 0.5
+    opacity: 0.5,
+    marginLeft: 29
 
   },
   placeholderStyleTime: {
-     fontSize: 9,
+     fontSize: 11,
     color: "white",
-    opacity: 0.5
+    opacity: 0.5, 
+    marginLeft: 25
   }, 
   selectedTextStyle: {
-    fontSize: 16,
+    fontSize: 14,
     // backgroundColor:"red",
-    color: "white"
+    color: "white",
+    marginLeft: 29
 
     
   },
@@ -864,7 +903,8 @@ const styles = StyleSheet.create({
   selectedTextStyleTime: {
     fontSize: 13,
     // backgroundColor:"red",
-    color: "white"
+    color: "white",
+    marginLeft: 25
   },
   iconStyle: {
     width: 20,
