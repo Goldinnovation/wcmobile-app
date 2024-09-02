@@ -16,6 +16,7 @@ import { userCategoryReq } from "../../api/exploreScreen_Api/CategoryDataApi";
 import { userFavoredEvent } from "../../api/favorScreen_Api/userFavoredEvent";
 import HearthFrequenz from "../../icons/hearthFrequenz";
 import FavorIcon from "../../icons/favorIcon";
+import EventCategoryCall from "./eventCategory";
 
 
 interface eventProps {
@@ -82,7 +83,7 @@ export default function GetUserData() {
   const [IconFavorClick, setIconFavorClick] = useState(false)
 
   const [redstate, dispatch] = useReducer(reducer, initialState)
-
+  
 
 
 
@@ -2081,10 +2082,9 @@ export default function GetUserData() {
                         <Text>loading</Text>
                       )}
                     </Animated.View>
-                  </>
-                )}
 
-                <View
+                    {/* Close btn of event Category */}
+                    <View
                   style={{
                     height: 48,
                     alignItems: "center",
@@ -2096,6 +2096,7 @@ export default function GetUserData() {
                     marginTop: isOpen === item.eventId ? 1 : 9,
                     position: "relative",
                     top: isOpen === item.eventId ? "-6%" : "2%",
+                    // backgroundColor: "pink"
                   }}
                 >
                   <TouchableOpacity
@@ -2122,7 +2123,12 @@ export default function GetUserData() {
                       {/* {item.eventType} */}x
                     </Text>
                   </TouchableOpacity>
-                </View>
+                    </View>
+                  </>
+                )}
+
+              
+                {/* <EventCategoryCall data={item}/> */}
               </View>
 
               
