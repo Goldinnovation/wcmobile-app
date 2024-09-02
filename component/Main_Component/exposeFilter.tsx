@@ -7,6 +7,12 @@ import { Dropdown } from 'react-native-element-dropdown';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import Slider from '@react-native-community/slider';
+import BallonIcon from "../../icons/BallonIcon";
+import BallonIconColor from "../../icons/BallonIconColor";
+import CalenderIcon from "../../icons/calenderIcon";
+import DayNightIcon from "../../icons/DayNightIcon";
+import PuzzleIcon from "../../icons/puzzleIcon";
+import LocationPin from "../../icons/locationPin";
 
 
 interface state {
@@ -250,7 +256,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                 {/* Event Mood - Physical Events - Img section - Explore Filter */}
 
                    <View style={{
-                    // backgroundColor: eventMoodtoggle ? "rgba(255, 1, 1,0.8)" : "transparent",
+                    backgroundColor: eventMoodtoggle ? "rgba(221,221,221,0.2)" : "transparent",
                     justifyContent: "center", 
                     alignItems: "center", 
                     padding: 2,
@@ -270,19 +276,22 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                     {
                       
                       eventMoodtoggle 
-                      ?   <Image
-                      source={require("../../assets/bal2.png")}
-                      style={{height: 55, width: 55,
-                         opacity:eventMoodtoggle && 1
-                        }}
-                     />
+                      ?   
+                      // <Image
+                      // source={require("../../assets/bal2.png")}
+                      // style={{height: 55, width: 55,
+                      //    opacity:eventMoodtoggle && 1
+                      //   }}/>
+                      <BallonIconColor height={"55"} width={"55"}/>
+
                      : 
-                     <Image
-                     source={require("../../assets/bal1.png")}
-                     style={{height: 55, width: 55,
-                        opacity:eventMoodtoggle ? 1 : 0.5
-                       }}
-                    />
+                    //  <Image
+                    //  source={require("../../assets/bal1.png")}
+                    //  style={{height: 55, width: 55,
+                    //     opacity:eventMoodtoggle ? 1 : 0.5
+                    //    }}
+                    // />
+                    <BallonIcon height={"55"} width={"55"} lineColor={"#ffffff"}/>
 
                     }
                     
@@ -451,10 +460,11 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                     zIndex: 3
 
                   }}>
-                      <Image
+                      {/* <Image
                       source={require("../../assets/k2.png")}
                       style={{height: 15, width: 15}}
-                      />
+                      /> */}
+                      <CalenderIcon height={"15"} width={"15"} />
                     </View>
                   {/* Select Date - Selector -  Explore filter  */}
 
@@ -536,10 +546,8 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                               zIndex: 3
 
                             }}>
-                                <Image
-                                source={require("../../assets/dn1.png")}
-                                style={{height: 15, width: 15}}
-                                />
+                                
+                                <DayNightIcon height={"15"} width={"15"}/>
                               </View>
                              <View style={{
                               width: "48.2%",
@@ -618,10 +626,8 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                     top: "25%",
                     zIndex: 3
                   }}>
-                      <Image
-                      source={require("../../assets/pz1.png")}
-                      style={{height: 15, width: 15}}
-                      />
+                     
+                      <PuzzleIcon width={"15"} height={"15"}/>
                     </View>
                   {/* Select Eventtype - Selector -  Explore filter  */}
 
@@ -743,10 +749,11 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                   gap: 3
                 }}>
                   <View>
-                  <Image
+                  {/* <Image
                         source={require("../../assets/p1.png")}
                         style={{height: 11, width: 11,}}
-                       />
+                       /> */}
+                       <LocationPin height={"11"} width={"11"}/>
                   </View>
                   <View>
                   <Text

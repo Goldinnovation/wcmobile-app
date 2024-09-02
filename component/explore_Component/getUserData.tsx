@@ -14,6 +14,9 @@ import Slider from "@react-native-community/slider";
 import Animated, { FadeInDown, SlideInDown, SlideInUp } from 'react-native-reanimated';
 import { userCategoryReq } from "../../api/exploreScreen_Api/CategoryDataApi";
 import { userFavoredEvent } from "../../api/favorScreen_Api/userFavoredEvent";
+import HearthFrequenz from "../../icons/hearthFrequenz";
+import FavorIcon from "../../icons/favorIcon";
+
 
 interface eventProps {
   eventId: string;
@@ -1889,13 +1892,10 @@ export default function GetUserData() {
                       >
                         {IconHeartClick ? (
                           <View>
-                            <Image
-                              source={require("../../assets/h1.png")}
-                              style={{
-                                width: 25,
-                                height: 25,
-                              }}
-                            />
+                           
+                            <HearthFrequenz height={"25"} width={"25"} lineColor={"#ff0000"}/>
+
+
                             <Text
                               style={{
                                 color: "white",
@@ -1910,13 +1910,8 @@ export default function GetUserData() {
                           </View>
                         ) : (
                           <View>
-                            <Image
-                              source={require("../../assets/h.png")}
-                              style={{
-                                width: 25,
-                                height: 25,
-                              }}
-                            />
+                            
+                              <HearthFrequenz height={"25"} width={"25"} lineColor={"#ffffff"}/>
                             <Text
                               style={{
                                 color: "white",
@@ -1945,7 +1940,7 @@ export default function GetUserData() {
                       >
                         {IconFavorClick ? (
                           <View>
-                            <Image
+                            {/* <Image
                               source={require("../../assets/s1.png")}
                               style={{
                                 width: 25,
@@ -1953,7 +1948,8 @@ export default function GetUserData() {
                                 position: "relative",
                                 top: isOpen === item.eventId ? "-2%" : "4%",
                               }}
-                            />
+                            /> */}
+                            <FavorIcon height={"25"} width={"25"} lineColor={"#FBFF00"} />
                             <Text
                               style={{
                                 color: "white",
@@ -1968,15 +1964,16 @@ export default function GetUserData() {
                           </View>
                         ) : (
                           <View>
-                            <Image
+                            {/* <Image
                               source={require("../../assets/s.png")}
                               style={{
                                 width: 25,
                                 height: 25,
                                 position: "relative",
                                 top: isOpen === item.eventId ? "-2%" : "4%",
-                              }}
-                            />
+                              }}FBFF00
+                            /> */}
+                            <FavorIcon height={"25"} width={"25"} lineColor={"#ffffff"} />
                             <Text
                               style={{
                                 color: "white",
