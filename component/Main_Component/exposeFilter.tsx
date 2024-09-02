@@ -13,7 +13,8 @@ import CalenderIcon from "../../icons/calenderIcon";
 import DayNightIcon from "../../icons/DayNightIcon";
 import PuzzleIcon from "../../icons/puzzleIcon";
 import LocationPin from "../../icons/locationPin";
-
+import OnlineIcon from "../../icons/OnlineIcon";
+import VirtualIcon from "../../icons/virtualIcon";
 
 interface state {
   callFIlter: boolean;
@@ -256,14 +257,14 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                 {/* Event Mood - Physical Events - Img section - Explore Filter */}
 
                    <View style={{
-                    backgroundColor: eventMoodtoggle ? "rgba(221,221,221,0.2)" : "transparent",
+                    backgroundColor: eventMoodtoggle ? "rgba(255, 1, 1,0.7)" : "transparent",
                     justifyContent: "center", 
                     alignItems: "center", 
                     padding: 2,
                     width: "90%",
                     height: 70,
                     borderWidth: 1, 
-                    borderColor: eventMoodtoggle ? "rgba(255, 1, 1,0.8)" : "rgba(255, 255, 255,0.5)",
+                    borderColor: eventMoodtoggle ? "black" : "rgba(255, 255, 255,0.5)",
                     borderRadius: 5
 
                     
@@ -339,10 +340,11 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
 
 
                    }}>
-                    <Image
+                    {/* <Image
                         source={require("../../assets/gal1.png")}
                         style={{height: 50, width: 50, opacity: 0.5}}
-                       />
+                       /> */}
+                       <OnlineIcon height={"55"} width={"55"}/>
            
                    </View>
                     {/* Event Mood - Online Events - Text section - Explore Filter */}
@@ -382,10 +384,12 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
 
 
                    }}>
-                    <Image
+                    {/* <Image
                         source={require("../../assets/sat1.png")}
                         style={{height: 47, width: 47, opacity:0.5}}
-                       />
+                       /> */}
+                      <VirtualIcon height={"55"} width={"55"}/>
+
            
                    </View>
                     {/* Event Mood - Virual Events - Text section - Explore Filter */}
@@ -754,6 +758,7 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                         style={{height: 11, width: 11,}}
                        /> */}
                        <LocationPin height={"11"} width={"11"}/>
+                       
                   </View>
                   <View>
                   <Text

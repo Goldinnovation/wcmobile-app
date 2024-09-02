@@ -11,7 +11,8 @@ import LoginScreen from './navigation/loginScreen';
 import UserInterestScreen from './navigation/interestScreen';
 import ExploreFilter from './component/Main_Component/exposeFilter';
 import { useState } from 'react';
-
+import ExploreEventFilter from './icons/ExploreEventFilter';
+import SettingIcon from './icons/settingIcon';
 
 
 
@@ -143,10 +144,13 @@ function TabNavigator() {
           }}
           onPress={() => handleClickFilterExplore()}>
             
-          <Image
+          {/* <Image
           source={require("./assets/fi1.png")}
           style={{height: 30, width: 30}}
-          />
+          /> */}
+          <View>
+          <ExploreEventFilter width={'30'} height={'30'} />
+          </View>
            
              
           </TouchableWithoutFeedback>  
@@ -207,17 +211,20 @@ function TabNavigator() {
             top: 1
           }}
           onPress={() => alert('This is a selection!')}>
-          <Image
+          {/* <Image
           source={require("./assets/fi1.png")}
           style={{height: 28, width: 28}}
-          />
+          /> */}
+          <ExploreEventFilter width={'30'} height={'30'} />
+
           </TouchableOpacity>    
           
          <TouchableOpacity  onPress={() => alert('This is a kalender!')}>
-         <Image
+         {/* <Image
           source={require("./assets/k2.png")}
           style={{height: 22, width: 22}}
-          />
+          /> */}
+          <SettingIcon width={'22'} height={'22'} />
          </TouchableOpacity>
         
 
