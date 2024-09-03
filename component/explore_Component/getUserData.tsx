@@ -16,7 +16,8 @@ import { userCategoryReq } from "../../api/exploreScreen_Api/CategoryDataApi";
 import { userFavoredEvent } from "../../api/favorScreen_Api/userFavoredEvent";
 import HearthFrequenz from "../../icons/hearthFrequenz";
 import FavorIcon from "../../icons/favorIcon";
-import EventCategoryCall from "./eventCategory";
+import EventCategoryCloseBtn from "./eventCategoryCloseBtn";
+import EventCategoryFetchedData from "./eventCategoryfetchedData";
 
 
 interface eventProps {
@@ -197,6 +198,12 @@ export default function GetUserData() {
   };
 
   const handletoggleCLose = () => {
+    setOpen("")
+    setNumState(0)
+  }
+
+
+  const handleCategoryClose = () => {
     setOpen("")
     setNumState(0)
   }
@@ -1993,98 +2000,20 @@ export default function GetUserData() {
                   </View>
                 </View>
 
-                {/* <View style={styles.eventContentTag}>
+                
 
-                {/* <View style={styles.ContentrightSelection}>        */}
+                {/*  Fetching an array of similar Events that are matching the Event category */}
+                  <View>
                 {isOpen === item.eventId && (
                   <>
                     <Animated.View entering={FadeInDown}>
-                      {categoryData ? (
-                        <ScrollView
-                          horizontal={true}
-                          style={{
-                            height: 130,
-                            // backgroundColor: "purple",
-                            flexDirection: "row",
-                            // marginTop: 5,
-                            // gap: 45,
-                            padding: 6,
-                            position: "relative",
-                            top: "-5%",
-                            // width: "100%",
-                          }}
-                        >
-                          {/* <Text>asasd</Text> */}
-                          <View
-                            style={{
-                              // backgroundColor: "orange",
-                              width: "100%",
-                              display: "flex",
-                              // flexDirection: "row"
-                              flexDirection: "row",
-                              gap: 13,
-                            }}
-                          >
-                            {/* <Text>asasd</Text> */}
-                            {categoryData.map((categoryItem, categoryindex) => (
-                              <View
-                                key={categoryindex}
-                                style={
-                                  {
-                                    // backgroundColor: "red"
-                                  }
-                                }
-                              >
-                                <TouchableOpacity
-                                  onPress={(e) =>
-                                    handleSelectedEvent(
-                                      categoryItem,
-                                      index,
-                                      categoryItem.eventId
-                                    )
-                                  }
-                                >
-                                  <Image
-                                    source={{
-                                      uri: categoryItem.ImageCoverUpload,
-                                    }}
-                                    style={{
-                                      width: 110,
-                                      height: 100,
-
-                                      borderRadius: 9,
-                                    }}
-                                  />
-                                  <View
-                                    style={
-                                      {
-                                        // backgroundColor: "pink",
-                                      }
-                                    }
-                                  >
-                                    <Text
-                                      style={{
-                                        textAlign: "center",
-                                        color: "white",
-                                        fontSize: 7,
-                                        marginTop: 7,
-                                      }}
-                                    >
-                                      {categoryItem.eventTitle}
-                                    </Text>
-                                  </View>
-                                </TouchableOpacity>
-                              </View>
-                            ))}
-                          </View>
-                        </ScrollView>
-                      ) : (
-                        <Text>loading</Text>
-                      )}
+                
+                      <EventCategoryFetchedData  data={categoryData} index={index} handleSelectedEvent={handleSelectedEvent}/>
                     </Animated.View>
+              
 
                     {/* Close btn of event Category */}
-                    <View
+                  <View
                   style={{
                     height: 48,
                     alignItems: "center",
@@ -2098,37 +2027,17 @@ export default function GetUserData() {
                     top: isOpen === item.eventId ? "-6%" : "2%",
                     // backgroundColor: "pink"
                   }}
-                >
-                  <TouchableOpacity
-                    key={item.eventId}
-                    style={{
-                      height: 25,
-                      backgroundColor: "black",
-                      width: "20%",
-                      borderRadius: 100,
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                    onPress={(e) =>
-                      handleCategoryReq(item.eventType, item.eventId, item)
-                    }
-                  >
-                    <Text
-                      style={{
-                        color: "red",
-                        fontWeight: "bold",
-                        opacity: 0.7,
-                      }}
-                    >
-                      {/* {item.eventType} */}x
-                    </Text>
-                  </TouchableOpacity>
-                    </View>
+                >                 
+                    <EventCategoryCloseBtn data={item} closeCategory={handleCategoryClose}/>
+
+
+                  </View>
                   </>
                 )}
 
+                  </View>
+
               
-                {/* <EventCategoryCall data={item}/> */}
               </View>
 
               

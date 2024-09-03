@@ -35,6 +35,7 @@ type eventArr = eventProps[];
 
 interface eventCategoryProps{
     data: eventProps
+    closeCategory: () => void;
 
 }
 
@@ -65,7 +66,7 @@ const reducer = (state: State, action: Action) => {
     }
   };
 
-const  EventCategoryCall: React.FC<eventCategoryProps> = ({data}) => {
+const  EventCategoryCloseBtn: React.FC<eventCategoryProps> = ({data, closeCategory}) => {
     const [isOpen, setOpen] = useState("")
     const [categoryData, setCategoryData] = useState<eventArr | []>([])
     const[state, setNumState ] = useState(0)
@@ -116,20 +117,13 @@ const  EventCategoryCall: React.FC<eventCategoryProps> = ({data}) => {
 
 
   return (
-    <View
-                  style={{
-                    height: 48,
-                    alignItems: "center",
-                    flexDirection: "row",
-                    // justifyContent: "space-between",
-                    justifyContent: "center",
-                    display: isOpen === item.eventId ? "flex" : "none",
-                    // marginBottom: 30,
-                    marginTop: isOpen === item.eventId ? 1 : 9,
-                    position: "relative",
-                    top: isOpen === item.eventId ? "-6%" : "2%",
-                  }}
-                >
+    <View style={{
+      width: "100%",
+      // backgroundColor: "red",
+      justifyContent: "center",
+      alignItems: "center"
+
+    }}>
                   <TouchableOpacity
                     key={item.eventId}
                     style={{
@@ -140,9 +134,7 @@ const  EventCategoryCall: React.FC<eventCategoryProps> = ({data}) => {
                       justifyContent: "center",
                       alignItems: "center",
                     }}
-                    onPress={(e) =>
-                      handleCategoryReq(item.eventType, item.eventId, item)
-                    }
+                    onPress={closeCategory}
                   >
                     <Text
                       style={{
@@ -158,4 +150,4 @@ const  EventCategoryCall: React.FC<eventCategoryProps> = ({data}) => {
   )
 }
 
-export default EventCategoryCall
+export default EventCategoryCloseBtn
