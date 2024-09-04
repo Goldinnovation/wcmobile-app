@@ -18,7 +18,11 @@ import HearthFrequenz from "../../icons/hearthFrequenz";
 import FavorIcon from "../../icons/favorIcon";
 import EventCategoryCloseBtn from "./eventCategoryCloseBtn";
 import EventCategoryFetchedData from "./eventCategoryfetchedData";
-
+// import EventDescriptionArea from "./eventDescriptionArea";
+import EventDescriptionArea from "./eventDescriptionArea";
+import { useDispatch, useSelector } from "react-redux"
+import { userActions } from "../../store/userActions";
+import { RootState } from "../../store/store";
 
 interface eventProps {
   eventId: string;
@@ -80,7 +84,11 @@ export default function GetUserData() {
   const [eventData, setEventData] = useState<eventProps | null>(null)
   const [key, setKey] = useState("")
   const[state, setNumState ] = useState(0)
-  const [IconHeartClick, setIconHeartClick] = useState(false)
+  // const [IconHeartClick, setIconHeartClick] = useState(false)
+  const dispatchIcon = useDispatch()
+  const  {IconHeartState} = useSelector((state: RootState) => state.IconData)
+
+
   const [IconFavorClick, setIconFavorClick] = useState(false)
 
   const [redstate, dispatch] = useReducer(reducer, initialState)
@@ -89,9 +97,9 @@ export default function GetUserData() {
 
 
 
-  const handleIconheartPress = () => {
-    setIconHeartClick(!IconHeartClick)
-  }
+  // const handleIconheartPress = () => {
+  //   setIconHeartClick(!IconHeartClick)
+  // }
 
   const handleFavorPress = async(eventId: string) => {
 
@@ -154,6 +162,21 @@ export default function GetUserData() {
       console.error('Error on hanleCategory Rey', error)
     }
 
+   }
+
+
+   const handleHearthIconClick = () => {
+
+    const paylaodState = IconHeartState === false ?  true : false
+    console.log(paylaodState);
+
+   
+      dispatchIcon({
+        type: "UpdateIconColor",
+        payload: paylaodState
+    })
+
+    
    }
 
    
@@ -1626,7 +1649,7 @@ export default function GetUserData() {
               </ScrollView>
               </View>
 
-
+              {/* Decription Area  */}
               <View
                 style={{
                   // width: "100%",
@@ -1639,367 +1662,14 @@ export default function GetUserData() {
                   // flexDirection: "column",
                 }}
               >
-                <View
-                  style={{
-                    //  backgroundColor: "rgba(207,207,208,0.7)",
-                    width: "100%",
-                    //  zIndex: -5,
-                    flexDirection: "row",
-                    height: 90,
-                    top: isOpen === item.eventId ? "-6%" : "-3%",
-                  }}
-                >
-                  <View
-                    style={{
-                      //  backgroundColor: "rgba(106, 190, 110,0.7)",
-                      width: "80%",
-                      display: "flex",
-                    }}
-                  >
-                    
-                    
+               
+                   <EventDescriptionArea 
+                  data={item} 
+                  index={index}
+                  handleFavorPress={handleFavorPress}
+                  handleCategoryReq={handleCategoryReq}
 
-                    <View
-                      style={{
-                        //  backgroundColor: "blue",
-                        //  width: "100%",
-                        //  marginLeft: 10,
-                        // flexDirection: "row",
-                        // alignItems: "center",
-                        // justifyContent: "space-between",
-                        //  position: "relative",
-                        top: isOpen === item.eventId ? "11%" : "2%",
-                        left: isOpen === item.eventId ? "2%" : "0%",
-                        height: isOpen === item.eventId ? 50 : 0,
-                      }}
-                    >
-                      <View
-                        style={{
-                          // backgroundColor: "orange",
-                          height: isOpen === item.eventId ? 17 : 20,
-                          width: isOpen === item.eventId ? "100%" : "70%",
-                          position: "relative",
-                          left: isOpen === item.eventId ? "2%" : "2%",
-                          marginTop: 2,
-                        }}
-                      >
-                        <Text
-                          style={{
-                            fontSize: 13,
-                            fontWeight: "500",
-                            color: "white",
-                          }}
-                        >
-                          Event: {item.eventTitle}
-                        </Text>
-                      </View>
-
-                      <View
-                        style={{
-                          // backgroundColor: "red",
-                          height: isOpen === item.eventId ? 25 : 35,
-                          width: isOpen === item.eventId ? "60%" : "74%",
-                          position: "relative",
-                          left: isOpen === item.eventId ? "2%" : "2%",
-                        }}
-                      >
-                        <Text style={{ color: "white", fontSize: 11 }}>
-                          {item.eventDescriptionContent}
-                        </Text>
-                      </View>
-
-                      <View
-                        style={{
-                          // backgroundColor: "green",
-                          width: "100%",
-                          flexDirection:
-                            isOpen === item.eventId ? "row-reverse" : "row",
-                          gap: 5,
-                          height: isOpen === item.eventId ? 23 : 30,
-                          alignItems: "center",
-                          position: "relative",
-                          top: isOpen === item.eventId ? "5%" : "1%",
-                          left: isOpen === item.eventId ? "8%" : "8%",
-                        }}
-                      >
-                        <View
-                          style={{
-                            // backgroundColor: "yellow",
-                            flexDirection: "row",
-                            gap: 8,
-                            height: isOpen === item.eventId ? 23 : 30,
-                            alignItems: "center",
-                            width: isOpen === item.eventId ? "55.5%" : "60%",
-                            left: isOpen === item.eventId ? "-18.8%" : "2%",
-                          }}
-                        >
-                          <TouchableOpacity
-                            style={{
-                              backgroundColor:
-                                isOpen === item.eventId
-                                  ? "rgba(0, 48, 131, 1)"
-                                  : "rgba(0, 0, 0,0.4)",
-                              //  backgroundColor: isOpen === item.eventId ? "rgba(0, 101, 255,0.5)" : "rgba(204,204,204,0.2)",
-                              borderRadius: 4,
-                              alignItems: "center",
-                              height: 20,
-                              width: isOpen === item.eventId ? 78 : 78,
-                              flexDirection: "row",
-                              //  position: "relative",
-                              //  padding: 1,
-                              //  gap: 2,
-                              // //  display: isOpen === item.eventId ? "flex" :"none",
-                              //  top: isOpen === item.eventId ? "1.9%" : "2%",
-                              //  left: isOpen === item.eventId ? "660%" : "0%",
-                              justifyContent: "center",
-                              borderWidth: isOpen === item.eventId ? 1 : 1,
-                              borderColor:
-                                isOpen === item.eventId
-                                  ? "rgba(204,204,204,0.2)"
-                                  : "rgba(0, 101, 255,0.3)",
-                            }}
-                            onPress={() =>
-                              handleCategoryReq(
-                                item.eventType,
-                                item.eventId,
-                                item
-                              )
-                            }
-                          >
-                            {/* <Image
-                          source={require("../../assets/p1.png")}
-                          style={{
-                            width: 12,
-                            height: 12,
-                          }}
-                          /> */}
-                            <Text style={{ color: "white" }}>
-                              #{item.eventType}
-                            </Text>
-                          </TouchableOpacity>
-                          <TouchableOpacity
-                            style={{
-                              backgroundColor:
-                                isOpen === item.eventId
-                                  ? "rgba(0, 0, 0,0.4)"
-                                  : "rgba(0, 0, 0,0.4)",
-                              borderRadius: 4,
-                              alignItems: "center",
-                              height: 20,
-                              width: isOpen === item.eventId ? 78 : 78,
-                              flexDirection: "row",
-                              //  position: "relative",
-                              //  padding: 1,
-                              //  gap: 2,
-                              // //  display: isOpen === item.eventId ? "flex" :"none",
-                              //  top: isOpen === item.eventId ? "-6.3%" : "-6%",
-                              //  left: isOpen === item.eventId ? "450%" : "210%",
-                              justifyContent: "center",
-                              borderWidth: isOpen === item.eventId ? 1 : 1,
-                              borderColor:
-                                isOpen === item.eventId
-                                  ? "rgba(68, 182, 120,0.3)"
-                                  : "rgba(68, 182, 120,0.3)",
-                            }}
-                          >
-                            {/* <Image
-                          source={require("../../assets/p1.png")}
-                          style={{
-                            width: 12,
-                            height: 12,
-                          }}
-                          /> */}
-                            <Text style={{ color: "white" }}>#Rock</Text>
-                          </TouchableOpacity>
-                        </View>
-
-                       
-                        
-                        <View
-                          style={{
-                            backgroundColor:
-                              isOpen === item.eventId
-                                ? "rgba(0, 0, 0,0.4)"
-                                : "rgba(0, 0, 0,0.7)",
-                            borderRadius: 4,
-                            alignItems: "center",
-                            display: isOpen === item.eventId ? "flex" : "none",
-                            //  display: isOpen === item.eventId ? "flex" : "none",
-                            height: 20,
-                            width: isOpen ? 98 : 98,
-                            flexDirection: "row",
-                            position: "relative",
-                            padding: 1,
-                            gap: 5,
-                            borderWidth: isOpen === item.eventId ? 0 : 1,
-                            borderColor:
-                              isOpen === item.eventId
-                                ? "rgba(255, 255, 250,0.2)"
-                                : "rgba(255, 255, 250,0.3)",
-                            top: isOpen === item.eventId ? "0%" : "-1770%",
-                            left: isOpen === item.eventId ? "11%" : "27%",
-                            justifyContent: "center",
-                          }}
-                        >
-                          <Image
-                            source={require("../../assets/w1.png")}
-                            style={{
-                              width: 12,
-                              height: 12,
-                            }}
-                          />
-                          <Text style={{ color: "white" }}>WorldWide</Text>
-                        </View>
-                      </View>
-                    </View>
-                  </View>
-
-                  <View
-                    style={{
-                      //  backgroundColor: "rgba(221,221,221,0.5)",
-                      // backgroundColor: "blue",
-                      width: "20%",
-                      gap: 7,
-
-                      //  flexDirection: "column",
-                      //  justifyContent: "center",
-                      //  alignItems: "center",
-                      //  position: "relative",
-                      //  top: isOpen ? "-5%" : "-2%",
-                    }}
-                  >
-                 
-                    <View
-                      style={{
-                        //  backgroundColor:  "pink", //"rgba(204,204,204,0.4
-                        height: isOpen === item.eventId ? 50 : 40,
-                        width: isOpen === item.eventId ? 100 : 130,
-                        // borderRadius: 7,
-                        // alignItems: "center",
-                        flexDirection: isOpen === item.eventId ? "row" : "row",
-                        justifyContent:
-                          isOpen === item.eventId
-                            ? "space-around"
-                            : "space-around",
-                        // marginTop: 7,
-                        gap: -2.5,
-                        left: isOpen === item.eventId ? "-40%" : "-70%",
-                        position: "relative",
-                        top: isOpen === item.eventId ? "20%" : "6%",
-                      }}
-                    >
-                      <TouchableOpacity
-                        style={{
-                          // backgroundColor: "green",
-                          position: "relative",
-                          height: 40,
-                          // top: isOpen === item.eventId ? "-35%" : "-76%",
-                          // left: isOpen === item.eventId ? "-10%" : "-65%",
-                        }}
-                        onPress={handleIconheartPress}
-                      >
-                        {IconHeartClick ? (
-                          <View>
-                           
-                            <HearthFrequenz height={"25"} width={"25"} lineColor={"#ff0000"}/>
-
-
-                            <Text
-                              style={{
-                                color: "white",
-                                fontSize: 10,
-                                textAlign: "center",
-                                fontWeight: "500",
-                                marginTop: isOpen === item.eventId ? 4 : 3,
-                              }}
-                            >
-                              223
-                            </Text>
-                          </View>
-                        ) : (
-                          <View>
-                            
-                              <HearthFrequenz height={"25"} width={"25"} lineColor={"#ffffff"}/>
-                            <Text
-                              style={{
-                                color: "white",
-                                fontSize: 10,
-                                textAlign: "center",
-                                fontWeight: "500",
-                                marginTop: isOpen === item.eventId ? 4 : 3,
-                              }}
-                            >
-                              222
-                            </Text>
-                          </View>
-                        )}
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        style={{
-                          // backgroundColor: "blue",
-                          borderRadius: 4,
-                          alignItems: "center",
-                          height: 40,
-                          // marginRight:  isOpen === item.eventId ? -2 : 4,
-
-                          justifyContent: "center",
-                        }}
-                        onPress={() => handleFavorPress(item.eventId)}
-                      >
-                        {IconFavorClick ? (
-                          <View>
-                            {/* <Image
-                              source={require("../../assets/s1.png")}
-                              style={{
-                                width: 25,
-                                height: 25,
-                                position: "relative",
-                                top: isOpen === item.eventId ? "-2%" : "4%",
-                              }}
-                            /> */}
-                            <FavorIcon height={"25"} width={"25"} lineColor={"#FBFF00"} />
-                            <Text
-                              style={{
-                                color: "white",
-                                fontSize: 10,
-                                textAlign: "center",
-                                fontWeight: "500",
-                                marginTop: isOpen === item.eventId ? 3 : 3,
-                              }}
-                            >
-                              113
-                            </Text>
-                          </View>
-                        ) : (
-                          <View>
-                            {/* <Image
-                              source={require("../../assets/s.png")}
-                              style={{
-                                width: 25,
-                                height: 25,
-                                position: "relative",
-                                top: isOpen === item.eventId ? "-2%" : "4%",
-                              }}FBFF00
-                            /> */}
-                            <FavorIcon height={"25"} width={"25"} lineColor={"#ffffff"} />
-                            <Text
-                              style={{
-                                color: "white",
-                                fontSize: 10,
-                                textAlign: "center",
-                                fontWeight: "500",
-                                marginTop: isOpen === item.eventId ? 3 : 3,
-                              }}
-                            >
-                              112
-                            </Text>
-                          </View>
-                        )}
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </View>
-
+                  /> 
                 
 
                 {/*  Fetching an array of similar Events that are matching the Event category */}
@@ -2028,7 +1698,12 @@ export default function GetUserData() {
                     // backgroundColor: "pink"
                   }}
                 >                 
-                    <EventCategoryCloseBtn data={item} closeCategory={handleCategoryClose}/>
+                    <EventCategoryCloseBtn 
+                    data={item} 
+                    closeCategory={handleCategoryClose}
+
+                    
+                    />
 
 
                   </View>

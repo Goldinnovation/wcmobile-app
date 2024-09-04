@@ -90,7 +90,7 @@ const Explorepage = () => {
 
 
                                     {/* DescriptionContent Section  */}
-                                    <EventDescriptionArea data={item} indexNum={index}/>
+                                    {/* <EventDescriptionArea data={item} indexNum={index}/> */}
                                 </View>
                             ))
                         }

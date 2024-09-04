@@ -13,8 +13,8 @@ import ExploreFilter from './component/Main_Component/exposeFilter';
 import { useState } from 'react';
 import ExploreEventFilter from './icons/ExploreEventFilter';
 import SettingIcon from './icons/settingIcon';
-
-
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -273,9 +273,8 @@ export default function App() {
 
   return (
   
-      <View  style={styles.container} >
-
-   
+    <Provider store={store} >
+    <View  style={styles.container} >
     <LinearGradient
     colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']}
     style={styles.gradient}
@@ -286,6 +285,7 @@ export default function App() {
 
     </LinearGradient>
     </View>
+    </Provider>
     
   );
 }

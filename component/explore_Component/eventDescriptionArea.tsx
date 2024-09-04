@@ -16,6 +16,10 @@ import { userFavoredExploredEvent } from '../../api/explore/userFavoredEvent';
 import HearthFrequenz from '../../icons/hearthFrequenz';
 import FavorIcon from '../../icons/favorIcon';
 import Animated, { FadeInDown, SlideInDown, SlideInUp } from 'react-native-reanimated';
+import { useDispatch, useSelector } from "react-redux"
+import { userActions } from '../../store/userActions';
+import { RootState } from '../../store/store';
+
 
 
 interface eventProps {
@@ -39,7 +43,10 @@ interface eventProps {
   
   interface EventDescriptionAreaProps {
     data: eventProps;
-    indexNum: number
+    index: number;
+    handleFavorPress: (eventId: string) => void;
+    handleCategoryReq: (e: string, eId: string, item: eventProps) => void
+
   }
 
   const initialState = {
@@ -59,6 +66,7 @@ interface eventProps {
   interface Action{
     type: string;
   }
+
   
 
   
@@ -76,104 +84,97 @@ interface eventProps {
   };
 
 
-const EventDescriptionArea: React.FC<EventDescriptionAreaProps> = ({data, indexNum}) => {
+const EventDescriptionArea: React.FC<EventDescriptionAreaProps> = ({data, index, handleFavorPress, handleCategoryReq}) => {
     const [isOpen, setOpen] = useState("")
     const[state, setNumState ] = useState(0)
  const [categoryData, setCategoryData] = useState<eventArr | []>([])
- const [IconHeartClick, setIconHeartClick] = useState(false)
+//  const [IconHeartClick, setIconHeartClick] = useState(false)
  const [IconFavorClick, setIconFavorClick] = useState(false)
  const [redstate, dispatch] = useReducer(reducer, initialState)
  const [eventdata, setData] = useState<eventArr | []>([]);
 
+ const dispatchIcon = useDispatch()
+
+
+const  {IconHeartState} = useSelector((state: RootState) => state.IconData)
+
+
+ const handleHearthIconClick = () => {
+
+  const paylaodState = IconHeartState === false ?  true : false
+
  
+    dispatchIcon(userActions(paylaodState))
+
+ }
 
 
-
- console.log(data);
+//  console.log(data);
 
  const item = data
- const index = indexNum
+//  const index = indexNum
 
- const handleIconheartPress = () => {
-    setIconHeartClick(!IconHeartClick)
-  }
+//  const handleIconheartPress = () => {
+//     setIconHeartClick(!IconHeartClick)
+//   }
   
 
-  const handleFavorPress = async(eventId: string) => {
+  // const handleFavorPress = async(eventId: string) => {
 
-    console.log(eventId);
-    setIconFavorClick(!IconFavorClick)
-    const storedToken = await AsyncStorage.getItem("token");
-    const token = storedToken ? JSON.parse(storedToken).token : null;
-    const userToken = token.token;
-    if(userToken && eventId){
-      const sendUserFavorDataResult = await userFavoredExploredEvent(userToken, eventId)
-      console.log(sendUserFavorDataResult);
-    }
-  }
+  //   console.log(eventId);
+  //   setIconFavorClick(!IconFavorClick)
+  //   const storedToken = await AsyncStorage.getItem("token");
+  //   const token = storedToken ? JSON.parse(storedToken).token : null;
+  //   const userToken = token.token;
+  //   if(userToken && eventId){
+  //     const sendUserFavorDataResult = await userFavoredExploredEvent(userToken, eventId)
+  //     console.log(sendUserFavorDataResult);
+  //   }
+  // }
 
 
-  const handleEventInfo = ( e: string) => {
-    console.log(e);
-   dispatch({type: e})
-    
-   
-  }
-  const handleSelectedEvent = (CategoryItem: eventProps, itemindex: number, categoryId: string) => {
-    const selectedEvent = CategoryItem;
-    const coverEventIndex = itemindex;
-    
-    if (selectedEvent) {
-      // console.log("inside");
-      const newData = [...eventdata];
-
-      newData[coverEventIndex] = selectedEvent;
-      setData(newData);
-      setOpen(categoryId)
-    }
-  };
 
   
 
 
-    const handleCategoryReq = async(e: string, eId: string, item: eventProps) => {
+    // const handleCategoryReq = async(e: string, eId: string, item: eventProps) => {
 
 
 
 
-        try{
-          const storedToken = await AsyncStorage.getItem("token");
-          const token = storedToken ? JSON.parse(storedToken).token : null;
-          const userToken = token.token;
-          const userselected_Category = e
-          const eventId = eId
-          const eventObj = item
-          // console.log(categoryData);
+    //     try{
+    //       const storedToken = await AsyncStorage.getItem("token");
+    //       const token = storedToken ? JSON.parse(storedToken).token : null;
+    //       const userToken = token.token;
+    //       const userselected_Category = e
+    //       const eventId = eId
+    //       const eventObj = item
+    //       // console.log(categoryData);
     
     
     
          
          
-          if(state === 0){
-            setOpen(eventId)
-            const CategoryData = await userCategoryReq(userToken, userselected_Category)
-            const filteredEvent = CategoryData.filter((prevEvent: eventProps) => prevEvent.eventId !== eventId)
+    //       if(state === 0){
+    //         setOpen(eventId)
+    //         const CategoryData = await userCategoryReq(userToken, userselected_Category)
+    //         const filteredEvent = CategoryData.filter((prevEvent: eventProps) => prevEvent.eventId !== eventId)
          
-            setCategoryData(filteredEvent)
+    //         setCategoryData(filteredEvent)
             
-            setNumState(1)
+    //         setNumState(1)
           
-          }else{
-            setOpen("")
-            setNumState(0)
+    //       }else{
+    //         setOpen("")
+    //         setNumState(0)
     
-          }
+    //       }
     
-        }catch(error){
-          console.error('Error on hanleCategory Rey', error)
-        }
+    //     }catch(error){
+    //       console.error('Error on hanleCategory Rey', error)
+    //     }
     
-       }
+    //    }
   return (
 
     
@@ -434,9 +435,9 @@ const EventDescriptionArea: React.FC<EventDescriptionAreaProps> = ({data, indexN
             // top: isOpen === item.eventId ? "-35%" : "-76%",
             // left: isOpen === item.eventId ? "-10%" : "-65%",
           }}
-          onPress={handleIconheartPress}
+          onPress={() => handleHearthIconClick()}
         >
-          {IconHeartClick ? (
+          {IconHeartState ? (
             <View>
              
               <HearthFrequenz height={"25"} width={"25"} lineColor={"#ff0000"}/>
@@ -540,5 +541,6 @@ const EventDescriptionArea: React.FC<EventDescriptionAreaProps> = ({data, indexN
    
   )
 }
+  
 
 export default EventDescriptionArea
