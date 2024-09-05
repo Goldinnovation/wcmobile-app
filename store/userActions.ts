@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+
 import { IconHeartUpdate } from './types'
+import { OpenCategoryLayout } from './types'
 
 interface props {
   type: string, 
@@ -20,3 +20,14 @@ export const userActions  = (e: boolean) => {
     
 }
 
+
+
+export const userCategoryLayoutAction = (e: boolean) => {
+
+  console.log("onActionside:", e);
+
+  return {
+    type: OpenCategoryLayout,
+    paylaod: true
+  }
+}

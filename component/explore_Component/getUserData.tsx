@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { userActions } from "../../store/userActions";
 import { RootState } from "../../store/store";
 
+
 interface eventProps {
   eventId: string;
   eventHost: string;
@@ -88,6 +89,8 @@ export default function GetUserData() {
   const dispatchIcon = useDispatch()
   const  {IconHeartState} = useSelector((state: RootState) => state.IconData)
 
+  const userCategoryLayout = useSelector((state: RootState) => state.OpenCategoryLayout.categoryLayoutState)
+
 
   const [IconFavorClick, setIconFavorClick] = useState(false)
 
@@ -97,22 +100,9 @@ export default function GetUserData() {
 
 
 
-  // const handleIconheartPress = () => {
-  //   setIconHeartClick(!IconHeartClick)
-  // }
 
-  const handleFavorPress = async(eventId: string) => {
 
-    console.log(eventId);
-    setIconFavorClick(!IconFavorClick)
-    const storedToken = await AsyncStorage.getItem("token");
-    const token = storedToken ? JSON.parse(storedToken).token : null;
-    const userToken = token.token;
-    if(userToken && eventId){
-      const sendUserFavorDataResult = await userFavoredEvent(userToken, eventId)
-      console.log(sendUserFavorDataResult);
-    }
-  }
+  console.log(userCategoryLayout);
 
 
   const handleEventInfo = ( e: string) => {
@@ -1666,7 +1656,6 @@ export default function GetUserData() {
                    <EventDescriptionArea 
                   data={item} 
                   index={index}
-                  handleFavorPress={handleFavorPress}
                   handleCategoryReq={handleCategoryReq}
 
                   /> 

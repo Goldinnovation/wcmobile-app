@@ -19,7 +19,7 @@ import Animated, { FadeInDown, SlideInDown, SlideInUp } from 'react-native-reani
 import { useDispatch, useSelector } from "react-redux"
 import { userActions } from '../../store/userActions';
 import { RootState } from '../../store/store';
-
+import { userCategoryLayoutAction } from '../../store/Actions/userLayoutAction';
 
 
 interface eventProps {
@@ -44,7 +44,7 @@ interface eventProps {
   interface EventDescriptionAreaProps {
     data: eventProps;
     index: number;
-    handleFavorPress: (eventId: string) => void;
+    // handleFavorPress: (eventId: string) => void;
     handleCategoryReq: (e: string, eId: string, item: eventProps) => void
 
   }
@@ -84,7 +84,7 @@ interface eventProps {
   };
 
 
-const EventDescriptionArea: React.FC<EventDescriptionAreaProps> = ({data, index, handleFavorPress, handleCategoryReq}) => {
+const EventDescriptionArea: React.FC<EventDescriptionAreaProps> = ({data, index, handleCategoryReq}) => {
     const [isOpen, setOpen] = useState("")
     const[state, setNumState ] = useState(0)
  const [categoryData, setCategoryData] = useState<eventArr | []>([])
@@ -92,12 +92,25 @@ const EventDescriptionArea: React.FC<EventDescriptionAreaProps> = ({data, index,
  const [IconFavorClick, setIconFavorClick] = useState(false)
  const [redstate, dispatch] = useReducer(reducer, initialState)
  const [eventdata, setData] = useState<eventArr | []>([]);
+ const  {IconHeartState} = useSelector((state: RootState) => state.IconData)
+ const {categoryLayoutState} = useSelector((state: RootState) => state.OpenCategoryLayout)
+
+
 
  const dispatchIcon = useDispatch()
+ const dispatchCategoryIcon = useDispatch()
 
 
-const  {IconHeartState} = useSelector((state: RootState) => state.IconData)
 
+
+
+  const handleCategoryReqPop = () => {
+        console.log(categoryLayoutState);
+      const LayoutState = categoryLayoutState === false ? true : false
+      
+      dispatchCategoryIcon(userCategoryLayoutAction(LayoutState))
+    
+  }
 
  const handleHearthIconClick = () => {
 
@@ -119,18 +132,18 @@ const  {IconHeartState} = useSelector((state: RootState) => state.IconData)
 //   }
   
 
-  // const handleFavorPress = async(eventId: string) => {
+  const handleFavorPress = async(eventId: string) => {
 
-  //   console.log(eventId);
-  //   setIconFavorClick(!IconFavorClick)
-  //   const storedToken = await AsyncStorage.getItem("token");
-  //   const token = storedToken ? JSON.parse(storedToken).token : null;
-  //   const userToken = token.token;
-  //   if(userToken && eventId){
-  //     const sendUserFavorDataResult = await userFavoredExploredEvent(userToken, eventId)
-  //     console.log(sendUserFavorDataResult);
-  //   }
-  // }
+    console.log(eventId);
+    setIconFavorClick(!IconFavorClick)
+    const storedToken = await AsyncStorage.getItem("token");
+    const token = storedToken ? JSON.parse(storedToken).token : null;
+    const userToken = token.token;
+    if(userToken && eventId){
+      const sendUserFavorDataResult = await userFavoredExploredEvent(userToken, eventId)
+      console.log(sendUserFavorDataResult);
+    }
+  }
 
 
 
@@ -297,12 +310,12 @@ const  {IconHeartState} = useSelector((state: RootState) => state.IconData)
                     ? "rgba(204,204,204,0.2)"
                     : "rgba(0, 101, 255,0.3)",
               }}
-              onPress={() =>
-                handleCategoryReq(
-                  item.eventType,
-                  item.eventId,
-                  item
-                )
+              onPress={() => handleCategoryReqPop()
+                // handleCategoryReq(
+                //   item.eventType,
+                //   item.eventId,
+                //   item
+                // )
               }
             >
               {/* <Image

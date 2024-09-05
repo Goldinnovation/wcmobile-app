@@ -1,10 +1,11 @@
 import { createStore, combineReducers } from "redux";
 import userReduce from "./userReduce";
-
+import userCategoryLayoutReducer from "./Reducer/userCategoryLayoutReducer";
 
 const rootReducer = combineReducers({
     
-    IconData : userReduce
+    IconData : userReduce,
+    OpenCategoryLayout: userCategoryLayoutReducer
 
 })
 
