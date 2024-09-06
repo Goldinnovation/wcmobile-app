@@ -1,4 +1,3 @@
-import { View } from "react-native-reanimated/lib/typescript/Animated";
 import { Svg, Path, G } from "react-native-svg";
 
 interface IconProp {

@@ -11,7 +11,7 @@ interface props {
 
 
 
-export const userCategoryLayoutAction = (e: boolean) => {
+export const userCategoryLayoutAction = (e: string) => {
 
     console.log("onActionside:", e);
   

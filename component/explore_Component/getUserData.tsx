@@ -23,6 +23,7 @@ import EventDescriptionArea from "./eventDescriptionArea";
 import { useDispatch, useSelector } from "react-redux"
 import { userActions } from "../../store/userActions";
 import { RootState } from "../../store/store";
+import { userCategoryLayoutAction } from "../../store/Actions/userLayoutAction";
 
 
 interface eventProps {
@@ -80,7 +81,7 @@ const reducer = (state: State, action: Action) => {
 export default function GetUserData() {
   const [data, setData] = useState<eventArr | []>([]);
   const [value, setValue] = useState(0);
-  const [isOpen, setOpen] = useState("")
+  // const [categoryLayoutState, setOpen] = useState("")
   const [categoryData, setCategoryData] = useState<eventArr | []>([])
   const [eventData, setEventData] = useState<eventProps | null>(null)
   const [key, setKey] = useState("")
@@ -89,20 +90,22 @@ export default function GetUserData() {
   const dispatchIcon = useDispatch()
   const  {IconHeartState} = useSelector((state: RootState) => state.IconData)
 
-  const userCategoryLayout = useSelector((state: RootState) => state.OpenCategoryLayout.categoryLayoutState)
+  // const userCategoryLayout = useSelector((state: RootState) => state.OpenCategoryLayout.categoryLayoutState)#
+  const {categoryLayoutState} = useSelector((state: RootState) => state.OpenCategoryLayout)
+
 
 
   const [IconFavorClick, setIconFavorClick] = useState(false)
 
   const [redstate, dispatch] = useReducer(reducer, initialState)
-  
+  const dispatchCategoryIcon = useDispatch()
 
 
 
 
 
 
-  console.log(userCategoryLayout);
+  // console.log(userCategoryLayout);
 
 
   const handleEventInfo = ( e: string) => {
@@ -115,9 +118,7 @@ export default function GetUserData() {
 
 
 
-   const handleCategoryReq = async(e: string, eId: string, item: eventProps) => {
-
-
+  const handleCategoryReq = async(e: string, eId: string, item: eventProps) => {
 
 
     try{
@@ -131,21 +132,20 @@ export default function GetUserData() {
 
 
 
-     
-     
-      if(state === 0){
-        setOpen(eventId)
+      const LayoutState = eventId === categoryLayoutState ? "" : eventId
+  
+      dispatchCategoryIcon(userCategoryLayoutAction(LayoutState))
+
+      
+      if(LayoutState === eventId){
+
+  
         const CategoryData = await userCategoryReq(userToken, userselected_Category)
         const filteredEvent = CategoryData.filter((prevEvent: eventProps) => prevEvent.eventId !== eventId)
      
         setCategoryData(filteredEvent)
-        
-        setNumState(1)
+   
       
-      }else{
-        setOpen("")
-        setNumState(0)
-
       }
 
     }catch(error){
@@ -155,19 +155,6 @@ export default function GetUserData() {
    }
 
 
-   const handleHearthIconClick = () => {
-
-    const paylaodState = IconHeartState === false ?  true : false
-    console.log(paylaodState);
-
-   
-      dispatchIcon({
-        type: "UpdateIconColor",
-        payload: paylaodState
-    })
-
-    
-   }
 
    
  
@@ -206,18 +193,16 @@ export default function GetUserData() {
 
       newData[coverEventIndex] = selectedEvent;
       setData(newData);
-      setOpen(categoryId)
+      // setOpen(categoryId)
     }
   };
 
-  const handletoggleCLose = () => {
-    setOpen("")
-    setNumState(0)
-  }
+
 
 
   const handleCategoryClose = () => {
-    setOpen("")
+    // setOpen("")
+    dispatchCategoryIcon(userCategoryLayoutAction(""))
     setNumState(0)
   }
 
@@ -237,16 +222,16 @@ export default function GetUserData() {
             <View
               key={index}
               style={{
-                padding: isOpen === item.eventId ? 0 : 1,
-                marginBottom: isOpen === item.eventId ? 50 : 50,
+                padding: categoryLayoutState === item.eventId ? 0 : 1,
+                marginBottom: categoryLayoutState === item.eventId ? 50 : 50,
                 // backgroundColor: "green",
-                height: isOpen === item.eventId ? 600 : 600,
+                height: categoryLayoutState === item.eventId ? 600 : 600,
               }}
             >
               
               <View style={{
-               height: isOpen === item.eventId ? 345 : 515,
-               padding: isOpen === item.eventId ? 11 : 3,
+               height: categoryLayoutState === item.eventId ? 345 : 515,
+               padding: categoryLayoutState === item.eventId ? 11 : 3,
                 //  backgroundColor: "skyblue",
 
               }}>
@@ -281,8 +266,8 @@ export default function GetUserData() {
                       position: "absolute",
                       zIndex: 1,
                       // display: isOpen === item.eventId ? "flex" : "none",
-                      top: isOpen === item.eventId ? "64%" : "90%",
-                      left: isOpen === item.eventId ? "2%" : "2%",
+                      top: categoryLayoutState === item.eventId ? "64%" : "90%",
+                      left: categoryLayoutState === item.eventId ? "2%" : "2%",
                     }}
                   >
                     <Image
@@ -323,26 +308,26 @@ export default function GetUserData() {
                   <View
                     style={{
                       backgroundColor:
-                        isOpen === item.eventId
+                        categoryLayoutState === item.eventId
                           ? "rgba(0, 0, 0,0.4)"
                           : "rgba(0, 0, 0,0.7)",
                       borderRadius: 4,
                       alignItems: "center",
-                      display: isOpen === item.eventId ? "none" : "flex",
+                      display: categoryLayoutState === item.eventId ? "none" : "flex",
                       //  display: isOpen === item.eventId ? "flex" : "none",
                       height: 20,
-                      width: isOpen ? 98 : 98,
+                      width: categoryLayoutState ? 98 : 98,
                       flexDirection: "row",
                       position: "absolute",
                       padding: 1,
                       gap: 5,
-                      borderWidth: isOpen === item.eventId ? 0 : 1,
+                      borderWidth: categoryLayoutState === item.eventId ? 0 : 1,
                       borderColor:
-                        isOpen === item.eventId
+                        categoryLayoutState === item.eventId
                           ? "rgba(255, 255, 250,0.2)"
                           : "rgba(255, 255, 250,0.3)",
-                      top: isOpen === item.eventId ? "0%" : "3.4%",
-                      left: isOpen === item.eventId ? "11%" : "71%",
+                      top: categoryLayoutState === item.eventId ? "0%" : "3.4%",
+                      left: categoryLayoutState === item.eventId ? "11%" : "71%",
                       justifyContent: "center",
                       zIndex: 1,
                     }}
@@ -367,8 +352,8 @@ export default function GetUserData() {
                         gap: 7,
                         // marginRight: "1%",
                         marginTop: 4,
-                        left: isOpen === item.eventId ? "9%" : "83%",
-                        top: isOpen === item.eventId ? "5%" : "92.3%",
+                        left: categoryLayoutState === item.eventId ? "9%" : "83%",
+                        top: categoryLayoutState === item.eventId ? "5%" : "92.3%",
                         // display: "none",
                         position: "absolute",
                         zIndex: 1
@@ -383,11 +368,11 @@ export default function GetUserData() {
                   <Image
                     source={{ uri: item.ImageCoverUpload }}
                     style={{
-                      width: isOpen === item.eventId ? 350 : 367,
+                      width: categoryLayoutState === item.eventId ? 350 : 367,
                       // height: 490,
 
                       // height: isOpen === item.eventId ? 350 : 490,
-                      height: isOpen === item.eventId ? 315 : 500,
+                      height: categoryLayoutState === item.eventId ? 315 : 500,
 
                       borderRadius: 9,
                       //  paddingRight: 30,
@@ -401,13 +386,13 @@ export default function GetUserData() {
                   style={{
                     // backgroundColor: "black",
 
-                    marginLeft: isOpen === item.eventId ? 10 : 10,
-                    marginRight: isOpen === item.eventId ? 10 : 10,
-                    paddingLeft: isOpen === item.eventId ? 11 : 3,
-                    paddingRight: isOpen === item.eventId ? 9 : 3,
-                    padding: isOpen === item.eventId ? 0 : 3,
-                    width: isOpen === item.eventId ? 345 : 364,
-                    height: isOpen === item.eventId ? 315 : 437,
+                    marginLeft: categoryLayoutState === item.eventId ? 10 : 10,
+                    marginRight: categoryLayoutState === item.eventId ? 10 : 10,
+                    paddingLeft: categoryLayoutState === item.eventId ? 11 : 3,
+                    paddingRight: categoryLayoutState === item.eventId ? 9 : 3,
+                    padding: categoryLayoutState === item.eventId ? 0 : 3,
+                    width: categoryLayoutState === item.eventId ? 345 : 364,
+                    height: categoryLayoutState === item.eventId ? 315 : 437,
                     // width: isOpen === item.eventId ? 355 : 367,
                     // height: isOpen === item.eventId ? 350 : 490,
                   }}
@@ -426,13 +411,13 @@ export default function GetUserData() {
                   <View
                     style={{
                       backgroundColor:
-                        isOpen === item.eventId
+                        categoryLayoutState === item.eventId
                           ? "rgba(20,20,20,0.99)"
                           : "rgba(149,149,149,0.3)", //rgba(149,149,149,0.3)
                       position: "absolute",
-                      width: isOpen === item.eventId ? 345 : 360,
-                      height: isOpen === item.eventId ? 315 : 420,
-                      marginLeft: isOpen === item.eventId ? 8 : 0,
+                      width: categoryLayoutState === item.eventId ? 345 : 360,
+                      height: categoryLayoutState === item.eventId ? 315 : 420,
+                      marginLeft: categoryLayoutState === item.eventId ? 8 : 0,
                       // marginRight: 3,
                       top: "0%",
                       left: "3%",
@@ -448,6 +433,7 @@ export default function GetUserData() {
                      
                     }}
                   >
+                    {/* Second Slider Data  */}
                     <View
                       style={{
                         // backgroundColor: "pink",
@@ -459,8 +445,8 @@ export default function GetUserData() {
                            position: "absolute",
                          
                            zIndex: 3,
-                           top: isOpen === item.eventId ? "64%" : "490%",
-                           left: isOpen === item.eventId ? "2%" : "5%",
+                           top: categoryLayoutState === item.eventId ? "64%" : "490%",
+                           left: categoryLayoutState === item.eventId ? "2%" : "5%",
 
                         }}>
 
@@ -470,12 +456,12 @@ export default function GetUserData() {
                       <View>
                       <View style={{
                            backgroundColor:
-                           isOpen === item.eventId
+                           categoryLayoutState === item.eventId
                              ? "rgba(20,20,20,0.99)"
                              : "rgba(20,20,20,0.4)",
                          position: "absolute",
-                         width: isOpen === item.eventId ? 355 : 358,
-                         height: isOpen === item.eventId ? 20 : 90,
+                         width: categoryLayoutState === item.eventId ? 355 : 358,
+                         height: categoryLayoutState === item.eventId ? 20 : 90,
                         borderBottomWidth: 1,
                         borderColor: "rgba(255, 255, 255,0.5)",
                         borderTopLeftRadius: 9,
@@ -488,10 +474,10 @@ export default function GetUserData() {
                       <Image
                               source={{ uri: item.ImageCoverUpload }}
                               style={{
-                                width: isOpen === item.eventId ? 355 : 358,
+                                width: categoryLayoutState === item.eventId ? 355 : 358,
                                 // height: 490,
 
-                                height: isOpen === item.eventId ? 20 : 90,
+                                height: categoryLayoutState === item.eventId ? 20 : 90,
                                 borderTopLeftRadius: 9,
                                 borderTopRightRadius: 9,
                                 borderBottomWidth: 1,
@@ -520,7 +506,7 @@ export default function GetUserData() {
                               justifyContent: "center",
                               alignItems: "center",
                               position:"relative",
-                              top:  isOpen === item.eventId ? "1%" : "-9%",
+                              top:  categoryLayoutState === item.eventId ? "1%" : "-9%",
                               zIndex: 2
                             }}
                           >
@@ -545,7 +531,7 @@ export default function GetUserData() {
                               justifyContent: "center",
                               alignItems: "center",
                               position:"relative",
-                              top:  isOpen === item.eventId ? "1%" : "-7%"
+                              top:  categoryLayoutState === item.eventId ? "1%" : "-7%"
                             }}
                           >
                             <View
@@ -597,7 +583,7 @@ export default function GetUserData() {
                             // backgroundColor: "green",
                             height: 180,
                             position:"relative",
-                            top:  isOpen === item.eventId ? "1%" : "-7%"
+                            top:  categoryLayoutState === item.eventId ? "1%" : "-7%"
                           }}
                         >
                           <View
@@ -632,7 +618,7 @@ export default function GetUserData() {
                           <View
                             style={{
                               //  backgroundColor: "pink",
-                              height: isOpen === item.eventId ?  90 : 140,
+                              height: categoryLayoutState === item.eventId ?  90 : 140,
                               padding: 9,
                               margin: 5,
                               //  marginLeft: 1
@@ -640,7 +626,7 @@ export default function GetUserData() {
                               //  borderTopColor: "rgba(255, 255, 255,0.9)"
                             }}
                           >
-                            {redstate.eventDescription && (
+                          {redstate.eventDescription && (
                               <View
                                 style={
                                   {
@@ -688,7 +674,7 @@ export default function GetUserData() {
                       <View
                         style={{
                           //  backgroundColor: "pink",
-                          height: isOpen === item.eventId ?  90 : 289,
+                          height: categoryLayoutState === item.eventId ?  90 : 289,
                           // padding: 9,
                           // margin: 5,
                           // marginTop: 33
@@ -1252,7 +1238,7 @@ export default function GetUserData() {
                               justifyContent: "center",
                               alignItems: "center",
                               position:"relative",
-                              top:  isOpen === item.eventId ? "1%" : "15%",
+                              top:  categoryLayoutState === item.eventId ? "1%" : "15%",
                               zIndex: 2
                             }}
                           >
@@ -1279,7 +1265,7 @@ export default function GetUserData() {
                               justifyContent: "center",
                               alignItems: "center",
                               position:"relative",
-                              top:  isOpen === item.eventId ? "1%" : "18%"
+                              top:  categoryLayoutState === item.eventId ? "1%" : "18%"
                             }}
                           >
                             <View
@@ -1307,7 +1293,7 @@ export default function GetUserData() {
                             // backgroundColor: "green",
                             height: 135,
                             position:"relative",
-                            top:  isOpen === item.eventId ? "1%" : "-7%"
+                            top:  categoryLayoutState === item.eventId ? "1%" : "-7%"
                           }}
                         >
                           <View
@@ -1330,8 +1316,8 @@ export default function GetUserData() {
                                 gap: 30,
                                 justifyContent: "center",
                                 position: "relative", 
-                                top:isOpen === item.eventId ? "1%" : "-208%",
-                                left: isOpen === item.eventId ? "1%" : "86%"
+                                top:categoryLayoutState === item.eventId ? "1%" : "-208%",
+                                left: categoryLayoutState === item.eventId ? "1%" : "86%"
 
 
                               
@@ -1370,7 +1356,7 @@ export default function GetUserData() {
                           <View
                             style={{
                               //  backgroundColor: "pink",
-                              height: isOpen === item.eventId ?  90 : 98,
+                              height: categoryLayoutState === item.eventId ?  90 : 98,
                               padding: 9,
                               margin: 5,
                               //  marginLeft: 1
@@ -1414,7 +1400,7 @@ export default function GetUserData() {
                           <View style={{
                             // backgroundColor: "orange",
                               position:"relative",
-                              	top:  isOpen === item.eventId ? "1%" : "-7%",
+                              	top:  categoryLayoutState === item.eventId ? "1%" : "-7%",
                                 borderTopWidth: 1, 
                                 borderTopColor: "white"
                           }}>
@@ -1533,7 +1519,7 @@ export default function GetUserData() {
                         
                          
                   
-                        </View>
+                     </View>
                 
 
                   </View>
@@ -1577,10 +1563,10 @@ export default function GetUserData() {
                      <Image
                         source={require("../../assets/ii1.png")}
                         style={{
-                          width: isOpen === item.eventId ? 355 : 20,
+                          width: categoryLayoutState === item.eventId ? 355 : 20,
                           // height: 490,
 
-                          height: isOpen === item.eventId ? 20 : 20,
+                          height: categoryLayoutState === item.eventId ? 20 : 20,
                           
                          
                           //  paddingRight: 30,
@@ -1595,10 +1581,10 @@ export default function GetUserData() {
                      <Image
                         source={require("../../assets/pin1.png")}
                         style={{
-                          width: isOpen === item.eventId ? 355 : 25,
+                          width: categoryLayoutState === item.eventId ? 355 : 25,
                           // height: 490,
 
-                          height: isOpen === item.eventId ? 20 : 25,
+                          height: categoryLayoutState === item.eventId ? 20 : 25,
                           
                          
                           //  paddingRight: 30,
@@ -1612,10 +1598,10 @@ export default function GetUserData() {
                      <Image
                         source={require("../../assets/fr1.png")}
                         style={{
-                          width: isOpen === item.eventId ? 355 : 20,
+                          width: categoryLayoutState === item.eventId ? 355 : 20,
                           // height: 490,
 
-                          height: isOpen === item.eventId ? 20 : 20,
+                          height: categoryLayoutState === item.eventId ? 20 : 20,
                           
                          
                           //  paddingRight: 30,
@@ -1631,10 +1617,7 @@ export default function GetUserData() {
                 </View>
 
 
-           
 
-
-               
                 
               </ScrollView>
               </View>
@@ -1663,7 +1646,7 @@ export default function GetUserData() {
 
                 {/*  Fetching an array of similar Events that are matching the Event category */}
                   <View>
-                {isOpen === item.eventId && (
+                {categoryLayoutState === item.eventId && (
                   <>
                     <Animated.View entering={FadeInDown}>
                 
@@ -1679,19 +1662,18 @@ export default function GetUserData() {
                     flexDirection: "row",
                     // justifyContent: "space-between",
                     justifyContent: "center",
-                    display: isOpen === item.eventId ? "flex" : "none",
+                    display: categoryLayoutState === item.eventId ? "flex" : "none",
                     // marginBottom: 30,
-                    marginTop: isOpen === item.eventId ? 1 : 9,
+                    marginTop: categoryLayoutState === item.eventId ? 1 : 9,
                     position: "relative",
-                    top: isOpen === item.eventId ? "-6%" : "2%",
+                    top: categoryLayoutState === item.eventId ? "-6%" : "2%",
                     // backgroundColor: "pink"
                   }}
                 >                 
                     <EventCategoryCloseBtn 
                     data={item} 
-                    closeCategory={handleCategoryClose}
 
-                    
+
                     />
 
 

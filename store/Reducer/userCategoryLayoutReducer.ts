@@ -3,7 +3,7 @@ import { OpenCategoryLayout } from "../types";
 
 
 const initialStateLayout = {
-    categoryLayoutState: false
+    categoryLayoutState: ""
 }
 
 

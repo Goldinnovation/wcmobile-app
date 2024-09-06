@@ -22,12 +22,3 @@ export const userActions  = (e: boolean) => {
 
 
 
-export const userCategoryLayoutAction = (e: boolean) => {
-
-  console.log("onActionside:", e);
-
-  return {
-    type: OpenCategoryLayout,
-    paylaod: true
-  }
-}
