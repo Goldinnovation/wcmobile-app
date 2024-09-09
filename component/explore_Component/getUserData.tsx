@@ -186,12 +186,12 @@ export default function GetUserData() {
   const handleSelectedEvent = (CategoryItem: eventProps, itemindex: number, categoryId: string) => {
     const selectedEvent = CategoryItem;
     const coverEventIndex = itemindex;
-    
     if (selectedEvent) {
-      // console.log("inside");
+      // console.log(categoryLayoutState);
       const newData = [...data];
 
       newData[coverEventIndex] = selectedEvent;
+      dispatchCategoryIcon(userCategoryLayoutAction(categoryId))
       setData(newData);
       // setOpen(categoryId)
     }
@@ -238,7 +238,7 @@ export default function GetUserData() {
               <ScrollView
                 horizontal={true}
                 style={{
-                  // backgroundColor:isOpen === item.eventId ? "orange": "pink",
+                  // backgroundColor:categoryLayoutState === item.eventId ? "orange": "pink",
                   //  margin: "auto",
                   // padding: isOpen === item.eventId ? 0 : 3,
                   // paddingLeft: isOpen === item.eventId ? 9 : 3,
@@ -266,7 +266,7 @@ export default function GetUserData() {
                       position: "absolute",
                       zIndex: 1,
                       // display: isOpen === item.eventId ? "flex" : "none",
-                      top: categoryLayoutState === item.eventId ? "64%" : "90%",
+                      top: categoryLayoutState === item.eventId ? "84%" : "90%",
                       left: categoryLayoutState === item.eventId ? "2%" : "2%",
                     }}
                   >
@@ -352,8 +352,8 @@ export default function GetUserData() {
                         gap: 7,
                         // marginRight: "1%",
                         marginTop: 4,
-                        left: categoryLayoutState === item.eventId ? "9%" : "83%",
-                        top: categoryLayoutState === item.eventId ? "5%" : "92.3%",
+                        left: categoryLayoutState === item.eventId ? "83%" : "83%",
+                        top: categoryLayoutState === item.eventId ? "87%" : "92.3%",
                         // display: "none",
                         position: "absolute",
                         zIndex: 1
@@ -1649,7 +1649,7 @@ export default function GetUserData() {
                 {categoryLayoutState === item.eventId && (
                   <>
                     <Animated.View entering={FadeInDown}>
-                
+                  
                       <EventCategoryFetchedData  data={categoryData} index={index} handleSelectedEvent={handleSelectedEvent}/>
                     </Animated.View>
               
@@ -1666,7 +1666,7 @@ export default function GetUserData() {
                     // marginBottom: 30,
                     marginTop: categoryLayoutState === item.eventId ? 1 : 9,
                     position: "relative",
-                    top: categoryLayoutState === item.eventId ? "-6%" : "2%",
+                    top: categoryLayoutState === item.eventId ? "-4%" : "2%",
                     // backgroundColor: "pink"
                   }}
                 >                 

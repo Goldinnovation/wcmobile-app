@@ -48,7 +48,7 @@ const EventDescriptionArea: React.FC<EventDescriptionAreaProps> = ({
         top: categoryLayoutState === item.eventId ? "-6%" : "-3%",
       }}
     >
-      {/* Event Description */}
+      {/* Event Description - Explorepage */}
       <View
         style={{
           //  backgroundColor: "rgba(106, 190, 110,0.7)",
@@ -56,17 +56,13 @@ const EventDescriptionArea: React.FC<EventDescriptionAreaProps> = ({
           display: "flex",
         }}
       >
-      <EventDescription
-      item={item}
-      handleCategoryReq={handleCategoryReq}
-      />
+        <EventDescription item={item} handleCategoryReq={handleCategoryReq} />
       </View>
 
-      {/* Icon Area on EpxlorePage */}
+      {/* Icon Area -  Explorepage */}
       <View
         style={{
           //  backgroundColor: "rgba(221,221,221,0.5)",
-
           width: "20%",
           gap: 7,
         }}

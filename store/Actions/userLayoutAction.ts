@@ -13,7 +13,6 @@ interface props {
 
 export const userCategoryLayoutAction = (e: string) => {
 
-    console.log("onActionside:", e);
   
     return {
       type: OpenCategoryLayout,

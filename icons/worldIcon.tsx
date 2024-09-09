@@ -8,7 +8,6 @@ interface worldIconProps {
 }
 
 
-
 const WorldIcon: React.FC<worldIconProps> = ({height, width}) => {
   return (
     <Svg width={width} height={height} viewBox="0 0 48.625 48.625">

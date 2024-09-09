@@ -12,8 +12,7 @@ const initialStateLayout = {
 
  export default (state =  initialStateLayout, {type , payload}) => {
 
-    // console.log(payload);
-    console.log("payloadIcon:", payload);
+    // console.log("payload:", payload);
     switch(type){
         case OpenCategoryLayout : return {...state, categoryLayoutState: payload }
 

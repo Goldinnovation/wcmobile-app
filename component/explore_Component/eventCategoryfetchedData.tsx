@@ -52,7 +52,7 @@ const EventCategoryFetchedData: React.FC<CategoryDataProps> = ({data, index, han
                             // gap: 45,
                             padding: 6,
                             position: "relative",
-                            top: "-5%",
+                            top: "-2%",
                             // width: "100%",
                           }}
                         >
