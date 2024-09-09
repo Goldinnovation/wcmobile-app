@@ -8,6 +8,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { userFavoredExploredEvent } from "../../../api/explore/userFavoredEvent";
 import HearthFrequenz from "../../../icons/hearthFrequenz";
 import FavorIcon from "../../../icons/favorIcon";
+import CommentIcon from "../../../icons/commentIcon";
 
 
 interface eventProps {
@@ -42,6 +43,8 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
     const { IconHeartState } = useSelector((state: RootState) => state.IconData);
     const { categoryLayoutState } = useSelector((state: RootState) => state.OpenCategoryLayout
       );
+
+    const [commentToggle, setCommentToggle] = useState(false)
       const dispatchIcon = useDispatch();
 
 
@@ -51,6 +54,10 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
     
         dispatchIcon(userActions(paylaodState));
       };
+
+      const handleCommentIcon = () => { 
+          setCommentToggle(!commentToggle)
+      }
     
     
     
@@ -74,34 +81,97 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
        
              <View
           style={{
-            //  backgroundColor:  "pink", //"rgba(204,204,204,0.4
-            height: categoryLayoutState === item.eventId ? 50 : 40,
-            width: categoryLayoutState === item.eventId ? 100 : 130,
-            
+            //  backgroundColor: "rgba(204,204,204,0.4)",
+            height: categoryLayoutState === item.eventId ? 50 : 50,
+            width: categoryLayoutState === item.eventId ? 150 : 180,
+            alignItems: "center",
             flexDirection: categoryLayoutState === item.eventId ? "row" : "row",
             justifyContent:
               categoryLayoutState === item.eventId
-                ? "space-around"
-                : "space-around",
-            gap: -2.5,
-            left: categoryLayoutState === item.eventId ? "-40%" : "-70%",
+                ? "center"
+                : "center",
+            gap:categoryLayoutState === item.eventId ? 39 : 35,
+            left: categoryLayoutState === item.eventId ? "-70%" : "-118%",
             position: "relative",
-            top: categoryLayoutState === item.eventId ? "20%" : "6%",
+            top: categoryLayoutState === item.eventId ? "3%" : "-10%",
           }}
         >
+           <TouchableOpacity
+            style={{
+              // backgroundColor: "green",
+              position: "relative",
+              alignItems: "center",
+              justifyContent: "center",
+              height: 40,
+              width: 30,
+              display: categoryLayoutState === item.eventId  ? "none" : "flex"
+            }}
+            onPress={() => handleCommentIcon()}
+          >
+            {commentToggle ? (
+              <View>
+                <CommentIcon
+                width={"29"}
+                height={"29"}
+                lineColor="#2775e2"
+                />
+
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 10,
+                    textAlign: "center",
+                    fontWeight: "500",
+                    position: "absolute", 
+                    top: 34,
+                    left: 7
+                    // marginTop: categoryLayoutState === item.eventId ? 4 : 3,
+                  }}
+                >
+                  22
+                </Text>
+              </View>
+            ) : (
+              <View>
+                <CommentIcon
+                width={"29"}
+                height={"29"}
+                 lineColor="#ffffff"
+                />
+
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 10,
+                    textAlign: "center",
+                    fontWeight: "500",
+                    position: "absolute", 
+                    top: 34,
+                    left: 7
+                    // marginTop: categoryLayoutState === item.eventId ? 4 : 3,
+                  }}
+                >
+                  22
+                </Text>
+              </View>
+            )}
+          </TouchableOpacity>
           <TouchableOpacity
             style={{
               // backgroundColor: "green",
               position: "relative",
+              alignItems: "center",
+              justifyContent: "center",
               height: 40,
+              width: 30
             }}
             onPress={() => handleHearthIconClick()}
           >
             {IconHeartState ? (
               <View>
                 <HearthFrequenz
-                  height={"25"}
-                  width={"25"}
+                  height={"24"}
+                  width={"24"}
                   lineColor={"#ff0000"}
                 />
 
@@ -111,7 +181,10 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
                     fontSize: 10,
                     textAlign: "center",
                     fontWeight: "500",
-                    marginTop: categoryLayoutState === item.eventId ? 4 : 3,
+                    position: "absolute", 
+                    top: 31.6,
+                    left: 3
+                    // marginTop: categoryLayoutState === item.eventId ? 8 : 8,
                   }}
                 >
                   223
@@ -120,8 +193,8 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
             ) : (
               <View>
                 <HearthFrequenz
-                  height={"25"}
-                  width={"25"}
+                  height={"24"}
+                  width={"24"}
                   lineColor={"#ffffff"}
                 />
                 <Text
@@ -130,7 +203,10 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
                     fontSize: 10,
                     textAlign: "center",
                     fontWeight: "500",
-                    marginTop: categoryLayoutState === item.eventId ? 4 : 3,
+                    position: "absolute", 
+                    top: 31.6,
+                    left: 3
+                    // maginTop: categoryLayoutState === item.eventId ? 4 : 3,
                   }}
                 >
                   222
@@ -140,27 +216,29 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={{
-              // backgroundColor: "blue",
-              borderRadius: 4,
+              // backgroundColor: "green",
+              position: "relative",
               alignItems: "center",
-              height: 40,
-              // marginRight:  isOpen === item.eventId ? -2 : 4,
-
               justifyContent: "center",
+              height: 40,
+              width: 30
             }}
             onPress={() => handleFavorPress(item.eventId)}
           >
             {IconFavorClick ? (
               <View>
              
-                <FavorIcon height={"25"} width={"25"} lineColor={"#FBFF00"} />
+                <FavorIcon height={"27"} width={"27"} lineColor={"#FBFF00"} />
                 <Text
                   style={{
                     color: "white",
                     fontSize: 10,
                     textAlign: "center",
                     fontWeight: "500",
-                    marginTop: categoryLayoutState === item.eventId ? 3 : 3,
+                    position: "absolute", 
+                    top: 32.9,
+                    left: 2
+                    // marginTop: categoryLayoutState === item.eventId ? 6 : 6,
                   }}
                 >
                   113
@@ -169,14 +247,17 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
             ) : (
               <View>
              
-                <FavorIcon height={"25"} width={"25"} lineColor={"#ffffff"} />
+                <FavorIcon height={"27"} width={"27"} lineColor={"#ffffff"} />
                 <Text
                   style={{
                     color: "white",
                     fontSize: 10,
                     textAlign: "center",
                     fontWeight: "500",
-                    marginTop: categoryLayoutState === item.eventId ? 3 : 3,
+                    position: "absolute", 
+                    top: 32.9,
+                    left: 2
+                    // marginTop: categoryLayoutState === item.eventId ? 6 : 6,
                   }}
                 >
                   112

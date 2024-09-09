@@ -102,14 +102,14 @@ const EventDescription: React.FC<EventDescriptionProps> = ({
             height: categoryLayoutState === item.eventId ? 23 : 30,
             alignItems: "center",
             width: categoryLayoutState === item.eventId ? "55.5%" : "60%",
-            left: categoryLayoutState === item.eventId ? "-18.8%" : "2%",
+            left: categoryLayoutState === item.eventId ? "-18%" : "2%",
           }}
         >
           <TouchableOpacity
             style={{
               backgroundColor:
                 categoryLayoutState === item.eventId
-                  ? "rgba(0, 48, 131, 1)"
+                  ? "rgba(0, 48, 131, 0.9)"
                   : "rgba(0, 0, 0,0.4)",
               //  backgroundColor: isOpen === item.eventId ? "rgba(0, 101, 255,0.5)" : "rgba(204,204,204,0.2)",
               borderRadius: 4,
@@ -118,7 +118,7 @@ const EventDescription: React.FC<EventDescriptionProps> = ({
               width: categoryLayoutState === item.eventId ? 78 : 78,
               flexDirection: "row",
               justifyContent: "center",
-              borderWidth: categoryLayoutState === item.eventId ? 1 : 1,
+              // borderWidth: categoryLayoutState === item.eventId ? 1 : 0,
               borderColor:
                 categoryLayoutState === item.eventId
                   ? "rgba(204,204,204,0.2)"
@@ -142,11 +142,11 @@ const EventDescription: React.FC<EventDescriptionProps> = ({
               width: categoryLayoutState === item.eventId ? 78 : 78,
               flexDirection: "row",
               justifyContent: "center",
-              borderWidth: categoryLayoutState === item.eventId ? 1 : 1,
-              borderColor:
-                categoryLayoutState === item.eventId
-                  ? "rgba(68, 182, 120,0.3)"
-                  : "rgba(68, 182, 120,0.3)",
+              // borderWidth: categoryLayoutState === item.eventId ? 1 : 1,
+              // borderColor:
+              //   categoryLayoutState === item.eventId
+              //     ? "rgba(68, 182, 120,0.3)"
+              //     : "rgba(68, 182, 120,0.3)",
             }}
           >
             <Text style={{ color: "white" }}>#Rock</Text>
@@ -175,7 +175,7 @@ const EventDescription: React.FC<EventDescriptionProps> = ({
                 ? "rgba(255, 255, 250,0.2)"
                 : "rgba(255, 255, 250,0.3)",
             top: categoryLayoutState === item.eventId ? "0%" : "-1770%",
-            left: categoryLayoutState === item.eventId ? "11%" : "27%",
+            left: categoryLayoutState === item.eventId ? "10.5%" : "27%",
             justifyContent: "center",
           }}
         >

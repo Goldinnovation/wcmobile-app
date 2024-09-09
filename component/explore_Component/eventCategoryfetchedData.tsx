@@ -45,15 +45,15 @@ const EventCategoryFetchedData: React.FC<CategoryDataProps> = ({data, index, han
                         <ScrollView
                           horizontal={true}
                           style={{
-                            height: 130,
+                            height: 120,
                             // backgroundColor: "purple",
                             flexDirection: "row",
                             // marginTop: 5,
                             // gap: 45,
-                            padding: 6,
+                            padding: 7,
                             position: "relative",
-                            top: "-2%",
-                            // width: "100%",
+                            top: "-3%",
+                            // width: 900,
                           }}
                         >
                           
@@ -64,7 +64,7 @@ const EventCategoryFetchedData: React.FC<CategoryDataProps> = ({data, index, han
                               display: "flex",
                               // flexDirection: "row"
                               flexDirection: "row",
-                              gap: 13,
+                              gap: 19,
                             }}
                           >
                             {/* <Text>asasd</Text> */}
@@ -91,8 +91,8 @@ const EventCategoryFetchedData: React.FC<CategoryDataProps> = ({data, index, han
                                       uri: categoryItem.ImageCoverUpload,
                                     }}
                                     style={{
-                                      width: 110,
-                                      height: 100,
+                                      width: 105,
+                                      height: 95,
 
                                       borderRadius: 9,
                                     }}

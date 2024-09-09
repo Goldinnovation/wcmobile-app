@@ -15,7 +15,8 @@ import ExploreEventFilter from './icons/ExploreEventFilter';
 import SettingIcon from './icons/settingIcon';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
-
+import { useSelector } from 'react-redux';
+import { RootState } from './store/store';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -56,6 +57,8 @@ const icons: Record<RouteName, {focused: any; unfocused: any}> = {
 function TabNavigator() {
 
   const [filter, setFilter] = useState(false)
+  const { categoryLayoutState } = useSelector((state: RootState) => state.OpenCategoryLayout);
+
 
 
   const handleClickFilterExplore = () => {
@@ -107,13 +110,13 @@ function TabNavigator() {
         ),
         headerRight: () => (
           <TouchableOpacity style={{
-          //  backgroundColor:  filter ?  "pink" : "red",rr
+          //  backgroundColor:  filter ?  "pink" : "red",
             width:  30,
             // display: filter ? "flex" : "flex",
             height: 30,
             alignItems: "center",
-            marginRight: 7,
-            // gap: 15,
+            marginRight: categoryLayoutState ? 13 : 7,
+             // gap: 15,
             justifyContent: "center",
             flexDirection: "row"
           }}>     

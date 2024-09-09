@@ -10,18 +10,12 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
-import Slider from "@react-native-community/slider";
 import Animated, { FadeInDown, SlideInDown, SlideInUp } from 'react-native-reanimated';
 import { userCategoryReq } from "../../api/exploreScreen_Api/CategoryDataApi";
-import { userFavoredEvent } from "../../api/favorScreen_Api/userFavoredEvent";
-import HearthFrequenz from "../../icons/hearthFrequenz";
-import FavorIcon from "../../icons/favorIcon";
 import EventCategoryCloseBtn from "./eventCategoryCloseBtn";
 import EventCategoryFetchedData from "./eventCategoryfetchedData";
-// import EventDescriptionArea from "./eventDescriptionArea";
 import EventDescriptionArea from "./eventDescriptionArea";
 import { useDispatch, useSelector } from "react-redux"
-import { userActions } from "../../store/userActions";
 import { RootState } from "../../store/store";
 import { userCategoryLayoutAction } from "../../store/Actions/userLayoutAction";
 import EventCoverSlide from "./Slider/eventCoverSlide";
@@ -211,8 +205,8 @@ export default function GetUserData() {
             >
               
               <View style={{
-               height: categoryLayoutState === item.eventId ? 345 : 515,
-               padding: categoryLayoutState === item.eventId ? 11 : 3,
+               height: categoryLayoutState === item.eventId ? 360 : 515,
+               padding: categoryLayoutState === item.eventId ? 10 : 3,
                 //  backgroundColor: "skyblue",
 
               }}>

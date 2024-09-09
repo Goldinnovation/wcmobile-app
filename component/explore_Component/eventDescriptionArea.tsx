@@ -45,7 +45,7 @@ const EventDescriptionArea: React.FC<EventDescriptionAreaProps> = ({
         width: "100%",
         flexDirection: "row",
         height: 90,
-        top: categoryLayoutState === item.eventId ? "-6%" : "-3%",
+        top: categoryLayoutState === item.eventId ? "-5%" : "-3%",
       }}
     >
       {/* Event Description - Explorepage */}
