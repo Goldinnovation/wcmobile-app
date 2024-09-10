@@ -18,8 +18,8 @@ import EventDescriptionArea from "./eventDescriptionArea";
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../store/store";
 import { userCategoryLayoutAction } from "../../store/Actions/userLayoutAction";
-import EventCoverSlide from "./Slider/eventCoverSlide";
-import EventMoreInfoSlide from "./Slider/eventSecondSlide";
+import EventCoverSlide from "./EventDetaileCover/eventCoverSlide";
+import EventMoreInfoSlide from "./EventDetaileCover/eventSecondSlide";
 
 
 interface eventProps {
