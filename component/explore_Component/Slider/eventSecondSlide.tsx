@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-import EventDetailsMenuBar from "./eventDetailsMenubar";
+import EventSecondSlideMenuBar from "./eventSecondSlideMenubar";
 import EventSecondSlideContent from "./eventSecondSlideContent";
 
 interface eventProps {
@@ -96,7 +96,7 @@ const EventMoreInfoSlide: React.FC<EventDetailsProps> = ({
           top: 455,
         }}
       >
-        <EventDetailsMenuBar data={item} handleEventInfo={handleEventInfo} />
+        <EventSecondSlideMenuBar data={item} handleEventInfo={handleEventInfo} />
       </View>
     </View>
   );

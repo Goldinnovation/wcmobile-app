@@ -28,7 +28,7 @@ interface MenuBarProps {
 } 
 
 
-const EventDetailsMenuBar: React.FC<MenuBarProps>  = ({data, handleEventInfo}) => {
+const EventSecondSlideMenuBar: React.FC<MenuBarProps>  = ({data, handleEventInfo}) => {
     const item = data
     const { categoryLayoutState } = useSelector((state: RootState) => state.OpenCategoryLayout);
 
@@ -108,4 +108,4 @@ const EventDetailsMenuBar: React.FC<MenuBarProps>  = ({data, handleEventInfo}) =
     )
 }
 
-export default EventDetailsMenuBar
+export default EventSecondSlideMenuBar
