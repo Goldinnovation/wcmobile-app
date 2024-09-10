@@ -130,6 +130,7 @@ const EventDescription: React.FC<EventDescriptionProps> = ({
           >
             <Text style={{ color: "white" }}>#{item.eventType}</Text>
           </TouchableOpacity>
+
           <TouchableOpacity
             style={{
               backgroundColor:
@@ -151,6 +152,8 @@ const EventDescription: React.FC<EventDescriptionProps> = ({
           >
             <Text style={{ color: "white" }}>#Rock</Text>
           </TouchableOpacity>
+
+          
         </View>
 
         <View

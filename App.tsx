@@ -115,7 +115,7 @@ function TabNavigator() {
             // display: filter ? "flex" : "flex",
             height: 30,
             alignItems: "center",
-            marginRight: categoryLayoutState ? 13 : 7,
+            marginRight: categoryLayoutState ? 9 : 7,
              // gap: 15,
             justifyContent: "center",
             flexDirection: "row"

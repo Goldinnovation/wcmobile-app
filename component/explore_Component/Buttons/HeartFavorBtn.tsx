@@ -91,12 +91,12 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
                 ? "center"
                 : "center",
             gap:categoryLayoutState === item.eventId ? 39 : 35,
-            left: categoryLayoutState === item.eventId ? "-70%" : "-118%",
+            left: categoryLayoutState === item.eventId ? "-80%" : "-88%",
             position: "relative",
-            top: categoryLayoutState === item.eventId ? "3%" : "-10%",
+            top: categoryLayoutState === item.eventId ? "3%" : "-9%",
           }}
         >
-           <TouchableOpacity
+           {/* <TouchableOpacity
             style={{
               // backgroundColor: "green",
               position: "relative",
@@ -155,7 +155,7 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
                 </Text>
               </View>
             )}
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity
             style={{
               // backgroundColor: "green",
@@ -170,8 +170,8 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
             {IconHeartState ? (
               <View>
                 <HearthFrequenz
-                  height={"24"}
-                  width={"24"}
+                  height={"25"}
+                  width={"25"}
                   lineColor={"#ff0000"}
                 />
 
@@ -193,8 +193,8 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
             ) : (
               <View>
                 <HearthFrequenz
-                  height={"24"}
-                  width={"24"}
+                  height={"25"}
+                  width={"25"}
                   lineColor={"#ffffff"}
                 />
                 <Text
@@ -228,7 +228,7 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
             {IconFavorClick ? (
               <View>
              
-                <FavorIcon height={"27"} width={"27"} lineColor={"#FBFF00"} />
+                <FavorIcon height={"29"} width={"29"} lineColor={"#FBFF00"} />
                 <Text
                   style={{
                     color: "white",
@@ -247,7 +247,7 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
             ) : (
               <View>
              
-                <FavorIcon height={"27"} width={"27"} lineColor={"#ffffff"} />
+                <FavorIcon height={"29"} width={"29"} lineColor={"#ffffff"} />
                 <Text
                   style={{
                     color: "white",

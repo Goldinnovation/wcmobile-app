@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../store/store";
 import { userCategoryLayoutAction } from "../../store/Actions/userLayoutAction";
 import EventCoverSlide from "./Slider/eventCoverSlide";
-import EventDetailsSlide from "./Slider/eventDetailsSlide";
+import EventMoreInfoSlide from "./Slider/eventSecondSlide";
 
 
 interface eventProps {
@@ -222,7 +222,7 @@ export default function GetUserData() {
 
 
                  {/*second cover slide */}
-               <EventDetailsSlide state={redstate} data={item} handleEventInfo={handleEventInfo}/>
+               <EventMoreInfoSlide state={redstate} data={item} handleEventInfo={handleEventInfo}/>
       
               </ScrollView>
               </View>
