@@ -6,6 +6,8 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { ParamListBase } from "@react-navigation/native";
 import ArrowIcon from "../icons/arrowIcon";
 import SettingIcon from "../icons/settingIcon";
+import KleeIcon from "../icons/kleeIcon";
+
 
 export default function SettingScreen() {
     const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
@@ -100,21 +102,56 @@ export default function SettingScreen() {
         {aboutState && (
             <View
             style={{
-                backgroundColor: "pink", 
+                // backgroundColor: "pink", 
        
-            justifyContent: "center",
+            // justifyContent: "center",
             alignItems: "center",
-            gap: 60
+            gap: 20,
+            height: 600,
             }}
             >
-             <View><Text>Pic</Text></View>
-             <View><Text>content</Text></View>
+             <View style={{
+                // backgroundColor: "green",
+                width: "70%",
+                height: 250,
+                marginTop: 20,
+                justifyContent: "center",
+                alignItems: "center",
+
+
+
+          
+                
+
+             }}>
+             
+                <KleeIcon width={"190"} height={"190"} />
+             </View>
+             <View style={{
+              // backgroundColor: "blue",
+              width: "90%",
+              height: 290,
+              
+             }}>
+              <Text style={{
+                color: "white",
+                textAlign: "center"
+              }}>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus 
+                est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                  At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata 
+                  sanctus est Lorem ipsum dolor sit amet.
+              </Text>
+              </View>
             </View>
         )}
         {defaultState && (
             <View style={{
-            // backgroundColor: "pink", 
-            height: 600,
+                //  backgroundColor: "pink", 
+                height: 600,
             justifyContent: "center",
             alignItems: "center",
             gap: 60
@@ -145,6 +182,7 @@ export default function SettingScreen() {
             </View>
             <View>
                 <Text style={{color: "white", fontSize: 20}}>About Worthsec</Text>
+                
             </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -159,6 +197,7 @@ export default function SettingScreen() {
             borderColor: "rgba(141,141,141,1)"
 
         }}
+        // onPress={() => navigation.replace("Login")}
         >
             <View style={{
                 position: "absolute", 
@@ -200,9 +239,7 @@ const styles = StyleSheet.create({
       paddingTop: 50,
 
     },
-    gradient: {
-        ...StyleSheet.absoluteFillObject,
-      },
+ 
  
 
 })
