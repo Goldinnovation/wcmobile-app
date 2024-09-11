@@ -19,6 +19,11 @@ import { useSelector } from 'react-redux';
 import { RootState } from './store/store';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { ParamListBase } from "@react-navigation/native";
+import SettingScreen from './navigation/settingScreen';
+
 
 
 
@@ -58,6 +63,7 @@ function TabNavigator() {
 
   const [filter, setFilter] = useState(false)
   const { categoryLayoutState } = useSelector((state: RootState) => state.OpenCategoryLayout);
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
 
 
@@ -222,7 +228,7 @@ function TabNavigator() {
 
           </TouchableOpacity>    
           
-         <TouchableOpacity  onPress={() => alert('This is a kalender!')}>
+         <TouchableOpacity  onPress={() => navigation.push("settingScreen")}>
          {/* <Image
           source={require("./assets/k2.png")}
           style={{height: 22, width: 22}}
@@ -257,10 +263,11 @@ function AppNavigator() {
      
    
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-           <Stack.Screen name="Login" component=
-             {LoginScreen} />
+           <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="interestScreeen" component={UserInterestScreen} />
             <Stack.Screen name="UserExploreScreen" component={TabNavigator} options={{gestureDirection: 'vertical' }} />
+            <Stack.Screen name="settingScreen" component={SettingScreen}  />
+
 
         </Stack.Navigator>
   
