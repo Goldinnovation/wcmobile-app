@@ -7,6 +7,7 @@ import { ParamListBase } from "@react-navigation/native";
 import ArrowIcon from "../icons/arrowIcon";
 import SettingIcon from "../icons/settingIcon";
 import KleeIcon from "../icons/kleeIcon";
+import LogOutIcon from "../icons/logoutIcon";
 
 
 export default function SettingScreen() {
@@ -180,10 +181,8 @@ export default function SettingScreen() {
                 top: "15%",
                 left: "6.5%"
             }}>
-                <Image
-                source={require("../assets/kl1.png")}
-                style={{height: 25, width: 25,}}
-                />
+               
+                <KleeIcon width={"25"} height={"25"} />
             </View>
             <View>
                 <Text style={{color: "white", fontSize: 20}}>About Worthsec</Text>
@@ -210,10 +209,8 @@ export default function SettingScreen() {
                 top: "19%",
                 left: "6%"
             }}>
-                <Image
-                source={require("../assets/go1.png")}
-                style={{height: 25, width: 25,}}
-                />
+               
+                <LogOutIcon width={"25"} height={"25"}  />
          </View>
             <View>
             <Text style={{color: "white", fontSize: 20}}>Log Out</Text>
