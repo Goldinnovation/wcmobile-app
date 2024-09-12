@@ -21,6 +21,11 @@ export default function SettingScreen() {
     
     }   
 
+    // const handleLogOut = () => { 
+    //   navigation.pop()
+    //   navigation.replace("Login")
+    // }
+
     const handlesetting = () => {
         setAboutState(false)
 
@@ -197,7 +202,7 @@ export default function SettingScreen() {
             borderColor: "rgba(141,141,141,1)"
 
         }}
-        // onPress={() => navigation.replace("Login")}
+        // onPress={() => handleLogOut()}
         >
             <View style={{
                 position: "absolute", 

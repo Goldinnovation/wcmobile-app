@@ -23,6 +23,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { ParamListBase } from "@react-navigation/native";
 import SettingScreen from './navigation/settingScreen';
+import Angel from './icons/ProfileIcon';
 
 
 
@@ -45,14 +46,14 @@ type RouteName = 'Favor' | 'ExploreContent';
 
 const icons: Record<RouteName, {focused: any; unfocused: any}> = {
   Favor: {
-    focused: require('./assets/6.png'),
-    unfocused: require('./assets/6.png')
+    focused: require('./assets/ag1.png'),
+    unfocused: require('./assets/1ga.png')
   }, 
 
   ExploreContent: {
 
     focused: require('./assets/4.png'),
-    unfocused: require('./assets/4.png')
+    unfocused: require('./assets/wind-rose.png')
   }
 }
 
@@ -91,7 +92,8 @@ function TabNavigator() {
           width: 30, 
           height: 30
       }}
-        /> },
+        />
+       },
     
       tabBarActiveTintColor: 'green',
       tabBarInactiveTintColor: 'gray',
