@@ -6,7 +6,7 @@ import {NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ExploreScreen from './navigation/exploreScreen';
-import FavorScreen from './navigation/favorScreen';
+import ProfileScreen from './navigation/profileScreen';
 import LoginScreen from './navigation/loginScreen';
 import UserInterestScreen from './navigation/interestScreen';
 import ExploreFilter from './component/Main_Component/exposeFilter';
@@ -24,6 +24,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { ParamListBase } from "@react-navigation/native";
 import SettingScreen from './navigation/settingScreen';
 import Angel from './icons/ProfileIcon';
+import FavorIcon from './icons/favorIcon';
 
 
 
@@ -42,10 +43,10 @@ const MyTheme = {
   },
 };
 
-type RouteName = 'Favor' | 'ExploreContent';
+type RouteName = 'Profile' | 'ExploreContent';
 
 const icons: Record<RouteName, {focused: any; unfocused: any}> = {
-  Favor: {
+  Profile: {
     focused: require('./assets/ag1.png'),
     unfocused: require('./assets/1ga.png')
   }, 
@@ -95,9 +96,12 @@ function TabNavigator() {
         />
        },
     
-      tabBarActiveTintColor: 'green',
+      tabBarActiveTintColor: 'white',
       tabBarInactiveTintColor: 'gray',
       tabBarStyle: { ...styles.tabBar, },
+      headerTitleStyle: {
+        display: "none"
+      },
     })}
    
  
@@ -108,7 +112,7 @@ function TabNavigator() {
       name='ExploreContent' 
       component={ExploreScreen}
       options={{
-        title: '',
+        title: 'Explore',
         headerLeft: () => (
           <Button
             onPress={() => alert('This is a button!')}
@@ -181,34 +185,39 @@ function TabNavigator() {
       
       ></Tab.Screen>
        <Tab.Screen    
-      name='Favor'
-      component={FavorScreen}
+      name='Profile'
+      component={ProfileScreen}
       options={{
-        title: '',
+        title: 'Profile',
         headerLeft: () => (
           <TouchableOpacity style={{
-          //  backgroundColor: "pink",
-           width:  50,           
+          //  backgroundColor: "#222222",
+           width:  60,           
            alignItems: "center",
-            justifyContent: "center",
-            height: 50,
+          justifyContent: "center",
+            height: 25,
             flexDirection: "row",
             position:"relative", 
-            left: 5,
-            top: 3
+            left: 15,
+            top: 1,
+            padding: 3,
+            borderRadius: 50,
+            borderWidth: 1, 
+            borderColor: "rgba(122,122,122,1)"
 
           }}>
              {/* <Image
           source={require("./assets/bb1.png")}
           style={{height: 20, width: 20,}}
           /> */}
+          <FavorIcon  width={"22"} height={"22"} lineColor={"#ffffff"}/>
 
           </TouchableOpacity>
         ),
         headerRight: () => (
           <TouchableOpacity style={{
             // backgroundColor: "pink",
-            width: 60,
+            width: 70,
             height: 30,
             alignItems: "center",
             marginRight: 13,

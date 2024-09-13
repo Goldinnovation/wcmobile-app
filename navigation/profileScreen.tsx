@@ -5,7 +5,7 @@ import FavorData from "../component/favor_Component/favorpageData"
 
 
 
-export default function FavorScreen() {
+export default function ProfileScreen() {
 
 
     return(

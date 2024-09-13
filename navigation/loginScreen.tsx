@@ -50,10 +50,31 @@ export default function LoginScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.loginLayer}>
-        <View style={styles.loginInputLayer}>
+      
+        <View style={ {
+          // backgroundColor: "pink",
+           height: 270,
+           gap: 20,
+           paddingTop: 30,
+           marginTop: 80,
+           alignItems: "center",
+        }}>
+          <View style={{
+            // backgroundColor: "green",
+          }}>
+            <Text style={{
+              fontWeight: "bold",
+              fontSize: 27,
+              textAlign: "center",
+              color: "white",
+            }}>Worthsec</Text>
+          </View>
+          <View style={{
+            // backgroundColor: "orange"
+          }}>
           <Text
             style={{
-              fontWeight: "bold",
+              fontWeight: "300",
               fontSize: 23,
               textAlign: "center",
               color: "white",
@@ -61,6 +82,9 @@ export default function LoginScreen() {
           >
             login with you Account
           </Text>
+
+          </View>
+         
 
           <TextInput
             style={styles.emailInput}
