@@ -203,7 +203,7 @@ function TabNavigator() {
             padding: 3,
             borderRadius: 50,
             borderWidth: 1, 
-            borderColor: "rgba(122,122,122,1)"
+            borderColor: "white"
 
           }}>
              {/* <Image

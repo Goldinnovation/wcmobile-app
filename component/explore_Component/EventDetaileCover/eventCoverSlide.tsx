@@ -2,6 +2,11 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import WorldIcon from "../../../icons/worldIcon";
+import { useState } from "react";
+import CommentIcon from "../../../icons/commentIcon";
+import SendForwardIcon from "../../../icons/sendForwardIcon";
+import ExpandScreenIcon from "../../../icons/expandScreenIcon";
+import CloseMenuIcon from "../../../icons/closeMenuIcon";
 
 interface eventProps {
   eventId: string;
@@ -29,8 +34,12 @@ const EventCoverSlide: React.FC<eventCoverProps> = ({ data }) => {
   const { categoryLayoutState } = useSelector(
     (state: RootState) => state.OpenCategoryLayout
   );
+  const [eventMenuBar, setEventMenuBar] = useState(false)
   const dispatch = useDispatch();
 
+  const handleEventMenuBar = () => {
+      setEventMenuBar(!eventMenuBar)
+  }
   return (
     <View
       style={
@@ -126,7 +135,7 @@ const EventCoverSlide: React.FC<eventCoverProps> = ({ data }) => {
           width: "20%",
           flexDirection: "row",
           // justifyContent: "flex-end",
-          gap: 7,
+          
           // marginRight: "1%",
           display: categoryLayoutState === item.eventId ? "none" : "flex",
           marginTop: 4,
@@ -134,10 +143,91 @@ const EventCoverSlide: React.FC<eventCoverProps> = ({ data }) => {
           top: categoryLayoutState === item.eventId ? "91%" : "92.3%",
           // display: "none",
           position: "absolute",
-          zIndex: 1,
+          zIndex: 3,
+          height: eventMenuBar ? 20 : 25
+
         }}
       >
-        <View
+
+        { eventMenuBar 
+        ? 
+        <View style={{
+          // backgroundColor: "rgba(159,159,159,0.2)",
+          display: categoryLayoutState === item.eventId ? "none" : "flex",
+          position: "relative", 
+          top: "-325%",
+          left: "-5%",
+          height: 190,
+          width:60,
+          alignItems: "center",
+          gap: 30
+
+        }}>
+           <View  style={{
+              alignItems: "center"
+            }} 
+           >
+                <ExpandScreenIcon width={"20"} height={"20"}  />
+                <Text style={{
+                textAlign: "center",
+                color: "white", 
+                fontSize: 9,
+                marginTop: 2
+              }}>Expand</Text>
+            </View>
+            <View style={{
+              alignItems: "center"
+            }}
+            >
+              
+              <CommentIcon  width="30" height="30" lineColor="white"/>
+              <Text style={{
+                textAlign: "center",
+                color: "white", 
+                fontSize: 9,
+                marginTop: 2
+              }}>Comment</Text>
+
+            </View>
+            <View style={{
+              alignItems: "center"
+            }}>
+                <SendForwardIcon  width={"25"} height={"25"} lineColor={"white"}/>
+                <Text style={{
+                textAlign: "center",
+                color: "white", 
+                fontSize: 9,
+                marginTop: 2
+              }}>Forward</Text>
+              
+            </View>
+            <TouchableOpacity  style={{
+              alignItems: "center"
+            }}
+            onPress={() => handleEventMenuBar()}
+            >
+              <CloseMenuIcon width={"33"} height={"33"} />
+              <Text style={{
+                textAlign: "center",
+                color: "white", 
+                fontSize: 9,
+                marginTop: 1
+
+              }}>Close Menu</Text>
+            </TouchableOpacity>
+           
+          
+        </View>
+        : 
+        <TouchableOpacity style={{
+          flexDirection: "row",
+          gap: 7,
+
+        }}
+        onPress={() => handleEventMenuBar()}
+
+        >
+           <View
           style={{
             width: 7,
             height: 7,
@@ -174,6 +264,15 @@ const EventCoverSlide: React.FC<eventCoverProps> = ({ data }) => {
             borderColor: "white",
           }}
         ></View>
+
+        </TouchableOpacity>
+        }
+
+
+        
+       
+
+        
       </View>
 
       <Image
