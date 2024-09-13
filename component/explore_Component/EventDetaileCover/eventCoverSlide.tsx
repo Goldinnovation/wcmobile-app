@@ -60,7 +60,7 @@ const EventCoverSlide: React.FC<eventCoverProps> = ({ data }) => {
           position: "absolute",
           zIndex: 1,
           // display: isOpen === item.eventId ? "flex" : "none",
-          top: categoryLayoutState === item.eventId ? "87%" : "90%",
+          top: categoryLayoutState === item.eventId ? "87%" : "88.8%",
           left: categoryLayoutState === item.eventId ? "2%" : "2%",
         }}
       >
@@ -140,7 +140,7 @@ const EventCoverSlide: React.FC<eventCoverProps> = ({ data }) => {
           display: categoryLayoutState === item.eventId ? "none" : "flex",
           marginTop: 4,
           left: categoryLayoutState === item.eventId ? "83%" : "83%",
-          top: categoryLayoutState === item.eventId ? "91%" : "92.3%",
+          top: categoryLayoutState === item.eventId ? "91%" : "91.3%",
           // display: "none",
           position: "absolute",
           zIndex: 3,
@@ -155,7 +155,7 @@ const EventCoverSlide: React.FC<eventCoverProps> = ({ data }) => {
           // backgroundColor: "rgba(159,159,159,0.2)",
           display: categoryLayoutState === item.eventId ? "none" : "flex",
           position: "relative", 
-          top: "-325%",
+          top: "-329%",
           left: "-5%",
           height: 190,
           width:60,
