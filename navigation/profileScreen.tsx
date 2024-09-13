@@ -4,7 +4,6 @@ import React, {useState, useEffect} from "react"
 import FavorData from "../component/profile_Component/favorpageData"
 
 
-
 export default function ProfileScreen() {
 
 
@@ -13,8 +12,11 @@ export default function ProfileScreen() {
         <View >
            
 
-    
+          
+
+          
            <FavorData/>
+           
            
             
         </View>

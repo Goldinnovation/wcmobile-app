@@ -8,6 +8,8 @@ import { Image } from "react-native";
 import WeeklyEventData from "./Favor/weeklyEventData";
 import FavoredEventData from "./Favor/favoredEventData";
 import EventFavoredTags from "./Favor/eventFavoredTags";
+import { useRef } from "react";
+import SelectedEventModel from "./Favor/eventModel";
 
 interface eventFavorData {
     eventId: string;
@@ -30,12 +32,28 @@ type favoredDataArr = eventFavorData[] | [];
 
 export default function FavorData() {
   const [eventFavorData, setEventFavorData] = useState<favoredDataArr | []>([]);
+  const [selectedEventData, setSelectedEventData] = useState<eventFavorData | null>(null)
+  const childRef = useRef<any>(null)
+
+   
+  // variables
+
+
+  const handleEventToggle = (e:eventFavorData) => {
+
+        if(childRef?.current){
+            childRef.current.handleModelUpdate();
+        }
+      setSelectedEventData(e)
+
+  }
 
   useEffect(() => {
     const GetFavoredData = async () => {
       const storedToken = await AsyncStorage.getItem("token");
       const token = storedToken ? JSON.parse(storedToken).token : null;
       const userToken = token.token;
+
 
       if (userToken) {
         const eventData = await useFavorGetEvent(userToken);
@@ -55,7 +73,7 @@ export default function FavorData() {
           gap: 0,
           height: 80,
           padding: 5,
-          // backgroundColor: "skyblue",
+        //   backgroundColor: "skyblue",
           alignItems: "center",
           marginTop: 10,
         }}
@@ -80,19 +98,27 @@ export default function FavorData() {
 
       <View
         style={{
-          // backgroundColor: "pink",
+        //   backgroundColor: "orange",
           height: 470,
           flexDirection: "row",
         }}
       >
         {eventFavorData ? (
-          <FavoredEventData eventData={eventFavorData} />
+           
+          <FavoredEventData eventData={eventFavorData} handleEventToggle={handleEventToggle} />
         ) : (
           <View>
             <Text>Loading....</Text>
           </View>
         )}
       </View>
+
+        <View>
+
+            <SelectedEventModel  ref={childRef}   eventData={selectedEventData}/>
+
+        </View>
+     
     </View>
   );
 }
@@ -109,4 +135,5 @@ const styles = StyleSheet.create({
     // marginBottom: 20
     backgroundColor: "green ",
   },
+ 
 });

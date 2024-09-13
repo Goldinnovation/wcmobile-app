@@ -1,8 +1,11 @@
 
 import React from 'react'
-import { View, Image, Text, TouchableOpacity } from 'react-native'
+import { View, Image, Text, TouchableOpacity, Button, Modal } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-
+import { useRef, useMemo, useCallback, useState} from 'react';
+import { Modalize } from 'react-native-modalize';
+import type { Modalize as ModalizeType } from 'react-native-modalize'
+import { StyleSheet } from 'react-native';
 
 interface eventFavorData{
     eventId: string;
@@ -23,18 +26,18 @@ interface eventFavorData{
 
 interface FavoredEventDataProps {
     eventData: eventFavorData[] | []
+    handleEventToggle: (item: eventFavorData) => void
 }
 
 
 
-const FavoredEventData: React.FC<FavoredEventDataProps> = ({eventData}) => {
+const FavoredEventData: React.FC<FavoredEventDataProps> = ({eventData, handleEventToggle}) => {
     const eventFavorData= eventData
+    const [isOpen, setOpen] = useState(false);    
+   
 
-
-    const handleEventToggle = (e: string) => {
-        console.log(e);
-
-    }
+   
+    
   return (
     <View>
          <ScrollView
@@ -64,6 +67,7 @@ const FavoredEventData: React.FC<FavoredEventDataProps> = ({eventData}) => {
                                       
                                      }}
                                      >
+                                        
                                         <View style={{
                                             // backgroundColor: "orange",
                                             width: 170,
@@ -72,7 +76,7 @@ const FavoredEventData: React.FC<FavoredEventDataProps> = ({eventData}) => {
                                             // 
                                         }}>
                                             <TouchableOpacity
-                                            onPress={() => handleEventToggle(item.eventId)}
+                                            onPress={() => handleEventToggle(item)}
                                             >
                                             <Image
                                             source={{ uri: item.ImageCoverUpload }}
@@ -85,6 +89,7 @@ const FavoredEventData: React.FC<FavoredEventDataProps> = ({eventData}) => {
                                             }}
                                            
                                            />
+                                         
 
                                             </TouchableOpacity>
 
@@ -152,26 +157,58 @@ const FavoredEventData: React.FC<FavoredEventDataProps> = ({eventData}) => {
                                             </View>
 
                                             </View>
-               
+
                                             
-                                        
+                                         
+                                                                                
 
                                         </View>
+
+                                       
+
+                                    
+
+                                      
+                                      
+                                        
+
+                                      
+                                        
+                                    
                                     </View>
 
 
                                    
                                 ))
                                 }
+                                 
+                              
+                               
+
+                               
+                                  
 
                                 </View> 
                                
 
 
-                               </ScrollView>
+         </ScrollView>
+       
+
       
     </View>
   )
 }
 
 export default FavoredEventData
+
+
+
+const styles = StyleSheet.create({
+   ModalizeStyle: {
+    backgroundColor: "pink"
+   }
+     
+  
+  
+  });
