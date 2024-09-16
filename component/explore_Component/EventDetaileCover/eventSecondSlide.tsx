@@ -96,7 +96,7 @@ const EventMoreInfoSlide: React.FC<EventDetailsProps> = ({
           top: 455,
         }}
       >
-        <EventSecondSlideMenuBar data={item} handleEventInfo={handleEventInfo} />
+        <EventSecondSlideMenuBar data={item} handleEventInfo={handleEventInfo} state={redstate} />
       </View>
     </View>
   );

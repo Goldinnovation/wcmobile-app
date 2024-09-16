@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image } from 'react-native'
+import { View, Image, Text } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 
 interface eventFavorData{
@@ -27,7 +27,23 @@ const WeeklyEventData: React.FC<weeklyEventDataProps> = ({eventData}) => {
 
     const eventFavorData = eventData
   return (
-    <View>
+    <View style={{
+        gap: 13
+    }}>
+        <View style={{
+            marginRight: 6,
+        }}>
+            <Text style={{
+                fontSize: 10, 
+                fontWeight: 400, 
+                color: "white", 
+                textAlign: "right",
+                opacity: 0.6
+
+
+            }}>Upcoming Events for this Week</Text>
+        </View>
+        <View>
         <ScrollView
                     horizontal={true}
                     style={{
@@ -80,7 +96,10 @@ const WeeklyEventData: React.FC<weeklyEventDataProps> = ({eventData}) => {
 
                         
                     
-                    </ScrollView>
+        </ScrollView>
+
+        </View>
+       
       
     </View>
   )

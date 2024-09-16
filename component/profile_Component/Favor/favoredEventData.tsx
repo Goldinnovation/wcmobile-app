@@ -39,7 +39,23 @@ const FavoredEventData: React.FC<FavoredEventDataProps> = ({eventData, handleEve
    
     
   return (
-    <View>
+    <View style={{
+        gap: 7
+    }}>
+        <View style={{
+            // marginLeft: 5
+        }}>
+            <Text style={{
+                fontSize: 14, 
+                fontWeight: 600, 
+                color: "white",
+                textAlign: "center",
+                opacity: 0.5
+            }}>Your Favored Events</Text>
+        </View>
+        <View>
+
+        
          <ScrollView
                                 scrollEventThrottle={96}
                                 decelerationRate="normal"
@@ -193,6 +209,7 @@ const FavoredEventData: React.FC<FavoredEventDataProps> = ({eventData, handleEve
 
 
          </ScrollView>
+         </View>
        
 
       

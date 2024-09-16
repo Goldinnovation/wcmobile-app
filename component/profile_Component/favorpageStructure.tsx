@@ -71,9 +71,9 @@ export default function FavorData() {
         style={{
           // flexDirection: "row",
           gap: 0,
-          height: 80,
+          height: 100,
           padding: 5,
-        //   backgroundColor: "skyblue",
+          // backgroundColor: "skyblue",
           alignItems: "center",
           marginTop: 10,
         }}
@@ -98,7 +98,7 @@ export default function FavorData() {
 
       <View
         style={{
-        //   backgroundColor: "orange",
+          // backgroundColor: "orange",
           height: 470,
           flexDirection: "row",
         }}

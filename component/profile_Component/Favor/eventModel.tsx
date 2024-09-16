@@ -122,14 +122,14 @@ const SelectedEventModel: React.FC<modelStateProps> = forwardRef(({eventData}, r
 
                             </TouchableOpacity>
                             <View>
-                                <InfoEventIcon  width={"22"} height={"22"} />
+                                <InfoEventIcon  width={"22"} height={"22"}  color={"white"}/>
                             </View>
 
                             <View>
-                                <MapEventIcon  width={"25"} height={"25"} />
+                                <MapEventIcon  width={"25"} height={"25"} color={"white"} />
                             </View>
                             <View>
-                                <SoundIcon  width={"25"} height={"25"} />
+                            <SoundIcon  width={"20"} height={"20"} color={"white"} />
                             </View>
 
                             </View>

@@ -1,6 +1,9 @@
 import { View, TouchableOpacity, Image } from "react-native"
 import { useSelector } from "react-redux"
 import { RootState } from "../../../store/store"
+import InfoEventIcon from "../../../icons/InfoIcon";
+import MapEventIcon from "../../../icons/mapIcon";
+import SoundIcon from "../../../icons/soundIcon";
 
 
 interface eventProps {
@@ -24,12 +27,20 @@ interface eventProps {
 
 interface MenuBarProps {
     handleEventInfo: (e: string) => void
-    data: eventProps
+    data: eventProps, 
+    state: {
+      eventDescription: boolean;
+      eventDetails: boolean;
+      eventSound: boolean;
+      eventOptionHeader: string;
+    };
+  
 } 
 
 
-const EventSecondSlideMenuBar: React.FC<MenuBarProps>  = ({data, handleEventInfo}) => {
+const EventSecondSlideMenuBar: React.FC<MenuBarProps>  = ({data, handleEventInfo, state}) => {
     const item = data
+
     const { categoryLayoutState } = useSelector((state: RootState) => state.OpenCategoryLayout);
 
     return(
@@ -53,19 +64,17 @@ const EventSecondSlideMenuBar: React.FC<MenuBarProps>  = ({data, handleEventInfo
 
             {/* Btn of Menu bar */}
            <TouchableOpacity
+           
+          
            onPress={ () => handleEventInfo("info")}
            >
-           <Image
-              source={require("../../../assets/ii1.png")}
-              style={{
-                width: categoryLayoutState === item.eventId ? 355 : 20,
-                // height: 490,
+          
+             {
+              state.eventDescription 
+              ? <InfoEventIcon  width={"20"} height={"20"} color={"white"}/>
+              :  <InfoEventIcon  width={"20"} height={"20"} color={"white"}/>
+             }
 
-                height: categoryLayoutState === item.eventId ? 20 : 20,
-                
-               
-                //  paddingRight: 30,
-              }}/>
            </TouchableOpacity>
 
 
@@ -73,34 +82,25 @@ const EventSecondSlideMenuBar: React.FC<MenuBarProps>  = ({data, handleEventInfo
            <TouchableOpacity
            onPress={ () => handleEventInfo("Event Details")}
            >
-           <Image
-              source={require("../../../assets/pin1.png")}
-              style={{
-                width: categoryLayoutState === item.eventId ? 355 : 25,
-                // height: 490,
+            {
+              state.eventDetails 
+              ? <MapEventIcon  width={"25"} height={"25"}  color={"green"}/>
+              : <MapEventIcon  width={"25"} height={"25"}  color={"white"}/>
 
-                height: categoryLayoutState === item.eventId ? 20 : 25,
-                
-               
-                //  paddingRight: 30,
-              }}/>
+             }
+           
            </TouchableOpacity>
 
 
            <TouchableOpacity 
             onPress={ () => handleEventInfo("EventSound")}
            >
-           <Image
-              source={require("../../../assets/fr1.png")}
-              style={{
-                width: categoryLayoutState === item.eventId ? 355 : 20,
-                // height: 490,
+              {
+              state.eventSound 
+              ?  <SoundIcon  width={"20"} height={"20"} color={"#366ebe"} />
+              : <SoundIcon  width={"20"} height={"20"} color={"white"} />
 
-                height: categoryLayoutState === item.eventId ? 20 : 20,
-                
-               
-                //  paddingRight: 30,
-              }}/>
+             }
            </TouchableOpacity>
 
 
