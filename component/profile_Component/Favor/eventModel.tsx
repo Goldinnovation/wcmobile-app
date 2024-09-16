@@ -60,8 +60,8 @@ const SelectedEventModel: React.FC<modelStateProps> = forwardRef(({eventData}, r
     <View>
       <Modalize 
          ref={modalizeRef} 
-         snapPoint={600}
-         modalHeight={600} 
+         snapPoint={620}
+         modalHeight={620} 
          modalTopOffset={150}
         //  panGestureEnabled={false}
          rootStyle={styles.rootStyle}
@@ -76,15 +76,15 @@ const SelectedEventModel: React.FC<modelStateProps> = forwardRef(({eventData}, r
          >
         <View style={{  }}>
           <View style={{
-            // background: "Transparent",
+            // backgroundColor: "pink",
             // flex: 1,
-            height: 900,
+            height: 700,
             width: "100%"
           }}>
               
                         <View style={{
-                            height: 900,
-                            backgroundColor: "Transparent",
+                            height: 710,
+                            // backgroundColor: "green",
                             flexDirection: "column",
                             borderTopLeftRadius: 5,
                             borderTopRightRadius: 5,
@@ -93,15 +93,37 @@ const SelectedEventModel: React.FC<modelStateProps> = forwardRef(({eventData}, r
                         }}>
 
                             <View style={{
+                                        // marginLeft: 5
+                                        backgroundColor: "rgba(13,13,13,0)",
+                                        alignItems: "center", 
+                                        width: "100%",
+                                        height: 50,
+                                        justifyContent: "center",
+                                        position: "absolute", 
+                                        top: "0%",
+                                        left: "0%", 
+                                        zIndex: 3
+                                    }}>
+                                        <Text style={{
+                                            fontSize: 14, 
+                                            fontWeight: 600, 
+                                            color: "white",
+                                            // textAlign: "center",
+                                            opacity: 0.8
+                                        }}>{eventData?.eventTitle}</Text>
+                            </View>
+                                {/* MenuBar for model */}
+                            <View style={{
                                 // backgroundColor: "skyblue",
                                 width: 40, 
                                 height: 250,
                                 position: "absolute",
-                                top: "1%",
-                                left: "88%", 
+                                top: "47%",
+                                left: "86%", 
                                 zIndex: 3, 
                                 alignItems: "center", 
-                                gap: 40
+                                gap: 40,
+                                flexDirection: "column-reverse"
                                 // flexDirection: "column",
                                 // justifyContent:"space-between"
 
@@ -152,7 +174,7 @@ const SelectedEventModel: React.FC<modelStateProps> = forwardRef(({eventData}, r
                                     <Image
                                             source={{ uri: eventData?.ImageCoverUpload }}
                                             style={{
-                                                height: showMoreEventsState ? 500 : 650,
+                                                height: showMoreEventsState ? 539 : 620,
                                                 // flex: 1,
                                                 width: "100%",
                                                 opacity: 0.9,

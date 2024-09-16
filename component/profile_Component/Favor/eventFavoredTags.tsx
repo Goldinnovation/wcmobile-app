@@ -42,7 +42,7 @@ const EventFavoredTags = () => {
                   color: "white",
                 }}
               >
-                Rock
+                #Tech
               </Text>
             </View>
             <View
@@ -64,7 +64,7 @@ const EventFavoredTags = () => {
                   color: "white",
                 }}
               >
-                Rock
+                #Rock
               </Text>
             </View>
             <View
@@ -86,7 +86,7 @@ const EventFavoredTags = () => {
                   color: "white",
                 }}
               >
-                Rock
+                #Comedy
               </Text>
             </View>
             <View

@@ -25,6 +25,8 @@ import { ParamListBase } from "@react-navigation/native";
 import SettingScreen from './navigation/settingScreen';
 import Angel from './icons/ProfileIcon';
 import FavorIcon from './icons/favorIcon';
+import UserIconHeadMenu from './icons/userIconHeadMenu';
+import MiniStar from './icons/miniStar';
 
 
 
@@ -209,12 +211,12 @@ function TabNavigator() {
         headerRight: () => (
           <TouchableOpacity style={{
             // backgroundColor: "pink",
-            width: 70,
+            width: 85,
             height: 30,
             alignItems: "center",
-            marginRight: 13,
-            gap: 15,
-            justifyContent: "center",
+            marginRight: 20,
+            // gap: 20,
+            justifyContent: "flex-end",
             flexDirection: "row"
           }}>     
           <TouchableOpacity  
@@ -227,17 +229,30 @@ function TabNavigator() {
           source={require("./assets/fi1.png")}
           style={{height: 28, width: 28}}
           /> */}
-          <ExploreEventFilter width={'30'} height={'30'} />
+          {/* <ExploreEventFilter width={'30'} height={'30'} /> */}
+          <View style={{
+            width: 20, 
+            height: 20,
+            position: "absolute",
+            zIndex: 3,
+            top: "42%",
+            left: "65%",
+            // backgroundColor: "yellow",
+            borderRadius: 50,
+            // borderWidth: 1, 
+            // borderColor: "yellow"
+            
+          }}>
+            <MiniStar  width={'12'} height={'12'} color='white' />
+          </View>
+          <UserIconHeadMenu width={'20'} height={'20'} color='white' /> 
 
           </TouchableOpacity>    
           
-         <TouchableOpacity  onPress={() => navigation.push("settingScreen")}>
-         {/* <Image
-          source={require("./assets/k2.png")}
-          style={{height: 22, width: 22}}
-          /> */}
-          <SettingIcon width={'22'} height={'22'} />
-         </TouchableOpacity>
+         {/* <TouchableOpacity  onPress={() => navigation.push("settingScreen")}>
+        
+          <SettingIcon width={'21'} height={'21'} />
+         </TouchableOpacity> */}
         
 
           </TouchableOpacity>

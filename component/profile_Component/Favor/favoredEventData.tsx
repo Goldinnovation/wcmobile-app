@@ -6,6 +6,8 @@ import { useRef, useMemo, useCallback, useState} from 'react';
 import { Modalize } from 'react-native-modalize';
 import type { Modalize as ModalizeType } from 'react-native-modalize'
 import { StyleSheet } from 'react-native';
+import CloseMenuIcon from '../../../icons/closeMenuIcon';
+import ChangeLayerIcon from '../../../icons/changeLayerIcon';
 
 interface eventFavorData{
     eventId: string;
@@ -40,18 +42,48 @@ const FavoredEventData: React.FC<FavoredEventDataProps> = ({eventData, handleEve
     
   return (
     <View style={{
-        gap: 7
+        gap: 0
     }}>
         <View style={{
             // marginLeft: 5
+            // backgroundColor: "pink",
+            // alignItems: "center", 
+            alignItems: "center",
+            width: "100%",
+            flexDirection: "row",
+            padding: 1
         }}>
+            <View style={{
+                width: "80%",
+                // backgroundColor: "red",
+                paddingLeft: 3,
+                height: 20,
+                justifyContent: "center"
+
+
+            }}>
             <Text style={{
                 fontSize: 14, 
+                
                 fontWeight: 600, 
                 color: "white",
-                textAlign: "center",
+                
+                // textAlign: "center",
                 opacity: 0.5
             }}>Your Favored Events</Text>
+            </View>
+            <TouchableOpacity style={{
+                // backgroundColor: "orange",
+                width: "20%",
+                flexDirection: "row",
+                paddingRight: 5,
+                justifyContent: "flex-end",
+                opacity: 0.5
+
+            }}>
+                <ChangeLayerIcon width='20' height='20'/>
+            </TouchableOpacity>
+           
         </View>
         <View>
 

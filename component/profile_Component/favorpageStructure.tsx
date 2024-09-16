@@ -71,11 +71,11 @@ export default function FavorData() {
         style={{
           // flexDirection: "row",
           gap: 0,
-          height: 100,
+          height: 105,
           padding: 5,
           // backgroundColor: "skyblue",
           alignItems: "center",
-          marginTop: 10,
+          // marginTop: 10,
         }}
       >
         <WeeklyEventData eventData={eventFavorData} />
@@ -90,7 +90,7 @@ export default function FavorData() {
           padding: 5,
           // backgroundColor: "green",
           alignItems: "center",
-          marginTop: 5,
+          // marginTop: 5,
         }}
       >
         <EventFavoredTags />
