@@ -34,7 +34,7 @@ const EventCoverSlide: React.FC<eventCoverProps> = ({ data }) => {
   const { categoryLayoutState } = useSelector(
     (state: RootState) => state.OpenCategoryLayout
   );
-  const [eventMenuBar, setEventMenuBar] = useState(false)
+  const [eventMenuBar, setEventMenuBar] = useState(true)
   const dispatch = useDispatch();
 
   const handleEventMenuBar = () => {

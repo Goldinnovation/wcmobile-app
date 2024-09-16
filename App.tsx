@@ -192,25 +192,17 @@ function TabNavigator() {
         headerLeft: () => (
           <TouchableOpacity style={{
           //  backgroundColor: "#222222",
-           width:  60,           
-           alignItems: "center",
-          justifyContent: "center",
-            height: 25,
-            flexDirection: "row",
-            position:"relative", 
-            left: 15,
-            top: 1,
-            padding: 3,
-            borderRadius: 50,
-            borderWidth: 1, 
-            borderColor: "white"
+           width:  80,           
+           
+            
 
           }}>
              {/* <Image
           source={require("./assets/bb1.png")}
           style={{height: 20, width: 20,}}
           /> */}
-          <FavorIcon  width={"22"} height={"22"} lineColor={"#ffffff"}/>
+          {/* <FavorIcon  width={"22"} height={"22"} lineColor={"#ffffff"}/> */}
+          <Text style={{color: "white"}}>Worthsec</Text>
 
           </TouchableOpacity>
         ),

@@ -7,7 +7,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 import MoreEventsArrow from '../../../icons/moreEventsArrow';
 import { useScroll } from 'framer-motion';
 import MenuBarBurgerIcon from '../../../icons/menuBarBurgerIcon';
-
+import InfoEventIcon from '../../../icons/InfoIcon';
+import SoundIcon from '../../../icons/soundIcon';
+import MapEventIcon from '../../../icons/mapIcon';
 
 interface eventFavorData {
     eventId: string;
@@ -60,7 +62,7 @@ const SelectedEventModel: React.FC<modelStateProps> = forwardRef(({eventData}, r
          ref={modalizeRef} 
          snapPoint={600}
          modalHeight={600} 
-         modalTopOffset={130}
+         modalTopOffset={150}
         //  panGestureEnabled={false}
          rootStyle={styles.rootStyle}
          modalStyle={
@@ -69,70 +71,94 @@ const SelectedEventModel: React.FC<modelStateProps> = forwardRef(({eventData}, r
          scrollViewProps={{
             scrollEnabled: false,  // Disable scroll inside the modal
           }}
-        //  adjustToContentHeight={true}
+         adjustToContentHeight={false}
          disableScrollIfPossible={false}
          >
         <View style={{  }}>
           <View style={{
-            backgroundColor: "rgba(96,96,96,1)",
-            height: 600
+            // background: "Transparent",
+            // flex: 1,
+            height: 900,
+            width: "100%"
           }}>
-                     <LinearGradient
-                    colors={['black', "#575757", '#000000bb', 'black']}
-                    // colors={['black', 'purple', 'black']}
-
-                    // colors={['black','orange','silver', 'purple', 'green']}
-
-                    // colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']}
-                    style={styles.gradient}
-                    start={{ x: 0, y: 1}}
-                    end={{ x: 0, y: 0 }}
-                    >
+              
                         <View style={{
-                            height: 470,
-                            // backgroundColor: "pink",
+                            height: 900,
+                            backgroundColor: "Transparent",
                             flexDirection: "column",
                             borderTopLeftRadius: 5,
-                            borderTopRightRadius: 5
+                            borderTopRightRadius: 5,
+                            // paddingTop: "40%"
 
                         }}>
-                             <TouchableOpacity style={{
-                                        position: "absolute",
-                                        top: "3%",
-                                        left: showMoreEventsState ? "90%" : "89%",
-                                        zIndex: 5
-                                    }}
-                                    onPress={() => handleShowMoreEvents()}
-                                    >
-                                        {
-                                            showMoreEventsState 
-                                            ?  <MoreEventsArrow width={"20"} height={"20"}/>
-                                            : <MenuBarBurgerIcon  width={"30"} height={"30"} />
 
-                                        }
-                                        
-                                    </TouchableOpacity>
+                            <View style={{
+                                // backgroundColor: "skyblue",
+                                width: 40, 
+                                height: 250,
+                                position: "absolute",
+                                top: "1%",
+                                left: "88%", 
+                                zIndex: 3, 
+                                alignItems: "center", 
+                                gap: 40
+                                // flexDirection: "column",
+                                // justifyContent:"space-between"
+
+                            }}>
+                            <TouchableOpacity style={{
+
+                                
+                                
+                                }}
+                                onPress={() => handleShowMoreEvents()}
+                                >
+                                {
+                                    showMoreEventsState 
+                                    ?  <MoreEventsArrow width={"20"} height={"20"}/>
+                                    : <MenuBarBurgerIcon  width={"30"} height={"30"} />
+
+                                }
+
+                            </TouchableOpacity>
+                            <View>
+                                <InfoEventIcon  width={"22"} height={"22"} />
+                            </View>
+
+                            <View>
+                                <MapEventIcon  width={"25"} height={"25"} />
+                            </View>
+                            <View>
+                                <SoundIcon  width={"25"} height={"25"} />
+                            </View>
+
+                            </View>
+                             
                           
                             <View style={{
                                 // backgroundColor: "orange",
-                                flexDirection: "row",
-                                height: 470
+                                flexDirection: "column",
+                                // height: 900, //470
+                                flex: 1, 
+                                // padding: 2
                             }}>
                                 <View style={{
                                     // backgroundColor: "grey",
-                                    width: showMoreEventsState ? "80%" : "100%",
-                                    borderTopLeftRadius: 5,
-                                    borderTopRightRadius: 5
+                                    width:  "100%",
+                                    borderTopLeftRadius: 9,
+                                    borderTopRightRadius: 9
                                 }}>
                                    
                                     <Image
                                             source={{ uri: eventData?.ImageCoverUpload }}
                                             style={{
-                                                height: 470,
-                                                width: showMoreEventsState ? 300 : 380,
+                                                height: showMoreEventsState ? 500 : 650,
+                                                // flex: 1,
+                                                width: "100%",
                                                 opacity: 0.9,
                                                 borderTopLeftRadius: 5,
                                                 borderTopRightRadius: 5
+
                                                 // borderRadius: 5,
                                         
                                                 //  paddingRight: 30,
@@ -153,94 +179,8 @@ const SelectedEventModel: React.FC<modelStateProps> = forwardRef(({eventData}, r
                             </View>
 
                         </View>
-                        <View
-                        style={{
-                            height: 130,
-                            // backgroundColor: "green"
-                        }}
                         
-                        >
-                            <View style={{
-                                backgroundColor:"rgba(187,187,187,0.5)", 
-                                borderWidth: 1, 
-                                borderColor: "white", 
-                                borderRadius: 100,
-                                position: "absolute",
-                                height: 125, 
-                                width: 125,
-                                zIndex:3,
-                                top: "1%",
-                                left: "32.9%"
-                            }}></View>
-                            <View style={{
-                                // backgroundColor: "red",
-                                height: 65,
-                                flexDirection: "row",
-                                justifyContent: "center",
-                                paddingTop: 1
-
-                            }}> 
-                            <View style={{
-                                // backgroundColor: "skyblue",
-                                width: 70,
-                                justifyContent:"center", 
-                                alignItems:"center",
-                                borderRightWidth: 1, 
-                                borderRightColor: "white"
-                            }}
-                            > 
-                            <Text>2</Text>
-                            </View>
-                            <View style={{
-                                width: 70, 
-                                // backgroundColor: "purple",
-                                justifyContent:"center", 
-                                alignItems:"center",
-                             
-                                
-
-                            }}
-                            >
-                                <Text>3</Text>
-                            </View>
-                            
-                            </View>
-                            <View style={{
-                                // backgroundColor: "orange",
-                                height: 65,
-                                  flexDirection: "row",
-                                justifyContent: "center",
-                                paddingBottom: 4
-
-                            }}>
-                                <View style={{
-                                // backgroundColor: "yellow",
-                                width: 70,
-                                justifyContent:"center", 
-                                alignItems:"center",
-                                borderRightWidth: 1, 
-                                borderRightColor: "white",
-                                   borderTopWidth: 1,
-                                borderTopColor: "white"
-
-                            }}
-                            > 
-                            <Text>2</Text>
-                            </View>
-                            <View style={{
-                                width: 70, 
-                                // backgroundColor: "blue",
-                                justifyContent:"center", 
-                                alignItems:"center",
-                                borderTopWidth: 1,
-                                borderTopColor: "white"
-                            }}
-                            >
-                                <Text>3</Text>
-                            </View>
-                            </View>
-                        </View>
-                    </LinearGradient>
+                    
             <View>
                 
             </View>
@@ -257,10 +197,10 @@ export default SelectedEventModel
 const styles = StyleSheet.create({
   
     rootStyle: {
-    //   backgroundColor: "blue"
+      backgroundColor: "Transparent"
     },
     ModalizeStyle: {
-    //   backgroundColor: "blue"
+      backgroundColor: "rgba(32,32,32,0.99)"
      },
       gradient: {
         ...StyleSheet.absoluteFillObject,
