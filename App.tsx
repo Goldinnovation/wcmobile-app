@@ -27,6 +27,8 @@ import Angel from './icons/ProfileIcon';
 import FavorIcon from './icons/favorIcon';
 import UserIconHeadMenu from './icons/userIconHeadMenu';
 import MiniStar from './icons/miniStar';
+import NotificationIcon from './icons/notificationIcon';
+import InboxIcon from './icons/inboxIcon';
 
 
 
@@ -192,33 +194,14 @@ function TabNavigator() {
       options={{
         title: 'Profile',
         headerLeft: () => (
-          <TouchableOpacity style={{
-          //  backgroundColor: "#222222",
-           width:  80,           
-           
-            
-
-          }}>
-             {/* <Image
-          source={require("./assets/bb1.png")}
-          style={{height: 20, width: 20,}}
-          /> */}
-          {/* <FavorIcon  width={"22"} height={"22"} lineColor={"#ffffff"}/> */}
-          <Text style={{color: "white"}}>Worthsec</Text>
-
-          </TouchableOpacity>
-        ),
-        headerRight: () => (
-          <TouchableOpacity style={{
-            // backgroundColor: "pink",
-            width: 85,
+          <View style={{
+            width: 50,
+            // backgroundColor: "green",
             height: 30,
+            marginLeft: 10,
             alignItems: "center",
-            marginRight: 20,
-            // gap: 20,
-            justifyContent: "flex-end",
             flexDirection: "row"
-          }}>     
+          }}>
           <TouchableOpacity  
           style={{
             position: "relative",
@@ -235,8 +218,8 @@ function TabNavigator() {
             height: 20,
             position: "absolute",
             zIndex: 3,
-            top: "42%",
-            left: "65%",
+            top: "52%",
+            left: "60%",
             // backgroundColor: "yellow",
             borderRadius: 50,
             // borderWidth: 1, 
@@ -245,14 +228,39 @@ function TabNavigator() {
           }}>
             <MiniStar  width={'12'} height={'12'} color='white' />
           </View>
-          <UserIconHeadMenu width={'20'} height={'20'} color='white' /> 
+          <UserIconHeadMenu width={'23'} height={'23'} color='white' /> 
 
           </TouchableOpacity>    
+
+          </View>
+         
+        ),
+        headerRight: () => (
+          <TouchableOpacity style={{
+            // backgroundColor: "pink",
+            width: 150,
+            height: 30,
+            alignItems: "center",
+            marginRight: 10,
+            gap: 30,
+            justifyContent: "flex-end",
+            flexDirection: "row"
+          }}> 
+         
+         
+             
           
-         {/* <TouchableOpacity  onPress={() => navigation.push("settingScreen")}>
+         <TouchableOpacity  onPress={() => navigation.push("settingScreen")}>
         
-          <SettingIcon width={'21'} height={'21'} />
-         </TouchableOpacity> */}
+          {/* <SettingIcon width={'21'} height={'21'} /> */}
+          <NotificationIcon  width={'21'} height={'21'} />
+         </TouchableOpacity>
+
+         <TouchableOpacity  onPress={() => navigation.push("settingScreen")}>
+        
+        {/* <SettingIcon width={'21'} height={'21'} /> */}
+        <InboxIcon  width={'22'} height={'22'} />
+         </TouchableOpacity>
         
 
           </TouchableOpacity>

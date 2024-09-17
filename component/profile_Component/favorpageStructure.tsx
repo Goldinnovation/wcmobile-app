@@ -71,7 +71,7 @@ export default function FavorData() {
         style={{
           // flexDirection: "row",
           gap: 0,
-          height: 105,
+          height: 120,
           padding: 5,
           // backgroundColor: "skyblue",
           alignItems: "center",
@@ -82,7 +82,7 @@ export default function FavorData() {
       </View>
 
       {/* Tags for Events */}
-      <View
+      {/* <View
         style={{
           flexDirection: "row",
           gap: 24,
@@ -94,7 +94,7 @@ export default function FavorData() {
         }}
       >
         <EventFavoredTags />
-      </View>
+      </View> */}
 
       <View
         style={{

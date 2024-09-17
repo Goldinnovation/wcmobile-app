@@ -31,17 +31,18 @@ const WeeklyEventData: React.FC<weeklyEventDataProps> = ({eventData}) => {
         gap: 13
     }}>
         <View style={{
-            marginRight: 6,
+            marginRight: 2,
         }}>
             <Text style={{
                 fontSize: 10, 
-                fontWeight: 400, 
+                fontWeight: 600, 
                 color: "white", 
                 textAlign: "right",
+                paddingLeft: 2,
                 opacity: 0.6
 
 
-            }}>Upcoming Events for this Week</Text>
+            }}>Events for this Week</Text>
         </View>
         <View>
         <ScrollView
@@ -54,7 +55,7 @@ const WeeklyEventData: React.FC<weeklyEventDataProps> = ({eventData}) => {
                         <View style={{
                             width: 600,
                             flexDirection: "row",
-                            gap: 27,
+                            gap: 28,
                             height: 70,
                             // backgroundColor: "pink",
                             // alignItems: "center"
@@ -81,6 +82,16 @@ const WeeklyEventData: React.FC<weeklyEventDataProps> = ({eventData}) => {
                                            />
 
                                             </View>
+
+                                            <View style={{
+                                                padding: 2
+                                            }}>
+                                                <Text style={{
+                                                color: "white", 
+                                                fontSize: 6, 
+                                                textAlign: "center",
+                                                marginTop: 6
+                                            }}>{currentDayEventItem?.eventTitle}</Text></View>
                                 </View>
                                 
 

@@ -51,37 +51,42 @@ const FavoredEventData: React.FC<FavoredEventDataProps> = ({eventData, handleEve
             alignItems: "center",
             width: "100%",
             flexDirection: "row",
-            padding: 1
+            padding: 1,
+            height: 50,
         }}>
             <View style={{
                 width: "80%",
                 // backgroundColor: "red",
-                paddingLeft: 3,
-                height: 20,
-                justifyContent: "center"
+                paddingLeft: 6,
+                // height: 50,
+                justifyContent: "center",
+               
+                
 
 
             }}>
             <Text style={{
-                fontSize: 14, 
+                fontSize: 20, 
                 
-                fontWeight: 600, 
+                fontWeight: 800, 
                 color: "white",
+                
+
                 
                 // textAlign: "center",
                 opacity: 0.5
-            }}>Your Favored Events</Text>
+            }}>Favored Events</Text>
             </View>
             <TouchableOpacity style={{
                 // backgroundColor: "orange",
                 width: "20%",
                 flexDirection: "row",
-                paddingRight: 5,
+                paddingRight: 4,
                 justifyContent: "flex-end",
                 opacity: 0.5
 
             }}>
-                <ChangeLayerIcon width='20' height='20'/>
+                <ChangeLayerIcon width='24' height='24'/>
             </TouchableOpacity>
            
         </View>
@@ -119,7 +124,7 @@ const FavoredEventData: React.FC<FavoredEventDataProps> = ({eventData, handleEve
                                         <View style={{
                                             // backgroundColor: "orange",
                                             width: 170,
-                                            height: 220
+                                            height: 210
 
                                             // 
                                         }}>
