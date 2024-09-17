@@ -126,7 +126,7 @@ export default function FavorData() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "pink",
+    // backgroundColor: "pink",
     // marginBottom: 20
   },
   scrollViewContent: {

@@ -1,11 +1,13 @@
 import { createStore, combineReducers } from "redux";
 import userReduce from "./userReduce";
 import userCategoryLayoutReducer from "./Reducer/userCategoryLayoutReducer";
+import profilePageUpdateReducer from "./Reducer/profilePageUpdateReducer";
 
 const rootReducer = combineReducers({
     
     IconData : userReduce,
-    OpenCategoryLayout: userCategoryLayoutReducer
+    OpenCategoryLayout: userCategoryLayoutReducer,
+    ProfilePageUpdate: profilePageUpdateReducer
 
 })
 

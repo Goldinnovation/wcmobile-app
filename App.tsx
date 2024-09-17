@@ -29,7 +29,8 @@ import UserIconHeadMenu from './icons/userIconHeadMenu';
 import MiniStar from './icons/miniStar';
 import NotificationIcon from './icons/notificationIcon';
 import InboxIcon from './icons/inboxIcon';
-
+import { useDispatch } from 'react-redux';
+import { profileLayoutUpdatePageAction } from './store/Actions/ProfileUpdateAction';
 
 
 
@@ -70,8 +71,17 @@ function TabNavigator() {
   const [filter, setFilter] = useState(false)
   const { categoryLayoutState } = useSelector((state: RootState) => state.OpenCategoryLayout);
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+  const dispatchProfilePage = useDispatch()
+  const {profileState} = useSelector((state: RootState) => state.ProfilePageUpdate)
 
 
+
+
+  const handleProfilePageUpdate = (e: string) => {
+
+    dispatchProfilePage(profileLayoutUpdatePageAction(e))
+
+  }
 
   const handleClickFilterExplore = () => {
     // console.log('Hello');
@@ -198,16 +208,16 @@ function TabNavigator() {
             width: 50,
             // backgroundColor: "green",
             height: 30,
-            marginLeft: 10,
+            marginLeft: 15,
             alignItems: "center",
             flexDirection: "row"
           }}>
           <TouchableOpacity  
           style={{
             position: "relative",
-            top: 1
+            // top: 1
           }}
-          onPress={() => alert('This is a selection!')}>
+          onPress={() => handleProfilePageUpdate("Profile")}>
           {/* <Image
           source={require("./assets/fi1.png")}
           style={{height: 28, width: 28}}
@@ -236,7 +246,7 @@ function TabNavigator() {
          
         ),
         headerRight: () => (
-          <TouchableOpacity style={{
+          <View style={{
             // backgroundColor: "pink",
             width: 150,
             height: 30,
@@ -263,7 +273,7 @@ function TabNavigator() {
          </TouchableOpacity>
         
 
-          </TouchableOpacity>
+          </View>
         ),
         headerStyle: {
           backgroundColor: 'transparent',},
