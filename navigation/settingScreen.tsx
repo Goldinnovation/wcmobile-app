@@ -10,6 +10,7 @@ import KleeIcon from "../icons/kleeIcon";
 import LogOutIcon from "../icons/logoutIcon";
 
 
+
 export default function SettingScreen() {
     const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
     const [aboutState, setAboutState] = useState(false)

@@ -6,13 +6,23 @@ import { useDispatch } from 'react-redux';
 import { profileLayoutUpdatePageAction } from '../../../store/Actions/ProfileUpdateAction';
 import HearthFrequenz from '../../../icons/hearthFrequenz';
 import SupportIcon from '../../../icons/supportIcon';
-
+import { LinearGradient } from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from "@react-navigation/stack";
+import { ParamListBase } from "@react-navigation/native";
 
 export default function ProfilePageStructure(){
     const dispatchProfilePageState = useDispatch()
+    const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+
 
     const handleProfileUpdate = (e: string) => {
         dispatchProfilePageState(profileLayoutUpdatePageAction(e))
+    }
+
+
+    const handleFeedBackPage = (e: string) => { 
+        console.log('feedback');
     }
 
   return (
@@ -54,43 +64,65 @@ export default function ProfilePageStructure(){
 
             
          }}>
-            <View style={{
+            <TouchableOpacity style={{
                 height: 150,
                 backgroundColor:"#ac0d11",
                 width: "45%",
                 borderRadius: 7,
                 alignItems: "center",
                 justifyContent: "center",
-                opacity: 0.6,
-                gap: 5
-            }}> 
-             <TouchableOpacity
+                opacity: 0.8,
+                gap: 5,
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 4,
+                shadowRadius: 2,
+
+
+            }}
+            onPress={() => navigation.push("FeedbackScreen")}
+            > 
+
+               
                 
-                onPress={() => handleProfileUpdate("Favor")}
+
+                    
+                
+             <View
+                
+                
                 >
                 <HearthFrequenz width={'61'} height={'61'} lineColor={"white"}/>
             	
-                </TouchableOpacity>
+                </View>
                 <Text style={{
                     color: "white"
                 }}>Feedback</Text>
-            </View>
-            <View  style={{
+
+                
+            </TouchableOpacity>
+            <TouchableOpacity  style={{
                 height: 150,
                 width: "45%",
                 backgroundColor:"#199229",
                 borderRadius: 7,
                  alignItems: "center",
                 justifyContent: "center",
-                opacity: 0.6,
-                gap: 5
-            }}>
+                opacity: 0.8,
+                gap: 5,
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 4,
+                shadowRadius: 2,
+            }}
+            onPress={() => navigation.push("SupportScreen")}
+            
+            
+            >
                 <SupportIcon width={'51'} height={'61'} />
 
                 <Text style={{
                     color: "white"
                 }}>Support</Text>
-            </View>
+            </TouchableOpacity>
             
 
          </View>
@@ -103,31 +135,40 @@ export default function ProfilePageStructure(){
             justifyContent: "center",
             borderRadius: 7
          }}>
-             <View style={{
+             <TouchableOpacity style={{
                 height: 150,
                 backgroundColor:"#0a41d2",
                 width: "45%",
                 borderRadius: 7,
                  alignItems: "center",
                 justifyContent: "center",
-                opacity: 0.7,
-                gap: 5
-            }}> 
+                opacity: 0.8,
+                gap: 5,
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 4,
+                shadowRadius: 2,
+
+            }}
+            onPress={() => navigation.push("settingScreen")}
+            > 
              <SettingIcon width={'51'} height={'61'} />
 
              <Text style={{
                     color: "white"
-                }}>Support</Text>
-            </View>
-            <View  style={{
+                }}>Setting</Text>
+            </TouchableOpacity>
+            <TouchableOpacity  style={{
                 height: 150,
                 width: "45%",
                 backgroundColor:"#ffc309",
                 borderRadius: 7,
                 alignItems: "center",
                 justifyContent: "center",
-                opacity: 0.6,
-                gap: 5
+                opacity: 0.8,
+                gap: 5,
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 4,
+                shadowRadius: 2,
 
             
 
@@ -141,8 +182,8 @@ export default function ProfilePageStructure(){
                 </TouchableOpacity>
                 <Text style={{
                     color: "white"
-                }}>Support</Text>
-            </View>
+                }}>Favor</Text>
+            </TouchableOpacity>
          </View>
 
 
@@ -161,6 +202,14 @@ const styles = StyleSheet.create({
     //   backgroundColor: "pink",
     //   marginBottom: 20
     },
+    gradient: {
+        ...StyleSheet.absoluteFillObject,
+        borderRadius: 7,
+        alignItems: "center",
+        justifyContent: "center",
+        // opacity: 0.9,
+        gap: 5
+      },
   
    
   });

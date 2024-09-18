@@ -31,6 +31,9 @@ import NotificationIcon from './icons/notificationIcon';
 import InboxIcon from './icons/inboxIcon';
 import { useDispatch } from 'react-redux';
 import { profileLayoutUpdatePageAction } from './store/Actions/ProfileUpdateAction';
+import DnaIcon from './icons/dnaIcon';
+import FeedbackScreen from './navigation/feedBackScreen';
+import SupportScreen from './navigation/supportScreen';
 
 
 
@@ -128,22 +131,27 @@ function TabNavigator() {
       options={{
         title: 'Explore',
         headerLeft: () => (
-          <Button
-            onPress={() => alert('This is a button!')}
-            title="Worthsec"
-            color="white"
-          />
+          <View style={{
+            // backgroundColor:  filter ?  "pink" : "green",
+            width:  199,
+            height: 30,
+            flexDirection: "row",
+            alignItems: "center",
+            marginLeft: categoryLayoutState ? 9 : 7,
+          }}>
+              <Text style={{color: "white", fontSize: 19}}>Worthsec</Text>
+          </View>
         ),
         headerRight: () => (
-          <TouchableOpacity style={{
+          <View style={{
           //  backgroundColor:  filter ?  "pink" : "red",
-            width:  30,
+            width:  160,
             // display: filter ? "flex" : "flex",
             height: 30,
             alignItems: "center",
-            marginRight: categoryLayoutState ? 9 : 7,
-             // gap: 15,
-            justifyContent: "center",
+            marginRight: categoryLayoutState ? 12 : 8,
+             gap: 25,
+            justifyContent: "flex-end",
             flexDirection: "row"
           }}>     
           <View style={{
@@ -178,15 +186,21 @@ function TabNavigator() {
           style={{height: 30, width: 30}}
           /> */}
           <View>
-          <ExploreEventFilter width={'30'} height={'30'} />
+          <ExploreEventFilter width={'28'} height={'28'} />
           </View>
            
              
           </TouchableWithoutFeedback>  
+
+          <TouchableOpacity  onPress={() => navigation.push("settingScreen")}>
+        
+        {/* <SettingIcon width={'21'} height={'21'} /> */}
+          <NotificationIcon  width={'23'} height={'25'} />
+        </TouchableOpacity>
             
       
 
-          </TouchableOpacity>
+          </View>
         ),
         
         headerStyle: {
@@ -205,12 +219,13 @@ function TabNavigator() {
         title: 'Profile',
         headerLeft: () => (
           <View style={{
-            width: 50,
             // backgroundColor: "green",
             height: 30,
             marginLeft: 15,
             alignItems: "center",
-            flexDirection: "row"
+            flexDirection: "row",
+            width: 199,
+
           }}>
           <TouchableOpacity  
           style={{
@@ -236,7 +251,11 @@ function TabNavigator() {
             // borderColor: "yellow"
             
           }}>
-            <MiniStar  width={'12'} height={'12'} color='white' />
+            { profileState == "Favor"  
+            ?  <MiniStar  width={'12'} height={'12'} color='white' />
+            : <DnaIcon  width={'15'} height={'15'} />
+          }
+            {/* <MiniStar  width={'12'} height={'12'} color='white' /> */}
           </View>
           <UserIconHeadMenu width={'23'} height={'23'} color='white' /> 
 
@@ -251,7 +270,7 @@ function TabNavigator() {
             width: 150,
             height: 30,
             alignItems: "center",
-            marginRight: 10,
+            marginRight: 15,
             gap: 30,
             justifyContent: "flex-end",
             flexDirection: "row"
@@ -263,14 +282,9 @@ function TabNavigator() {
          <TouchableOpacity  onPress={() => navigation.push("settingScreen")}>
         
           {/* <SettingIcon width={'21'} height={'21'} /> */}
-          <NotificationIcon  width={'21'} height={'21'} />
+          <NotificationIcon  width={'23'} height={'25'}  />
          </TouchableOpacity>
 
-         <TouchableOpacity  onPress={() => navigation.push("settingScreen")}>
-        
-        {/* <SettingIcon width={'21'} height={'21'} /> */}
-        <InboxIcon  width={'22'} height={'22'} />
-         </TouchableOpacity>
         
 
           </View>
@@ -303,6 +317,9 @@ function AppNavigator() {
             <Stack.Screen name="interestScreeen" component={UserInterestScreen} />
             <Stack.Screen name="UserExploreScreen" component={TabNavigator} options={{gestureDirection: 'vertical' }} />
             <Stack.Screen name="settingScreen" component={SettingScreen}  />
+            <Stack.Screen name="FeedbackScreen" component={FeedbackScreen}  options={{ presentation: "modal" }} />
+            <Stack.Screen name="SupportScreen" component={SupportScreen}  options={{ presentation: "transparentModal" }} />
+
 
 
         </Stack.Navigator>
@@ -324,8 +341,9 @@ export default function App() {
     <LinearGradient
     colors={['black', '#000000bb', 'black']}
     // colors={['black', 'purple', 'black']}
+      // colors={['black',]}
 
-    // colors={['black','orange','silver', 'purple', 'green']}
+    // colors={['black','silver', 'purple', 'green']}
 
     // colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']}
     style={styles.gradient}
