@@ -34,7 +34,7 @@ import { profileLayoutUpdatePageAction } from './store/Actions/ProfileUpdateActi
 import DnaIcon from './icons/dnaIcon';
 import FeedbackScreen from './navigation/feedBackScreen';
 import SupportScreen from './navigation/supportScreen';
-
+import NotificationScreen from './navigation/notificationScreen';
 
 
 
@@ -192,7 +192,7 @@ function TabNavigator() {
              
           </TouchableWithoutFeedback>  
 
-          <TouchableOpacity  onPress={() => navigation.push("settingScreen")}>
+          <TouchableOpacity  onPress={() => navigation.push("NotificationScreen")}>
         
         {/* <SettingIcon width={'21'} height={'21'} /> */}
           <NotificationIcon  width={'23'} height={'25'} />
@@ -279,7 +279,7 @@ function TabNavigator() {
          
              
           
-         <TouchableOpacity  onPress={() => navigation.push("settingScreen")}>
+         <TouchableOpacity  onPress={() => navigation.push("NotificationScreen")}>
         
           {/* <SettingIcon width={'21'} height={'21'} /> */}
           <NotificationIcon  width={'23'} height={'25'}  />
@@ -319,6 +319,7 @@ function AppNavigator() {
             <Stack.Screen name="settingScreen" component={SettingScreen}  />
             <Stack.Screen name="FeedbackScreen" component={FeedbackScreen}  options={{ presentation: "modal" }} />
             <Stack.Screen name="SupportScreen" component={SupportScreen}  options={{ presentation: "transparentModal" }} />
+            <Stack.Screen name="NotificationScreen" component={NotificationScreen}  />
 
 
 
@@ -339,11 +340,11 @@ export default function App() {
     <Provider store={store} >
     <View  style={styles.container} >
     <LinearGradient
-    colors={['black', '#000000bb', 'black']}
+    // colors={['black', '#000000bb', 'black']}
     // colors={['black', 'purple', 'black']}
       // colors={['black',]}
 
-    // colors={['black','silver', 'purple', 'green']}
+    colors={['black','silver', 'purple', 'green']}
 
     // colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']}
     style={styles.gradient}
