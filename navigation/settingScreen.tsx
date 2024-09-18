@@ -15,11 +15,13 @@ export default function SettingScreen() {
     const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
     const [aboutState, setAboutState] = useState(false)
     const [defaultState, setDefaulState] = useState(true)
+    const [themeState, setThemeState] = useState(false)
 
 
     const handleWorthsecInfotoggle = () =>  {
-        setDefaulState(!defaultState)
-        setAboutState(!aboutState)
+        setDefaulState(false)
+        setAboutState(true)
+        setThemeState(false)
     
     }   
 
@@ -30,8 +32,15 @@ export default function SettingScreen() {
 
     const handlesetting = () => {
         setAboutState(false)
-
         setDefaulState(true)
+        setThemeState(false)
+
+    }
+
+    const handleThemeToggle = () => {
+      setDefaulState(false)
+      setAboutState(false)
+      setThemeState(!themeState)
     }
 
   return (
@@ -112,14 +121,238 @@ export default function SettingScreen() {
       </View>
 
         {/* Content */}
+      
       <View style={{
         // backgroundColor: "pink", 
-        height: 600,
+        height: "100%",
         // alignItems: "center",
         // gap: 60
       }}>
 
+        {themeState && (
+            <View
+            style={{
+                // backgroundColor: "orange", 
+       
+            // justifyContent: "center",
+            alignItems: "center",
+            // gap: 20,
+            height: "100%",
+            }}
+            >
+             <View style={{
+                // backgroundColor: "green",
+                width: "100%",
+                height: "9%",
+                marginTop: 20,
+                justifyContent: "center",
+                alignItems: "center",
 
+
+          
+                
+
+             }}>
+
+          <Text style={{color: "white", textAlign:"center", fontSize: 22, }}> Choose your Background</Text>
+
+             
+               
+             </View>
+             <View style={{
+              // backgroundColor: "blue",
+              width: "95%",
+              height: "50%",
+              
+             }}>
+              <View style={{
+                height: "50%", 
+                // backgroundColor: "green",
+                flexDirection: "row", 
+                alignItems: "center",
+                justifyContent: "center",
+                padding: 2
+                // gap: 5
+              }}>
+
+                {/* first color  */}
+                <View style={{
+                  // backgroundColor: "blue",
+                  height: "100%", 
+                  width: "33%", 
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 10,
+                  // borderRadius: 100
+                  
+
+
+                }}>
+                    <View style={{
+                  backgroundColor: "yellow",
+                  height: "39%", 
+                  width: "63%", 
+                  borderRadius:  100,
+
+                  
+
+
+                }}>
+
+                </View>
+
+                <Text style={{color: "white", textAlign:"center", fontSize: 12, opacity: 0.8}}> Color 1</Text>
+
+                
+                  
+
+                </View>
+                {/* second color */}
+                <View style={{
+                  // backgroundColor: "grey",
+                  height: "100%", 
+                  width: "33%",
+                  alignItems: "center",
+                  justifyContent: "center", 
+                  gap: 10,
+                  // borderRadius:  100
+                  
+
+
+                }}>
+                     <View style={{
+                  backgroundColor: "yellow",
+                  height: "39%", 
+                  width: "63%", 
+                 
+                  borderRadius:  100,
+                  
+
+
+                }}>
+
+                </View>
+
+                <Text style={{color: "white", textAlign:"center", fontSize: 12, opacity: 0.8}}> Color 2</Text>
+
+
+                </View>
+
+                <View style={{
+                  // backgroundColor: "yellow",
+                  height: "100%", 
+                  width: "33%", 
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 10, 
+                  // borderRadius:  100
+                  
+
+
+                }}>
+                     <View style={{
+                  backgroundColor: "blue",
+                  height: "39%", 
+                  width: "63%", 
+                 
+                  borderRadius:  100,
+                  
+
+
+                }}>
+
+                  
+
+                </View>
+
+                <Text style={{color: "white", textAlign:"center", fontSize: 12, opacity: 0.8}}> Color 3</Text>
+
+
+
+                </View>
+                
+                <View>
+
+                </View>
+
+
+                {/* Below section  */}
+              </View>
+               <View style={{
+                height: "50%", 
+                // backgroundColor: "red",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 20,
+              }}>
+                 <View style={{
+                  // backgroundColor: "yellow",
+                  height: "100%", 
+                  width: "33%", 
+                  alignItems: "center",
+                  justifyContent: "center", 
+                  gap: 10, 
+                  // borderRadius:  100
+                  
+
+
+                }}>
+                     <View style={{
+                  backgroundColor: "blue",
+                  height: "39%", 
+                  width: "63%", 
+                  borderRadius:  100,
+                  
+
+
+                }}>
+
+                </View>
+                <Text style={{color: "white", textAlign:"center", fontSize: 12, opacity: 0.8}}> Color 4</Text>
+
+
+
+                </View>
+
+
+                <View style={{
+                  // backgroundColor: "yellow",
+                  height: "100%", 
+                  width: "33%", 
+                  alignItems: "center",
+                  justifyContent: "center", 
+                  gap: 10, 
+                  // borderRadius:  100
+                  
+
+
+                }}>
+                     <View style={{
+                  backgroundColor: "red",
+                  height: "39%", 
+                  width: "63%", 
+                 
+                  borderRadius:  100,
+                  
+
+
+                }}>
+
+                </View>
+
+                <Text style={{color: "white", textAlign:"center", fontSize: 12, opacity: 0.8}}> Color 5</Text>
+
+
+
+                </View>
+                
+
+              </View>
+              
+              </View>
+            </View>
+        )}
         {aboutState && (
             <View
             style={{
@@ -177,6 +410,33 @@ export default function SettingScreen() {
             alignItems: "center",
             gap: 60
             }}>
+        <TouchableOpacity style={{
+            // backgroundColor: "rgba(141,141,141,1)",
+            height: 40,
+            width: "70%",
+            borderRadius: 30,
+            alignItems: "center", 
+            justifyContent: "center",
+             borderWidth: 1,
+            borderColor: "rgba(141,141,141,1)"
+
+        }}
+        onPress={() => handleThemeToggle()}
+        >
+            <View style={{
+                position: "absolute", 
+                zIndex: 3,
+                top: "15%",
+                left: "6.5%"
+            }}>
+               
+                <KleeIcon width={"25"} height={"25"} />
+            </View>
+            <View>
+                <Text style={{color: "white", fontSize: 20}}>Chang Theme</Text>
+                
+            </View>
+        </TouchableOpacity>
             <TouchableOpacity style={{
             // backgroundColor: "rgba(141,141,141,1)",
             height: 40,
@@ -254,7 +514,8 @@ export default function SettingScreen() {
 const styles = StyleSheet.create({
     container: {
       // backgroundColor: "rgba(35, 32, 32, 0.99)",
-      flex: 1,
+      // flex: 1,
+      height: "100%",
     //   justifyContent: "center",
       paddingTop: 50,
 

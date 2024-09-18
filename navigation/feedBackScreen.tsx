@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import LinkIcon from "../icons/linkIcon";
 
 export default function FeedbackScreen() {
   return (
@@ -42,7 +43,7 @@ export default function FeedbackScreen() {
             padding: 10,
             gap: 1
         }}>
-            <View style={{
+            <TouchableOpacity style={{
                 height: "10%",
                 // backgroundColor: "red",
                 justifyContent: "center",
@@ -50,9 +51,17 @@ export default function FeedbackScreen() {
             <Text style={{color: "skyblue", fontSize: 15,textDecorationLine: "underline", textDecorationStyle: "solid"}}>
                 I would like to give a Feedback to the App in General
             </Text>
-            </View>
-
             <View style={{
+                position: "absolute", 
+                top: "55%",
+                left: "16%"
+            }}>
+
+            <LinkIcon width="12" height="12"/>
+            </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={{
                 height: "10%",
                 // backgroundColor: "red",
                 justifyContent: "center",
@@ -60,9 +69,17 @@ export default function FeedbackScreen() {
             <Text style={{color: "skyblue", fontSize: 15,textDecorationLine: "underline", textDecorationStyle: "solid"}}>
             I want to provide feedback on the app's design and layout
             </Text>
-            </View>
-
             <View style={{
+                position: "absolute", 
+                top: "55%",
+                left: "13%"
+            }}>
+
+            <LinkIcon width="12" height="12"/>
+            </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={{
                 height: "10%",
                 // backgroundColor: "red",
                 justifyContent: "center",
@@ -70,8 +87,18 @@ export default function FeedbackScreen() {
             <Text style={{color: "skyblue", fontSize: 15,textDecorationLine: "underline", textDecorationStyle: "solid"}}>
               I encountered a bug and would like to report it.
             </Text>
-            </View>
             <View style={{
+                position: "absolute", 
+                top: "45%",
+                left: "91%"
+            }}>
+
+            <LinkIcon width="12" height="12"/>
+            </View>
+            </TouchableOpacity>
+
+
+            <TouchableOpacity style={{
                 height: "10%",
                 // backgroundColor: "red",
                 justifyContent: "center",
@@ -79,8 +106,18 @@ export default function FeedbackScreen() {
             <Text style={{color: "skyblue", fontSize: 15,textDecorationLine: "underline", textDecorationStyle: "solid"}}>
              I came up with an idea and would love to share it
             </Text>
-            </View>
             <View style={{
+                position: "absolute", 
+                top: "45%",
+                left: "94%"
+            }}>
+
+            <LinkIcon width="12" height="12"/>
+            </View>
+            </TouchableOpacity>
+
+
+            <TouchableOpacity style={{
                 height: "10%",
                 // backgroundColor: "red",
                 justifyContent: "center",
@@ -88,8 +125,18 @@ export default function FeedbackScreen() {
             <Text style={{color: "skyblue", fontSize: 15,textDecorationLine: "underline", textDecorationStyle: "solid"}}>
              I'd like to share feedback on the app's navigation
             </Text>
-            </View>
             <View style={{
+                position: "absolute", 
+                top: "45%",
+                left: "96%"
+            }}>
+
+            <LinkIcon width="12" height="12"/>
+            </View>
+            </TouchableOpacity>
+
+
+            <TouchableOpacity style={{
                 height: "10%",
                 // backgroundColor: "red",
                 justifyContent: "center",
@@ -97,37 +144,67 @@ export default function FeedbackScreen() {
             <Text style={{color: "skyblue", fontSize: 15,textDecorationLine: "underline", textDecorationStyle: "solid"}}>
             I want to provide feedback on the app's speed and responsiveness
             </Text>
-            </View>
             <View style={{
-                height: "10%",
-                // backgroundColor: "red",
-                justifyContent: "center",
+                position: "absolute", 
+                top: "56%",
+                left: "32%"
             }}>
-            <Text style={{color: "skyblue", fontSize: 15,textDecorationLine: "underline", textDecorationStyle: "solid"}}>
-            I want to comment on the functionality and features of the app.
-            </Text>
+
+            <LinkIcon width="12" height="12"/>
             </View>
-            <View style={{
+            </TouchableOpacity>
+            <TouchableOpacity style={{
                 height: "10%",
                 // backgroundColor: "red",
-                justifyContent: "center",
+                // justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "row",
+                gap: 5
+            }}>
+          
+            <Text style={{color: "skyblue", fontSize: 15,textDecorationLine: "underline", textDecorationStyle: "solid"}}>
+            I want to comment on the functionality and features of the app
+            </Text>
+            <View style={{
+                position: "absolute", 
+                top: "56%",
+                left: "22%"
+            }}>
+
+            <LinkIcon width="12" height="12"/>
+            </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={{
+                height: "10%",
+                // backgroundColor: "red",
+                // justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "row",
+                gap: 5
+
             }}>
             <Text style={{color: "skyblue", fontSize: 15,textDecorationLine: "underline", textDecorationStyle: "solid"}}>
                 I'd like to share my experience
+
             </Text>
-            </View>
+            <LinkIcon width="12" height="12"/>
+            </TouchableOpacity>
             <View style={{
                 height: "13%",
                 // backgroundColor: "red",
                 justifyContent: "center",
+                gap:2
             }}>
-            <Text style={{color: "white", textAlign:"center", fontSize: 12,}}>
+               
+
+               
+            <Text style={{color: "white", textAlign:"center", fontSize: 12, opacity: 0.8}}>
                 "Thank you so much for taking the time to share your feedback 
                 on your experience with Worthsec! Since this is an MVP, 
                 your insights are incredibly valuable to us, and we'll 
                 do our best to consider them in our next update."
             </Text>
-            <Text style={{color: "white", textAlign:"center", fontSize: 12}}> - Emmanuel Neuenhaus</Text>
+            <Text style={{color: "white", textAlign:"center", fontSize: 12, opacity: 0.8}}> - Emmanuel Neuenhaus</Text>
             </View>
 
 
@@ -151,7 +228,7 @@ const styles = StyleSheet.create({
   },
   gradient: {
     ...StyleSheet.absoluteFillObject,
-    paddingTop: 40,
+    paddingTop: 10,
     // height: '100%'
   },
 });
