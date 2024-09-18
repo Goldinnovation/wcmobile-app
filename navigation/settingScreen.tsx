@@ -36,6 +36,20 @@ export default function SettingScreen() {
 
   return (
     <View style={styles.container}>
+
+    <LinearGradient
+    colors={['black',  'rgba(192,192,192, 0.98)','rgba(35, 32, 32, 2)','black']}
+    // colors={['black', 'purple', 'black']}
+      // colors={['black',]}
+
+    // colors={['black','silver', 'purple', 'green']}
+
+    // colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']}
+    style={styles.gradient}
+    start={{ x: 0, y: 1}}
+    end={{ x: 0, y: 0 }}
+    >
+     
         {/* Header */}
       <View style={{
         height: 50, 
@@ -226,23 +240,30 @@ export default function SettingScreen() {
        
         
       </View>
+      </LinearGradient>
+      </View>
+    
+
 
     
       
-    </View>
   )
 }
 
 
 const styles = StyleSheet.create({
     container: {
-      backgroundColor: "rgba(35, 32, 32, 0.99)",
+      // backgroundColor: "rgba(35, 32, 32, 0.99)",
       flex: 1,
     //   justifyContent: "center",
       paddingTop: 50,
 
     },
  
+    gradient: {
+      ...StyleSheet.absoluteFillObject,
+      paddingTop: 50,
+    },
  
 
 })
