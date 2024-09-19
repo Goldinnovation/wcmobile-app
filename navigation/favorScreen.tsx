@@ -16,7 +16,7 @@ export default  function FavorScreen() {
 
 const styles = StyleSheet.create({
     container: {
-    //   backgroundColor: "pink",
+      // backgroundColor: "pink",
       flex: 1,
     //   justifyContent: "center",
       paddingTop: 50,

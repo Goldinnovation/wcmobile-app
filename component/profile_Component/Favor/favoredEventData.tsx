@@ -52,7 +52,10 @@ const FavoredEventData: React.FC<FavoredEventDataProps> = ({eventData, handleEve
             width: "100%",
             flexDirection: "row",
             padding: 1,
-            height: 50,
+            // height: 50,
+            height: "9.5%",
+
+
         }}>
             <View style={{
                 width: "80%",
@@ -124,7 +127,8 @@ const FavoredEventData: React.FC<FavoredEventDataProps> = ({eventData, handleEve
                                         <View style={{
                                             // backgroundColor: "orange",
                                             width: 170,
-                                            height: 210
+                                            // height: 210
+                                            height: "7.1%",
 
                                             // 
                                         }}>

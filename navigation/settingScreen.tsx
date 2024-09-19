@@ -8,6 +8,7 @@ import ArrowIcon from "../icons/arrowIcon";
 import SettingIcon from "../icons/settingIcon";
 import KleeIcon from "../icons/kleeIcon";
 import LogOutIcon from "../icons/logoutIcon";
+import PaintBrushIcon from "../icons/paintIcon";
 
 export default function SettingScreen() {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
@@ -437,11 +438,11 @@ export default function SettingScreen() {
                   style={{
                     position: "absolute",
                     zIndex: 3,
-                    top: "15%",
+                    top: "27%",
                     left: "6.5%",
                   }}
                 >
-                  <KleeIcon width={"25"} height={"25"} />
+                  <PaintBrushIcon width={"20"} height={"20"} />
                 </View>
                 <View>
                   <Text style={{ color: "white", fontSize: 20 }}>

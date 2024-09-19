@@ -77,7 +77,8 @@ export default function FavorData() {
     {/* Header Favor Section */}
       <View
           style={{
-            height: 50,
+            // height: 50,
+            height: "6.5%",
             // backgroundColor: "green",
             display: "flex",
             // justifyContent: "center",
@@ -103,7 +104,7 @@ export default function FavorData() {
           source={require("../assets/arr1.png")}
           style={{height: 25, width: 25,}}
           /> */}
-            <ArrowIcon width={"25"} height={"25"} />
+            <ArrowIcon width={"20"} height={"20"} />
           </TouchableOpacity>
           <View
             style={{
@@ -134,11 +135,13 @@ export default function FavorData() {
           </View>
       </View>
 
+    {/* Weekly Events Area */}
       <View
         style={{
           // flexDirection: "row",
           gap: 0,
-          height: 120,
+          // height: 120,
+          height: "15.9%",
           padding: 5,
           // backgroundColor: "skyblue",
           alignItems: "center",
@@ -153,20 +156,22 @@ export default function FavorData() {
         style={{
           flexDirection: "row",
           gap: 24,
-          height: 50,
+          // height: 50,
+          height: "6.5%",
           padding: 5,
-          // backgroundColor: "green",
+          // backgroundColor: "orange",
           alignItems: "center",
           // marginTop: 5,
         }}
       >
         <EventFavoredTags />
       </View>
-
+    {/* Events Content */}
       <View
         style={{
           // backgroundColor: "orange",
-          height: 470,
+          // height: 500,
+          height: "71.1%",
           flexDirection: "row",
         }}
       >
@@ -192,9 +197,10 @@ export default function FavorData() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     // backgroundColor: "red",
     // marginBottom: 20
+    height: "100%"
   },
   scrollViewContent: {
     alignItems: "center",
