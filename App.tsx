@@ -37,6 +37,7 @@ import MessageScreen from './navigation/messageScreen';
 import NotificationScreen from './navigation/notificationScreen';
 import UserScreen from './navigation/userScreen';
 import SearchScreen from './navigation/searchScreen';
+import FavorScreen from './navigation/favorScreen';
 
 
 
@@ -368,6 +369,8 @@ function AppNavigator() {
             <Stack.Screen name="MessageScreen" component={MessageScreen}  options={{ presentation:  "modal"  }} />
             <Stack.Screen name="NotificationScreen" component={NotificationScreen}  /> 
             <Stack.Screen name="UserScreen" component={UserScreen}  options={{ presentation:  "transparentModal"  }}/>
+            <Stack.Screen name="FavorScreen" component={FavorScreen}  />
+
 
 
 

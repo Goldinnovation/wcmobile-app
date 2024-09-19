@@ -18,18 +18,11 @@ export default function ProfileScreen() {
 
         <View style={{ flex: 1 }}>
            
-           { profileState === "Profile" && (
-            <View style={{ flex: 1 }}>
+         
                 <ProfilePageStructure/>
-            </View>
 
-           )}
-           { profileState === "Favor" && (
-            <View style={{ flex: 1 }}>
-                 <FavorData/>
-            </View>
-
-           )}
+         
+      
 
           
 

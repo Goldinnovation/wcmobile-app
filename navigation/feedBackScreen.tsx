@@ -49,12 +49,12 @@ export default function FeedbackScreen() {
                 justifyContent: "center",
             }}>
             <Text style={{color: "skyblue", fontSize: 15,textDecorationLine: "underline", textDecorationStyle: "solid"}}>
-                I would like to give a Feedback to the App in General
+            I'd like to share my experience with the app
             </Text>
             <View style={{
                 position: "absolute", 
-                top: "55%",
-                left: "16%"
+                top: "40%",
+                left: "85%"
             }}>
 
             <LinkIcon width="12" height="12"/>
@@ -184,7 +184,7 @@ export default function FeedbackScreen() {
 
             }}>
             <Text style={{color: "skyblue", fontSize: 15,textDecorationLine: "underline", textDecorationStyle: "solid"}}>
-                I'd like to share my experience
+            I'd like to provide financial support for the project 
 
             </Text>
             <LinkIcon width="12" height="12"/>

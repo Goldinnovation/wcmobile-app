@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { useFavorGetEvent } from "../../api/favorScreen_Api/favorDatareq";
@@ -9,7 +9,12 @@ import WeeklyEventData from "./Favor/weeklyEventData";
 import FavoredEventData from "./Favor/favoredEventData";
 import EventFavoredTags from "./Favor/eventFavoredTags";
 import { useRef } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { ParamListBase } from "@react-navigation/native";
 import SelectedEventModel from "./Favor/eventModel";
+import ArrowIcon from "../../icons/arrowIcon";
+import FavorIcon from "../../icons/favorIcon";
 
 interface eventFavorData {
     eventId: string;
@@ -34,6 +39,8 @@ export default function FavorData() {
   const [eventFavorData, setEventFavorData] = useState<favoredDataArr | []>([]);
   const [selectedEventData, setSelectedEventData] = useState<eventFavorData | null>(null)
   const childRef = useRef<any>(null)
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+
 
    
   // variables
@@ -67,6 +74,66 @@ export default function FavorData() {
     <View style={styles.container}>
       {/* Current Day Events  */}
 
+    {/* Header Favor Section */}
+      <View
+          style={{
+            height: 50,
+            // backgroundColor: "green",
+            display: "flex",
+            // justifyContent: "center",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <TouchableOpacity
+            style={{
+              position: "absolute",
+              top: "10%",
+              left: "3%",
+              zIndex: 3,
+              width: "10%",
+              height: 40,
+              // backgroundColor: "green",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            onPress={() => navigation.goBack()}
+          >
+            {/* <Image
+          source={require("../assets/arr1.png")}
+          style={{height: 25, width: 25,}}
+          /> */}
+            <ArrowIcon width={"25"} height={"25"} />
+          </TouchableOpacity>
+          <View
+            style={{
+              width: "100%",
+              height: 50,
+              // backgroundColor: "blue",
+              alignItems: "center",
+              flexDirection: "row",
+              justifyContent: "flex-end",
+              paddingRight: 20,
+            }}
+          >
+            <TouchableOpacity
+              style={{
+                // backgroundColor: "rgba(68,68,68,1)",
+                height: 40,
+                width: 40,
+                // borderRadius: 50,
+                alignItems: "center",
+                justifyContent: "center",
+                // opacity: 0.8,
+              }}
+              // onPress={() => handlesetting()}
+              onPress={() => navigation.goBack()}
+            >
+              <FavorIcon width={"30"} height={"25"} lineColor="white" />
+            </TouchableOpacity>
+          </View>
+      </View>
+
       <View
         style={{
           // flexDirection: "row",
@@ -82,7 +149,7 @@ export default function FavorData() {
       </View>
 
       {/* Tags for Events */}
-      {/* <View
+      <View
         style={{
           flexDirection: "row",
           gap: 24,
@@ -94,7 +161,7 @@ export default function FavorData() {
         }}
       >
         <EventFavoredTags />
-      </View> */}
+      </View>
 
       <View
         style={{
@@ -126,7 +193,7 @@ export default function FavorData() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "pink",
+    // backgroundColor: "red",
     // marginBottom: 20
   },
   scrollViewContent: {
