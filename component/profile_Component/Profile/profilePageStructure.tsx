@@ -10,6 +10,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from "@react-navigation/stack";
 import { ParamListBase } from "@react-navigation/native";
+import InboxIcon from '../../../icons/inboxIcon';
 
 export default function ProfilePageStructure(){
     const dispatchProfilePageState = useDispatch()
@@ -34,13 +35,15 @@ export default function ProfilePageStructure(){
             gap: 10,
         }}>
 
-        <View style={{
+        <TouchableOpacity style={{
             position: "absolute",
             top: "40%",
             zIndex:3,
             left: "38%"
 
-        }}>
+        }}
+        onPress={() => navigation.push("UserScreen")}
+        >
         <Image
           source={require("../../../assets/7.jpg")}
           style={{
@@ -53,7 +56,7 @@ export default function ProfilePageStructure(){
             marginTop: 1,
           }}
         />
-        </View>
+        </TouchableOpacity>
          <View style={{
             // backgroundColor:"blue",
             height: 290,
@@ -113,15 +116,15 @@ export default function ProfilePageStructure(){
                 shadowOpacity: 4,
                 shadowRadius: 2,
             }}
-            onPress={() => navigation.push("SupportScreen")}
+            onPress={() => navigation.push("MessageScreen")}
             
             
             >
-                <SupportIcon width={'51'} height={'61'} />
+                <InboxIcon width={'51'} height={'61'} />
 
                 <Text style={{
                     color: "white"
-                }}>Support</Text>
+                }}>Message</Text>
             </TouchableOpacity>
             
 

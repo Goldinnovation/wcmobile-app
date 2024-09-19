@@ -33,10 +33,10 @@ import { useDispatch } from 'react-redux';
 import { profileLayoutUpdatePageAction } from './store/Actions/ProfileUpdateAction';
 import DnaIcon from './icons/dnaIcon';
 import FeedbackScreen from './navigation/feedBackScreen';
-import SupportScreen from './navigation/supportScreen';
+import MessageScreen from './navigation/messageScreen';
 import NotificationScreen from './navigation/notificationScreen';
-
-
+import UserScreen from './navigation/userScreen';
+import SearchScreen from './navigation/searchScreen';
 
 
 
@@ -51,7 +51,7 @@ const MyTheme = {
   },
 };
 
-type RouteName = 'Profile' | 'ExploreContent';
+type RouteName = 'Profile' | 'ExploreContent' | "Search";
 
 const icons: Record<RouteName, {focused: any; unfocused: any}> = {
   Profile: {
@@ -63,6 +63,12 @@ const icons: Record<RouteName, {focused: any; unfocused: any}> = {
 
     focused: require('./assets/4.png'),
     unfocused: require('./assets/wind-rose.png')
+  },
+
+  Search: {
+
+    focused: require('./assets/qr1.png'),
+    unfocused: require('./assets/qrg.png')
   }
 }
 
@@ -213,6 +219,45 @@ function TabNavigator() {
       
       ></Tab.Screen>
        <Tab.Screen    
+      name='Search'
+      component={SearchScreen}
+      options={{
+        title: 'Search',
+        headerRight: () => (
+          <View style={{
+            // backgroundColor: "pink",
+            width: 150,
+            height: 30,
+            alignItems: "center",
+            marginRight: 15,
+            gap: 30,
+            justifyContent: "flex-end",
+            flexDirection: "row"
+          }}> 
+         
+         
+             
+          
+         <TouchableOpacity  onPress={() => navigation.push("NotificationScreen")}>
+        
+          {/* <SettingIcon width={'21'} height={'21'} /> */}
+          <NotificationIcon  width={'23'} height={'25'}  />
+         </TouchableOpacity>
+
+        
+
+          </View>
+        ),
+        headerStyle: {
+          backgroundColor: 'transparent',},
+          headerTintColor: 'grey',
+          // headerTitleStyle: {
+          //   fontWeight: 'bold'}
+            
+      }}
+      
+      ></Tab.Screen>
+       <Tab.Screen    
       name='Profile'
       component={ProfileScreen}
       options={{
@@ -298,6 +343,8 @@ function TabNavigator() {
       }}
       
       ></Tab.Screen>
+     
+      
 
     </Tab.Navigator>
   );
@@ -318,8 +365,9 @@ function AppNavigator() {
             <Stack.Screen name="UserExploreScreen" component={TabNavigator} options={{gestureDirection: 'vertical' }} />
             <Stack.Screen name="settingScreen" component={SettingScreen}  />
             <Stack.Screen name="FeedbackScreen" component={FeedbackScreen}  options={{ presentation: "modal" }} />
-            <Stack.Screen name="SupportScreen" component={SupportScreen}  options={{ presentation: "transparentModal" }} />
-            <Stack.Screen name="NotificationScreen" component={NotificationScreen}  />
+            <Stack.Screen name="MessageScreen" component={MessageScreen}  options={{ presentation:  "modal"  }} />
+            <Stack.Screen name="NotificationScreen" component={NotificationScreen}  /> 
+            <Stack.Screen name="UserScreen" component={UserScreen}  options={{ presentation:  "transparentModal"  }}/>
 
 
 
