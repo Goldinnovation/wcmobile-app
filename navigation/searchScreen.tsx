@@ -1,11 +1,13 @@
 import React from 'react'
 import { View, Text, StyleSheet} from 'react-native'
+import SearchpageStructure from '../component/search_component/searchpageStructure'
+
 
 export default  function SearchScreen() {
   return (
     <View style={styles.container}> 
         <View>
-            <Text>Hello</Text>
+            <SearchpageStructure/>
         </View>
       
     </View>
@@ -15,10 +17,10 @@ export default  function SearchScreen() {
 
 const styles = StyleSheet.create({
     container: {
-      backgroundColor: "pink",
+      // backgroundColor: "pink",
       flex: 1,
     //   justifyContent: "center",
-      paddingTop: 50,
+      // paddingTop: 50,
 
     },
  
