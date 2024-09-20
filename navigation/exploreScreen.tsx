@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet } from "react-native";
-import GetUserData from "../component/explore_Component/getUserData";
+import ExplorePageStructure from "../component/explore_Component/explorePageStructure";
 import Explorepage from "../pages/Explore/page";
 
 export default function ExploreScreen() {
   return (
     <View style={styles.container}>
-      <GetUserData />
+      <ExplorePageStructure />
       {/* <Explorepage/> */}
 
     </View>

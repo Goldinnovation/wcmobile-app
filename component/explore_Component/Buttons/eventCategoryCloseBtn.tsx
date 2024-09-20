@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { userCategoryLayoutAction } from "../../store/Actions/userLayoutAction";
+import { userCategoryLayoutAction } from "../../../store/Actions/userLayoutAction";
 
 interface eventProps {
   eventId: string;

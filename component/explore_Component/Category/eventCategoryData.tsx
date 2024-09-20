@@ -34,7 +34,7 @@ interface CategoryDataProps {
 }
 
 
-const EventCategoryFetchedData: React.FC<CategoryDataProps> = ({data, index, handleSelectedEvent}) => {
+const EventCategoryData: React.FC<CategoryDataProps> = ({data, index, handleSelectedEvent}) => {
 
     const categoryData = data
 
@@ -130,4 +130,4 @@ const EventCategoryFetchedData: React.FC<CategoryDataProps> = ({data, index, han
 }
 
 
-export default EventCategoryFetchedData
+export default EventCategoryData

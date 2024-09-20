@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Image, Text, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/store";
-import HeartFavorBtn from "./Buttons/HeartFavorBtn";
-import EventDescription from "./Description/eventDescription";
+import { RootState } from "../../../store/store";
+import HeartFavorBtn from "../Buttons/HeartFavorBtn";
+import EventDescription from "./eventDescription";
 
 interface eventProps {
   eventId: string;

@@ -12,9 +12,9 @@ import {
 } from "react-native";
 import Animated, { FadeInDown, SlideInDown, SlideInUp } from 'react-native-reanimated';
 import { userCategoryReq } from "../../api/exploreScreen_Api/CategoryDataApi";
-import EventCategoryCloseBtn from "./eventCategoryCloseBtn";
-import EventCategoryFetchedData from "./eventCategoryfetchedData";
-import EventDescriptionArea from "./eventDescriptionArea";
+import EventCategoryCloseBtn from "./Buttons/eventCategoryCloseBtn";
+import EventCategoryData from "./Category/eventCategoryData";
+import EventDescriptionArea from "./Description/eventDescriptionArea";
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../store/store";
 import { userCategoryLayoutAction } from "../../store/Actions/userLayoutAction";
@@ -74,7 +74,7 @@ const reducer = (state: State, action: Action) => {
       return { eventDescription: true, eventDetails: false, eventSound: false, eventOptionHeader: "Description" };
   }
 };
-export default function GetUserData() {
+export default function ExplorePageStructure() {
   const [data, setData] = useState<eventArr | []>([]);
   const [categoryData, setCategoryData] = useState<eventArr | []>([])
   const {categoryLayoutState} = useSelector((state: RootState) => state.OpenCategoryLayout)
@@ -255,7 +255,7 @@ export default function GetUserData() {
                   <>
                     <Animated.View entering={FadeInDown}>
                   
-                      <EventCategoryFetchedData  data={categoryData} index={index} handleSelectedEvent={handleSelectedEvent}/>
+                      <EventCategoryData  data={categoryData} index={index} handleSelectedEvent={handleSelectedEvent}/>
                     </Animated.View>
               
 

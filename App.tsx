@@ -9,7 +9,7 @@ import ExploreScreen from './navigation/exploreScreen';
 import ProfileScreen from './navigation/profileScreen';
 import LoginScreen from './navigation/loginScreen';
 import UserInterestScreen from './navigation/interestScreen';
-import ExploreFilter from './component/Main_Component/exposeFilter';
+import ExploreFilter from './component/Main_Component/exploreFilter';
 import { useState } from 'react';
 import ExploreEventFilter from './icons/ExploreEventFilter';
 import SettingIcon from './icons/settingIcon';
