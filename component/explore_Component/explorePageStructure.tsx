@@ -200,12 +200,12 @@ export default function ExplorePageStructure() {
                 padding: categoryLayoutState === item.eventId ? 0 : 1,
                 marginBottom: categoryLayoutState === item.eventId ? 50 : 50,
                 // backgroundColor: "green",
-                height: categoryLayoutState === item.eventId ? 600 : 600,
+                height: categoryLayoutState === item.eventId ? "4.6%" : "4.6%",
               }}
             >
               
               <View style={{
-               height: categoryLayoutState === item.eventId ? 360 : 515,
+               height: categoryLayoutState === item.eventId ? "59.9%" :  "85.8%",   //360 , 515,
                padding: categoryLayoutState === item.eventId ? 10 : 3,
                 //  backgroundColor: "skyblue",
 
@@ -213,7 +213,14 @@ export default function ExplorePageStructure() {
               <ScrollView
                 horizontal={true}
                 style={{
-                  flexGrow: 1
+                  // flexGrow: 1,
+                  height: "100%",
+                  // backgroundColor: "orange",
+
+                  
+          
+                    
+          
                 }}
               >
                 {/*first cover slide */}
@@ -250,7 +257,10 @@ export default function ExplorePageStructure() {
                 
 
                 {/*  Fetching an array of similar Events that are matching the Event category */}
-                  <View>
+                  <View style={{
+                    // backgroundColor: "orange",
+                    height: "44%"
+                  }}>
                 {categoryLayoutState === item.eventId && (
                   <>
                     <Animated.View entering={FadeInDown}>
@@ -262,7 +272,7 @@ export default function ExplorePageStructure() {
                     {/* Close btn of event Category */}
                   <View
                   style={{
-                    height: 48,
+                    height: "18%", //48
                     alignItems: "center",
                     flexDirection: "row",
                     // justifyContent: "space-between",
@@ -271,7 +281,7 @@ export default function ExplorePageStructure() {
                     // marginBottom: 30,
                     marginTop: categoryLayoutState === item.eventId ? 1 : 9,
                     position: "relative",
-                    top: categoryLayoutState === item.eventId ? "-4%" : "2%",
+                    top: categoryLayoutState === item.eventId ? "-6%" : "2%",
                     // backgroundColor: "pink"
                   }}
                 >                 
@@ -304,7 +314,8 @@ export default function ExplorePageStructure() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
+     height: "100%"
     // backgroundColor: "pink",
     // marginBottom: 20
   },

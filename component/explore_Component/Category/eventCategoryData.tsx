@@ -45,7 +45,7 @@ const EventCategoryData: React.FC<CategoryDataProps> = ({data, index, handleSele
                         <ScrollView
                           horizontal={true}
                           style={{
-                            height: 120,
+                            height:  "87.8%",  //"48.3%",  //120
                             // backgroundColor: "purple",
                             flexDirection: "row",
                             // marginTop: 5,

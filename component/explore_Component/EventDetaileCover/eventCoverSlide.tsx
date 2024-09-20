@@ -44,7 +44,8 @@ const EventCoverSlide: React.FC<eventCoverProps> = ({ data }) => {
     <View
       style={
         {
-          // backgroundColor: "skyblue",
+          height: "100%",
+          // backgroundColor: "pink",
           // height: isOpen === item.eventId ? 200 : 490,
         }
       }
@@ -152,12 +153,12 @@ const EventCoverSlide: React.FC<eventCoverProps> = ({ data }) => {
         { eventMenuBar 
         ? 
         <View style={{
-          // backgroundColor: "rgba(159,159,159,0.2)",
+          // backgroundColor: "pink",
           display: categoryLayoutState === item.eventId ? "none" : "flex",
           position: "relative", 
           top: "-329%",
           left: "-5%",
-          height: 190,
+          height: 250,
           width:60,
           alignItems: "center",
           gap: 30
@@ -275,6 +276,11 @@ const EventCoverSlide: React.FC<eventCoverProps> = ({ data }) => {
         
       </View>
 
+
+      <View style={{
+        // backgroundColor: "green",
+        // height: "100%"
+      }}>
       <Image
         source={{ uri: item.ImageCoverUpload }}
         style={{
@@ -288,6 +294,9 @@ const EventCoverSlide: React.FC<eventCoverProps> = ({ data }) => {
           //  paddingRight: 30,
         }}
       />
+
+      </View>
+     
     </View>
   );
 };

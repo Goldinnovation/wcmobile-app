@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 import AddFriendsIcon from '../../icons/addFriendsIcon'
 import PuzzleIcon from '../../icons/puzzleIcon'
 import OutlineScanIcon from '../../icons/outlineScanIcon'
+import SearchLoopIcon from '../../icons/searchLoopIcon'
 
 export default function SearchpageStructure() {
     const [searchMenuToggle, setSearchMenuToggle] = useState(false)
@@ -33,35 +34,64 @@ export default function SearchpageStructure() {
             alignItems: "center",
             padding: 5,
             flexDirection: "row",
-            gap: 10
+            // gap: 10
 
 
 
         }}>
             <View style={{
-                width: "80%",
-                height: "50%", 
+                width: "99%",
+                height: "54%", 
                 backgroundColor: "rgba(255, 255, 255,0.1)",
-                borderRadius: 7,
+                borderRadius: 50,
                 borderWidth: 1, 
-                borderColor: "rgba(255, 255, 255,0.5)"
-
-            }}>
-                <Text>Hello</Text>
-            </View>
-
-            <TouchableOpacity style={{
-                width: "15%",
-                height: "50%", 
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "rgba(70,70,70,0.3)",
-                borderRadius: 5,
-                borderWidth: 1, 
-                borderColor: "rgba(255, 255, 255,0.1)",
+                borderColor: "rgba(255, 255, 255,0.5)",
+                flexDirection: "row",
                 shadowOffset: { width: 0, height: 2 },
                 shadowOpacity: 1,
                 shadowRadius: 1,
+
+            }}>
+                <View style={{
+                    width: "12%",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    opacity: 0.8,
+                }}> 
+
+
+                    {
+                        addUserToggle 
+                        ? <SearchLoopIcon width={'29'} height={'21'} />
+
+                        :  <Text style={{
+                            color: "white", 
+                            fontSize: 22 
+
+                        }}>#</Text>
+                    }
+               
+                </View>
+                <View style={{
+                    width: "68%",
+                    backgroundColor: "rgba(203,203,203,0.1)"
+                }}> 
+                <Text>Hello</Text>
+                
+                </View>
+                <TouchableOpacity style={{
+                width: "20%",
+                // height: "50%", 
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "rgba(70,70,70,0.3)",
+                borderTopRightRadius: 50,
+                borderBottomRightRadius: 50,
+                borderWidth: 1, 
+                borderColor: "rgba(255, 255, 255,0.1)",
+                borderLeftWidth: 1,
+                borderLeftColor: "rgba(255, 255, 255,0.5)"
+               
 
             }}
             
@@ -70,7 +100,7 @@ export default function SearchpageStructure() {
                 {
                     eventToggle 
                     
-                    ? <PuzzleIcon width={'29'} height={'21'} />
+                    ? <OutlineScanIcon width={'29'} height={'21'} />
 
                     : <AddFriendsIcon width={'21'} height={'21'} />
 
@@ -78,6 +108,9 @@ export default function SearchpageStructure() {
             
 
             </TouchableOpacity>
+            </View>
+
+            
 
 
             { searchMenuToggle  &&
@@ -85,7 +118,7 @@ export default function SearchpageStructure() {
                 <View style={{
                     position: "absolute", 
                     top: "100%",
-                    left: "85%",
+                    left: "83%",
                     zIndex: 3,
                     width: "14%",
                     height: "180%",
@@ -96,6 +129,9 @@ export default function SearchpageStructure() {
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 1,
+                    shadowRadius: 1,
                     // gap: 20
     
     
