@@ -1,7 +1,7 @@
 import { View, Text, FlatList } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import React, {useState, useEffect} from "react"
-import FavorData from "../component/profile_Component/favorpageStructure"
+import FavorData from "../component/favor_Component/favorpageStructure"
 import ProfilePageStructure from "../component/profile_Component/Profile/profilePageStructure"
 import { useSelector } from "react-redux"
 import { RootState } from "../store/store"

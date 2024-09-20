@@ -8,6 +8,7 @@ import { Image } from "react-native";
 import WeeklyEventData from "./Favor/weeklyEventData";
 import FavoredEventData from "./Favor/favoredEventData";
 import EventFavoredTags from "./Favor/eventFavoredTags";
+
 import { useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";

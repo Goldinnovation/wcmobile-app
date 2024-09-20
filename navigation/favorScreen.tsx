@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet} from 'react-native'
-import FavorData from '../component/profile_Component/favorpageStructure'
+import FavorData from '../component/favor_Component/favorpageStructure'
 
 export default  function FavorScreen() {
   return (
