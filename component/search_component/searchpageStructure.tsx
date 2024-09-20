@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 import AddFriendsIcon from '../../icons/addFriendsIcon'
 import PuzzleIcon from '../../icons/puzzleIcon'
+import OutlineScanIcon from '../../icons/outlineScanIcon'
 
 export default function SearchpageStructure() {
     const [searchMenuToggle, setSearchMenuToggle] = useState(false)
@@ -126,7 +127,7 @@ export default function SearchpageStructure() {
 
                     onPress={() => handleEventToggle()}
                     >
-                    <PuzzleIcon width={'29'} height={'21'} />
+                    <OutlineScanIcon width={'29'} height={'21'} />
                     </TouchableOpacity>
                     
     

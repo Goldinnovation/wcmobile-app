@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../../store/userActions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { userFavoredExploredEvent } from "../../../api/explore/userFavoredEvent";
+import { userFavoredExploredEvent } from "../../../api/exploreScreen_Api/userFavoredEvent";
 import HearthFrequenz from "../../../icons/hearthFrequenz";
 import FavorIcon from "../../../icons/favorIcon";
 import CommentIcon from "../../../icons/commentIcon";

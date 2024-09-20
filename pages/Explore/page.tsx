@@ -9,7 +9,7 @@ import {
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useReducer, useRef } from "react";
-import { getTotalEvents } from "../../api/explore/getTotalEvents";
+import { getTotalEvents } from "../../api/exploreScreen_Api/getTotalEvents";
 import EventDescriptionArea from "../../component/explore_Component/eventDescriptionArea";
 
 interface eventProps {
