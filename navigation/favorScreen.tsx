@@ -1,28 +1,18 @@
-import React from 'react'
-import { View, Text, StyleSheet} from 'react-native'
-import FavorData from '../component/favor_Component/favorpageStructure'
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import FavorPageStructure from "../component/favor_Component/favorpageStructure";
 
-export default  function FavorScreen() {
+export default function FavorScreen() {
   return (
-    <View style={styles.container}> 
-        <View style={{ flex: 1 }}>
-                 <FavorData/>
-        </View>
-      
+    <View style={styles.container}>
+      <FavorPageStructure />
     </View>
-  )
+  );
 }
 
-
 const styles = StyleSheet.create({
-    container: {
-      // backgroundColor: "pink",
-      flex: 1,
-    //   justifyContent: "center",
-      paddingTop: 50,
-
-    },
- 
- 
-
-})
+  container: {
+    height: "100%",
+    paddingTop: 50,
+  },
+});

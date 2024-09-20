@@ -36,7 +36,7 @@ interface eventFavorData {
 
 type favoredDataArr = eventFavorData[] | [];
 
-export default function FavorData() {
+export default function FavorPageStructure() {
   const [eventFavorData, setEventFavorData] = useState<favoredDataArr | []>([]);
   const [selectedEventData, setSelectedEventData] = useState<eventFavorData | null>(null)
   const childRef = useRef<any>(null)

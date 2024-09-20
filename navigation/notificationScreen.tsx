@@ -20,8 +20,5 @@ const styles = StyleSheet.create({
       paddingTop: 50,
     },
   
-    // gradient: {
-    //   ...StyleSheet.absoluteFillObject,
-    //   paddingTop: 50,
-    // },
+   
   });

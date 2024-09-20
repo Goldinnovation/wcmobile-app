@@ -25,7 +25,7 @@ import { useInterestPost } from "../../api/interestScreen_Api/interestDataApi";
 
 
 
-export default function InterestDataList() {
+export default function InterestPageStructure() {
   const [pickedIntesrest, setPickedInterest] = useState<string[]>([]);
   const [selectedInterest, setSelectedInterest] = useState<number>(0);
   const [updatebtnStatus, setUpdateBtnStatus] = useState(true)
