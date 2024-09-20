@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { useFavorGetEvent } from "../../api/favorScreen_Api/favorDatareq";
+import { getUserFavoredEvent } from "../../api/favorScreen_Api/favorDatareq";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Image } from "react-native";
@@ -36,7 +36,7 @@ interface eventFavorData {
 
 type favoredDataArr = eventFavorData[] | [];
 
-export default function FavorPageStructure() {
+export default function FavorData() {
   const [eventFavorData, setEventFavorData] = useState<favoredDataArr | []>([]);
   const [selectedEventData, setSelectedEventData] = useState<eventFavorData | null>(null)
   const childRef = useRef<any>(null)
@@ -64,7 +64,7 @@ export default function FavorPageStructure() {
 
 
       if (userToken) {
-        const eventData = await useFavorGetEvent(userToken);
+        const eventData = await getUserFavoredEvent(userToken);
         setEventFavorData(eventData);
       }
     };

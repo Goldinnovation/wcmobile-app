@@ -15,7 +15,7 @@ const initialStateLayout = {
 
  export default (state =  initialStateLayout, {type , payload}) => {
 
-    console.log("payload:", payload);
+    // console.log("payload:", payload);
     switch(type){
         case ProfileLayoutUpdate : return {...state, profileState: payload }
        

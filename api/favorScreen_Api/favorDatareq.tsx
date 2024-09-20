@@ -1,13 +1,14 @@
 import axios from "axios";
 import { setupCache } from "axios-cache-interceptor";
-
+import { useDispatch, UseDispatch } from "react-redux";
+import { FavoredEventActionData } from "../../store/Actions/Favor/favoredEventActionData";
 
 const instance = axios.create()
 const Axios  = setupCache(instance, {
   ttl: 15 * 60 * 1000, 
 })
 
-export async function useFavorGetEvent(token: string) {
+export async function getUserFavoredEvent(token: string) {
     try {
       const API_URL = process.env.EXPO_PUBLIC_API_URL;
       const res = Axios
@@ -19,7 +20,7 @@ export async function useFavorGetEvent(token: string) {
         })
         .then(function (response) {
           console.log(response.cached)
-
+          // console.log(response.data);
           return response.data;
         })
         .catch(function (error) {
@@ -27,7 +28,6 @@ export async function useFavorGetEvent(token: string) {
             "Error on Get Method API request from useFavorGetEvent function"
           );
         });
-   
       return res;
     } catch (error) {
       console.log("Error on API useExploreGet Request:", error);

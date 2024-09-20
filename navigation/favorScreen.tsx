@@ -1,11 +1,11 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import FavorPageStructure from "../component/favor_Component/favorpageStructure";
+import FavorData from "../component/favor_Component/favorpageStructure";
 
 export default function FavorScreen() {
   return (
     <View style={styles.container}>
-      <FavorPageStructure />
+      <FavorData />
     </View>
   );
 }
