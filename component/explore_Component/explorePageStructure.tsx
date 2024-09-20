@@ -114,6 +114,7 @@ export default function ExplorePageStructure() {
 
       const LayoutState = eventId === categoryLayoutState ? "" : eventId
   
+      console.log(LayoutState);
       dispatchCategoryIcon(userCategoryLayoutAction(LayoutState))
 
       

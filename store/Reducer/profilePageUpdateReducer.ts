@@ -18,6 +18,8 @@ const initialStateLayout = {
     // console.log("payload:", payload);
     switch(type){
         case ProfileLayoutUpdate : return {...state, profileState: payload }
+
+       
        
 
     }

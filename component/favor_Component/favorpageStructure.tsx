@@ -16,6 +16,9 @@ import { ParamListBase } from "@react-navigation/native";
 import SelectedEventModel from "./Favor/eventModel";
 import ArrowIcon from "../../icons/arrowIcon";
 import FavorIcon from "../../icons/favorIcon";
+import { Dispatch } from "react";
+import { favoredEventActionData } from "../../store/Actions/favoredEventActionData";
+import { useDispatch } from "react-redux";
 
 interface eventFavorData {
     eventId: string;
@@ -41,7 +44,7 @@ export default function FavorData() {
   const [selectedEventData, setSelectedEventData] = useState<eventFavorData | null>(null)
   const childRef = useRef<any>(null)
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-
+  const dispatchEvent = useDispatch()
 
    
   // variables
@@ -66,10 +69,11 @@ export default function FavorData() {
       if (userToken) {
         const eventData = await getUserFavoredEvent(userToken);
         setEventFavorData(eventData);
+        dispatchEvent(favoredEventActionData("Bazing"))
       }
     };
     GetFavoredData();
-  }, []);
+  }, [dispatchEvent]);
 
   return (
     <View style={styles.container}>

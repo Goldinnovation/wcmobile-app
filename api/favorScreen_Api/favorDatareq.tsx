@@ -1,8 +1,6 @@
 import axios from "axios";
 import { setupCache } from "axios-cache-interceptor";
 import { useDispatch, UseDispatch } from "react-redux";
-import { FavoredEventActionData } from "../../store/Actions/Favor/favoredEventActionData";
-
 const instance = axios.create()
 const Axios  = setupCache(instance, {
   ttl: 15 * 60 * 1000, 

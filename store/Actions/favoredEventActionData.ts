@@ -1,4 +1,4 @@
-import { FavoredEventDataReduc } from "../../types"
+import { FavoredEventDataReduc } from "../types"
 
 interface eventData {
     eventId: string;
@@ -21,14 +21,17 @@ interface eventData {
 
 interface EventAction {
     type: string, 
-    payload: eventData[]
+    payload:  string // eventData[]
 }
 
-export const FavoredEventActionData = (events: eventData[])=> {
-    console.log(events);
-    return{
-        type: FavoredEventDataReduc,
-        payload: events
 
+export const favoredEventActionData = (e: string) => {
+
+  
+  console.log(e);
+  console.log(FavoredEventDataReduc);
+    return {
+      type: FavoredEventDataReduc,
+      payload: e
     }
-}
+  }
