@@ -175,9 +175,11 @@ export default function ProfilePageStructure(){
 
             
 
-            }}>
+            }}
+            onPress={() => navigation.push("FavorScreen")}
+            >
                 <TouchableOpacity
-                   onPress={() => navigation.push("FavorScreen")}
+                  
                 >
                 <FavorIcon width={'61'} height={'61'} lineColor={"white"}/>
 

@@ -1,13 +1,13 @@
-import axios from "axios";
+import axios, { Axios } from "axios";
+import { setupCache } from "axios-cache-interceptor";
 
-
-
+// const instance = axios.create()
+// const axiosApi  = setupCache(instance, {
+//   ttl: 15 * 60 * 1000,
+// })
 
 /* API request of the user Interests */
-export async function userCategoryReq(
-  token: string,
-  cateogory : string
-) {
+export async function userCategoryReq(token: string, cateogory: string) {
   try {
     // console.log("inside api:", token);
     // console.log("inside api:", cateogory);
@@ -20,13 +20,16 @@ export async function userCategoryReq(
       .then(function (response) {
         // console.log(response.data);
         return response.data;
-        
       })
       .catch(function (error) {
         console.error(
           "Error on axios post method from the API userCategoryReq "
         );
       });
+
+    //  const [data] = await Promise.all([res])
+
+    // console.log(data.cached)
 
     return res;
   } catch (error) {

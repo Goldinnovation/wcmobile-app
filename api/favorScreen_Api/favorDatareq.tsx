@@ -1,9 +1,16 @@
 import axios from "axios";
+import { setupCache } from "axios-cache-interceptor";
+
+
+const instance = axios.create()
+const Axios  = setupCache(instance, {
+  ttl: 15 * 60 * 1000, 
+})
 
 export async function useFavorGetEvent(token: string) {
     try {
       const API_URL = process.env.EXPO_PUBLIC_API_URL;
-      const res = axios
+      const res = Axios
         .get(`${API_URL}/api/favorEventMobile`, {
           headers: {
             "Content-Type": "application/json",
@@ -11,7 +18,8 @@ export async function useFavorGetEvent(token: string) {
           },
         })
         .then(function (response) {
-        //   console.log(response.data)
+          console.log(response.cached)
+
           return response.data;
         })
         .catch(function (error) {
@@ -19,7 +27,7 @@ export async function useFavorGetEvent(token: string) {
             "Error on Get Method API request from useFavorGetEvent function"
           );
         });
-  
+   
       return res;
     } catch (error) {
       console.log("Error on API useExploreGet Request:", error);

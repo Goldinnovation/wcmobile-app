@@ -122,7 +122,7 @@ export default function ExplorePageStructure() {
   
         const CategoryData = await userCategoryReq(userToken, userselected_Category)
         const filteredEvent = CategoryData.filter((prevEvent: eventProps) => prevEvent.eventId !== eventId)
-     
+        
         setCategoryData(filteredEvent)
    
       
