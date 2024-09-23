@@ -19,7 +19,7 @@ export async function getUserFavoredEvent(token: string) {
         .then(function (response) {
           console.log(response.cached)
           // console.log(response.data);
-          return response.data;
+          return response.data ;
         })
         .catch(function (error) {
           console.log(

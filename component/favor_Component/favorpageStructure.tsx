@@ -67,18 +67,33 @@ export default function FavorData() {
       const token = storedToken ? JSON.parse(storedToken).token : null;
       const userToken = token.token;
 
+      if(eventDataRedux.eventData.length == 0){
+          console.log('Axios Fetch');
 
-      if (userToken) {
-        const eventData = await getUserFavoredEvent(userToken);
-        setEventFavorData(eventData);
-        dispatchEvent(favoredEventActionData(eventData))
+          const eventData = await getUserFavoredEvent(userToken);
+          console.log(eventData.length);
+          setEventFavorData(eventData);
+          // dispatchEvent(favoredEventActionData(eventData))
       }
+      // else{
+
+      //   const eventData = await getUserFavoredEvent(userToken);
+      //   // console.log(eventData);
+      //   const id = eventData.map((prev: any) => prev.eventId)
+      //   console.log(id);
+      //   const reduxevent = eventDataRedux.eventData
+      //   const reduxid = reduxevent.map((prev: any) => prev.eventId)
+      //   console.log(reduxid);
+      //   console.log('array from redux');
+      //   setEventFavorData(eventDataRedux.eventData);
+      // }
+    
     };
     GetFavoredData();
   }, [dispatchEvent]);
 
 
-  console.log("Out of the state Redux:", eventDataRedux);
+  
 
   return (
     <View style={styles.container}>
