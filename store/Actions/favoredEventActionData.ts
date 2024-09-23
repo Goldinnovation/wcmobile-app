@@ -21,15 +21,15 @@ interface eventData {
 
 interface EventAction {
     type: string, 
-    payload:  string // eventData[]
+    payload:  eventData[]
 }
 
 
-export const favoredEventActionData = (e: string) => {
+export const favoredEventActionData = (e:  eventData[]) => {
 
   
-  console.log(e);
-  console.log(FavoredEventDataReduc);
+  // console.log(e.length);
+  // console.log(FavoredEventDataReduc);
     return {
       type: FavoredEventDataReduc,
       payload: e

@@ -8,7 +8,7 @@ import { Image } from "react-native";
 import WeeklyEventData from "./Favor/weeklyEventData";
 import FavoredEventData from "./Favor/favoredEventData";
 import EventFavoredTags from "./Favor/eventFavoredTags";
-
+import { useSelector } from "react-redux";
 import { useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -19,6 +19,7 @@ import FavorIcon from "../../icons/favorIcon";
 import { Dispatch } from "react";
 import { favoredEventActionData } from "../../store/Actions/favoredEventActionData";
 import { useDispatch } from "react-redux";
+import { RootState } from "../../store/store";
 
 interface eventFavorData {
     eventId: string;
@@ -44,6 +45,7 @@ export default function FavorData() {
   const [selectedEventData, setSelectedEventData] = useState<eventFavorData | null>(null)
   const childRef = useRef<any>(null)
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+  const eventDataRedux = useSelector((state: RootState) => state.FavoredEvent)
   const dispatchEvent = useDispatch()
 
    
@@ -69,11 +71,14 @@ export default function FavorData() {
       if (userToken) {
         const eventData = await getUserFavoredEvent(userToken);
         setEventFavorData(eventData);
-        dispatchEvent(favoredEventActionData("Bazing"))
+        dispatchEvent(favoredEventActionData(eventData))
       }
     };
     GetFavoredData();
   }, [dispatchEvent]);
+
+
+  console.log("Out of the state Redux:", eventDataRedux);
 
   return (
     <View style={styles.container}>

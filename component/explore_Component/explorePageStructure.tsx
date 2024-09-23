@@ -136,35 +136,7 @@ export default function ExplorePageStructure() {
    }
 
 
-
-   
- 
-  //   Gets the explore events data from the server
-  useEffect(() => {
-    const fetchEventData = async () => {
-      const storedToken = await AsyncStorage.getItem("token");
-      const token = storedToken ? JSON.parse(storedToken).token : null;
-      const userToken = token.token;
-      if (userToken) {
-        const exploreFetchedData = await useExploreGet(userToken);
-        // console.log(result);
-        
-        setData(exploreFetchedData);
-        // console.log(exploreFetchedData.length);
-
-      //  setOpen(false)
-
-      } else {
-        console.error("Token not found");
-      }
-    };
-
-    fetchEventData();
-  }, []);
-
-
-
-  const handleSelectedEvent = (CategoryItem: eventProps, itemindex: number, categoryId: string) => {
+   const handleSelectedEvent = (CategoryItem: eventProps, itemindex: number, categoryId: string) => {
     const selectedEvent = CategoryItem;
     const coverEventIndex = itemindex;
     if (selectedEvent) {
@@ -179,6 +151,34 @@ export default function ExplorePageStructure() {
   };
 
 
+   
+ 
+  //   Gets the explore events data from the server
+  useEffect(() => {
+    const fetchEventData = async () => {
+      const storedToken = await AsyncStorage.getItem("token");
+      const token = storedToken ? JSON.parse(storedToken).token : null;
+      const userToken = token.token;
+      if (userToken) {
+        const exploreFetchedData = await useExploreGet(userToken);
+        // console.log(result);
+        console.log(exploreFetchedData.length);
+        setData(exploreFetchedData);
+        // console.log(exploreFetchedData.length);
+
+      //  setOpen(false)
+
+      } else {
+        console.error("Token not found");
+      }
+    };
+
+    fetchEventData();
+  }, [dispatchCategoryIcon]);
+
+
+
+ 
 
 
 
@@ -192,6 +192,9 @@ export default function ExplorePageStructure() {
           scrollEventThrottle={96}
           decelerationRate="normal"
           style={{
+            // height: "100%",
+            // backgroundColor: "grey",
+            
           }}
         >
           {data?.map((item, index) => (
@@ -201,6 +204,8 @@ export default function ExplorePageStructure() {
                 padding: categoryLayoutState === item.eventId ? 0 : 1,
                 marginBottom: categoryLayoutState === item.eventId ? 50 : 50,
                 // backgroundColor: "green",
+                // marginBottom: 20,
+                
                 height: categoryLayoutState === item.eventId ? "4.6%" : "4.6%",
               }}
             >
@@ -316,22 +321,23 @@ export default function ExplorePageStructure() {
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-     height: "100%"
+     height: "100%",
     // backgroundColor: "pink",
     // marginBottom: 20
   },
   scrollViewContent: {
     alignItems: "center",
-    paddingVertical: 20, 
+    paddingVertical: 10, 
+    // height: 900,
    
      
   },
 
-  children: {
-    padding: 10,
-    marginBottom: 20,
+  // children: {
+  //   padding: 10,
+  //   marginBottom: 20,
     
-  },
+  // },
 
   
 });

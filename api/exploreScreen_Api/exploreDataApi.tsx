@@ -24,7 +24,7 @@ export async function useExploreGet(token: string) {
       })
       .then(function (response) {
         // console.log(response.data)
-        console.log("Cache State on Explore Feed", response.cached);
+        // console.log("Cache State on Explore Feed", response.cached);
         return response.data;
       })
       .catch(function (error) {
