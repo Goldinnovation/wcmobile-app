@@ -1,15 +1,17 @@
 import axios from "axios";
 import { setupCache } from "axios-cache-interceptor";
 import { useDispatch, UseDispatch } from "react-redux";
-const instance = axios.create()
-const Axios  = setupCache(instance, {
-  ttl: 15 * 60 * 1000, 
-})
+
+
+// const instance = axios.create()
+// const Axios  = setupCache(instance, {
+//   ttl: 15 * 60 * 1000, 
+// })
 
 export async function getUserFavoredEvent(token: string) {
     try {
       const API_URL = process.env.EXPO_PUBLIC_API_URL;
-      const res = Axios
+      const res = axios
         .get(`${API_URL}/api/favorEventMobile`, {
           headers: {
             "Content-Type": "application/json",
@@ -17,7 +19,7 @@ export async function getUserFavoredEvent(token: string) {
           },
         })
         .then(function (response) {
-          console.log(response.cached)
+          // console.log(response.cached)
           // console.log(response.data);
           return response.data ;
         })

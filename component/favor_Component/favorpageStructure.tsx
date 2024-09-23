@@ -73,20 +73,20 @@ export default function FavorData() {
           const eventData = await getUserFavoredEvent(userToken);
           console.log(eventData.length);
           setEventFavorData(eventData);
-          // dispatchEvent(favoredEventActionData(eventData))
+          dispatchEvent(favoredEventActionData(eventData))
       }
-      // else{
+      else{
 
-      //   const eventData = await getUserFavoredEvent(userToken);
-      //   // console.log(eventData);
-      //   const id = eventData.map((prev: any) => prev.eventId)
-      //   console.log(id);
-      //   const reduxevent = eventDataRedux.eventData
-      //   const reduxid = reduxevent.map((prev: any) => prev.eventId)
-      //   console.log(reduxid);
-      //   console.log('array from redux');
-      //   setEventFavorData(eventDataRedux.eventData);
-      // }
+        const eventData = await getUserFavoredEvent(userToken);
+        // console.log(eventData);
+        const id = eventData.map((prev: any) => prev.eventId)
+        console.log(id);
+        const reduxevent = eventDataRedux.eventData
+        const reduxid = reduxevent.map((prev: any) => prev.eventId)
+        console.log(reduxid);
+        console.log('array from redux');
+        setEventFavorData(eventDataRedux.eventData);
+      }
     
     };
     GetFavoredData();
