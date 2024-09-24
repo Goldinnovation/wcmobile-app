@@ -61,6 +61,13 @@ export default function FavorData() {
 
   }
 
+
+  //  the function validate the length of the the redux array
+  // ,if is zero, the function will call the axios api which will request all information form the server.
+  // After receiving all information the axios api will cache the information and the results will be dispatched in the reducer
+  // Throghout the next call, the length of the array is bigger as zero which will execute the mapping of the array from the redux store but
+  // before the execution the function will compare the axios data and the redux store data,if both list are equal if, the condition is true the
+  // data will be mapped from the redux store, if the condition is false the new data will be dispatched to the redux store. 
   useEffect(() => {
     const GetFavoredData = async () => {
       const storedToken = await AsyncStorage.getItem("token");
@@ -79,11 +86,12 @@ export default function FavorData() {
 
         const eventData = await getUserFavoredEvent(userToken);
         // console.log(eventData);
+        dispatchEvent(favoredEventActionData(eventData))
         const id = eventData.map((prev: any) => prev.eventId)
         console.log(id);
-        const reduxevent = eventDataRedux.eventData
-        const reduxid = reduxevent.map((prev: any) => prev.eventId)
-        console.log(reduxid);
+        // const reduxevent = eventDataRedux.eventData
+        // const reduxid = reduxevent.map((prev: any) => prev.eventId)
+        // console.log(reduxid);
         console.log('array from redux');
         setEventFavorData(eventDataRedux.eventData);
       }

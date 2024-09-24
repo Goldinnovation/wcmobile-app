@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../../store/userActions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { userFavoredExploredEvent } from "../../../api/exploreScreen_Api/userFavoredEvent";
+import { userFavoredEvent } from "../../../api/exploreScreen_Api/userFavoredEvent";
 import HearthFrequenz from "../../../icons/hearthFrequenz";
 import FavorIcon from "../../../icons/favorIcon";
 import CommentIcon from "../../../icons/commentIcon";
@@ -61,18 +61,19 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
     
     
     
-      const handleFavorPress = async (eventId: string) => {
-        console.log(eventId);
+      const handleFavorPress = async (eventId: string, item: eventProps) => {
+        // console.log(eventId);
         setIconFavorClick(!IconFavorClick);
         const storedToken = await AsyncStorage.getItem("token");
         const token = storedToken ? JSON.parse(storedToken).token : null;
         const userToken = token.token;
         if (userToken && eventId) {
-          const sendUserFavorDataResult = await userFavoredExploredEvent(
+          const sendUserFavorDataResult = await userFavoredEvent(
             userToken,
-            eventId
+            eventId, 
+            item
           );
-          console.log(sendUserFavorDataResult);
+          // console.log(sendUserFavorDataResult);
         }
       };
 
@@ -223,7 +224,7 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
               height: 40,
               width: 30
             }}
-            onPress={() => handleFavorPress(item.eventId)}
+            onPress={() => handleFavorPress(item.eventId, item)}
           >
             {IconFavorClick ? (
               <View>

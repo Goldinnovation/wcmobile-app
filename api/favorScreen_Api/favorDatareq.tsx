@@ -3,11 +3,12 @@ import { setupCache } from "axios-cache-interceptor";
 import { useDispatch, UseDispatch } from "react-redux";
 
 
-// const instance = axios.create()
-// const Axios  = setupCache(instance, {
-//   ttl: 15 * 60 * 1000, 
-// })
+const instance = axios.create()
+const Axios  = setupCache(instance, {
+  ttl: 15 * 60 * 1000, 
+})
 
+// Makes a http request to get all favored events that the current user selected 
 export async function getUserFavoredEvent(token: string) {
     try {
       const API_URL = process.env.EXPO_PUBLIC_API_URL;
@@ -17,9 +18,11 @@ export async function getUserFavoredEvent(token: string) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
+         
         })
         .then(function (response) {
-          // console.log(response.cached)
+         
+
           // console.log(response.data);
           return response.data ;
         })
