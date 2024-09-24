@@ -3,7 +3,8 @@ import axios from "axios";
 
 
 
-/* API request of the user Interests */
+// API Post request to the backend api endpoint userInterest
+// The request contains all interests that the user selected 
 export async function useInterestPost(
   token: string,
   pickedIntesrest: string[]

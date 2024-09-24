@@ -8,7 +8,7 @@ const axiosApi  = setupCache(instance, {
   ttl: 15 * 60 * 1000, 
 })
 
-/* Get the explore event data */
+/*API Post request retrieves all event objects from the backend api endpoint explore */
 export async function useExploreGet(token: string) {
   try {
     const API_URL = process.env.EXPO_PUBLIC_API_URL;

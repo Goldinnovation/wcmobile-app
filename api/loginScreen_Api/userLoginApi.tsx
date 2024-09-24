@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 
-/* Post Request to the login server section */
+/* API Post Request to the login endpoint */
 
 export async function useLoginPost(email: string, password: string): Promise<any> {
   try {

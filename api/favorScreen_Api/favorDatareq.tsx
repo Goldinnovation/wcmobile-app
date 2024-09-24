@@ -8,7 +8,8 @@ const Axios  = setupCache(instance, {
   ttl: 15 * 60 * 1000, 
 })
 
-// Makes a http request to get all favored events that the current user selected 
+// API Get request to the backend server endpointfavorEventMobile.
+// The call will retrieve all favored events that the current user selected as favored
 export async function getUserFavoredEvent(token: string) {
     try {
       const API_URL = process.env.EXPO_PUBLIC_API_URL;

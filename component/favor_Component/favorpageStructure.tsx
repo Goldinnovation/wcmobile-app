@@ -62,7 +62,7 @@ export default function FavorData() {
   }
 
 
-  //  the function validate the length of the the redux array
+  //  the function validates the length of the the redux array
   // ,if is zero, the function will call the axios api which will request all information form the server.
   // After receiving all information the axios api will cache the information and the results will be dispatched in the reducer
   // Throghout the next call, the length of the array is bigger as zero which will execute the mapping of the array from the redux store but

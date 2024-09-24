@@ -6,7 +6,10 @@ import { setupCache } from "axios-cache-interceptor";
 //   ttl: 15 * 60 * 1000,
 // })
 
-/* API request of the user Interests */
+// API Post request to the backend api endpoint eventCategory */
+// The call contains a token identifyer and the selected event category type. 
+// Enabling the user retrieve more Events with the same category type
+
 export async function userCategoryReq(token: string, cateogory: string) {
   try {
     // console.log("inside api:", token);
