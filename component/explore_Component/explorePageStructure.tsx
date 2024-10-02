@@ -9,6 +9,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  FlatList
 } from "react-native";
 import Animated, { FadeInDown, SlideInDown, SlideInUp } from 'react-native-reanimated';
 import { userCategoryReq } from "../../api/exploreScreen_Api/CategoryDataApi";
@@ -21,8 +22,9 @@ import { userCategoryLayoutAction } from "../../store/Actions/userLayoutAction";
 import EventCoverSlide from "./EventDetaileCover/eventCoverSlide";
 import EventMoreInfoSlide from "./EventDetaileCover/eventSecondSlide";
 import { ExploreEventDataAction } from "../../store/Actions/exploreEventDataAction";
-import handleExploreData from "../../handler/handleExploreData";
-
+import handleExploreData from "../../handler/Explore/handleExploreData";
+import { menuNavigationAction } from "../../store/Actions/menuNaviagtionAction";
+import handleEventMenuNavigation from "../../handler/handleEventMenuNavigation";
 
 
 interface eventProps {
@@ -83,22 +85,23 @@ export default function ExplorePageStructure() {
   const {categoryLayoutState} = useSelector((state: RootState) => state.OpenCategoryLayout)
   const  {StoredExploreEventData} = useSelector((state: RootState) => state.ExploreEventData)
   const [redstate, dispatch] = useReducer(reducer, initialState)
+  const [trigger, setTrigger] = useState(false)
   const dispatchReduxEvent = useDispatch()
   const dispatchCategoryIcon = useDispatch()
-
-
-
-
-
-
-
-
-  const handleEventInfo = ( e: string) => {
-    console.log(e);
-   dispatch({type: e})
-    
-   
+  const dispathMenu = useDispatch()
+  const [page, setpage] = useState(1)
+  const {eventDescription, eventDetails, eventSound, eventOptionHeader} = useSelector((state: RootState) => state.MenuNavigation)
+  const updateMenuState = {
+    eventDescription,
+    eventDetails,
+     eventSound,
+     eventOptionHeader
   }
+
+
+
+
+
 
   
 
@@ -113,14 +116,7 @@ export default function ExplorePageStructure() {
       const userToken = token.token;
       const userselected_Category = e
       const eventId = eId
-      const eventObj = item
-      // console.log(categoryData);
-
-
-
       const LayoutState = eventId === categoryLayoutState ? "" : eventId
-  
-      console.log(LayoutState);
       dispatchCategoryIcon(userCategoryLayoutAction(LayoutState))
 
       
@@ -142,24 +138,23 @@ export default function ExplorePageStructure() {
    }
 
 
-   const handleSelectedEvent = (CategoryItem: eventProps, itemindex: number, categoryId: string) => {
+   const handleShowSelectedEvent = (CategoryItem: eventProps, itemindex: number, categoryId: string) => {
     const selectedEvent = CategoryItem;
-    const coverEventIndex = itemindex;
+    const prevEventIndex = itemindex;
     if (selectedEvent) {
-      // console.log(categoryLayoutState);
       const newData = [...data];
-
-      newData[coverEventIndex] = selectedEvent;
+      newData[prevEventIndex] = selectedEvent;
       dispatchCategoryIcon(userCategoryLayoutAction(categoryId))
       setData(newData);
-      // setOpen(categoryId)
     }
   };
 
 
    
  
-  //   Gets the explore events data from the server
+  // Gets the explore events data from the server
+  //  afterwwards the data will be modified to display to returns a maximum of 20 events.
+
   useEffect(() => {
     const fetchEventData = async () => {
       const storedToken = await AsyncStorage.getItem("token");
@@ -168,28 +163,24 @@ export default function ExplorePageStructure() {
       if (userToken) {
         const exploreFetchedData = await useExploreGet(userToken);
         if(exploreFetchedData.length > 0){
-          dispatchReduxEvent(ExploreEventDataAction(exploreFetchedData))
-
+          const storeData = dispatchReduxEvent(ExploreEventDataAction(exploreFetchedData))
+          if(storeData){
+            setTrigger(true)
+            const modifiedExploreData = handleExploreData(StoredExploreEventData)
+            setData(modifiedExploreData)
+          }        
         }else{
           console.log("Second Call");
           fetchEventData();
-
         }
-
-
-
-        const modifiedExploreData = handleExploreData(StoredExploreEventData)
-        console.log("Return HandlerFuntionData:", modifiedExploreData);
-        setData(exploreFetchedData);
-      
-
       } else {
         console.error("Token not found");
       }
     };
 
     fetchEventData();
-  }, [dispatchCategoryIcon, StoredExploreEventData]);
+
+  }, [trigger]);
 
 
 
@@ -213,6 +204,7 @@ export default function ExplorePageStructure() {
           }}
         >
           {data?.map((item, index) => (
+             
             <View
               key={index}
               style={{
@@ -250,7 +242,10 @@ export default function ExplorePageStructure() {
 
 
                  {/*second cover slide */}
-               <EventMoreInfoSlide state={redstate} data={item} handleEventInfo={handleEventInfo}/>
+               <EventMoreInfoSlide 
+               state={updateMenuState}
+                data={item} 
+                />
       
               </ScrollView>
               </View>
@@ -286,7 +281,7 @@ export default function ExplorePageStructure() {
                   <>
                     <Animated.View entering={FadeInDown}>
                   
-                      <EventCategoryData  data={categoryData} index={index} handleSelectedEvent={handleSelectedEvent}/>
+                      <EventCategoryData  data={categoryData} index={index} handleSelectedEvent={handleShowSelectedEvent}/>
                     </Animated.View>
               
 
@@ -324,6 +319,9 @@ export default function ExplorePageStructure() {
 
               
             </View>
+        
+           
+           
           ))}
         </ScrollView>
       ) : (

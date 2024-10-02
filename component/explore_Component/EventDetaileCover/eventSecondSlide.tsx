@@ -28,14 +28,14 @@ interface EventDetailsProps {
     eventDetails: boolean;
     eventSound: boolean;
     eventOptionHeader: string;
+    
   };
-  handleEventInfo: (e: string) => void;
 }
 
 const EventMoreInfoSlide: React.FC<EventDetailsProps> = ({
   data,
   state,
-  handleEventInfo,
+  
 }) => {
   const item = data;
   const redstate = state;
@@ -96,7 +96,7 @@ const EventMoreInfoSlide: React.FC<EventDetailsProps> = ({
           top: 455,
         }}
       >
-        <EventSecondSlideMenuBar data={item} handleEventInfo={handleEventInfo} state={redstate} />
+        <EventSecondSlideMenuBar data={item} state={redstate} />
       </View>
     </View>
   );

@@ -4,6 +4,8 @@ import { RootState } from "../../../store/store"
 import InfoEventIcon from "../../../icons/InfoIcon";
 import MapEventIcon from "../../../icons/mapIcon";
 import SoundIcon from "../../../icons/soundIcon";
+import { useDispatch } from "react-redux";
+import { menuNavigationAction } from "../../../store/Actions/menuNaviagtionAction";
 
 
 interface eventProps {
@@ -26,7 +28,6 @@ interface eventProps {
 
 
 interface MenuBarProps {
-    handleEventInfo: (e: string) => void
     data: eventProps, 
     state: {
       eventDescription: boolean;
@@ -38,10 +39,11 @@ interface MenuBarProps {
 } 
 
 
-const EventSecondSlideMenuBar: React.FC<MenuBarProps>  = ({data, handleEventInfo, state}) => {
+const EventSecondSlideMenuBar: React.FC<MenuBarProps>  = ({data, state}) => {
     const item = data
 
     const { categoryLayoutState } = useSelector((state: RootState) => state.OpenCategoryLayout);
+    const dispMenuNavigation = useDispatch()
 
     return(
         <View style={{
@@ -66,7 +68,7 @@ const EventSecondSlideMenuBar: React.FC<MenuBarProps>  = ({data, handleEventInfo
            <TouchableOpacity
            
           
-           onPress={ () => handleEventInfo("info")}
+           onPress={ () => dispMenuNavigation(menuNavigationAction("info"))}
            >
           
              {
@@ -80,7 +82,9 @@ const EventSecondSlideMenuBar: React.FC<MenuBarProps>  = ({data, handleEventInfo
 
 
            <TouchableOpacity
-           onPress={ () => handleEventInfo("Event Details")}
+           onPress={ () => 
+            dispMenuNavigation(menuNavigationAction("Event Details"))
+          }
            >
             {
               state.eventDetails 
@@ -93,7 +97,9 @@ const EventSecondSlideMenuBar: React.FC<MenuBarProps>  = ({data, handleEventInfo
 
 
            <TouchableOpacity 
-            onPress={ () => handleEventInfo("EventSound")}
+            onPress={ () =>
+              dispMenuNavigation(menuNavigationAction("EventSound"))
+              }
            >
               {
               state.eventSound 

@@ -1,6 +1,5 @@
 
-import React from "react";
-import { View } from "react-native-reanimated/lib/typescript/Animated";
+
 
 interface eventProps {
     eventId: string;
@@ -21,7 +20,7 @@ interface eventProps {
 
   
 
-
+// Receives a list of events and returns 20 events as the minimum amout for the page to render
 
 const handleExploreData  = (data: eventProps[] ) => {
 
@@ -30,21 +29,15 @@ const handleExploreData  = (data: eventProps[] ) => {
     let sum = 0
     if(orginalData){
       for(const x of orginalData){
-        // console.log(x)
-        while( sum < 20){
+        if(sum < 20){
           sum++
           modifiedArr.push(x)
         }
-        //  const newSUm = sum+=1
-        // if(newSUm < 21){
-        //   modifiedArr.push(x)
-        // }
+      
       }
 
     }
-
-    // console.log(modifiedArr);
-    return modifiedArr.length
+    return modifiedArr
   
 }
 
