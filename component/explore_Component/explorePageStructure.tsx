@@ -21,6 +21,7 @@ import { userCategoryLayoutAction } from "../../store/Actions/userLayoutAction";
 import EventCoverSlide from "./EventDetaileCover/eventCoverSlide";
 import EventMoreInfoSlide from "./EventDetaileCover/eventSecondSlide";
 import { ExploreEventDataAction } from "../../store/Actions/exploreEventDataAction";
+import handleExploreData from "../../handler/handleExploreData";
 
 
 
@@ -166,11 +167,19 @@ export default function ExplorePageStructure() {
       const userToken = token.token;
       if (userToken) {
         const exploreFetchedData = await useExploreGet(userToken);
-        if(exploreFetchedData){
+        if(exploreFetchedData.length > 0){
           dispatchReduxEvent(ExploreEventDataAction(exploreFetchedData))
+
+        }else{
+          console.log("Second Call");
+          fetchEventData();
+
         }
-        console.log("Stored Explore Data:", StoredExploreEventData);
-        console.log(exploreFetchedData.length);
+
+
+
+        const modifiedExploreData = handleExploreData(StoredExploreEventData)
+        console.log("Return HandlerFuntionData:", modifiedExploreData);
         setData(exploreFetchedData);
       
 
