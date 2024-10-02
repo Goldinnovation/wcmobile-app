@@ -8,8 +8,13 @@ const instance = axios.create(
 )
 
 
-// Api Post request to the backend server endpoint favorEventMobile.
-// The request contains a token identifyer and an eventId for user validation and Database assignment
+/**
+ * Sends a token and an eventId to the server for user validation and the creation of a record
+ * @param {string} token - The user's authentication token.
+ * @param {string} favoreventId - The Id of the selected Event.
+ * @returns {Promise} - A Promise that resolves with the server's response.
+ */
+
 
 export async function userFavoredEvent(token: string, favoreventId: string, item:any) {
     try {

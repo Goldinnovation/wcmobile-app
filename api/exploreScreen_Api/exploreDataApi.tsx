@@ -8,7 +8,15 @@ const axiosApi  = setupCache(instance, {
   ttl: 15 * 60 * 1000, 
 })
 
+/**
+ * Retrieves all event objects from the server
+ * @param {string} token - The user's authentication token.
+ * @returns {Promise} - A Promise that resolves with the server's response.
+ */
+
+
 /*API Post request retrieves all event objects from the backend api endpoint explore */
+
 export async function useExploreGet(token: string) {
   try {
     const API_URL = process.env.EXPO_PUBLIC_API_URL;

@@ -3,8 +3,13 @@ import axios from "axios";
 
 
 
-// API Post request to the backend api endpoint userInterest
-// The request contains all interests that the user selected 
+/**
+ * Sends a list of selected users interests to the server and returns a response message indicating the status of the request.
+ * @param {string} token - The user's authentication token.
+ * @param {string[]} pickedInterest - Array of selected interests to be posted.
+ * @returns {Promise} - A Promise that resolves with the server's response.
+ */
+
 export async function useInterestPost(
   token: string,
   pickedIntesrest: string[]

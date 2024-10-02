@@ -1,14 +1,16 @@
 import axios, { Axios } from "axios";
-import { setupCache } from "axios-cache-interceptor";
 
-// const instance = axios.create()
-// const axiosApi  = setupCache(instance, {
-//   ttl: 15 * 60 * 1000,
-// })
 
-// API Post request to the backend api endpoint eventCategory */
-// The call contains a token identifyer and the selected event category type. 
-// Enabling the user retrieve more Events with the same category type
+
+/**
+ * Sends a string of the users selected event category type to the server.
+ * Returning as response a list of events with the same category type.
+ * 
+ * @param {string} token - The user's authentication token.
+ * @param {string} cateogory - The Event category type.
+ * @returns {Promise} - A Promise that resolves with the server's response.
+ */
+
 
 export async function userCategoryReq(token: string, cateogory: string) {
   try {
