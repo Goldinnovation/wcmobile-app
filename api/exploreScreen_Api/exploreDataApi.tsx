@@ -4,7 +4,7 @@ import { setupCache } from "axios-cache-interceptor";
 
 
 const instance = axios.create()
-const axiosApi  = setupCache(instance, {
+const axiosCache  = setupCache(instance, {
   ttl: 15 * 60 * 1000, 
 })
 
@@ -20,7 +20,7 @@ const axiosApi  = setupCache(instance, {
 export async function useExploreGet(token: string) {
   try {
     const API_URL = process.env.EXPO_PUBLIC_API_URL;
-    const res = axiosApi
+    const res = axiosCache
       .get(`${API_URL}/api/explore`, {
         headers: {
           "Content-Type": "application/json",

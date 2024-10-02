@@ -20,6 +20,8 @@ import { RootState } from "../../store/store";
 import { userCategoryLayoutAction } from "../../store/Actions/userLayoutAction";
 import EventCoverSlide from "./EventDetaileCover/eventCoverSlide";
 import EventMoreInfoSlide from "./EventDetaileCover/eventSecondSlide";
+import { ExploreEventDataAction } from "../../store/Actions/exploreEventDataAction";
+
 
 
 interface eventProps {
@@ -78,7 +80,9 @@ export default function ExplorePageStructure() {
   const [data, setData] = useState<eventArr | []>([]);
   const [categoryData, setCategoryData] = useState<eventArr | []>([])
   const {categoryLayoutState} = useSelector((state: RootState) => state.OpenCategoryLayout)
+  const  {StoredExploreEventData} = useSelector((state: RootState) => state.ExploreEventData)
   const [redstate, dispatch] = useReducer(reducer, initialState)
+  const dispatchReduxEvent = useDispatch()
   const dispatchCategoryIcon = useDispatch()
 
 
@@ -94,6 +98,7 @@ export default function ExplorePageStructure() {
     
    
   }
+
   
 
 
@@ -161,12 +166,13 @@ export default function ExplorePageStructure() {
       const userToken = token.token;
       if (userToken) {
         const exploreFetchedData = await useExploreGet(userToken);
-        // console.log(result);
+        if(exploreFetchedData){
+          dispatchReduxEvent(ExploreEventDataAction(exploreFetchedData))
+        }
+        console.log("Stored Explore Data:", StoredExploreEventData);
         console.log(exploreFetchedData.length);
         setData(exploreFetchedData);
-        // console.log(exploreFetchedData.length);
-
-      //  setOpen(false)
+      
 
       } else {
         console.error("Token not found");
@@ -174,7 +180,7 @@ export default function ExplorePageStructure() {
     };
 
     fetchEventData();
-  }, [dispatchCategoryIcon]);
+  }, [dispatchCategoryIcon, StoredExploreEventData]);
 
 
 

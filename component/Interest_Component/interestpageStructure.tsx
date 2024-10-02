@@ -78,7 +78,7 @@ export default function InterestPageStructure() {
       const result = await useInterestPost(usertoken, pickedIntesrest)
       console.log("result arrived:",result);
 
-      result?.message === "Interest are successfully stored" 
+      result?.message === "Interests are successfully stored" 
       ? navigation.navigate('UserExploreScreen' as never)
       : navigation.navigate('Login' as never)
 

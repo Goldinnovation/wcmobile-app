@@ -3,6 +3,7 @@ import userReduce from "./userReduce";
 import userCategoryLayoutReducer from "./Reducer/userCategoryLayoutReducer";
 import profilePageUpdateReducer from "./Reducer/profilePageUpdateReducer";
 import favoredEventReducer from "./Reducer/favoredEventReducer";
+import exploreEventDataReducer from "./Reducer/exploreEventDataReducer";
 
 const rootReducer = combineReducers({
     
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
     OpenCategoryLayout: userCategoryLayoutReducer,
     ProfilePageUpdate: profilePageUpdateReducer,
     FavoredEvent: favoredEventReducer,
+    ExploreEventData: exploreEventDataReducer
    
 })
 
