@@ -24,6 +24,7 @@ import EventMoreInfoSlide from "./EventDetaileCover/eventSecondSlide";
 import { ExploreEventDataAction } from "../../store/Actions/exploreEventDataAction";
 import handleExploreData from "../../handler/Explore/handleExploreData";
 import { menuNavigationAction } from "../../store/Actions/menuNaviagtionAction";
+import handlePage2ExploreData from "../../handler/Explore/handlePage2ExploreData";
 // import handleEventMenuNavigation from "../../handler/handleEventMenuNavigation";
 // import handleCategoryCall from "../../handler/Explore/handleCategoryCall";
 
@@ -105,7 +106,8 @@ export default function ExplorePageStructure() {
   
 
 
-
+// checks the condition of the layout, if the layout is a empty string it will open the category area and fetch events which match with the category type from the server 
+//  if the category layout redux payload contains a string it will pass a empty string and the category are will close
   const handleCategoryReq = async(selectedCategoryType: string, selectedEventId: string, item: eventProps) => {
 
     try{
@@ -135,6 +137,8 @@ export default function ExplorePageStructure() {
 
    }
 
+  //  Handels the selection of the event that comes from the category list, so if user press on a Event from the Category list.
+  // The event will be shown through this funciton  
 
    const handleShowSelectedEvent = (CategoryItem: eventProps, itemindex: number, categoryId: string) => {
     const selectedEvent = CategoryItem;
@@ -148,40 +152,102 @@ export default function ExplorePageStructure() {
   };
 
 
+
+
+  const handleScrolling = (event: any) => {
+    const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;
+    console.log(layoutMeasurement.height);
+
+    if (layoutMeasurement.height + contentOffset.y >= contentSize.height -10) {
+        // console.log('Reached the end');
+        setpage(2)
+
+    }
+
+
+  }
+
    
  
   // Gets the explore events data from the server
   //  afterwwards the data will be modified to display to returns a maximum of 20 events.
 
   useEffect(() => {
-    const fetchEventData = async () => {
-      const storedToken = await AsyncStorage.getItem("token");
-      const token = storedToken ? JSON.parse(storedToken).token : null;
-      const userToken = token.token;
-      if (userToken) {
-        const exploreFetchedData = await useExploreGet(userToken);
-        if(exploreFetchedData.length > 0){
-          const storeData = dispatchReduxEvent(ExploreEventDataAction(exploreFetchedData))
-          if(storeData){
-            setTrigger(true)
-            const modifiedExploreData = handleExploreData(StoredExploreEventData)
-            setData(modifiedExploreData)
-          }        
-        }else{
-          console.log("Second Call");
-          fetchEventData();
+    const fetchEventData = async (pageNum: number) => {
+      console.log("fetched Page:", page);
+
+      if (page === 1){
+        const storedToken = await AsyncStorage.getItem("token");
+        const token = storedToken ? JSON.parse(storedToken).token : null;
+        const userToken = token.token;
+        if (userToken) {
+          const exploreFetchedData = await useExploreGet(userToken);
+          if(exploreFetchedData.length > 0){
+            const storeData = dispatchReduxEvent(ExploreEventDataAction(exploreFetchedData))
+            if(storeData){
+              setTrigger(true)
+              const modifiedExploreData = handleExploreData(StoredExploreEventData)
+              setData(modifiedExploreData)
+            }        
+          }else{
+            console.log("Second Call");
+            fetchEventData(page);
+          }
+        } else {
+          console.error("Token not found");
         }
-      } else {
-        console.error("Token not found");
+
       }
+      else if(page === 2){
+        console.log('Need more Events')
+        // console.log(StoredExploreEventData.length);
+        const totalEvents = StoredExploreEventData
+        // Filters all events out that are already in page 1, creates a list with the rest
+        const filteringEventData = totalEvents.filter((prev: eventProps) => 
+        !data.some((event:eventProps) => event.eventId === prev.eventId)
+        )
+
+        // console.log(filteringEventData);
+        const filteredFetchedData =  handlePage2ExploreData(filteringEventData)
+        // console.log(filteredFetchedData.length);
+
+       
+
+
+        if(filteredFetchedData){
+          // console.log('triggerd');
+          setData((prev) => [...prev, ...filteredFetchedData])
+          setTrigger(true)
+        }
+
+      //  console.log(data.length);
+      
+     
+
+     
+        
+
+      }
+      else if(page === 3){
+        console.log('Page 3 Reached');
+      }
+
+    
+
+    
     };
+    
+  
+    fetchEventData(page);
 
-    fetchEventData();
-
-  }, [trigger]);
+  }, [trigger, page]);
 
 
+  // const page2data = data.map((prev) => prev.eventId)
+  // console.log('olddata', page2data);
 
+  // console.log(data.length)
+// 
  
 
 
@@ -190,25 +256,19 @@ export default function ExplorePageStructure() {
   return (
     <View style={styles.container}>
       {data ? (
-        <ScrollView
-          contentContainerStyle={styles.scrollViewContent}
-          //  onScroll={handletoggleCLose}
-          scrollEventThrottle={96}
-          decelerationRate="normal"
-          style={{
-            // height: "100%",
-            // backgroundColor: "grey",
-            
-          }}
-        >
-          {data?.map((item, index) => (
-             
-            <View
+
+        <FlatList
+        
+         data={data}
+        keyExtractor={item => item.eventId}
+         renderItem={({item, index}) => 
+          <View
               key={index}
               style={{
                 padding: categoryLayoutState === item.eventId ? 0 : 1,
-                marginBottom: categoryLayoutState === item.eventId ? 50 : 50,
+                // marginBottom: categoryLayoutState === item.eventId ? 50 : 50,
                 // backgroundColor: "green",
+                flex: 1,
                 // marginBottom: 20,
                 
                 height: categoryLayoutState === item.eventId ? "4.6%" : "4.6%",
@@ -316,12 +376,17 @@ export default function ExplorePageStructure() {
               </View>
 
               
-            </View>
-        
-           
-           
-          ))}
-        </ScrollView>
+        </View>
+
+      }
+      ItemSeparatorComponent={() => <View style={{height: 70}} />}
+      pagingEnabled
+      snapToInterval={673}
+
+        />
+
+       
+ 
       ) : (
         <Text>Loading...</Text>
       )}
