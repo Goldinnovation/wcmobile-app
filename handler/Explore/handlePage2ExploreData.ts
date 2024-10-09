@@ -30,7 +30,7 @@ const handlePage2ExploreData  = (data: eventProps[] ) => {
     let sum = 0
     if(orginalData){
       for(const x of orginalData){
-        if(sum < 20){
+        if(sum < 10){
           sum++
           modifiedArr.push(x)
         }

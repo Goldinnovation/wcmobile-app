@@ -155,14 +155,15 @@ export default function ExplorePageStructure() {
 
 
   const handleScrolling = (event: any) => {
-    const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;
-    console.log(layoutMeasurement.height);
+    setpage((prev) => prev+=1)
+    // const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;
+    // console.log(layoutMeasurement.height);
 
-    if (layoutMeasurement.height + contentOffset.y >= contentSize.height -10) {
-        // console.log('Reached the end');
-        setpage(2)
+    // if (layoutMeasurement.height + contentOffset.y >= contentSize.height -10) {
+    //     // console.log('Reached the end');
+    //     setpage(2)
 
-    }
+    // }
 
 
   }
@@ -240,13 +241,13 @@ export default function ExplorePageStructure() {
   
     fetchEventData(page);
 
-  }, [trigger, page]);
+  }, [trigger,page]);
 
 
   // const page2data = data.map((prev) => prev.eventId)
   // console.log('olddata', page2data);
 
-  // console.log(data.length)
+  console.log(data.length)
 // 
  
 
@@ -381,7 +382,11 @@ export default function ExplorePageStructure() {
       }
       ItemSeparatorComponent={() => <View style={{height: 70}} />}
       pagingEnabled
-      snapToInterval={673}
+      snapToInterval={673.5}
+      snapToAlignment="start" 
+      decelerationRate="fast" 
+      extraData={data} 
+      onEndReached={handleScrolling}
 
         />
 
