@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
     ProfilePageUpdate: profilePageUpdateReducer,
     FavoredEvent: favoredEventReducer,
     ExploreEventData: exploreEventDataReducer,
-    MenuNavigation: menuNavigationReducer
+    MenuNavigation: menuNavigationReducer,
 
    
 })

@@ -21,6 +21,7 @@ interface eventProps {
   
 
 // Receives a list of events and returns 20 events as the minimum amout for the page to render
+// Pure Function 
 
 const handleExploreData  = (data: eventProps[] ) => {
 

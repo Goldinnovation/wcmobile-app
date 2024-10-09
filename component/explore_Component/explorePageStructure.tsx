@@ -24,7 +24,8 @@ import EventMoreInfoSlide from "./EventDetaileCover/eventSecondSlide";
 import { ExploreEventDataAction } from "../../store/Actions/exploreEventDataAction";
 import handleExploreData from "../../handler/Explore/handleExploreData";
 import { menuNavigationAction } from "../../store/Actions/menuNaviagtionAction";
-import handleEventMenuNavigation from "../../handler/handleEventMenuNavigation";
+// import handleEventMenuNavigation from "../../handler/handleEventMenuNavigation";
+// import handleCategoryCall from "../../handler/Explore/handleCategoryCall";
 
 
 interface eventProps {
@@ -84,7 +85,6 @@ export default function ExplorePageStructure() {
   const [categoryData, setCategoryData] = useState<eventArr | []>([])
   const {categoryLayoutState} = useSelector((state: RootState) => state.OpenCategoryLayout)
   const  {StoredExploreEventData} = useSelector((state: RootState) => state.ExploreEventData)
-  const [redstate, dispatch] = useReducer(reducer, initialState)
   const [trigger, setTrigger] = useState(false)
   const dispatchReduxEvent = useDispatch()
   const dispatchCategoryIcon = useDispatch()
@@ -102,20 +102,18 @@ export default function ExplorePageStructure() {
 
 
 
-
   
 
 
 
-  const handleCategoryReq = async(e: string, eId: string, item: eventProps) => {
-
+  const handleCategoryReq = async(selectedCategoryType: string, selectedEventId: string, item: eventProps) => {
 
     try{
       const storedToken = await AsyncStorage.getItem("token");
       const token = storedToken ? JSON.parse(storedToken).token : null;
       const userToken = token.token;
-      const userselected_Category = e
-      const eventId = eId
+      const userselected_Category = selectedCategoryType
+      const eventId = selectedEventId
       const LayoutState = eventId === categoryLayoutState ? "" : eventId
       dispatchCategoryIcon(userCategoryLayoutAction(LayoutState))
 
