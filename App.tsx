@@ -39,6 +39,7 @@ import NotificationScreen from './navigation/notificationScreen';
 import UserScreen from './navigation/userScreen';
 import SearchScreen from './navigation/searchScreen';
 import FavorScreen from './navigation/favorScreen';
+import ModeScreen from './navigation/modeScreen';
 
 
 
@@ -53,7 +54,7 @@ const MyTheme = {
   },
 };
 
-type RouteName = 'Profile' | 'ExploreContent' | "Search";
+type RouteName = 'Profile' | 'ExploreContent' | "Identity";
 
 const icons: Record<RouteName, {focused: any; unfocused: any}> = {
   Profile: {
@@ -67,7 +68,7 @@ const icons: Record<RouteName, {focused: any; unfocused: any}> = {
     unfocused: require('./assets/wind-rose.png')
   },
 
-  Search: {
+  Identity: {
 
     focused: require('./assets/qr1.png'),
     unfocused: require('./assets/qrg.png')
@@ -80,10 +81,12 @@ const icons: Record<RouteName, {focused: any; unfocused: any}> = {
 function TabNavigator() {
 
   const [filter, setFilter] = useState(false)
+  const [modeScreenToggle, setModeScreenToggle] = useState(false)
   const { categoryLayoutState } = useSelector((state: RootState) => state.OpenCategoryLayout);
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
   const dispatchProfilePage = useDispatch()
   const {profileState} = useSelector((state: RootState) => state.ProfilePageUpdate)
+
 
 
 
@@ -103,6 +106,10 @@ function TabNavigator() {
     setFilter(!filter)
   }
 
+  const handleModeSceen = () => {
+    console.log('triggert');
+    setModeScreenToggle(!modeScreenToggle)
+  }
 
   return (
     <Tab.Navigator
@@ -146,8 +153,66 @@ function TabNavigator() {
             flexDirection: "row",
             alignItems: "center",
             marginLeft: categoryLayoutState ? 9 : 7,
+        
           }}>
-              <Text style={{color: "white", fontSize: 19}}>Worthsec</Text>
+            {/* Explore Mode Option */}
+            <TouchableOpacity style={{
+              width:  79,
+            // height: 25,
+            borderWidth: 1,
+            borderColor: "rgba(249,249,249,0.9)",
+            padding: 1,
+            // alignItems: "center",
+            display: "flex", 
+            borderRadius: 4,
+            // justifyContent: "center", 
+            flexDirection: "row"
+
+            }}
+             onPress={() => navigation.push("ModeScreen")}
+            >
+              <View style={{
+                width:  "80%",
+                height: 20,
+                display: "flex", 
+                // justifyContent: "center", 
+                flexDirection: "row",
+                // backgroundColor: "red",
+                alignItems: "center",
+                padding: 1,
+                justifyContent: "center", 
+              }}>
+              <Text style={{color: "white", fontSize: 15, fontWeight: "bold", opacity: 0.7}}>MODE</Text>
+
+              </View>
+              
+              <View style={{
+                 width:  "20%",
+                 height: 20,
+                //  backgroundColor: "green",
+                 display: "flex", 
+                justifyContent: "center", 
+                flexDirection: "row",
+                alignItems: "center",
+                // borderLeftWidth: 1, 
+                // borderLeftColor: "rgba(249,249,249,0.9)"
+              }}>
+                <View style={{
+                  width:  "65%",
+                  height: 10,
+                  backgroundColor: "red",
+                  borderRadius: 50,
+                  opacity: 0.8
+                }}>
+
+                </View>
+              </View>
+
+             
+               
+              
+            </TouchableOpacity>
+           
           </View>
         ),
         headerRight: () => (
@@ -161,7 +226,8 @@ function TabNavigator() {
              gap: 25,
             justifyContent: "flex-end",
             flexDirection: "row"
-          }}>     
+          }}>
+
           <View style={{
            
            }}>
@@ -204,7 +270,7 @@ function TabNavigator() {
         
         {/* <SettingIcon width={'21'} height={'21'} /> */}
           <NotificationIcon  width={'23'} height={'25'} />
-        </TouchableOpacity>
+          </TouchableOpacity>
             
       
 
@@ -221,10 +287,10 @@ function TabNavigator() {
       
       ></Tab.Screen>
        <Tab.Screen    
-      name='Search'
+      name='Identity'
       component={SearchScreen}
       options={{
-        title: 'Search',
+        title: 'Identity',
         headerRight: () => (
           <View style={{
             // backgroundColor: "pink",
@@ -371,6 +437,8 @@ function AppNavigator() {
             <Stack.Screen name="NotificationScreen" component={NotificationScreen}  /> 
             <Stack.Screen name="UserScreen" component={UserScreen}  options={{ presentation:  "transparentModal"  }}/>
             <Stack.Screen name="FavorScreen" component={FavorScreen}  />
+            <Stack.Screen name="ModeScreen" component={ModeScreen} options={{ presentation:    "transparentModal" }}  />
+
 
 
 
@@ -394,11 +462,11 @@ export default function App() {
     <LinearGradient
     // colors={['black', '#000000bb', 'black']}
     // colors={['black', 'purple', 'black']}
-      // colors={['black',]}
+      colors={['black',]}
 
     // colors={['black','silver', 'purple', 'green']}
 
-    colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']}
+    // colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']}
     style={styles.gradient}
     start={{ x: 0, y: 1}}
     end={{ x: 0, y: 0 }}
