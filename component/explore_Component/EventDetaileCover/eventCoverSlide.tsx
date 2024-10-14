@@ -156,15 +156,15 @@ const EventCoverSlide: React.FC<eventCoverProps> = ({ data }) => {
           // backgroundColor: "pink",
           display: categoryLayoutState === item.eventId ? "none" : "flex",
           position: "relative", 
-          top: "-329%",
+          top: "-143%",  //with 4 Object - "-329%"
           left: "-5%",
-          height: 250,
+          height: 120,   //with 4 Object - 250
           width:60,
           alignItems: "center",
           gap: 30
 
         }}>
-           <View  style={{
+           {/* <View  style={{
               alignItems: "center"
             }} 
            >
@@ -175,8 +175,8 @@ const EventCoverSlide: React.FC<eventCoverProps> = ({ data }) => {
                 fontSize: 9,
                 marginTop: 2
               }}>Expand</Text>
-            </View>
-            <View style={{
+            </View> */}
+            {/* <View style={{
               alignItems: "center"
             }}
             >
@@ -189,7 +189,7 @@ const EventCoverSlide: React.FC<eventCoverProps> = ({ data }) => {
                 marginTop: 2
               }}>Comment</Text>
 
-            </View>
+            </View> */}
             <View style={{
               alignItems: "center"
             }}>

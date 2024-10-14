@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity} from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput} from 'react-native'
 import AddFriendsIcon from '../../icons/addFriendsIcon'
 import PuzzleIcon from '../../icons/puzzleIcon'
 import OutlineScanIcon from '../../icons/outlineScanIcon'
@@ -9,21 +9,30 @@ export default function SearchpageStructure() {
     const [searchMenuToggle, setSearchMenuToggle] = useState(false)
     const [addUserToggle, setAddUserToggle] = useState(true)
     const [eventToggle, setEventToggle] = useState(false)
+    const [inputConditions, setInputConditions] = useState(true)
+    const [inputValue, setInputValue] = useState("")
 
 
     const handleToggleSearchMenu = () => {
         setSearchMenuToggle(!searchMenuToggle)
     }
 
-    const handleEventToggle = () => {
+    const handleQRToggle = () => {
         setAddUserToggle(false)
         setEventToggle(true)
+        setInputConditions(false)
+        setSearchMenuToggle(false)
+        setInputValue("")
+
+
     }
 
     const handleUserToggle = () => {
         
         setEventToggle(false)
         setAddUserToggle(true)
+        setInputConditions(true)
+        setSearchMenuToggle(false)
     }
   return (
     <View style={styles.container}>
@@ -41,7 +50,7 @@ export default function SearchpageStructure() {
         }}>
             <View style={{
                 width: "99%",
-                height: "54%", 
+                height: "50%", 
                 backgroundColor: "rgba(255, 255, 255,0.1)",
                 borderRadius: 50,
                 borderWidth: 1, 
@@ -57,6 +66,11 @@ export default function SearchpageStructure() {
                     alignItems: "center",
                     justifyContent: "center",
                     opacity: 0.8,
+                    backgroundColor: "rgba(70,70,70,0.3)",
+                    borderTopLeftRadius: 50,
+                	borderBottomLeftRadius: 50,
+                    borderRightWidth: 1,
+                    borderRightColor: "rgba(255, 255, 255,0.5)"
                 }}> 
 
 
@@ -76,7 +90,27 @@ export default function SearchpageStructure() {
                     width: "68%",
                     backgroundColor: "rgba(203,203,203,0.1)"
                 }}> 
-                <Text>Hello</Text>
+                  <TextInput
+                    style={{ 
+                        height: "99%",
+
+                        // borderWidth: 1,
+                        paddingLeft: 5,
+                        // margin: 30,
+                        width: "100%",
+                        color: "white"
+                        // backgroundColor: "#c7c7c7",
+                        // borderRadius: 7,
+                        // marginTop: 20,
+                    }}
+                    onChangeText={setInputValue}
+                    value={inputValue}
+                    placeholder="Search for other users"
+                    placeholderTextColor="rgba(255, 255, 255,0.5)" 
+                    editable={inputConditions}
+                    selectTextOnFocus={inputConditions}
+                    // secureTextEntry={true}
+                />
                 
                 </View>
                 <TouchableOpacity style={{
@@ -161,7 +195,7 @@ export default function SearchpageStructure() {
                         borderBottomRightRadius: 50
                     }}
 
-                    onPress={() => handleEventToggle()}
+                    onPress={() => handleQRToggle()}
                     >
                     <OutlineScanIcon width={'29'} height={'21'} />
                     </TouchableOpacity>

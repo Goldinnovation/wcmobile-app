@@ -91,6 +91,7 @@ export default function LoginScreen() {
             onChangeText={setonChangeEmail}
             value={email}
             placeholder="Enter your Email"
+            placeholderTextColor="#000" 
           />
           <TextInput
             style={styles.passwordInput}
@@ -98,6 +99,7 @@ export default function LoginScreen() {
             value={password}
             placeholder="Enter your Password"
             secureTextEntry={true}
+            placeholderTextColor="#000" 
           />
           <View
             style={{

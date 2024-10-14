@@ -40,19 +40,22 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
    
    
     const [IconFavorClick, setIconFavorClick] = useState(false);
+    const [IconHearthClick, setIconHearthCick] = useState(false);
+
     const { IconHeartState } = useSelector((state: RootState) => state.IconData);
-    const { categoryLayoutState } = useSelector((state: RootState) => state.OpenCategoryLayout
-      );
+    const { categoryLayoutState } = useSelector((state: RootState) => state.OpenCategoryLayout);
 
     const [commentToggle, setCommentToggle] = useState(false)
       const dispatchIcon = useDispatch();
 
 
 
-      const handleHearthIconClick = () => {
-        const paylaodState = IconHeartState === false ? true : false;
+      const handleHearthIconClick = (e:string) => {
+        console.log(e);
+        setIconHearthCick(!IconHearthClick)
+        // const paylaodState = IconHeartState === false ? true : false;
     
-        dispatchIcon(userActions(paylaodState));
+        // dispatchIcon(userActions(paylaodState));
       };
 
       const handleCommentIcon = () => { 
@@ -60,9 +63,9 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
       }
     
     
-    
+  
       const handleFavorPress = async (eventId: string, item: eventProps) => {
-        // console.log(eventId);
+        console.log(eventId);
         setIconFavorClick(!IconFavorClick);
         const storedToken = await AsyncStorage.getItem("token");
         const token = storedToken ? JSON.parse(storedToken).token : null;
@@ -166,9 +169,9 @@ const HeartFavorBtn: React.FC<HeartFavorProps> = ({item}) => {
               height: 40,
               width: 30
             }}
-            onPress={() => handleHearthIconClick()}
+            onPress={() => handleHearthIconClick(item.eventId)}
           >
-            {IconHeartState ? (
+            {IconHearthClick ? (
               <View>
                 <HearthFrequenz
                   height={"25"}
