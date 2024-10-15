@@ -25,6 +25,9 @@ import { ExploreEventDataAction } from "../../store/Actions/exploreEventDataActi
 import handleExploreData from "../../handler/Explore/handleExploreData";
 import { menuNavigationAction } from "../../store/Actions/menuNaviagtionAction";
 import handlePage2ExploreData from "../../handler/Explore/handlePage2ExploreData";
+import * as Location from "expo-location"
+import handleUserLocation from "../../handler/User/Location/handleUserLocation";
+import { userLocationAction } from "../../store/Actions/userLocationAction";
 // import handleEventMenuNavigation from "../../handler/handleEventMenuNavigation";
 // import handleCategoryCall from "../../handler/Explore/handleCategoryCall";
 
@@ -89,8 +92,11 @@ export default function ExplorePageStructure() {
   const [trigger, setTrigger] = useState(false)
   const dispatchReduxEvent = useDispatch()
   const dispatchCategoryIcon = useDispatch()
-  const dispathMenu = useDispatch()
+  const dispatch = useDispatch()
   const [page, setpage] = useState(1)
+  const [location, setLocation] = useState({})
+  const {userLocationState} = useSelector((state: RootState) => state.userLocationReduxStore)
+
   const {eventDescription, eventDetails, eventSound, eventOptionHeader} = useSelector((state: RootState) => state.MenuNavigation)
   const updateMenuState = {
     eventDescription,
@@ -237,11 +243,32 @@ export default function ExplorePageStructure() {
 
     
     };
+
+    // gets the location of the user and stores it 
+    const getUserLocation = async() => {
+      const userLocationData = await handleUserLocation()
+      if(userLocationData) {
+        dispatch(userLocationAction(userLocationData))
+        setTrigger(true)
+      }
+      
+  
+      
+  
+     
+    }
     
   
     fetchEventData(page);
 
-  }, [trigger,page]);
+    if(userLocationState.length  == 0){
+      getUserLocation()
+    }
+
+  
+   
+
+  }, [trigger,page,]);
 
 
   // const page2data = data.map((prev) => prev.eventId)

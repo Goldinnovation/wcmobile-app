@@ -15,6 +15,12 @@ import PuzzleIcon from "../../icons/puzzleIcon";
 import LocationPin from "../../icons/locationPin";
 import OnlineIcon from "../../icons/OnlineIcon";
 import VirtualIcon from "../../icons/virtualIcon";
+import * as Location from "expo-location"
+import { useDispatch } from "react-redux";
+import { userLocationAction } from "../../store/Actions/userLocationAction";
+import { RootState } from "../../store/store";
+import { useSelector } from "react-redux";
+
 
 interface state {
   callFIlter: boolean;
@@ -35,6 +41,9 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
   const [slidevalue, setSlideValue] = useState(0)
   const [eventMoodtoggle, setEventMoodToggle] = useState(false) 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [location, setLocation] = useState({})
+  const dispatchLocation = useDispatch()
+  const {userLocationState} = useSelector((state: RootState) => state.userLocationReduxStore)
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -77,10 +86,25 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
 
    
   ];
+
+
+  
+
+
+
+
   useEffect(() => {
     if (callFIlter) {
       setTogglePopUp(!togglePopUp);
     }
+
+    // const getPermission = async () => {
+    //   let {status} = await Location.requestForegroundPermissionsAsync()
+    //   if(status !== "granted"){
+    //       console.log('Please Grant Location Permission');
+    //       return
+    //   }
+    // }
   }, []);
 
 
@@ -741,11 +765,12 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
 
 
                }}>
-                <View>
+                <TouchableOpacity
+                >
                   <Text
                   style={{color:"white", textAlign:"right", opacity: 0.9}}
                   >My Current Location</Text>
-                </View>
+                </TouchableOpacity>
                 <View style={{
                   flexDirection: "row",
                   // backgroundColor:"pink",
@@ -753,7 +778,10 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                   alignItems: "center",
                   gap: 3
                 }}>
-                  <View>
+                  <View style={{
+                    // backgroundColor: "red",
+                    marginBottom: 18
+                  }}>
                   {/* <Image
                         source={require("../../assets/p1.png")}
                         style={{height: 11, width: 11,}}
@@ -761,10 +789,13 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                        <LocationPin height={"11"} width={"11"}/>
                        
                   </View>
-                  <View>
+                  <View style={{
+                    // backgroundColor: "orange",
+                    // width: "90%"
+                  }}>
                   <Text
                   style={{color:"white", textAlign:"right", opacity: 0.7}}
-                  >Tokyo, Japan</Text>
+                  >{userLocationState[0].name}, {userLocationState[0].postalCode} {userLocationState[0].city}, {userLocationState[0].country}</Text>
                   </View>
                  
                   

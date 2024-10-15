@@ -205,6 +205,16 @@ export default function SearchpageStructure() {
             )}
            
         </View>
+        <View style={{
+             height: "85%",
+             // backgroundColor: "green",
+             alignItems: "center",
+             padding: 5,
+             flexDirection: "row",
+             // gap: 10
+        }}>
+
+        </View>
         
       
     </View>

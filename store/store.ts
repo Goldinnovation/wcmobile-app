@@ -5,6 +5,7 @@ import profilePageUpdateReducer from "./Reducer/profilePageUpdateReducer";
 import favoredEventReducer from "./Reducer/favoredEventReducer";
 import exploreEventDataReducer from "./Reducer/exploreEventDataReducer";
 import menuNavigationReducer from "./Reducer/menuNavigationReducer";
+import userLocationReducer from "./Reducer/userLocationReducer";
 
 const rootReducer = combineReducers({
     
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
     FavoredEvent: favoredEventReducer,
     ExploreEventData: exploreEventDataReducer,
     MenuNavigation: menuNavigationReducer,
+    userLocationReduxStore: userLocationReducer
 
    
 })
