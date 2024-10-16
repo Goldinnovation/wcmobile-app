@@ -23,7 +23,7 @@ interface eventProps {
 // Receives a list of events and returns 20 events as the minimum amout for the page to render
 // Pure Function 
 
-const handleDisplayedEventAmount  = (data: eventProps[] ) => {
+const handleEventDataAmount  = (data: eventProps[] ) => {
 
     const orginalData = data 
     const modifiedArr = []
@@ -43,4 +43,4 @@ const handleDisplayedEventAmount  = (data: eventProps[] ) => {
 }
 
 
-export default handleDisplayedEventAmount
+export default handleEventDataAmount

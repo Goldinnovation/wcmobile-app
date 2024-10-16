@@ -15,7 +15,7 @@ import axios, { Axios } from "axios";
 export async function updateEventData(token: string, EventDataId: string[]) {
   try {
     // console.log("inside api:", token);
-    // console.log("inside api:", cateogory);
+    // console.log("inside api:", EventDataId);
     const API_URL = process.env.EXPO_PUBLIC_API_URL;
     const res = axios
       .post(`${API_URL}/api/newExploreEventData`, {
@@ -28,7 +28,7 @@ export async function updateEventData(token: string, EventDataId: string[]) {
       })
       .catch(function (error) {
         console.error(
-          "Error on axios post method from the API userCategoryReq "
+          "Error on axios post method from the API updateEventData "
         );
       });
 

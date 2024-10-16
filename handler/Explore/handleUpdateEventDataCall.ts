@@ -8,7 +8,6 @@ const handleUpdateEventData = async(data: string[]) => {
     const userToken = token.token;
     if (userToken) {
         const exploreFetchedData = await updateEventData(userToken, data);
-
         return exploreFetchedData
         
       } else {

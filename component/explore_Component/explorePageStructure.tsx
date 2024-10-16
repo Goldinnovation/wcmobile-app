@@ -23,7 +23,7 @@ import EventCoverSlide from "./EventDetaileCover/eventCoverSlide";
 import EventMoreInfoSlide from "./EventDetaileCover/eventSecondSlide";
 import { ExploreEventDataAction } from "../../store/Actions/exploreEventDataAction";
 import { menuNavigationAction } from "../../store/Actions/menuNaviagtionAction";
-import handleDisplayedEventAmount from "../../handler/Explore/handlePage2ExploreData";
+import handleEventDataAmount from "../../handler/Explore/handleEventdefaultDataAmount";
 import * as Location from "expo-location"
 import handleUserLocation from "../../handler/User/Location/handleUserLocation";
 import { userLocationAction } from "../../store/Actions/userLocationAction";
@@ -179,7 +179,7 @@ export default function ExplorePageStructure() {
         const exploreFetchedData = await handleFirstEventDataCall();
         const storeData = exploreFetchedData.length > 0 && dispatchReduxEvent(ExploreEventDataAction(exploreFetchedData))
         storeData && (() => {
-          const modifiedExploreData = handleDisplayedEventAmount(StoredExploreEventData)
+          const modifiedExploreData = handleEventDataAmount(StoredExploreEventData)
           setData(modifiedExploreData)
           setTrigger(true)
         })()
@@ -191,7 +191,7 @@ export default function ExplorePageStructure() {
     const paginationExploreEventData = async (page: number) => {
 
       page == 1 && data.length < 10 && (() => {
-        const modifiedExploreData = handleDisplayedEventAmount(
+        const modifiedExploreData = handleEventDataAmount(
           StoredExploreEventData
         );
         setData(modifiedExploreData);
@@ -205,7 +205,7 @@ export default function ExplorePageStructure() {
         );
         console.log("page 2 Events - filtered:", filteringEventData.length);
         const filteredFetchedData =
-          handleDisplayedEventAmount(filteringEventData);
+          handleEventDataAmount(filteringEventData);
         console.log(filteredFetchedData.length);
 
         if (filteredFetchedData) {
@@ -224,7 +224,7 @@ export default function ExplorePageStructure() {
         );
         console.log("page 2 Events - filtered:", filteringEventData.length);
         const filteredFetchedData =
-          handleDisplayedEventAmount(filteringEventData);
+          handleEventDataAmount(filteringEventData);
         console.log(filteredFetchedData.length);
 
         if (filteredFetchedData) {
@@ -238,7 +238,8 @@ export default function ExplorePageStructure() {
       page == 4 && data.length == 30 &&( async() => {        
         const SeeneventDataId = data.map((prev: eventProps) => prev.eventId)
         console.log(SeeneventDataId)
-        // const getNewEventData = await handleUpdateEventData(SeeneventDataId)
+        const getNewEventData = await handleUpdateEventData(SeeneventDataId)
+        
 
 
 
@@ -256,6 +257,7 @@ export default function ExplorePageStructure() {
     }
     
   
+    // Calling all Required Functions
     StoredExploreEventData.length == 0 ? firstEventDataCall(page) : paginationExploreEventData(page)  
     userLocationState.length == 0 && getUserLocation()
 
