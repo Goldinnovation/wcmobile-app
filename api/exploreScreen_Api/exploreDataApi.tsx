@@ -17,7 +17,7 @@ const axiosCache  = setupCache(instance, {
 
 /*API Post request retrieves all event objects from the backend api endpoint explore */
 
-export async function useExploreGet(token: string) {
+export async function getEventData(token: string) {
   try {
     const API_URL = process.env.EXPO_PUBLIC_API_URL;
     const res = axiosCache

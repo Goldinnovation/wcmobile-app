@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useRef } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
-import { useExploreGet } from "../../api/exploreScreen_Api/exploreDataApi";
+import { getEventData } from "../../api/exploreScreen_Api/exploreDataApi";
 import {
   View,
   ScrollView,
@@ -22,12 +22,12 @@ import { userCategoryLayoutAction } from "../../store/Actions/userLayoutAction";
 import EventCoverSlide from "./EventDetaileCover/eventCoverSlide";
 import EventMoreInfoSlide from "./EventDetaileCover/eventSecondSlide";
 import { ExploreEventDataAction } from "../../store/Actions/exploreEventDataAction";
-import handleExploreData from "../../handler/Explore/handleExploreData";
 import { menuNavigationAction } from "../../store/Actions/menuNaviagtionAction";
-import handlePage2ExploreData from "../../handler/Explore/handlePage2ExploreData";
+import handleDisplayedEventAmount from "../../handler/Explore/handlePage2ExploreData";
 import * as Location from "expo-location"
 import handleUserLocation from "../../handler/User/Location/handleUserLocation";
 import { userLocationAction } from "../../store/Actions/userLocationAction";
+import handleFirstEventDataCall from "../../handler/Explore/handleFirstEventDataCall";
 // import handleEventMenuNavigation from "../../handler/handleEventMenuNavigation";
 // import handleCategoryCall from "../../handler/Explore/handleCategoryCall";
 
@@ -162,15 +162,7 @@ export default function ExplorePageStructure() {
 
   const handleScrolling = (event: any) => {
     setpage((prev) => prev+=1)
-    // const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;
-    // console.log(layoutMeasurement.height);
-
-    // if (layoutMeasurement.height + contentOffset.y >= contentSize.height -10) {
-    //     // console.log('Reached the end');
-    //     setpage(2)
-
-    // }
-
+  
 
   }
 
@@ -180,77 +172,86 @@ export default function ExplorePageStructure() {
   //  afterwwards the data will be modified to display to returns a maximum of 20 events.
 
   useEffect(() => {
-    const fetchEventData = async (pageNum: number) => {
-      console.log("fetched Page:", page);
 
-      if (page === 1){
-        const storedToken = await AsyncStorage.getItem("token");
-        const token = storedToken ? JSON.parse(storedToken).token : null;
-        const userToken = token.token;
-        if (userToken) {
-          const exploreFetchedData = await useExploreGet(userToken);
-          if(exploreFetchedData.length > 0){
-            const storeData = dispatchReduxEvent(ExploreEventDataAction(exploreFetchedData))
-            if(storeData){
-              setTrigger(true)
-              const modifiedExploreData = handleExploreData(StoredExploreEventData)
-              setData(modifiedExploreData)
-            }        
-          }else{
-            console.log("Second Call");
-            fetchEventData(page);
-          }
-        } else {
-          console.error("Token not found");
-        }
-
-      }
-      else if(page === 2){
-        console.log('Need more Events')
-        // console.log(StoredExploreEventData.length);
-        const totalEvents = StoredExploreEventData
-        // Filters all events out that are already in page 1, creates a list with the rest
-        const filteringEventData = totalEvents.filter((prev: eventProps) => 
-        !data.some((event:eventProps) => event.eventId === prev.eventId)
-        )
-
-        // console.log(filteringEventData);
-        const filteredFetchedData =  handlePage2ExploreData(filteringEventData)
-        // console.log(filteredFetchedData.length);
-
-       
-
-
-        if(filteredFetchedData){
-          // console.log('triggerd');
-          setData((prev) => [...prev, ...filteredFetchedData])
+    // Gets the first Explore Event Data Call and stores the data in the redux storage
+    const firstEventDataCall = async (pageNum: number) => {
+        const exploreFetchedData = await handleFirstEventDataCall();
+        const storeData = exploreFetchedData.length > 0 && dispatchReduxEvent(ExploreEventDataAction(exploreFetchedData))
+        storeData && (() => {
+          const modifiedExploreData = handleDisplayedEventAmount(StoredExploreEventData)
+          setData(modifiedExploreData)
           setTrigger(true)
+        })()
+        if(storeData){
+            const modifiedExploreData = handleDisplayedEventAmount(StoredExploreEventData)
+            setData(modifiedExploreData)
+            setTrigger(true)
+          }        
+    
+    };
+
+
+    // Updates the page according to the users scrolling
+    const paginationExploreEventData = async (page: number) => {
+
+      page == 1 && data.length < 10 && (() => {
+        const modifiedExploreData = handleDisplayedEventAmount(
+          StoredExploreEventData
+        );
+        setData(modifiedExploreData);
+      })();
+
+      page == 2 && data.length < 20 && (() => {
+         // checks for events that are not in page 1, creates a list with the rest
+         const filteringEventData = StoredExploreEventData.filter(
+          (prev: eventProps) =>
+            !data.some((event: eventProps) => event.eventId === prev.eventId)
+        );
+        console.log("page 2 Events - filtered:", filteringEventData.length);
+        const filteredFetchedData =
+          handleDisplayedEventAmount(filteringEventData);
+        console.log(filteredFetchedData.length);
+
+        if (filteredFetchedData) {
+          // console.log('triggerd');
+          setData((prev) => [...prev, ...filteredFetchedData]);
+          setTrigger(true);
         }
 
-      //  console.log(data.length);
+      })();
+
+      page == 3 && data.length < 30 && (() => {
+        console.log("Page 3 Reached");
+        const filteringEventData = StoredExploreEventData.filter(
+          (prev: eventProps) =>
+            !data.some((event: eventProps) => event.eventId === prev.eventId)
+        );
+        console.log("page 2 Events - filtered:", filteringEventData.length);
+        const filteredFetchedData =
+          handleDisplayedEventAmount(filteringEventData);
+        console.log(filteredFetchedData.length);
+
+        if (filteredFetchedData) {
+          // console.log('triggerd');
+          setData((prev) => [...prev, ...filteredFetchedData]);
+          setTrigger(true);
+        }
+
+      })();
       
-     
-
-     
-        
-
-      }
-      else if(page === 3){
-        console.log('Page 3 Reached');
-      }
-
-    
-
     
     };
 
     // gets the location of the user and stores it 
     const getUserLocation = async() => {
       const userLocationData = await handleUserLocation()
-      if(userLocationData) {
-        dispatch(userLocationAction(userLocationData))
-        setTrigger(true)
-      }
+      userLocationData &&  dispatch(userLocationAction(userLocationData))
+      console.log('added the user Location to redux store ');
+      // if(userLocationData) {
+      //   dispatch(userLocationAction(userLocationData))
+      //   setTrigger(true)
+      // }
+
       
   
       
@@ -259,22 +260,21 @@ export default function ExplorePageStructure() {
     }
     
   
-    fetchEventData(page);
+    StoredExploreEventData.length == 0 ? firstEventDataCall(page) : paginationExploreEventData(page)  
+    userLocationState.length == 0 && getUserLocation()
 
-    if(userLocationState.length  == 0){
-      getUserLocation()
-    }
+  
 
   
    
 
-  }, [trigger,page,]);
+  }, [trigger,page]);
 
 
   // const page2data = data.map((prev) => prev.eventId)
   // console.log('olddata', page2data);
 
-  console.log(data.length)
+  console.log("Data Length",data.length)
 // 
  
 
