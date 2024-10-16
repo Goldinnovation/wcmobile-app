@@ -28,6 +28,7 @@ import * as Location from "expo-location"
 import handleUserLocation from "../../handler/User/Location/handleUserLocation";
 import { userLocationAction } from "../../store/Actions/userLocationAction";
 import handleFirstEventDataCall from "../../handler/Explore/handleFirstEventDataCall";
+import handleUpdateEventData from "../../handler/Explore/handleUpdateEventDataCall";
 // import handleEventMenuNavigation from "../../handler/handleEventMenuNavigation";
 // import handleCategoryCall from "../../handler/Explore/handleCategoryCall";
 
@@ -182,12 +183,7 @@ export default function ExplorePageStructure() {
           setData(modifiedExploreData)
           setTrigger(true)
         })()
-        if(storeData){
-            const modifiedExploreData = handleDisplayedEventAmount(StoredExploreEventData)
-            setData(modifiedExploreData)
-            setTrigger(true)
-          }        
-    
+      
     };
 
 
@@ -238,6 +234,15 @@ export default function ExplorePageStructure() {
         }
 
       })();
+      console.log(page);
+      page == 4 && data.length == 30 &&( async() => {        
+        const SeeneventDataId = data.map((prev: eventProps) => prev.eventId)
+        console.log(SeeneventDataId)
+        // const getNewEventData = await handleUpdateEventData(SeeneventDataId)
+
+
+
+      })();
       
     
     };
@@ -246,16 +251,7 @@ export default function ExplorePageStructure() {
     const getUserLocation = async() => {
       const userLocationData = await handleUserLocation()
       userLocationData &&  dispatch(userLocationAction(userLocationData))
-      console.log('added the user Location to redux store ');
-      // if(userLocationData) {
-      //   dispatch(userLocationAction(userLocationData))
-      //   setTrigger(true)
-      // }
-
       
-  
-      
-  
      
     }
     
