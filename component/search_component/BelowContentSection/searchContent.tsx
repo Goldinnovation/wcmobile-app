@@ -9,7 +9,7 @@ const SearchContent = () => {
             width: "100%", 
             height: "100%"
         }}>
-            <Text>2</Text>
+            <Text>Search</Text>
         </View>
 
     )

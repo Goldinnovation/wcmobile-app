@@ -12,7 +12,7 @@ const QrCodeContent = () => {
             width: "100%", 
             height: "100%"
         }}>
-            <Text>1</Text>
+            <Text>qr</Text>
         </View> 
 
     )
