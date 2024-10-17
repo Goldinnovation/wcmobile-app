@@ -238,6 +238,8 @@ export default function ExplorePageStructure() {
       page == 4 && data.length == 30 &&( async() => {        
         const SeeneventDataId = data.map((prev: eventProps) => prev.eventId)
         console.log(SeeneventDataId)
+
+        // Receives complete new Event Data 
         const getNewEventData = await handleUpdateEventData(SeeneventDataId)
         
 

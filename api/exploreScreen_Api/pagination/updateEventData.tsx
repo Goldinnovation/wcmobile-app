@@ -23,7 +23,7 @@ export async function updateEventData(token: string, EventDataId: string[]) {
         EventDataId,
       })
       .then(function (response) {
-        // console.log(response.data);
+        console.log("New Event Data:", response.data);
         return response.data;
       })
       .catch(function (error) {

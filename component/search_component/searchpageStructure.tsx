@@ -4,13 +4,17 @@ import AddFriendsIcon from '../../icons/addFriendsIcon'
 import PuzzleIcon from '../../icons/puzzleIcon'
 import OutlineScanIcon from '../../icons/outlineScanIcon'
 import SearchLoopIcon from '../../icons/searchLoopIcon'
+import SearchContent from './UpperContentSection/searchContent'
+import QrCodeContent from './BelowContentSection/qrContent'
 
 export default function SearchpageStructure() {
     const [searchMenuToggle, setSearchMenuToggle] = useState(false)
     const [addUserToggle, setAddUserToggle] = useState(true)
-    const [eventToggle, setEventToggle] = useState(false)
+    const [QRCodeToggle, setQrCodeToggle] = useState(false)
     const [inputConditions, setInputConditions] = useState(true)
     const [inputValue, setInputValue] = useState("")
+    const [searchContent, setSearchContent] = useState(true)
+    const [qrCodeContent, setQrCodeContent] = useState(false)
 
 
     const handleToggleSearchMenu = () => {
@@ -18,8 +22,12 @@ export default function SearchpageStructure() {
     }
 
     const handleQRToggle = () => {
+
+        console.log('qr code toggle ');
         setAddUserToggle(false)
-        setEventToggle(true)
+        setSearchContent(false)
+        setQrCodeToggle(true)
+        setQrCodeContent(true)
         setInputConditions(false)
         setSearchMenuToggle(false)
         setInputValue("")
@@ -29,14 +37,17 @@ export default function SearchpageStructure() {
 
     const handleUserToggle = () => {
         
-        setEventToggle(false)
+        setQrCodeToggle(false)
+        setQrCodeContent(false)
         setAddUserToggle(true)
+        setSearchContent(true)
         setInputConditions(true)
         setSearchMenuToggle(false)
     }
   return (
     <View style={styles.container}>
 
+        {/* Upper part:  Search Section, user can search through other user name or use the QR Code methode */}
         <View style={{
             height: "15%",
             // backgroundColor: "orange",
@@ -132,7 +143,7 @@ export default function SearchpageStructure() {
             onPress={() => handleToggleSearchMenu()}
             >
                 {
-                    eventToggle 
+                    QRCodeToggle 
                     
                     ? <OutlineScanIcon width={'29'} height={'21'} />
 
@@ -153,7 +164,7 @@ export default function SearchpageStructure() {
                     position: "absolute", 
                     top: "100%",
                     left: "83%",
-                    zIndex: 3,
+                    zIndex: 4,
                     width: "14%",
                     height: "180%",
                     backgroundColor: "rgba(255, 255, 255,0.1)",
@@ -181,12 +192,13 @@ export default function SearchpageStructure() {
                         borderBottomWidth: 1,
                         borderBottomColor: "rgba(255, 255, 255,0.5)"
                     }}
-                    onPress={() => handleUserToggle()}
+                    onPress={handleUserToggle}
                     >
                     <AddFriendsIcon width={'21'} height={'21'} />
                     </TouchableOpacity>
+
                     <TouchableOpacity style={{
-                        backgroundColor: eventToggle ? "rgba(70,70,70,0.4)" : "rgba(0,0,0,0)",
+                        backgroundColor: QRCodeToggle ? "rgba(70,70,70,0.4)" : "rgba(0,0,0,0)",
                         width: "100%",
                         height: "50%",
                         alignItems: "center",
@@ -195,7 +207,7 @@ export default function SearchpageStructure() {
                         borderBottomRightRadius: 50
                     }}
 
-                    onPress={() => handleQRToggle()}
+                    onPress={handleQRToggle}
                     >
                     <OutlineScanIcon width={'29'} height={'21'} />
                     </TouchableOpacity>
@@ -205,14 +217,33 @@ export default function SearchpageStructure() {
             )}
            
         </View>
+
+        {/* Below part: Displays the choosen Method content & Result */}
         <View style={{
              height: "85%",
-             // backgroundColor: "green",
+             zIndex: -1,
+             backgroundColor: "green",
              alignItems: "center",
-             padding: 5,
+             padding: 10,
              flexDirection: "row",
              // gap: 10
         }}>
+
+            {
+                QRCodeToggle ?
+                // QR code Content
+                
+                <QrCodeContent/>
+
+                : 
+                // Search Content
+
+                <SearchContent/>
+                
+
+            }
+           
+
 
         </View>
         
