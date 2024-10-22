@@ -6,7 +6,7 @@ import {
     Text,
     TouchableOpacity,
   } from "react-native";
-
+import { memo } from "react";
 
 interface eventProps {
     eventId: string;

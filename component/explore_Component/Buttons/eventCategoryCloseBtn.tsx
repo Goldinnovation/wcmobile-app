@@ -40,6 +40,8 @@ const EventCategoryCloseBtn: React.FC<eventCategoryProps> = ({ data }) => {
     dispatchCategoryLayout(userCategoryLayoutAction(""));
   };
 
+  
+
   return (
     <View
       style={{

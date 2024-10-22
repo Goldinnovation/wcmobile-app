@@ -1,6 +1,12 @@
 import axios, { Axios } from "axios";
+import { setupCache } from "axios-cache-interceptor";
 
 
+
+const instance = axios.create()
+const axiosCache  = setupCache(instance, {
+  ttl: 15 * 60 * 1000, 
+})
 
 /**
  * Sends a string of the users selected event category type to the server.
@@ -23,7 +29,7 @@ export async function userCategoryReq(token: string, cateogory: string) {
         cateogory,
       })
       .then(function (response) {
-        // console.log(response.data);
+        // console.log("userCategoryReq Cache: ", response.cached);
         return response.data;
       })
       .catch(function (error) {

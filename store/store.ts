@@ -6,6 +6,8 @@ import favoredEventReducer from "./Reducer/favoredEventReducer";
 import exploreEventDataReducer from "./Reducer/exploreEventDataReducer";
 import menuNavigationReducer from "./Reducer/menuNavigationReducer";
 import userLocationReducer from "./Reducer/userLocationReducer";
+import categoryDataReducer from "./Reducer/categoryDataReducer";
+
 
 const rootReducer = combineReducers({
     
@@ -15,8 +17,8 @@ const rootReducer = combineReducers({
     FavoredEvent: favoredEventReducer,
     ExploreEventData: exploreEventDataReducer,
     MenuNavigation: menuNavigationReducer,
-    userLocationReduxStore: userLocationReducer
-
+    userLocationReduxStore: userLocationReducer,
+    categoryData: categoryDataReducer
    
 })
 

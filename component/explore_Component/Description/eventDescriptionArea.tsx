@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Image, Text, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import HeartFavorBtn from "../Buttons/HeartFavorBtn";
 import EventDescription from "./eventDescription";
+import {useRef, memo} from "react"
+import { userCategoryLayoutAction } from "../../../store/Actions/userLayoutAction";
+
 
 interface eventProps {
   eventId: string;
@@ -36,7 +39,11 @@ const EventDescriptionArea: React.FC<EventDescriptionAreaProps> = ({
   const { categoryLayoutState } = useSelector(
     (state: RootState) => state.OpenCategoryLayout
   );
+
   const item = data;
+  
+
+
 
   return (
     <View
