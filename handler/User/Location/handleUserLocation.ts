@@ -4,7 +4,6 @@ import * as Location from "expo-location"
 
 const handleUserLocation = async() => {
     
-    console.log('Location EXPLORE TRIGGER call triggert');
     let {status} = await Location.requestForegroundPermissionsAsync();
       if(status !== "granted"){
           console.log('Please Grant Location Permission');

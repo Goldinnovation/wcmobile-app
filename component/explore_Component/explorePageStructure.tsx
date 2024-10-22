@@ -29,8 +29,7 @@ import handleUserLocation from "../../handler/User/Location/handleUserLocation";
 import { userLocationAction } from "../../store/Actions/userLocationAction";
 import handleFirstEventDataCall from "../../handler/Explore/handleFirstEventDataCall";
 import handleUpdateEventData from "../../handler/Explore/handleUpdateEventDataCall";
-// import handleEventMenuNavigation from "../../handler/handleEventMenuNavigation";
-// import handleCategoryCall from "../../handler/Explore/handleCategoryCall";
+
 
 
 interface eventProps {
@@ -90,13 +89,14 @@ export default function ExplorePageStructure() {
   const [categoryData, setCategoryData] = useState<eventArr | []>([])
   const {categoryLayoutState} = useSelector((state: RootState) => state.OpenCategoryLayout)
   const  {StoredExploreEventData} = useSelector((state: RootState) => state.ExploreEventData)
-  const [trigger, setTrigger] = useState(false)
+  const [trigger, setTrigger] = useState("")
   const dispatchReduxEvent = useDispatch()
   const dispatchCategoryIcon = useDispatch()
   const dispatch = useDispatch()
   const [page, setpage] = useState(1)
   const [location, setLocation] = useState({})
   const {userLocationState} = useSelector((state: RootState) => state.userLocationReduxStore)
+  const flatListRef = useRef<FlatList<eventProps>>(null)
 
   const {eventDescription, eventDetails, eventSound, eventOptionHeader} = useSelector((state: RootState) => state.MenuNavigation)
   const updateMenuState = {
@@ -159,10 +159,24 @@ export default function ExplorePageStructure() {
   };
 
 
+  
+ const handleFilteredNewData = () => {
+
+  // Checks if the data is New 
+   const filteringEventData = StoredExploreEventData.filter(
+     (prev: eventProps) =>
+       !data.some((event: eventProps) => event.eventId === prev.eventId)
+   );
+   return filteringEventData
+ };
+
+
 
 
   const handleScrolling = (event: any) => {
-    setpage((prev) => prev+=1)
+    page < 5 ?  setpage((prev) => prev+=1) : alert("You have reached the page limit")
+   
+
   
 
   }
@@ -177,11 +191,12 @@ export default function ExplorePageStructure() {
     // Gets the first Explore Event Data Call and stores the data in the redux storage
     const firstEventDataCall = async (pageNum: number) => {
         const exploreFetchedData = await handleFirstEventDataCall();
+        console.log('First Fetch Length ', exploreFetchedData.length);
         const storeData = exploreFetchedData.length > 0 && dispatchReduxEvent(ExploreEventDataAction(exploreFetchedData))
         storeData && (() => {
           const modifiedExploreData = handleEventDataAmount(StoredExploreEventData)
           setData(modifiedExploreData)
-          setTrigger(true)
+          setTrigger("trigger")
         })()
       
     };
@@ -190,63 +205,54 @@ export default function ExplorePageStructure() {
     // Updates the page according to the users scrolling
     const paginationExploreEventData = async (page: number) => {
 
-      page == 1 && data.length < 10 && (() => {
-        const modifiedExploreData = handleEventDataAmount(
-          StoredExploreEventData
-        );
+      page == 1 && data.length < 8 && (() => {
+        const modifiedExploreData = handleEventDataAmount(StoredExploreEventData);
         setData(modifiedExploreData);
+        setTrigger("trigger in page 1");
       })();
 
-      page == 2 && data.length < 20 && (() => {
+      (page == 2 && data.length < 16 || page == 3 && data.length < 24)  && (() => {
          // checks for events that are not in page 1, creates a list with the rest
-         const filteringEventData = StoredExploreEventData.filter(
-          (prev: eventProps) =>
-            !data.some((event: eventProps) => event.eventId === prev.eventId)
-        );
-        console.log("page 2 Events - filtered:", filteringEventData.length);
-        const filteredFetchedData =
-          handleEventDataAmount(filteringEventData);
-        console.log(filteredFetchedData.length);
-
-        if (filteredFetchedData) {
-          // console.log('triggerd');
-          setData((prev) => [...prev, ...filteredFetchedData]);
-          setTrigger(true);
-        }
+         const filteredNewData =  handleFilteredNewData()
+         const reducingTheAmount = handleEventDataAmount(filteredNewData);
+         reducingTheAmount && setData((prev) => [...prev, ...reducingTheAmount]);
+         setTrigger("trigger in page 2-3");
 
       })();
 
-      page == 3 && data.length < 30 && (() => {
-        console.log("Page 3 Reached");
-        const filteringEventData = StoredExploreEventData.filter(
-          (prev: eventProps) =>
-            !data.some((event: eventProps) => event.eventId === prev.eventId)
-        );
-        console.log("page 2 Events - filtered:", filteringEventData.length);
-        const filteredFetchedData =
-          handleEventDataAmount(filteringEventData);
-        console.log(filteredFetchedData.length);
-
-        if (filteredFetchedData) {
-          // console.log('triggerd');
-          setData((prev) => [...prev, ...filteredFetchedData]);
-          setTrigger(true);
-        }
-
-      })();
-      console.log(page);
-      page == 4 && data.length == 30 &&( async() => {        
+  
+      page == 4 && data.length == 24 &&( async() => {
+        
+        // Seen Events 
         const SeeneventDataId = data.map((prev: eventProps) => prev.eventId)
-        console.log(SeeneventDataId)
 
         // Receives complete new Event Data 
         const getNewEventData = await handleUpdateEventData(SeeneventDataId)
+        console.log('New EventData Length:', getNewEventData.length);
+        const StoreDatainRudux = getNewEventData.length > 0 && dispatchReduxEvent(ExploreEventDataAction(getNewEventData))
+        StoreDatainRudux && ( async() => {
+          setTrigger("Trigger in page 4")
+          const filteredNewData = await handleFilteredNewData()
+          const reducingTheAmount = handleEventDataAmount(filteredNewData);
+
+
+          reducingTheAmount && (() =>{
+            setData([...reducingTheAmount]);
+            flatListRef.current && flatListRef.current.scrollToOffset({offset: 0, animated: true})
+            setpage(1)
+            console.log('New Filtered Data:', filteredNewData.length);
+
+          })();
+        })()
+
+
         
 
 
 
       })();
-      
+
+
     
     };
 
@@ -268,7 +274,7 @@ export default function ExplorePageStructure() {
   
    
 
-  }, [trigger,page]);
+  }, [trigger,page,]);
 
 
   // const page2data = data.map((prev) => prev.eventId)
@@ -286,7 +292,7 @@ export default function ExplorePageStructure() {
       {data ? (
 
         <FlatList
-        
+        ref={flatListRef}
          data={data}
         keyExtractor={item => item.eventId}
          renderItem={({item, index}) => 

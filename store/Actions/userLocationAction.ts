@@ -26,7 +26,6 @@ interface props {
 
 export const userLocationAction = (payloadData: locationData[]) => {
 
-    console.log('UserLocationData on Aciton:',payloadData);
     return {
       type: userLocation,
       payload: payloadData

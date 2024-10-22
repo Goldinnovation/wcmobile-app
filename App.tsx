@@ -469,11 +469,11 @@ export default function App() {
     <LinearGradient
     // colors={['black', '#000000bb', 'black']}
     // colors={['black', 'purple', 'black']}
-      colors={['black',]}
+      // colors={['black',]}
 
     // colors={['black','silver', 'purple', 'green']}
 
-    // colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']}
+    colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']}
     style={styles.gradient}
     start={{ x: 0, y: 1}}
     end={{ x: 0, y: 0 }}

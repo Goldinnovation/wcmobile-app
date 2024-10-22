@@ -30,7 +30,7 @@ const handleEventDataAmount  = (data: eventProps[] ) => {
     let sum = 0
     if(orginalData){
       for(const x of orginalData){
-        if(sum < 10){
+        if(sum < 8){
           sum++
           modifiedArr.push(x)
         }
