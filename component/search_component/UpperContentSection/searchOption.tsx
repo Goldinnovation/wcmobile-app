@@ -16,6 +16,7 @@ interface SearchNQRCodeProps{
     setInputValue: (text: string) => void
     inputValue: string
     inputConditions: boolean
+    placeHolderText: string
 
 }
 
@@ -25,7 +26,8 @@ const SearchOption: React.FC<SearchNQRCodeProps> = ({
      handleToggleSearchMenu,
      setInputValue,
      inputValue,
-     inputConditions
+     inputConditions,
+     placeHolderText
 
     }) => {
     return(
@@ -87,7 +89,7 @@ const SearchOption: React.FC<SearchNQRCodeProps> = ({
                 }}
                 onChangeText={setInputValue}
                 value={inputValue}
-                placeholder="Search for other users"
+                placeholder={placeHolderText}
                 placeholderTextColor="rgba(255, 255, 255,0.5)" 
                 editable={inputConditions}
                 selectTextOnFocus={inputConditions}

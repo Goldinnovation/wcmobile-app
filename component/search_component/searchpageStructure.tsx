@@ -29,6 +29,7 @@ export default function SearchpageStructure() {
   const [foundUser, setFoundUser] = useState(false)
   const [barCodeType, setbarCodeType] = useState(null)
   const [barCodeData, setBarCodeData] = useState(null)
+  const [placeHolderText, setPlaceHolderText] = useState("Search for your Friends")
   const childRef = useRef<any>(null);
 
   const handleToggleSearchMenu = () => {
@@ -65,6 +66,7 @@ export default function SearchpageStructure() {
     setInputConditions(false);
     setSearchMenuToggle(false);
     setInputValue("");
+    setPlaceHolderText("")
   };
 
   const handleUserToggle = () => {
@@ -74,6 +76,7 @@ export default function SearchpageStructure() {
     setSearchContent(true);
     setInputConditions(true);
     setSearchMenuToggle(false);
+    setPlaceHolderText("Search for your Friends")
   };
   return (
     <View
@@ -118,7 +121,7 @@ export default function SearchpageStructure() {
           // gap: 10
         }}
       >
-        {/* Displays the Option that the user can use to search for other users  */}
+        {/* Displays the  Search Input Option that the user can use to search for other users  */}
         <SearchOption
           QRCodeToggle={QRCodeToggle}
           addUserToggle={addUserToggle}
@@ -126,6 +129,7 @@ export default function SearchpageStructure() {
           setInputValue={setInputValue}
           inputValue={inputValue}
           inputConditions={inputConditions}
+          placeHolderText={placeHolderText}
         />
             {/* Menu for selecting the search option */}
         {searchMenuToggle && (

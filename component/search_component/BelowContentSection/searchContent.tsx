@@ -5,11 +5,17 @@ const SearchContent = () => {
 
     return(
         <View style={{
-            backgroundColor: "skyblue",
+            // backgroundColor: "skyblue",
             width: "100%", 
-            height: "100%"
+            height: "100%",
+            justifyContent: "center", 
+            alignItems: "center"
         }}>
-            <Text>Search</Text>
+            <Text style={{
+                color: "white", 
+                textAlign: "center",
+                fontSize: 20
+            }}> Search for your Firends </Text>
         </View>
 
     )
