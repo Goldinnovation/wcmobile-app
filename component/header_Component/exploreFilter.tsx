@@ -44,6 +44,12 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
   const [location, setLocation] = useState({})
   const dispatchLocation = useDispatch()
   const {userLocationState} = useSelector((state: RootState) => state.userLocationReduxStore)
+  const [locationName, setLocationName] = useState("Location")
+  const [postalCode, setPostalCode] = useState("Code")
+  const [userCountry, SetUserCountry] = useState("Country")
+  const [userCity, setUserCity] = useState("City")
+  const [trigger, setTrigger] = useState(false)
+
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -88,6 +94,17 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
   ];
 
 
+  // if(userLocationState.length > 0){
+  //   console.log('Trigger Init ');
+  //   setLocationName(userLocationState[0].name)
+  //   setPostalCode(userLocationState[0].postalCode)
+  //   setUserCity(userLocationState[0].city)
+  //   SetUserCountry(userLocationState[0].country)
+  
+  // }
+ 
+
+
   
 
 
@@ -98,14 +115,22 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
       setTogglePopUp(!togglePopUp);
     }
 
-    // const getPermission = async () => {
-    //   let {status} = await Location.requestForegroundPermissionsAsync()
-    //   if(status !== "granted"){
-    //       console.log('Please Grant Location Permission');
-    //       return
-    //   }
-    // }
-  }, []);
+    const setfunction = () => {
+      setLocationName(userLocationState[0].name)
+      setPostalCode(userLocationState[0].postalCode)
+      setUserCity(userLocationState[0].city)
+      SetUserCountry(userLocationState[0].country)
+      // setTrigger(true)
+    }
+
+
+    (userLocationState?.length == 1 &&  trigger === false) && (() => {
+     
+      setfunction()
+      setTrigger(true)
+    })();
+   
+  }, [trigger]);
 
 
 
@@ -795,7 +820,8 @@ const ExploreFilter: React.FC<state> = ({ callFIlter, onClose }) => {
                   }}>
                   <Text
                   style={{color:"white", textAlign:"right", opacity: 0.7}}
-                  >{userLocationState[0].name}, {userLocationState[0].postalCode} {userLocationState[0].city}, {userLocationState[0].country}</Text>
+                  >
+                   {locationName}, {postalCode} {userCity}, {userCountry}</Text>
                   </View>
                  
                   
