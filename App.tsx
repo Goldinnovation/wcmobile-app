@@ -10,7 +10,7 @@ import ProfileScreen from './navigation/profileScreen';
 import LoginScreen from './navigation/loginScreen';
 import UserInterestScreen from './navigation/interestScreen';
 // import ExploreFilter from './component/header_Component/exploreFilter';
-import ExploreFilter from './component/header_Component/exploreFilter';
+import ExploreFilter from './component/header_Component/exploreFilterPageStructure';
 import { useState } from 'react';
 import ExploreEventFilter from './icons/ExploreEventFilter';
 import SettingIcon from './icons/settingIcon';
