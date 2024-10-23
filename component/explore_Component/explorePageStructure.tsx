@@ -20,8 +20,7 @@ import handleFirstEventDataCall from "../../handler/Explore/handleFirstEventData
 import handleUpdateEventData from "../../handler/Explore/handleUpdateEventDataCall";
 import MainExplore from "./mainExplore";
 import { CategoryActionData } from "../../store/Actions/categoryActionData";
-
-
+import handleFilteringofEvents from "../../handler/Explore/handleFilteringofEvents";
 
 
 
@@ -131,20 +130,31 @@ const  ExplorePageStructure = ()  => {
     const prevEventIndex = itemindex;
     if (selectedEvent) {
       
+      // Checks if the selected Data exist in the list of event objects on the current page
       const checkifDataExistinArr = data?.some(event => event.eventId === selectedEvent.eventId)
       
 
 
       const newData =  checkifDataExistinArr ? (() => {
 
-        // Gets a new event Data from redux
+        // Gets new event Datas from redux
         const filteredData = StoredExploreEventData.filter((prevExplore: eventProps) => 
           !data.some((prev: eventProps) => prev.eventId === prevExplore.eventId )
        )
-      //  Gets the index 
-       const lastObject = filteredData[0]
-      //  console.log("Lst obj", lastObject);
+      //  console.log("filteredData",filteredData.length);
 
+    // Makes sure that the selected Event is not one the objects filtered from StoredExploreEventData
+    const filteresOutSelectedData = filteredData.filter((prev: eventProps) => prev.eventId !== selectedEvent.eventId )
+
+    // console.log("filteresOutSelectedData",filteresOutSelectedData.length);
+
+
+
+
+      //  Gets the object on the first index 
+       const lastObject = filteresOutSelectedData[0]
+      //  console.log("Lst obj", lastObject);
+        // Returns a list of data that does not include the selected Data 
        return [...data.filter((prev: eventProps) => prev.eventId !== selectedEvent.eventId),lastObject] 
         
       })() : (() => {
@@ -163,23 +173,7 @@ const  ExplorePageStructure = ()  => {
 
 
 
- // The function handles the amount of event data that the user can scroll through based on the page number.
-  const handleFilteredNewData = () => {
-    // Checks if the data is New
-    const filteringEventData = StoredExploreEventData.filter(
-      (prev: eventProps) =>
-        !data.some((event: eventProps) => event.eventId === prev.eventId)
-    );
-    return filteringEventData;
-  };
 
-
-  // Represents the users hand Scrolling
-  const handleScrolling = () => {
-    page < 5
-      ? setpage((prev) => (prev += 1))
-      : alert("You have reached the page limit");
-  };
 
 
 
@@ -216,7 +210,7 @@ const  ExplorePageStructure = ()  => {
       ((page == 2 && data.length < 16) || (page == 3 && data.length < 24)) &&
         (() => {
           // checks for events that are not in page 1, creates a list with the rest
-          const filteredNewData = handleFilteredNewData();
+          const filteredNewData = handleFilteringofEvents(StoredExploreEventData, data);
           const reducingTheAmount = handleEventDataAmount(filteredNewData);
           reducingTheAmount &&
             setData((prev) => [...prev, ...reducingTheAmount]);
@@ -239,7 +233,7 @@ const  ExplorePageStructure = ()  => {
           StoreDatainRudux &&
             (async () => {
               setTrigger("Trigger in page 4");
-              const filteredNewData = await handleFilteredNewData();
+              const filteredNewData = handleFilteringofEvents(StoredExploreEventData, data);
               const reducingTheAmount = handleEventDataAmount(filteredNewData);
 
               // scrolls the user back to the beginning
@@ -302,7 +296,7 @@ const  ExplorePageStructure = ()  => {
           decelerationRate="fast"
           extraData={data}
           windowSize={3}
-          onEndReached={handleScrolling}
+          onEndReached={() => page < 5 && setpage((prev) => (prev += 1))}
         />
       ) : (
         <Text>Loading...</Text>
