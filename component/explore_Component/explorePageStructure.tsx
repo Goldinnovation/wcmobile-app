@@ -16,8 +16,8 @@ import { ExploreEventDataAction } from "../../store/Actions/exploreEventDataActi
 import handleEventDataAmount from "../../handler/Explore/handleEventdefaultDataAmount";
 import handleUserLocation from "../../handler/User/Location/handleUserLocation";
 import { userLocationAction } from "../../store/Actions/userLocationAction";
-import handleFirstEventDataCall from "../../handler/Explore/handleFirstEventDataCall";
-import handleUpdateEventData from "../../handler/Explore/handleUpdateEventDataCall";
+import handleFirstEventDataCall from "../../handler/Explore/apihandler/handleFirstEventDataCall";
+import handleUpdateEventData from "../../handler/Explore/apihandler/handleUpdateEventDataCall";
 import MainExplore from "./mainExplore";
 import { CategoryActionData } from "../../store/Actions/categoryActionData";
 import handleFilteringofEvents from "../../handler/Explore/handleFilteringofEvents";
