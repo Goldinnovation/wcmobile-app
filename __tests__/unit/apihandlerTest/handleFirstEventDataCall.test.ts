@@ -1,10 +1,10 @@
 import { describe, test, expect} from "vitest";
-import handleUpdateEventData from "../../../handler/Explore/apihandler/handleUpdateEventDataCall";
+import handleFirstEventDataCall from "../../../handler/Explore/apihandler/handleFirstEventDataCall";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {vi} from "vitest"
-import { updateEventData } from "../../../api/exploreScreen_Api/pagination/updateEventData";
+import { getEventData } from "../../../api/exploreScreen_Api/exploreDataApi";
 import axios from "axios";
-
+import { setupCache } from "axios-cache-interceptor";
 
 // Mocking AsyncStorage
 
@@ -20,8 +20,7 @@ vi.mock("@react-native-async-storage/async-storage", async() => {
 })
 
 
-
-// Mocking updateEventData Module 
+// Mocking getEventData Module 
 vi.mock("../../../api/exploreScreen_Api/pagination/updateEventData", async() => {
  
 
@@ -56,10 +55,7 @@ vi.mock("../../../api/exploreScreen_Api/pagination/updateEventData", async() => 
 
 })
 
-
-
 // Mocking Axios Module 
-
 vi.mock('axios', async() => {
     const actual = await vi.importActual<typeof import("axios")>("axios");
     const  eventData = [{
@@ -82,13 +78,17 @@ vi.mock('axios', async() => {
     return{
         ...actual,
         default:   {
-            post: vi.fn().mockResolvedValue({data: {eventData}})
+            get: vi.fn().mockResolvedValue({data: {eventData}}),
+            
 
 
         }
     }
 
 });
+
+
+
 
 
 export  const  eventData = [{
@@ -111,32 +111,20 @@ export  const  eventData = [{
 
 
 
-describe('function receives a list of strings and sends through api to the backend and return a list of objects', () => {
+describe('functione executes a get an array with event objects', () => {
 
 
     
     
-    test('should check if the input and output is correct, which contains an array with strings for the handler function and as output an array with objects', async() => {
-        const mockdata =["event1", "event2", "event3"]
-
-        const returnValue = await handleUpdateEventData(mockdata)
-    
+    test('should call the function and return an array with objects', async() => {
+              const returnValue = await handleFirstEventDataCall()
         expect(returnValue).toEqual({eventData});
     })
 
-    test('should return an empty array if the input is an empty array', async() => {
-        const mockdata: string[] | [] = []
-
-        const returnValue = await handleUpdateEventData(mockdata)
-    
-        expect(returnValue).toEqual([]);
-      
-    })
-    
-
-
   
     
+
+ 
 
 
   

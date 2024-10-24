@@ -3,10 +3,10 @@ import { setupCache } from "axios-cache-interceptor";
 
 
 
-const instance = axios.create()
-const axiosCache  = setupCache(instance, {
-  ttl: 15 * 60 * 1000, 
-})
+// const instance = axios.create()
+// const axiosCache  = setupCache(instance, {
+//   ttl: 15 * 60 * 1000, 
+// })
 
 /**
  * Retrieves all event objects from the server
@@ -20,7 +20,7 @@ const axiosCache  = setupCache(instance, {
 export async function getEventData(token: string) {
   try {
     const API_URL = process.env.EXPO_PUBLIC_API_URL;
-    const res = axiosCache
+    const res = axios
       .get(`${API_URL}/api/explore`, {
         headers: {
           "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export async function getEventData(token: string) {
       })
       .then(function (response) {
         // console.log(response.data)
-        console.log("Cache State on Explore Feed", response.cached);
+        // console.log("Cache State on Explore Feed", response.cached);
         return response.data;
       })
       .catch(function (error) {
