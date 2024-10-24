@@ -101,12 +101,18 @@ const  ExplorePageStructure = ()  => {
           userToken,
           userselected_Category
         );
-        const filteredEvent = CategoryDataList.filter(
-          (prevEvent: eventProps) => prevEvent.eventId !== eventId
-        );
+        
+        CategoryDataList && (() => {
+          const filteredEvent = CategoryDataList.filter(
+            (prevEvent: eventProps) => prevEvent.eventId !== eventId
 
+          );
+          dispatch(CategoryActionData(filteredEvent));
+
+        })(); 
+
+      
         // setCategoryData(filteredEvent)
-        dispatch(CategoryActionData(filteredEvent));
       }
     } catch (error) {
       console.error("Error on hanleCategory Rey", error);

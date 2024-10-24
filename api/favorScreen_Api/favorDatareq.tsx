@@ -21,7 +21,7 @@ The call will retrieve all favored events that the current user selected as favo
 export async function getUserFavoredEvent(token: string) {
     try {
       const API_URL = process.env.EXPO_PUBLIC_API_URL;
-      const res = axios
+      const res = Axios
         .get(`${API_URL}/api/favorEventMobile`, {
           headers: {
             "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export async function getUserFavoredEvent(token: string) {
         .then(function (response) {
          
 
-          // console.log(response.data);
+          console.log("Favored Event Cache State", response.cached);
           return response.data ;
         })
         .catch(function (error) {
