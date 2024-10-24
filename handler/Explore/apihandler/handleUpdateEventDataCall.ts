@@ -6,12 +6,14 @@ const handleUpdateEventData = async(data: string[]) => {
     const storedToken = await AsyncStorage.getItem("token");
     const token = storedToken ? JSON.parse(storedToken).token : null;
     const userToken = token.token;
-    if (userToken) {
+    if (userToken && data.length > 0) {
         const exploreFetchedData = await updateEventData(userToken, data);
         return exploreFetchedData
         
       } else {
-        console.error("Token not found");
+        console.log('trigger');
+        console.error("Token or data of strings is Invalid");
+        return  []      
       }
 
 
