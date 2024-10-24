@@ -28,8 +28,8 @@ import handleEventDataAmount from "../../handler/Explore/handleEventdefaultDataA
 import * as Location from "expo-location"
 import handleUserLocation from "../../handler/User/Location/handleUserLocation";
 import { userLocationAction } from "../../store/Actions/userLocationAction";
-import handleFirstEventDataCall from "../../handler/Explore/handleFirstEventDataCall";
-import handleUpdateEventData from "../../handler/Explore/handleUpdateEventDataCall";
+import handleFirstEventDataCall from "../../handler/Explore/apihandler/handleFirstEventDataCall";
+import handleUpdateEventData from "../../handler/Explore/apihandler/handleUpdateEventDataCall";
 import { memo} from "react"
 import { useCallback } from "react";
 import { CategoryActionData } from "../../store/Actions/categoryActionData";
