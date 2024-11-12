@@ -10,18 +10,18 @@
 Worthsec is a social media platform for events that offers accessibility for diverse groups of people, enabling them to exchange ideas, connect with others, and efficiently manage their events.
 
 
-<div style="display: flex; justify-content: space-around; flex-wrap: wrap">
+<div style="display: flex; justify-content: space-between; align-items: center; width:100%; flex-wrap: wrap; gap:1px">
 
- <img src="img1.png" alt="Client-Server Architecture" style="width:150px;"/>
+ <img src="img1.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink: 0;"/>
 
 
- <img src="img2.png" alt="Client-Server Architecture" style="width:150px;"/>
+ <img src="img2.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink:0;"/>
 
-<img src="img3.png" alt="Client-Server Architecture" style="width:150px;"/>
+<img src="img3.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink: 0;" />
 
-<img src="img4.png" alt="Client-Server Architecture" style="width:150px;"/>
+<img src="img4.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink: 0;"/>
 
-<img src="img5.png" alt="Client-Server Architecture" style="width:150px;"/>
+<img src="img5.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink: 0;"/>
 
 
    
