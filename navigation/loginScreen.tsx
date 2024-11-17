@@ -28,7 +28,7 @@ export default function LoginScreen() {
     try {
       const result = await useLoginPost(email, password);
       if (result.message && result.token) {
-        result?.message === "Interest Section is empty"
+        result?.message === "Interest section is empty"
           ? navigation.replace("interestScreeen")
           : navigation.replace("UserExploreScreen");
         const userData = await AsyncStorage.setItem(

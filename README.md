@@ -123,8 +123,9 @@ This guide will help you set up the Worthsec project on your local machine, conn
 1. Please follow the Ngrok guide on how to set up Ngrok on your local device.
 2. Access Ngrok via the CLI to ensure it is set as an environment variable.
 3. Add the Ngrok HTTP URL as a credential for API calls in the .env file with the variable  name EXPO_PUBLIC_API_URL.
-4. Ensure that the server is running on localhost with port 3000.
-5. Run Ngrok with the following command:
+4. Set up backend server: https://github.com/Goldinnovation/Worthsec-Web-App 
+5. Ensure that the server is running on localhost with port 3000.
+6. Run Ngrok with the following command:
 ```bash
    ngrok http 3000
    ```
