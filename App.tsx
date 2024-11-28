@@ -156,6 +156,7 @@ function TabNavigator() {
         
           }}>
             {/* Explore Mode Option */}
+            
             {/* <TouchableOpacity style={{
               width:  80,
             // height: 25,
@@ -213,13 +214,12 @@ function TabNavigator() {
               
             </TouchableOpacity> */}
 
-
-            <Text style={{
+            {/* <Text style={{
               color: "white", 
               fontSize: 18, 
               fontWeight: "bold"
             }}>Worthsec</Text>
-           
+            */}
           </View>
         ),
         headerRight: () => (
@@ -298,6 +298,7 @@ function TabNavigator() {
       component={SearchScreen}
       options={{
         title: 'Identity',
+        
         headerRight: () => (
           <View style={{
             // backgroundColor: "pink",
@@ -337,53 +338,80 @@ function TabNavigator() {
       component={ProfileScreen}
       options={{
         title: 'Profile',
-        headerLeft: () => (
-          <View style={{
-            // backgroundColor: "green",
-            height: 30,
-            marginLeft: 15,
-            alignItems: "center",
-            flexDirection: "row",
-            width: 199,
-
-          }}>
-          <TouchableOpacity  
-          style={{
-            position: "relative",
-            // top: 1
-          }}
-          onPress={() => handleProfilePageUpdate("Profile")}>
-          {/* <Image
-          source={require("./assets/fi1.png")}
-          style={{height: 28, width: 28}}
-          /> */}
-          {/* <ExploreEventFilter width={'30'} height={'30'} /> */}
-          <View style={{
-            width: 20, 
-            height: 20,
-            position: "absolute",
-            zIndex: 3,
-            top: "52%",
-            left: "60%",
-            // backgroundColor: "yellow",
-            borderRadius: 50,
-            // borderWidth: 1, 
-            // borderColor: "yellow"
+        // headerLeft: () => (
+        //   <View style={{
+        //     // backgroundColor:  filter ?  "pink" : "green",
+        //     width:  199,
+        //     height: 30,
+        //     flexDirection: "row",
+        //     alignItems: "center",
+        //     marginLeft: categoryLayoutState ? 9 : 7,
+        
+        //   }}>
+        //     {/* Explore Mode Option */}
             
-          }}>
-            { profileState == "Favor"  
-            ?  <MiniStar  width={'12'} height={'12'} color='white' />
-            : <DnaIcon  width={'15'} height={'15'} />
-          }
-            {/* <MiniStar  width={'12'} height={'12'} color='white' /> */}
-          </View>
-          <UserIconHeadMenu width={'23'} height={'23'} color='white' /> 
+        //     <TouchableOpacity style={{
+        //       width:  80,
+        //     // height: 25,
+        //     borderWidth: 1,
+        //     borderColor: "white",
+        //     padding: 1,
+        //     marginLeft: 15,
 
-          </TouchableOpacity>    
+        //     // alignItems: "center",
+        //     display: "flex", 
+        //     borderRadius: 4,
+        //     // justifyContent: "center", 
+        //     flexDirection: "row"
 
-          </View>
-         
-        ),
+        //     }}
+        //      onPress={() => navigation.push("ModeScreen")}
+        //     >
+        //       <View style={{
+        //         width:  "80%",
+        //         height: 20,
+        //         display: "flex", 
+        //         // justifyContent: "center", 
+        //         flexDirection: "row",
+        //         // backgroundColor: "red",
+        //         alignItems: "center",
+        //         padding: 1,
+        //         justifyContent: "center", 
+        //       }}>
+        //       <Text style={{color: "white", fontSize: 15, fontWeight: "bold", opacity: 0.7}}>MODE</Text>
+
+        //       </View>
+              
+        //       <View style={{
+        //          width:  "20%",
+        //          height: 20,
+        //         //  backgroundColor: "green",
+        //          display: "flex", 
+        //         justifyContent: "center", 
+        //         flexDirection: "row",
+        //         alignItems: "center",
+        //         // borderLeftWidth: 1, 
+        //         // borderLeftColor: "rgba(249,249,249,0.9)"
+        //       }}>
+        //         <View style={{
+        //           width:  "65%",
+        //           height: 10,
+        //           backgroundColor: "red",
+        //           borderRadius: 50,
+        //           opacity: 0.8
+        //         }}>
+
+        //         </View>
+        //       </View>
+
+             
+               
+              
+        //     </TouchableOpacity>
+
+            
+        //   </View>
+        // ),
         headerRight: () => (
           <View style={{
             // backgroundColor: "pink",
