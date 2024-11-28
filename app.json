@@ -10,12 +10,13 @@
     
     "platforms": ["ios", "android","web"],
     "splash": {
-      "image": "./assets/sscreenWC1.png",
+      "image": "./assets/splash/wcsc2.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
     "ios": {
       "supportsTablet": true,
+      "newArchEnabled": true,
       "infoPlist": {
         "NSAppTransportSecurity": {
           "NSAllowsArbitraryLoads": true
@@ -23,6 +24,7 @@
       }
     },
     "android": {
+      "newArchEnabled": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"

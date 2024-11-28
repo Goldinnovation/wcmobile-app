@@ -47,11 +47,14 @@ const SearchMenuToggleContent: React.FC<searchMenuProps> = ({handleUserToggle, h
                 justifyContent: "center",
                 borderTopLeftRadius: 50,
                 borderTopRightRadius: 50,
-                borderBottomWidth: 1,
-                borderBottomColor: "rgba(255, 255, 255,0.5)"
+                // borderBottomWidth: 1,
+                // borderBottomColor: "rgba(255, 255, 255,0.5)",
+                // borderBottomColor: "red"
+
             }}
             onPress={handleUserToggle}
             >
+                
             <AddFriendsIcon width={'21'} height={'21'} />
             </TouchableOpacity>
 

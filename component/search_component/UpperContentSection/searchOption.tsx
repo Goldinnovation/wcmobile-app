@@ -37,12 +37,14 @@ const SearchOption: React.FC<SearchNQRCodeProps> = ({
             height: "50%", 
             backgroundColor: "rgba(255, 255, 255,0.1)",
             borderRadius: 50,
+            // backgroundColor: "red",
+
             borderWidth: 1, 
             borderColor: "rgba(255, 255, 255,0.5)",
             flexDirection: "row",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 1,
-            shadowRadius: 1,
+            // shadowOffset: { width: 0, height: 2 },
+            // shadowOpacity: 1,
+            // shadowRadius: 1,
 
         }}>
             <View style={{
@@ -51,10 +53,10 @@ const SearchOption: React.FC<SearchNQRCodeProps> = ({
                 justifyContent: "center",
                 opacity: 0.8,
                 backgroundColor: "rgba(70,70,70,0.3)",
+                // backgroundColor: "red",
                 borderTopLeftRadius: 50,
                 borderBottomLeftRadius: 50,
-                borderRightWidth: 1,
-                borderRightColor: "rgba(255, 255, 255,0.5)"
+               
             }}> 
 
 
@@ -72,8 +74,11 @@ const SearchOption: React.FC<SearchNQRCodeProps> = ({
             </View>
             <View style={{
                 width: "68%",
-                backgroundColor: "rgba(203,203,203,0.1)"
-            }}> 
+                backgroundColor: "rgba(203,203,203,0.1)",
+                 
+                
+            }}
+            > 
               <TextInput
                 style={{ 
                     height: "99%",
@@ -81,11 +86,16 @@ const SearchOption: React.FC<SearchNQRCodeProps> = ({
                     // borderWidth: 1,
                     paddingLeft: 5,
                     // margin: 30,
-                    width: "100%",
-                    color: "white"
+                    width: "100%", 
+                    color: "white",
                     // backgroundColor: "#c7c7c7",
                     // borderRadius: 7,
                     // marginTop: 20,
+                     borderLeftWidth: 1,
+                    borderLeftColor: "rgba(255, 255, 255,0.5)",
+                    borderRightWidth: 1,
+                    borderRightColor: "rgba(255, 255, 255,0.5)"
+
                 }}
                 onChangeText={setInputValue}
                 value={inputValue}
@@ -105,14 +115,17 @@ const SearchOption: React.FC<SearchNQRCodeProps> = ({
             backgroundColor: "rgba(70,70,70,0.3)",
             borderTopRightRadius: 50,
             borderBottomRightRadius: 50,
-            borderWidth: 1, 
+            // borderWidth: 1, 
             borderColor: "rgba(255, 255, 255,0.1)",
-            borderLeftWidth: 1,
-            borderLeftColor: "rgba(255, 255, 255,0.5)"
+            // borderLeftWidth: 3,
+            
+            // borderStartColor: "rgba(255, 255, 255,0.5)"
+            // borderStartColor: "red"
+            borderStyle: "solid"
+
            
 
         }}
-        
         onPress={() => handleToggleSearchMenu()}
         >
             {
