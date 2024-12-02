@@ -178,12 +178,10 @@ export default function ProfilePageStructure(){
             }}
             onPress={() => navigation.push("FavorScreen")}
             >
-                <TouchableOpacity
-                  
-                >
+                
                 <FavorIcon width={'61'} height={'61'} lineColor={"white"}/>
 
-                </TouchableOpacity>
+                
                 <Text style={{
                     color: "white"
                 }}>Favor</Text>
