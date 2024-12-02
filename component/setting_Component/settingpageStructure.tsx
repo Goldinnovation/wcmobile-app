@@ -156,7 +156,7 @@ export default function SettingPageStructure() {
                   style={{ color: "white", textAlign: "center", fontSize: 22 }}
                 >
                   {" "}
-                  Choose your Background
+                  Choose your World
                 </Text>
               </View>
               <View
@@ -192,7 +192,7 @@ export default function SettingPageStructure() {
                   >
                     <View
                       style={{
-                        backgroundColor: "yellow",
+                        backgroundColor: "black",
                         height: "39%",
                         width: "63%",
                         borderRadius: 100,
@@ -208,7 +208,7 @@ export default function SettingPageStructure() {
                       }}
                     >
                       {" "}
-                      Color 1
+                      Infinity
                     </Text>
                   </View>
                   {/* second color */}
@@ -242,7 +242,7 @@ export default function SettingPageStructure() {
                       }}
                     >
                       {" "}
-                      Color 2
+                      Venus
                     </Text>
                   </View>
 
@@ -276,7 +276,7 @@ export default function SettingPageStructure() {
                       }}
                     >
                       {" "}
-                      Color 3
+                      Nitro
                     </Text>
                   </View>
 
@@ -322,7 +322,7 @@ export default function SettingPageStructure() {
                       }}
                     >
                       {" "}
-                      Color 4
+                      Bubble
                     </Text>
                   </View>
 
@@ -356,7 +356,7 @@ export default function SettingPageStructure() {
                       }}
                     >
                       {" "}
-                      Color 5
+                      Moon
                     </Text>
                   </View>
                 </View>
