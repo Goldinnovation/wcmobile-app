@@ -142,16 +142,3 @@ describe('function receives a list of strings and sends through api to the backe
   
 })
 
-
-
-// describe('Testing the api call inside the handleFirstEventData', () => {
-//     test('should check if the input for the api call is correct and returns the expected output ', async() => {
-//         const mockdata =["event1", "event2", "event3"]
-
-//         const token = "fakeToken"
-
-//         const result = await updateEventData(token, mockdata);
-//         expect(result).toEqual({eventData});
-//     })
-    
-// })

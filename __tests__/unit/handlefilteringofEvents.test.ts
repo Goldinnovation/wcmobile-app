@@ -50,7 +50,7 @@ export const mockEventData = (count = 24) => {
      
       return Array.from({length: count}, (_,index) => ({
         ...eventData, 
-        eventId: `event${index +5}`
+        eventId: `event${index +6}`
       }))
 
 }
@@ -115,7 +115,7 @@ describe('checks if the page data does not match the stored redux data, return t
 
 
 
-    test('should return the length of the objects that are not in the page Data', () => {
+    test('should return the length of the objects that are not in the stored event list', () => {
 
 
         const storedEventData = mockStoredEventData(8)
@@ -124,8 +124,8 @@ describe('checks if the page data does not match the stored redux data, return t
         const returnValue = handleFilteringofEvents(storedEventData,prevEventDatA)
 
  
-        // 7 objects of the redux store data are not Equal to the page data
-        expect(returnValue).toHaveLength(4)
+        // 5 objects of the redux store data that are not Equal to the list on the page
+        expect(returnValue).toHaveLength(5)
 
 
     })

@@ -49,6 +49,8 @@ export const mockEventData = (count = 24) => {
 
 }
 
+// Pure function 
+
 describe('Receives a list of events and returns 8 events as the page amount  ', () => {
    
   

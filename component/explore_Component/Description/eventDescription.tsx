@@ -90,8 +90,8 @@ const EventDescription: React.FC<EventDescriptionProps> = ({
           height: categoryLayoutState === item.eventId ? 23 : 30,
           alignItems: "center",
           position: "relative",
-          top: categoryLayoutState === item.eventId ? "5%" : "1%",
-          left: categoryLayoutState === item.eventId ? "8%" : "8%",
+          top: categoryLayoutState === item.eventId ? "50%" : "1%",
+          left: categoryLayoutState === item.eventId ? "1%" : "0%",
         }}
       >
         <View

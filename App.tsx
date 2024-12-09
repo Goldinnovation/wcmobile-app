@@ -495,15 +495,11 @@ export default function App() {
     <Provider store={store} >
     <View  style={styles.container} >
     <LinearGradient
-    // colors={['black', '#000000bb', 'black']}
-    // colors={['black', 'purple', 'black']}
-      // colors={['black',]}
-
-    // colors={['black','silver', 'purple', 'green']}
-    // colors={['darkblue','skyblue', 'yellow', 'orange']}
-    colors={['black','grey', '#000059', "black"]}
-
-    // colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']}
+  
+    // colors={['black']} //Infinity 
+    // colors={['black','silver', 'purple', 'green']} //Bubble 
+    colors={['black','grey', '#000059', "black"]} //Nitro
+    // colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']} //Moon
     style={styles.gradient}
     start={{ x: 0, y: 1}}
     end={{ x: 0, y: 0 }}
@@ -517,7 +513,7 @@ export default function App() {
     </View>
     </Provider>
     
-    
+
   );
 }
 
