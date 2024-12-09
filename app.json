@@ -6,7 +6,6 @@
     "orientation": "portrait",
     "icon": "./assets/icon2.png",
     "userInterfaceStyle": "automatic",  
-    "_commentto_userInterfaceStyle": "changed the value from light to automatic", 
     
     "platforms": ["ios", "android","web"],
     "splash": {
