@@ -15,13 +15,19 @@ import { getUserData } from '../api/userScreen_Api/getUserData'
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { ParamListBase } from "@react-navigation/native";
-import QrcodePageStructure from '../component/user_component/qrcodepageStructure'
+import QrcodePageStructure from '../component/user_component/qrCode/qrcodepageStructure'
 import UserBgIcon from '../icons/UserBgIcon'
 import UserIconOutline from '../icons/userIconOutline'
 import UserIconHeadMenu from '../icons/userIconHeadMenu'
 import CloseMenuIcon from '../icons/closeMenuIcon'
 import MenuSquare from '../icons/menuSquare'
 import FriendsIcon from '../icons/friendsIcon'
+import FriendsPageStructure from '../component/user_component/friends/friendspageStructure'
+import SettingPageStructure from '../component/user_component/setting/settingpageStructure'
+import WelcomePageStructure from '../component/user_component/Welcome/welcomepageStructure'
+import UserOutline from '../icons/userOutLine'
+
+
 
 export default  function UserScreen() {
   const [qrCodeToggle, setQrCodeToggle] = useState(false)
@@ -29,12 +35,22 @@ export default  function UserScreen() {
   const [userFetchedData, setUserData] = useState<any>(null)
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
   const [menutoggle, setMenuToggle] = useState(false)
+  const [friendsToggle,setFriendsToggle] = useState(false)
+  const [settingToggle, setSettingToggle] = useState(false)
+  const [title, setTitle] = useState("Welcome")
+  const [welcomeToggle, setWelcomeToggle] = useState(true)
 
-  const [userSetting, setUserSetting] = useState(false)
+  // const [userSetting, setUserSetting] = useState(false)
 
   const handleQrCodeToggle =  () => {
     setEventToggle(false)
+    setFriendsToggle(false)
+    setSettingToggle(false)
     setQrCodeToggle(true)
+    setMenuToggle(false)
+    setWelcomeToggle(false)
+    setTitle("QR Code")
+
   }
 
   const handleEventToggle =  () => {
@@ -42,11 +58,34 @@ export default  function UserScreen() {
     setQrCodeToggle(false)
 
 
+
   }
 
   const handleSettingClick = () => {
-    setUserSetting(!userSetting)
+    
+    setEventToggle(false)
+    setFriendsToggle(false)
+    setSettingToggle(false)
+    setQrCodeToggle(false)
+    setSettingToggle(true)
+    setMenuToggle(false)
+    setWelcomeToggle(false)
 
+    setTitle("Setting")
+
+  }
+
+  const handleFriendsToggle =  () => {
+
+    setEventToggle(false)
+    setSettingToggle(false)
+    setQrCodeToggle(false)
+    setSettingToggle(false)
+    setFriendsToggle(true)
+    setMenuToggle(false)
+    setWelcomeToggle(false)
+
+    setTitle("Friends")
   }
 
   const handleMenuToggle = () => {
@@ -218,7 +257,7 @@ export default  function UserScreen() {
               }}>
 
                 <TouchableOpacity style={{
-                  // backgroundColor: "grey", 
+                  backgroundColor: "rgba(199,199,199,0.2)", 
                   width: "13%", 
                   height: "75%",
                   borderTopRightRadius: 50,
@@ -229,7 +268,8 @@ export default  function UserScreen() {
                   borderRightColor: "white", 
                   display: "flex", 
                   justifyContent: "center", 
-                  alignItems: "center"
+                  alignItems: "center",
+                  opacity: 0.8
 
 
 
@@ -243,7 +283,7 @@ export default  function UserScreen() {
 
 
                 <View style={{
-                  backgroundColor: "black", 
+                   backgroundColor: "rgba(199,199,199,0.2)", 
                   width: "43%", 
                   height: "75%", 
                   borderRadius: 50, 
@@ -251,14 +291,16 @@ export default  function UserScreen() {
                   justifyContent: "center", 
                   alignItems: "center",
                   borderWidth: 1, 
-                  borderColor:"white"
+                  borderColor:"white",
+                  opacity: 0.8
+
                   
 
 
                 }}>
                   <Text style={{
                     color:"white"
-                  }}>Profile</Text>
+                  }}>{title}</Text>
                 </View>
                
 
@@ -266,6 +308,7 @@ export default  function UserScreen() {
                  <View style={{
                   height: "75%", 
                   width:"87%",
+                  
                   // backgroundColor: "green", 
                   // justifyContent:"center", 
                   // borderRadius: 50,
@@ -273,14 +316,18 @@ export default  function UserScreen() {
                   display: "flex",
                   flexDirection: "row",
                   alignItems:"center",
-                                    justifyContent:"space-around", 
+                  justifyContent:"space-around", 
+                  backgroundColor: "rgba(199,199,199,0.2)", 
 
                   borderWidth: 1,
                   borderTopLeftRadius: 50, 
                   borderBottomLeftRadius: 50, 
                   borderBottomColor: "white",
                   borderTopColor: "white",
-                  borderLeftColor: "white"
+                  borderLeftColor: "white",
+                  opacity: 0.8
+
+
                   // borderLeftWidth: 1, 
                   // borderLeftColor:"rgba(176,176,176,0.5)",
                   
@@ -289,21 +336,28 @@ export default  function UserScreen() {
                 >
 
                
-               <View>
+               <TouchableOpacity
+               
+               onPress={handleQrCodeToggle}
+               >
                 <UserScanIcon height='23' width='23'/>
 
 
-               </View>
-               <View>
+               </TouchableOpacity>
+               <TouchableOpacity
+                onPress={handleFriendsToggle}
+               >
                
                <FriendsIcon height='21' width='21'/>
 
-               </View>
-               <View>
+               </TouchableOpacity>
+               <TouchableOpacity
+                onPress={handleSettingClick}
+               >
                
                <SettingIcon height='21' width='21'/>
 
-               </View>
+               </TouchableOpacity>
                
                
 
@@ -319,13 +373,15 @@ export default  function UserScreen() {
                   //  backgroundColor: "grey", 
                    width: "13%", 
                    height: "75%", 
-                   
+                   backgroundColor: "rgba(199,199,199,0.2)", 
+
                    borderTopLeftRadius: 50,
                    borderBottomLeftRadius: 50,
                    borderWidth: 1,
                    borderLeftColor: "white",
                    borderTopColor: "white",
                    borderBottomColor: "white",
+                   opacity: 0.8,
 
                        //  borderColor: "white",
                   //  borderRightColor: "pink",
@@ -333,8 +389,38 @@ export default  function UserScreen() {
                    justifyContent: "center", 
                    alignItems: "center"
                 }}>
+                  { qrCodeToggle ?  <UserScanIcon height='20' width='20'/> :
 
-              <SettingIcon height='20' width='20'/>
+                    friendsToggle ? <FriendsIcon height='20' width='20'/> : 
+
+                    settingToggle ? <SettingIcon height='20' width='20'/> : 
+                    welcomeToggle && 
+                    <View style={{
+                      width: "100%", 
+                      height: "100%",
+                      display: "flex", 
+                      justifyContent: "center", 
+                      alignItems: "center", 
+                      // backgroundColor:"blue",
+                      position: "relative"
+                    }}>
+                      <View style={{
+                        backgroundColor:"#17ff00",
+                        width: "20%",
+                        height: "20%", 
+                        position: "absolute", 
+                        left: "60%",
+                        top: "60%", 
+                        borderRadius: 50, 
+                        zIndex: 3
+
+                      }}></View>
+                     <UserOutline  height='20' width='20'/> 
+
+                    </View>
+                  }
+
+              
 
 
                 </View>
@@ -375,29 +461,9 @@ export default  function UserScreen() {
 
             }}>
 
-              {/* <TouchableOpacity style={{
-                // backgroundColor: "yellow",
-                position: "absolute", 
-                width: "15%", 
-                height: "15%", 
-                top: "85%",
-                left: "-1%", 
-                zIndex: 3, 
-                display: "flex", 
-                alignItems: "center", 
-                justifyContent: "center", 
-                opacity: 0.7
-
-              }}
-              onPress={handleSettingClick}
-              > 
-                 <SettingIcon height='25' width='25'/>
 
 
-              </TouchableOpacity> */}
-
-
-              { userSetting && (
+              { settingToggle ?
                 <View style={{
                   // backgroundColor: "yellow",
                   position: "absolute", 
@@ -465,8 +531,14 @@ export default  function UserScreen() {
                 </View>
                
 
-              </View>
-              )}
+                </View>:
+                friendsToggle ? <FriendsPageStructure/> :
+                qrCodeToggle ? <QrcodePageStructure userData={userFetchedData}/>: 
+                welcomeToggle && <WelcomePageStructure data={userFetchedData?.userName}/>
+                
+
+
+              }
 
              
 
@@ -497,15 +569,7 @@ export default  function UserScreen() {
                 position: "relative"
 
               }}>
-                <View style={{
-                  height: "80%", 
-                  width:"100%",
-                  display:"flex", 
-                  justifyContent: "center",
-                  alignItems: "center"
-                }}>
-                  <QrcodePageStructure userData={userFetchedData}/>
-                </View> 
+              
                  {/* <QrCodePlaceholder height='255' width='255'/> */}
 
                  

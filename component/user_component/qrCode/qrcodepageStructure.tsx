@@ -20,7 +20,13 @@ const QrcodePageStructure: React.FC<userProps> = ({userData}) => {
 
     const qrCodeValue = String(`${API_URL}/api/${userEmail}`);
     return(
-        <View>
+        <View style={{
+            height: "80%", 
+            width:"100%",
+            display:"flex", 
+            justifyContent: "center",
+            alignItems: "center"
+        }}>
             <QRCode
             value={qrCodeValue}
             size={290}
