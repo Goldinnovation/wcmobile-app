@@ -13,7 +13,7 @@ const initialStateLayout = {
 
 
 
- export default (state =  initialStateLayout, {type , payload}) => {
+ export default (state =  initialStateLayout, {type , payload}: any ) => {
 
     // console.log("payload:", payload);
     switch(type){

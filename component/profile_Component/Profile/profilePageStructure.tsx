@@ -69,7 +69,9 @@ export default function ProfilePageStructure(){
          }}>
             <TouchableOpacity style={{
                 height: 150,
-                backgroundColor:"#ac0d11",
+                backgroundColor:"rgba(149,149,149,0.3)",
+                borderColor: "rgba(255, 255, 255,0.5)",
+                borderWidth: 1,
                 width: "45%",
                 borderRadius: 7,
                 alignItems: "center",
@@ -106,7 +108,9 @@ export default function ProfilePageStructure(){
             <TouchableOpacity  style={{
                 height: 150,
                 width: "45%",
-                backgroundColor:"#199229",
+                backgroundColor:"rgba(149,149,149,0.3)",
+                borderColor: "rgba(255, 255, 255,0.5)",
+                borderWidth: 1,
                 borderRadius: 7,
                  alignItems: "center",
                 justifyContent: "center",
@@ -140,7 +144,9 @@ export default function ProfilePageStructure(){
          }}>
              <TouchableOpacity style={{
                 height: 150,
-                backgroundColor:"#0a41d2",
+                backgroundColor:"rgba(149,149,149,0.3)",
+                borderColor: "rgba(255, 255, 255,0.5)",
+                borderWidth: 1,
                 width: "45%",
                 borderRadius: 7,
                  alignItems: "center",
@@ -163,7 +169,9 @@ export default function ProfilePageStructure(){
             <TouchableOpacity  style={{
                 height: 150,
                 width: "45%",
-                backgroundColor:"#ffc309",
+                backgroundColor:"rgba(149,149,149,0.3)",
+                borderColor: "rgba(255, 255, 255,0.5)",
+                borderWidth: 1,
                 borderRadius: 7,
                 alignItems: "center",
                 justifyContent: "center",

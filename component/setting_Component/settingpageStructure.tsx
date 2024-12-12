@@ -11,12 +11,15 @@ import SettingIcon from "../../icons/settingIcon";
 import KleeIcon from "../../icons/kleeIcon";
 import LogOutIcon from "../../icons/logoutIcon";
 import PaintBrushIcon from "../../icons/paintIcon";
+import { useDispatch } from "react-redux";
+import { BackgroundAction } from "../../store/Actions/backgroundAction";
 
 export default function SettingPageStructure() {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
   const [aboutState, setAboutState] = useState(false);
   const [defaultState, setDefaulState] = useState(true);
   const [themeState, setThemeState] = useState(false);
+  const dispatch  = useDispatch()
 
   const handleWorthsecInfotoggle = () => {
     setDefaulState(false);
@@ -34,6 +37,11 @@ export default function SettingPageStructure() {
     setDefaulState(true);
     setThemeState(false);
   };
+
+
+  const handleBackground = (e: string) => {
+    dispatch(BackgroundAction(e))
+  }
 
   const handleThemeToggle = () => {
     setDefaulState(false);
@@ -190,14 +198,15 @@ export default function SettingPageStructure() {
                       // borderRadius: 100
                     }}
                   >
-                    <View
+                    <TouchableOpacity
                       style={{
                         backgroundColor: "black",
                         height: "39%",
                         width: "63%",
                         borderRadius: 100,
                       }}
-                    ></View>
+                      onPress={() => handleBackground("Infinity")}
+                    ></TouchableOpacity>
 
                     <Text
                       style={{
@@ -223,7 +232,7 @@ export default function SettingPageStructure() {
                       // borderRadius:  100
                     }}
                   >
-                    <View
+                    <TouchableOpacity
                       style={{
                         backgroundColor: "yellow",
                         height: "39%",
@@ -231,7 +240,9 @@ export default function SettingPageStructure() {
 
                         borderRadius: 100,
                       }}
-                    ></View>
+                      onPress={() => handleBackground("Venus")}
+
+                    ></TouchableOpacity>
 
                     <Text
                       style={{
@@ -257,7 +268,7 @@ export default function SettingPageStructure() {
                       // borderRadius:  100
                     }}
                   >
-                    <View
+                    <TouchableOpacity
                       style={{
                         backgroundColor: "blue",
                         height: "39%",
@@ -265,7 +276,9 @@ export default function SettingPageStructure() {
 
                         borderRadius: 100,
                       }}
-                    ></View>
+                      onPress={() => handleBackground("Nitro")}
+
+                    ></TouchableOpacity>
 
                     <Text
                       style={{
@@ -305,14 +318,16 @@ export default function SettingPageStructure() {
                       // borderRadius:  100
                     }}
                   >
-                    <View
+                    <TouchableOpacity
                       style={{
                         backgroundColor: "blue",
                         height: "39%",
                         width: "63%",
                         borderRadius: 100,
                       }}
-                    ></View>
+                      onPress={() => handleBackground("Bubble")}
+
+                    ></TouchableOpacity>
                     <Text
                       style={{
                         color: "white",
@@ -337,7 +352,7 @@ export default function SettingPageStructure() {
                       // borderRadius:  100
                     }}
                   >
-                    <View
+                    <TouchableOpacity
                       style={{
                         backgroundColor: "red",
                         height: "39%",
@@ -345,7 +360,8 @@ export default function SettingPageStructure() {
 
                         borderRadius: 100,
                       }}
-                    ></View>
+                      onPress={() => handleBackground("Nitro")}
+                    ></TouchableOpacity>
 
                     <Text
                       style={{

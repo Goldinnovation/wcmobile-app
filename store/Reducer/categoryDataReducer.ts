@@ -13,7 +13,7 @@ const initialStateEventFavor = {
 
 
 
- export default (state = initialStateEventFavor, {type , payload}) => {
+ export default (state = initialStateEventFavor, {type , payload}: any) => {
     switch(type){
         case CategoryActionDataArr : return {...state, categoryData: payload}
 

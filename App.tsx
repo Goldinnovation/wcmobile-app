@@ -11,7 +11,7 @@ import LoginScreen from './navigation/loginScreen';
 import UserInterestScreen from './navigation/interestScreen';
 // import ExploreFilter from './component/header_Component/exploreFilter';
 import ExploreFilter from './component/header_Component/exploreFilterPageStructure';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ExploreEventFilter from './icons/ExploreEventFilter';
 import SettingIcon from './icons/settingIcon';
 import { Provider } from 'react-redux';
@@ -40,6 +40,8 @@ import UserScreen from './navigation/userScreen';
 import SearchScreen from './navigation/searchScreen';
 import FavorScreen from './navigation/favorScreen';
 import ModeScreen from './navigation/modeScreen';
+import { reloadAppAsync } from "expo";
+
 
 
 
@@ -455,7 +457,18 @@ function TabNavigator() {
 
 
 function AppNavigator() {
+  const { backgroundColorMask } = useSelector((state: RootState) => state.BackgroundReducer);
 
+  useEffect(() => {
+    console.log('triggert in nav');
+    // reloadAppAsync()
+  },[backgroundColorMask])
+  //  const color1 = backgroundColorMask.color1
+  const color2 = backgroundColorMask.color2
+  const color3 = backgroundColorMask.color3
+  const color4 = backgroundColorMask.color4
+
+  console.log('backgroundColorMask', backgroundColorMask);
 
 
   return(
@@ -488,17 +501,39 @@ function AppNavigator() {
 }
 
 export default function App() {
+  // const { backgroundColorMask } = useSelector((state: RootState) => state.BackgroundReducer);
 
+  const state = store.getState()
+  const reducerCheck = state.BackgroundReducer
+ console.log('reducerCheck', reducerCheck);
+  const colorTheme = state.BackgroundReducer.backgroundColorMask
+  console.log('test', colorTheme);
+  const color1 = colorTheme.color1
+  const color2 = colorTheme.color2
+  const color3 = colorTheme.color3
+  const color4 = colorTheme.color4
+
+  console.log('color1app', reducerCheck);
+  console.log('color2', color2);
+  console.log('color3', color3);
+
+  // useEffect(() => {
+  //   console.log('triggert');
+  // }, [reducerCheck])
 
   return (
   
     <Provider store={store} >
+      
     <View  style={styles.container} >
     <LinearGradient
   
     // colors={['black']} //Infinity 
     // colors={['black','silver', 'purple', 'green']} //Bubble 
-    colors={['black','grey', '#000059', "black"]} //Nitro
+    // colors={['black','grey', '#000059', "black"]} //Nitro
+
+    colors={[color1,color2, color3, color4]} //Nitro
+
     // colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']} //Moon
     style={styles.gradient}
     start={{ x: 0, y: 1}}

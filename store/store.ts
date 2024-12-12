@@ -7,7 +7,7 @@ import exploreEventDataReducer from "./Reducer/exploreEventDataReducer";
 import menuNavigationReducer from "./Reducer/menuNavigationReducer";
 import userLocationReducer from "./Reducer/userLocationReducer";
 import categoryDataReducer from "./Reducer/categoryDataReducer";
-
+import backgroundReducer from "./Reducer/backgroundReducer";
 
 const rootReducer = combineReducers({
     
@@ -18,7 +18,8 @@ const rootReducer = combineReducers({
     ExploreEventData: exploreEventDataReducer,
     MenuNavigation: menuNavigationReducer,
     userLocationReduxStore: userLocationReducer,
-    categoryData: categoryDataReducer
+    categoryData: categoryDataReducer,
+    BackgroundReducer: backgroundReducer
    
 })
 
