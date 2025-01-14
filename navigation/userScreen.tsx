@@ -455,7 +455,7 @@ export default  function UserScreen() {
               {/* Selected Option Section Area */}
             <View style={{
               height:"55%", 
-              // backgroundColor: "pink", 
+              backgroundColor: "pink", 
               padding:"1%",
               position: "relative", 
 

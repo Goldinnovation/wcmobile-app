@@ -1,6 +1,8 @@
 import React from "react";
 import { View,Text } from "react-native"
 import QRCode from 'react-native-qrcode-svg';
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
@@ -13,12 +15,13 @@ const QrcodePageStructure: React.FC<userProps> = ({userData}) => {
 
 
     const data = userData
-    const userEmail = data?.userEmail
+    const userId = data?.userId
+    const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+    const userEndpoint = String(`${apiUrl}/api/userQRRequest?Id=${encodeURIComponent(btoa(userId.toString()))}`);
 
-    
-    const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
-    const qrCodeValue = String(`${API_URL}/api/${userEmail}`);
+
+
     return(
         <View style={{
             height: "80%", 
@@ -28,7 +31,7 @@ const QrcodePageStructure: React.FC<userProps> = ({userData}) => {
             alignItems: "center"
         }}>
             <QRCode
-            value={qrCodeValue}
+            value={userEndpoint}
             size={290}
             
             />

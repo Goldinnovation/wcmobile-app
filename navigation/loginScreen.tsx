@@ -61,10 +61,10 @@ export default function LoginScreen() {
       
         <View style={ {
           // backgroundColor: "pink",
-          height: 380,
+          height: verticalScale(300),
            gap: 20,
            paddingTop: 0,
-           marginTop: 30,
+           marginTop: 50,
            alignItems: "center",
            display: "flex", 
            flexDirection: "column",

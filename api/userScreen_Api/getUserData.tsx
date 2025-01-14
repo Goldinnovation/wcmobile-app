@@ -32,7 +32,7 @@ export async function getUserData() {
         .then(function (response) {
          
 
-
+          console.log('response.data', response.data);
           return response.data ;
 
         })

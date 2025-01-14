@@ -13,9 +13,15 @@ import SearchMenuToggleContent from "./searchMenu";
 import SearchOption from "./UpperContentSection/searchOption";
 import { Button } from "react-native";
 import { useRef } from "react";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { userQrDataReq } from "../../api/userScreen_Api/userQrDataReq";
 
 
 
+interface UserDataprops {
+  userId: string; // Add other properties if needed
+}
 
 
 export default function SearchpageStructure() {
@@ -31,24 +37,36 @@ export default function SearchpageStructure() {
   const [barCodeData, setBarCodeData] = useState(null)
   const [placeHolderText, setPlaceHolderText] = useState("Search for your Friends")
   const childRef = useRef<any>(null);
+  const [userData, setUserData] = useState<UserDataprops | null>(null)
+
 
   const handleToggleSearchMenu = () => {
     setSearchMenuToggle(!searchMenuToggle);
   };
 
 
+  
+
+    const handleQRCodeRequest = async(endpoint: string) => {
+      const userFetchedData = await userQrDataReq(endpoint)
+      setUserData(userFetchedData)
+     
+    }
 
 
-  const handleUserisFound = ({type, data}: any) => {
+
+
+
+  const handleUserisFound = async({type, data}: any) => {
     console.log('User is founded');
     console.log('handleUserisFound Data: ', data);
     console.log('handleUserisFound type: ', type);
     setFoundUser(true)
     setbarCodeType(type)
     setBarCodeData(data)
-
-  
-    
+     if(data !== null || data !== undefined){
+      handleQRCodeRequest(data)
+     }
 
   }
 
@@ -98,8 +116,21 @@ export default function SearchpageStructure() {
 
 
           }}>
+              {
+                userData as any? (
+                  <View>
+                    
+                    <Text style={{color: "white"}}> Here is the user Id {userData?.userId}</Text>
+                  </View>
+                ):  
+                (
+                  <View>
+
+                  </View>
+                )
+              }
               <Text style={{color: "white"}}>Founded type: {barCodeType}</Text>
-              <Text style={{color: "white"}}>Founded Data: {barCodeData}</Text>
+              {/* <Text style={{color: "white"}}>Founded Data: {barCodeData}</Text> */}
               <Button title="close" onPress={handleQCloseEvent}></Button>
           </View>
          

@@ -41,6 +41,8 @@ import SearchScreen from './navigation/searchScreen';
 import FavorScreen from './navigation/favorScreen';
 import ModeScreen from './navigation/modeScreen';
 import { reloadAppAsync } from "expo";
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+
 
 
 
@@ -159,37 +161,36 @@ function TabNavigator() {
           }}>
             {/* Explore Mode Option */}
             
-            {/* <TouchableOpacity style={{
-              width:  80,
+            <TouchableOpacity style={{
+              width:  scale(110),
             // height: 25,
             borderWidth: 1,
-            borderColor: "rgba(249,249,249,0.9)",
+            // borderColor: "rgba(249,249,249,0.9)",
             padding: 1,
-            // alignItems: "center",
+            alignItems: "center",
             display: "flex", 
             borderRadius: 4,
             // justifyContent: "center", 
-            flexDirection: "row"
+            flexDirection: "row",
+            // backgroundColor: "green",
+
 
             }}
              onPress={() => navigation.push("ModeScreen")}
             >
-              <View style={{
-                width:  "80%",
-                height: 20,
-                display: "flex", 
-                // justifyContent: "center", 
-                flexDirection: "row",
-                // backgroundColor: "red",
-                alignItems: "center",
-                padding: 1,
-                justifyContent: "center", 
-              }}>
-              <Text style={{color: "white", fontSize: 15, fontWeight: "bold", opacity: 0.7}}>MODE</Text>
-
-              </View>
+             
+              {/* <Text style={{color: "white", fontSize: 15, fontWeight: "bold", opacity: 0.7}}>MODE</Text> */}
+                 <Image
+                  source={require("./assets/emsfw.png")}
+                  style={{
+                    width: scale(90),
+                    height: verticalScale(20),
+                    // borderRadius: 100,
+                  }}
+                />
+             
               
-              <View style={{
+              {/* <View style={{
                  width:  "20%",
                  height: 20,
                 //  backgroundColor: "green",
@@ -209,12 +210,12 @@ function TabNavigator() {
                 }}>
 
                 </View>
-              </View>
+              </View> */}
 
              
                
               
-            </TouchableOpacity> */}
+            </TouchableOpacity>
 
             {/* <Text style={{
               color: "white", 
@@ -326,6 +327,80 @@ function TabNavigator() {
 
           </View>
         ),
+         headerLeft: () => (
+          <View style={{
+            // backgroundColor:  filter ?  "pink" : "green",
+            width:  scale(119),
+            height: 30,
+            flexDirection: "row",
+            alignItems: "center",
+            marginLeft: categoryLayoutState ? 9 : 7,
+        
+          }}>
+            {/* Explore Mode Option */}
+            
+            <TouchableOpacity style={{
+              width:  scale(110),
+            // height: 25,
+            // borderWidth: 1,
+            // borderColor: "white",
+            padding: 1,
+            // marginLeft: 15,
+
+            // alignItems: "center",
+            display: "flex", 
+            borderRadius: 4,
+            // justifyContent: "center", 
+            flexDirection: "row",
+            // backgroundColor: "green"
+
+            }}
+             onPress={() => navigation.push("ModeScreen")}
+            >
+            
+              {/* <Text style={{color: "white", fontSize: 15, fontWeight: "bold", opacity: 0.7}}>EMS</Text> */}
+
+              <Image
+                  source={require("./assets/emsfw.png")}
+                  style={{
+                    // width: scale(100),
+                    // height: verticalScale(25),
+                    width: scale(90),
+                    height: verticalScale(20)
+                    // borderRadius: 100,
+                  }}
+                />
+              
+              {/* <View style={{
+                 width:  "20%",
+                 height: 20,
+                //  backgroundColor: "green",
+                 display: "flex", 
+                justifyContent: "center", 
+                flexDirection: "row",
+                alignItems: "center",
+                // borderLeftWidth: 1, 
+                // borderLeftColor: "rgba(249,249,249,0.9)"
+              }}>
+                <View style={{
+                  width:  "65%",
+                  height: 10,
+                  backgroundColor: "red",
+                  borderRadius: 50,
+                  opacity: 0.8
+                }}>
+
+                </View>
+              </View> */}
+
+             
+               
+              
+            </TouchableOpacity>
+
+            
+          </View>
+        ),
         headerStyle: {
           backgroundColor: 'transparent',},
           headerTintColor: 'grey',
@@ -353,38 +428,38 @@ function TabNavigator() {
             {/* Explore Mode Option */}
             
             <TouchableOpacity style={{
-              width:  80,
+              width:  scale(110),
             // height: 25,
             borderWidth: 1,
-            borderColor: "white",
+            // borderColor: "white",
             padding: 1,
-            marginLeft: 15,
+            // marginLeft: 15,
 
             // alignItems: "center",
             display: "flex", 
             borderRadius: 4,
             // justifyContent: "center", 
-            flexDirection: "row"
+            flexDirection: "row",
+            // backgroundColor: "green"
 
             }}
              onPress={() => navigation.push("ModeScreen")}
             >
-              <View style={{
-                width:  "80%",
-                height: 20,
-                display: "flex", 
-                // justifyContent: "center", 
-                flexDirection: "row",
-                // backgroundColor: "red",
-                alignItems: "center",
-                padding: 1,
-                justifyContent: "center", 
-              }}>
-              <Text style={{color: "white", fontSize: 15, fontWeight: "bold", opacity: 0.7}}>EMS</Text>
+            
+              {/* <Text style={{color: "white", fontSize: 15, fontWeight: "bold", opacity: 0.7}}>EMS</Text> */}
 
-              </View>
+              <Image
+                  source={require("./assets/emsfw.png")}
+                  style={{
+                    // width: scale(100),
+                    // height: verticalScale(25),
+                    width: scale(90),
+                    height: verticalScale(20)
+                    // borderRadius: 100,
+                  }}
+                />
               
-              <View style={{
+              {/* <View style={{
                  width:  "20%",
                  height: 20,
                 //  backgroundColor: "green",
@@ -404,7 +479,7 @@ function TabNavigator() {
                 }}>
 
                 </View>
-              </View>
+              </View> */}
 
              
                
