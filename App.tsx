@@ -340,80 +340,80 @@ function TabNavigator() {
       component={ProfileScreen}
       options={{
         title: 'Profile',
-        // headerLeft: () => (
-        //   <View style={{
-        //     // backgroundColor:  filter ?  "pink" : "green",
-        //     width:  199,
-        //     height: 30,
-        //     flexDirection: "row",
-        //     alignItems: "center",
-        //     marginLeft: categoryLayoutState ? 9 : 7,
+        headerLeft: () => (
+          <View style={{
+            // backgroundColor:  filter ?  "pink" : "green",
+            width:  199,
+            height: 30,
+            flexDirection: "row",
+            alignItems: "center",
+            marginLeft: categoryLayoutState ? 9 : 7,
         
-        //   }}>
-        //     {/* Explore Mode Option */}
+          }}>
+            {/* Explore Mode Option */}
             
-        //     <TouchableOpacity style={{
-        //       width:  80,
-        //     // height: 25,
-        //     borderWidth: 1,
-        //     borderColor: "white",
-        //     padding: 1,
-        //     marginLeft: 15,
+            <TouchableOpacity style={{
+              width:  80,
+            // height: 25,
+            borderWidth: 1,
+            borderColor: "white",
+            padding: 1,
+            marginLeft: 15,
 
-        //     // alignItems: "center",
-        //     display: "flex", 
-        //     borderRadius: 4,
-        //     // justifyContent: "center", 
-        //     flexDirection: "row"
+            // alignItems: "center",
+            display: "flex", 
+            borderRadius: 4,
+            // justifyContent: "center", 
+            flexDirection: "row"
 
-        //     }}
-        //      onPress={() => navigation.push("ModeScreen")}
-        //     >
-        //       <View style={{
-        //         width:  "80%",
-        //         height: 20,
-        //         display: "flex", 
-        //         // justifyContent: "center", 
-        //         flexDirection: "row",
-        //         // backgroundColor: "red",
-        //         alignItems: "center",
-        //         padding: 1,
-        //         justifyContent: "center", 
-        //       }}>
-        //       <Text style={{color: "white", fontSize: 15, fontWeight: "bold", opacity: 0.7}}>MODE</Text>
+            }}
+             onPress={() => navigation.push("ModeScreen")}
+            >
+              <View style={{
+                width:  "80%",
+                height: 20,
+                display: "flex", 
+                // justifyContent: "center", 
+                flexDirection: "row",
+                // backgroundColor: "red",
+                alignItems: "center",
+                padding: 1,
+                justifyContent: "center", 
+              }}>
+              <Text style={{color: "white", fontSize: 15, fontWeight: "bold", opacity: 0.7}}>EMS</Text>
 
-        //       </View>
+              </View>
               
-        //       <View style={{
-        //          width:  "20%",
-        //          height: 20,
-        //         //  backgroundColor: "green",
-        //          display: "flex", 
-        //         justifyContent: "center", 
-        //         flexDirection: "row",
-        //         alignItems: "center",
-        //         // borderLeftWidth: 1, 
-        //         // borderLeftColor: "rgba(249,249,249,0.9)"
-        //       }}>
-        //         <View style={{
-        //           width:  "65%",
-        //           height: 10,
-        //           backgroundColor: "red",
-        //           borderRadius: 50,
-        //           opacity: 0.8
-        //         }}>
+              <View style={{
+                 width:  "20%",
+                 height: 20,
+                //  backgroundColor: "green",
+                 display: "flex", 
+                justifyContent: "center", 
+                flexDirection: "row",
+                alignItems: "center",
+                // borderLeftWidth: 1, 
+                // borderLeftColor: "rgba(249,249,249,0.9)"
+              }}>
+                <View style={{
+                  width:  "65%",
+                  height: 10,
+                  backgroundColor: "red",
+                  borderRadius: 50,
+                  opacity: 0.8
+                }}>
 
-        //         </View>
-        //       </View>
+                </View>
+              </View>
 
              
                
               
-        //     </TouchableOpacity>
+            </TouchableOpacity>
 
             
-        //   </View>
-        // ),
+          </View>
+        ),
         headerRight: () => (
           <View style={{
             // backgroundColor: "pink",
