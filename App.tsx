@@ -185,6 +185,8 @@ function TabNavigator() {
                   style={{
                     width: scale(90),
                     height: verticalScale(20),
+                    // width: scale(110),
+                    // height: verticalScale(26),
                     // borderRadius: 100,
                   }}
                 />
