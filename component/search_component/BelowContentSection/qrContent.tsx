@@ -185,6 +185,7 @@ const QrCodeContent =  forwardRef<any,qrocdeProps >(({handleUserisFound, userFol
                 flexDirection: "row", 
                 justifyContent: "center", 
                 alignItems: "center", 
+                position: "relative"
 
 
 
@@ -200,6 +201,8 @@ const QrCodeContent =  forwardRef<any,qrocdeProps >(({handleUserisFound, userFol
                   flexDirection: "row", 
                   justifyContent: "center", 
                   alignItems: "center", 
+                  position: "relative", 
+                  top: "-5%"
                 }}>
                 <Text style={{
                   color: "white"

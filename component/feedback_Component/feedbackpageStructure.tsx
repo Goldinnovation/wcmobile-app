@@ -2,8 +2,14 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import LinkIcon from "../../icons/linkIcon";
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from "@react-navigation/stack";
+import { ParamListBase } from "@react-navigation/native";
+
 
 export default function FeedbackPageStructure() {
+      const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+  
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -26,6 +32,42 @@ export default function FeedbackPageStructure() {
         start={{ x: 0, y: 1 }}
         end={{ x: 0, y: 0 }}
       >
+          <View
+                            style={{
+                              height: "5%",
+                              width: "100%",
+                              // backgroundColor: "skyblue",
+                              // position: "absolute",
+                              // top: "1%",
+                              // left: "80%",
+                              // zIndex: 3,
+                              display: "flex",
+                              justifyContent: "flex-end",
+                              flexDirection: "row"
+                            }}
+                          >
+                            <TouchableOpacity style={{
+                                height: "100%",
+                                width: "15%",
+                                // backgroundColor: "orange",
+                                display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              flexDirection: "row"
+                            }}
+                            // onPress={handleQCloseEvent}
+                            onPress={() => navigation.goBack()}
+        
+                            >
+                            <Text style={{
+                              color: "red", 
+                              fontSize: 23, 
+                              fontWeight: "bold"
+                              
+                            }}>X</Text>
+                            </TouchableOpacity>
+                           
+                          </View>
         <View style={{
              height: '8%' ,
             // backgroundColor: "red",
@@ -38,7 +80,7 @@ export default function FeedbackPageStructure() {
 
         {/* Link Section */}
         <View style={{
-            height: '90%' ,
+            height: '87%' ,
             // backgroundColor: "pink",
             padding: 10,
             gap: 1

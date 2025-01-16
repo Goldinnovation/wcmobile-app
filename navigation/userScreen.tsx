@@ -85,7 +85,7 @@ export default  function UserScreen() {
     setMenuToggle(false)
     setWelcomeToggle(false)
 
-    setTitle("Friends")
+    setTitle("Contacts")
   }
 
   const handleMenuToggle = () => {
