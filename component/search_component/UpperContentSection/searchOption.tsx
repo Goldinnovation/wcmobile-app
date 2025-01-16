@@ -63,12 +63,14 @@ const SearchOption: React.FC<SearchNQRCodeProps> = ({
                 {
                     addUserToggle 
                     ? <SearchLoopIcon width={'29'} height={'21'} />
+                    
 
-                    :  <Text style={{
-                        color: "white", 
-                        fontSize: 22 
+                    :  <SearchLoopIcon width={'29'} height={'21'} />
+                    // <Text style={{
+                    //     color: "white", 
+                    //     fontSize: 22 
 
-                    }}>#</Text>
+                    // }}>#</Text>
                 }
            
             </View>

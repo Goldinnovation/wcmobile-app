@@ -103,7 +103,7 @@ export default function LoginScreen() {
 
             }}
           >
-            login with your Account
+            login to your Account
           </Text>
 
           </View>

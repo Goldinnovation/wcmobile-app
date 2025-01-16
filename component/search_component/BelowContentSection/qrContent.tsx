@@ -7,6 +7,7 @@ import AddFriendsIcon from "../../../icons/addFriendsIcon";
 import OutlineScanIcon from "../../../icons/outlineScanIcon";
 import PuzzleIcon from "../../../icons/puzzleIcon";
 import SmileIcon from "../../../icons/smileIcon";
+import { scale } from "react-native-size-matters";
 // import { CameraView, Camera } from "expo-camera/next";
 // import { CameraView, useCameraPermissions } from 'expo-camera/next'
 
@@ -14,11 +15,14 @@ import SmileIcon from "../../../icons/smileIcon";
 interface qrocdeProps{
 
   handleUserisFound: ({type, data}: any ) => void
+  userFollowState: boolean; 
+  userData: any
+
 
 }
 
 
-const QrCodeContent =  forwardRef<any,qrocdeProps >(({handleUserisFound},ref) => {
+const QrCodeContent =  forwardRef<any,qrocdeProps >(({handleUserisFound, userFollowState, userData},ref, ) => {
     const [facing, setFacing] = useState<CameraType>('back');
     const [permission, requestPermission] = useCameraPermissions();
     const [hasPermission, setHasPermission] = useState(null);
@@ -104,7 +108,7 @@ const QrCodeContent =  forwardRef<any,qrocdeProps >(({handleUserisFound},ref) =>
         {
           !scanned 
           &&
-          
+          // Scan section
            <View>
               <CameraView style={{
                   width: "100%",
@@ -148,78 +152,62 @@ const QrCodeContent =  forwardRef<any,qrocdeProps >(({handleUserisFound},ref) =>
               justifyContent: "center",
               alignItems:"center", 
               gap: 15,
-              paddingTop: 15
+              paddingTop: 15,
+              // backgroundColor: "orange",
+
 
           }}>
            
-              {/* QR Code Search Option  */}
-               <View style={{
-            // position: "absolute", 
-            // top: "100%",
-            // left: "83%",
-            // zIndex: 4,
-            width: "48%",
-            height: "45%",
-            backgroundColor: "rgba(255, 255, 255,0.1)",
-            borderRadius: 50,
-            borderWidth: 1, 
-            borderColor: "rgba(255, 255, 255,0.5)",
-            flexDirection: "row",
-            alignItems: "center",
-            // justifyContent: "center",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 1,
-            shadowRadius: 1,
-            // gap: 20
+          
 
-
-        }}>
-            <TouchableOpacity style={{
-                backgroundColor: friendsToggle ? "rgba(70,70,70,0.4)" : "rgba(0,0,0,0)",
-                // backgroundColor: "pink",
-                width: "50%",
-                height: "100%",
-                alignItems: "center",
-                justifyContent: "center",
-                borderTopLeftRadius: 50,
-                borderBottomLeftRadius: 50,
-                // borderBottomWidth: 1,
-                borderBottomColor: "rgba(255, 255, 255,0.5)"
-            }}
-            onPress={handleFriendToggle}
-            >
-            <SmileIcon width={'21'} height={'21'} />
-            </TouchableOpacity>
-
-            <TouchableOpacity style={{
-                backgroundColor: eventToggle ? "rgba(70,70,70,0.4)" : "rgba(0,0,0,0)",
-                // backgroundColor: "blue",
-                width: "50%",
-                height: "100%",
-                alignItems: "center",
-                justifyContent: "center",
-                borderTopRightRadius: 50,
-                borderBottomRightRadius: 50
-            }}
-
-            onPress={handleEventToggle}
-            >
-            <PuzzleIcon width={'21'} height={'21'} />
-            </TouchableOpacity>
-            
-
-              </View>
 
                  <Text style={{
                   color: "white", 
-                  textAlign: "center"
-              }}>Scan your {toggleState} QR code</Text>
+                  textAlign: "center",
+                  fontSize: 15, 
+                  fontWeight: "bold", 
+                  opacity: 0.4
+
+              }}>Scan your friends QR code</Text>
 
           </View>
             
            </View>
 
         }
+
+            {userFollowState && (
+              <View style={{
+                // backgroundColor: "skyblue", 
+                height: "100%", 
+                width: "100%", 
+                display: "flex" , 
+                flexDirection: "row", 
+                justifyContent: "center", 
+                alignItems: "center", 
+
+
+
+              }}>
+                <View style={{
+                  height: "11%", 
+                  width: "90%", 
+                  borderWidth: 1, 
+                  backgroundColor:"rgba(149,149,149,0.3)",
+                  borderColor: "rgba(255, 255, 255,0.5)",
+                  borderRadius: 7,
+                  display: "flex" , 
+                  flexDirection: "row", 
+                  justifyContent: "center", 
+                  alignItems: "center", 
+                }}>
+                <Text style={{
+                  color: "white"
+                }}>You have successfully followed {userData?.userName}!</Text>
+                </View>
+               
+              </View>
+            )}
         
           </View> 
 

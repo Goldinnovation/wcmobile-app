@@ -12,10 +12,13 @@ const SearchContent = () => {
             alignItems: "center"
         }}>
             <Text style={{
-                color: "white", 
-                textAlign: "center",
-                fontSize: 20
-            }}> Search for your Firends </Text>
+                 color: "white", 
+                 textAlign: "center",
+                 fontSize: 25, 
+                 fontWeight: "bold", 
+                 opacity: 0.4
+            }}> Search for your Friends </Text>
+            
         </View>
 
     )
