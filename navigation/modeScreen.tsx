@@ -2,20 +2,13 @@ import { defaultHeaderInterpreter } from "axios-cache-interceptor"
 import { View, Text} from "react-native"
 import { useState } from "react"
 import { TouchableOpacity } from "react-native-gesture-handler";
-import CalenderIcon from "../icons/calenderIcon";
-import DayNightIcon from "../icons/DayNightIcon";
-import PuzzleIcon from "../icons/puzzleIcon";
-import LocationPin from "../icons/locationPin";
-import OnlineIcon from "../icons/OnlineIcon";
-import VirtualIcon from "../icons/virtualIcon";
-import BallonIcon from "../icons/BallonIcon";
-import BallonIconColor from "../icons/BallonIconColor";
-import PersonalIcon from "../icons/personalIcon";
+
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { ParamListBase } from "@react-navigation/native";
-import FavorIcon from "../icons/favorIcon";
-import ArrowIcon from "../icons/arrowIcon";
+import Mapbox from '@rnmapbox/maps';
+
+Mapbox.setAccessToken("pk.eyJ1IjoiZ29sZGlubm92YXRpb24iLCJhIjoiY202NmJpaGppMXljdjJscjBpZzVxZXJtYyJ9.7xZ3FKUVTmYl1YL2QrsW4Q")
 
 
 const ModeScreen = () => {
@@ -41,9 +34,15 @@ const ModeScreen = () => {
            <View style={{
             backgroundColor: "pink", 
             height: "100%", 
-            width: "100%"
+            width: "100%",
+            justifyContent: 'center',
+            alignItems: 'center',
 
-           }}><Text>hello</Text></View>
+           }}>
+              <Mapbox.MapView style={{
+                flex: 1
+              }} />
+           </View>
         </View>
     )
 }
