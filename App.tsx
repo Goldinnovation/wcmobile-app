@@ -42,6 +42,7 @@ import FavorScreen from './navigation/favorScreen';
 import ModeScreen from './navigation/modeScreen';
 import { reloadAppAsync } from "expo";
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import GameIcon from './icons/gameIcon';
 
 
 
@@ -230,12 +231,13 @@ function TabNavigator() {
         headerRight: () => (
           <View style={{
           //  backgroundColor:  filter ?  "pink" : "red",
-            width:  160,
+            width:  135,
             // display: filter ? "flex" : "flex",
             height: 30,
+
             alignItems: "center",
             marginRight: categoryLayoutState ? 12 : 8,
-             gap: 25,
+             gap: 27,
             justifyContent: "flex-end",
             flexDirection: "row"
           }}>
@@ -257,6 +259,31 @@ function TabNavigator() {
              
 
            </View>
+
+          
+           <TouchableWithoutFeedback  
+          style={{
+            position: "relative",
+            // top: 1,
+            flexDirection: filter ? "row" : "column",
+            // backgroundColor: "skyblue"
+          }}
+          onPress={() => navigation.push("ModeScreen")}
+          
+          >
+            
+          {/* <Image
+          source={require("./assets/fi1.png")}
+          style={{height: 30, width: 30}}
+          /> */}
+          <View>
+          {/* <ExploreEventFilter width={'28'} height={'28'} /> */}
+          <GameIcon width={'22'} height={'22'} />
+          </View>
+           
+             
+          </TouchableWithoutFeedback>
+
            
           <TouchableWithoutFeedback  
           style={{
@@ -281,7 +308,7 @@ function TabNavigator() {
           <TouchableOpacity  onPress={() => navigation.push("NotificationScreen")}>
         
         {/* <SettingIcon width={'21'} height={'21'} /> */}
-          <NotificationIcon  width={'23'} height={'25'} />
+          <NotificationIcon  width={'24'} height={'24'} />
           </TouchableOpacity>
             
       

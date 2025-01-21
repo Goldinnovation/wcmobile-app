@@ -11,21 +11,49 @@ const FriendsPageStructure = () => {
         // backgroundColor: "green", 
         width: "100%", 
         height: "100%",
-        padding: 5
+     //    padding: 5
     }}>
         <View style={{
-            // backgroundColor: "pink", 
+             height: "10%",
+             backgroundColor:"rgba(149,149,149,0.3)",
+            //  borderColor: "rgba(255, 255, 255,0.5)",
+             borderWidth: 1,
+             borderRadius: 7,
+             marginTop: "3%",
+             width: "100%",
+          //    paddingRight: "2%",
+             display: "flex",
+             flexDirection: "row",
+
+             alignItems: "center",
+             justifyContent: "center",
+             opacity: 0.8,
+
+        }}>
+            <Text style={{
+            color: "white", 
+            fontWeight: "500"
+        }}> Overview</Text>
+        
+
+            
+        
+        </View>
+     
+        <View style={{
+          //   backgroundColor: "pink", 
             width: "100%", 
             height: "100%",
-            marginTop: "5%",
-            gap: 22
+            marginTop: "3%",
+            gap: 22,
+            padding: 5
 
 
         }}>
         <View style={{
              width: "100%", 
              height: "60%",
-            //  backgroundColor: "orange", 
+          //    backgroundColor: "orange", 
              gap: 15
 
         }}>
@@ -50,28 +78,31 @@ const FriendsPageStructure = () => {
             
         
         </View> */}
-        <View style={{
+        {/* <View style={{
              height: "18%",
              width: "100%",
              display: "flex",
              flexDirection: "row",
             //  backgroundColor:"green",
-               justifyContent: "space-between",
+               // justifyContent: "space-between",
             //    gap: 20,
                alignItems: "center",
 
 
 
-        }}>   
+        }}>    */}
          {/* Label Section */}
-        <View style={{
+        {/* <View style={{
              height: "90%",
              backgroundColor:"rgba(149,149,149,0.3)",
             //  borderColor: "rgba(255, 255, 255,0.5)",
              borderWidth: 1,
              borderRadius: 7,
-             width: "65%",
-             paddingLeft: "2%",
+             width: "100%",
+          //    paddingRight: "2%",
+             display: "flex",
+             flexDirection: "row",
+
              alignItems: "center",
              justifyContent: "center",
              opacity: 0.8,
@@ -80,13 +111,13 @@ const FriendsPageStructure = () => {
             <Text style={{
             color: "white", 
             fontWeight: "500"
-        }}> Rooms </Text>
+        }}> Overview</Text>
         
 
             
         
-        </View>
-        <View style={{
+        </View> */}
+        {/* <View style={{
              height: "90%",
              backgroundColor:"rgba(149,149,149,0.3)",
              borderColor: "rgba(255, 255, 255,0.5)",
@@ -102,7 +133,7 @@ const FriendsPageStructure = () => {
         }}>
             
         
-        </View>
+        </View> */}
         
         {/* Add Section  */}
         {/* <View style={{
@@ -126,7 +157,7 @@ const FriendsPageStructure = () => {
         
         
         </View> */}
-          <View style={{
+          {/* <View style={{
              height: "90%",
              backgroundColor:"rgba(149,149,149,0.3)",
             //  borderColor: "rgba(255, 255, 255,0.5)",
@@ -146,9 +177,9 @@ const FriendsPageStructure = () => {
 
         
         
-        </View>
+        </View> */}
 
-
+{/* 
         <View style={{
              height: "90%",
              backgroundColor:"rgba(149,149,149,0.3)",
@@ -165,11 +196,11 @@ const FriendsPageStructure = () => {
         }}>
             
         
-        </View>
+        </View> */}
        
 
       
-        </View>
+        {/* </View> */}
                
         <View style={{
              height: "2%",
@@ -429,7 +460,7 @@ const FriendsPageStructure = () => {
 
 
         {/* Friends View */}
-        <View style={{
+        {/* <View style={{
              height: "27%",
             //  backgroundColor:"red",
             backgroundColor:"rgba(149,149,149,0.3)",
@@ -451,10 +482,10 @@ const FriendsPageStructure = () => {
              opacity: 0.8,
              
 
-        }}>
+        }}> */}
 
         {/* Menu Room Section */}
-        <View style={{
+        {/* <View style={{
             height: "100%",
             width: "100%",
             display: "flex",
@@ -469,13 +500,13 @@ const FriendsPageStructure = () => {
             color: "white", 
             fontWeight: "500"
         }}> In process </Text>
-        </View>
+        </View> */}
 
        
                
             
         
-        </View>
+        {/* </View> */}
 
         </View>
        
