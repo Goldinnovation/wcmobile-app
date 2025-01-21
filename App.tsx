@@ -43,6 +43,7 @@ import ModeScreen from './navigation/modeScreen';
 import { reloadAppAsync } from "expo";
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import GameIcon from './icons/gameIcon';
+import WorldIcon from './icons/worldIcon';
 
 
 
@@ -278,7 +279,9 @@ function TabNavigator() {
           /> */}
           <View>
           {/* <ExploreEventFilter width={'28'} height={'28'} /> */}
-          <GameIcon width={'22'} height={'22'} />
+          {/* <GameIcon width={'22'} height={'22'} /> */}
+
+          <WorldIcon width={'22'} height={'22'} />
           </View>
            
              
