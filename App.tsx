@@ -594,10 +594,11 @@ export default function App() {
     <LinearGradient
   
     // colors={['black']} //Infinity 
-    colors={['black','silver', 'purple', 'green']} //Bubble 
+    // colors={['black','silver', 'purple', 'green']} //Bubble 
     // colors={['black','grey', '#000059', "black"]} //Nitro
+    // colors={['black','brown', 'purple', "purple","black"]} //Nitro
 
-    // colors={[color1,color2, color3, color4]} //Nitro
+    colors={[color1,color2, color3, color4]} //Nitro
 
     // colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']} //Moon
     style={styles.gradient}

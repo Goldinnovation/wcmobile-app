@@ -46,6 +46,8 @@ const WeeklyEventData: React.FC<weeklyEventDataProps> = ({eventData}) => {
             }}>Events for this Week</Text>
         </View>
         <View>
+
+            
         <ScrollView
                     horizontal={true}
                     style={{

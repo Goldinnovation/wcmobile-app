@@ -1,4 +1,4 @@
-import { View, Text } from "react-native"
+import { View, Text, TouchableOpacity } from "react-native"
 import { ScrollView } from 'react-native-gesture-handler'
 import PlusIcon from "../../../icons/plusIcon"
 import LockerIcon from "../../../icons/lockerIcon"
@@ -242,7 +242,7 @@ const FriendsPageStructure = () => {
              height: "100%",
              backgroundColor:"rgba(149,149,149,0.3)",
             // backgroundColor:"red",
-             borderColor: "rgba(255, 255, 255,0.5)",
+          //    borderColor: "rgba(255, 255, 255,0.5)",
              borderWidth: 1,
              borderRadius: 7,
              width: "30%",
@@ -260,29 +260,69 @@ const FriendsPageStructure = () => {
 
 
         </View>
-        <View style={{
+        <TouchableOpacity style={{
              height: "100%",
              backgroundColor:"rgba(149,149,149,0.3)",
-            // backgroundColor:"red",
+          //   backgroundColor:"red",
              borderColor: "rgba(255, 255, 255,0.5)",
              borderWidth: 1,
              borderRadius: 7,
              width: "20%",
             //  paddingLeft: "2%",
+               display: "flex", 
+              flexDirection: "row",
              alignItems: "center",
              justifyContent: "center",
              opacity: 0.8,
              
 
         }}>
-             <Text style={{
+          <View style={{
+               width: "70%",
+               height: "100%", 
+               // backgroundColor:"green",
+               display: "flex", 
+               alignItems: "center", 
+               justifyContent: "center", 
+               flexDirection: "row"
+
+
+          }}>
+          <Text style={{
             color: "white", 
             fontWeight: "500"
         }}> 2930 </Text>
+          </View>
+
+          <View style={{
+                width: "30%",
+                height: "100%", 
+               //  backgroundColor:"orange",
+                display: "flex", 
+                alignItems: "center", 
+                justifyContent: "center", 
+                flexDirection: "row"
+
+ 
+          }}> 
+                     <View style={{
+                         // backgroundColor: "red", 
+                         borderColor: "rgba(255, 255, 255,0.5)",
+                         borderWidth: 1,
+                         height: "30%",
+                         width: "50%", 
+                         borderRadius: 50
+
+
+                     }}> 
+
+                    </View>
+          </View>
+            
         
 
 
-        </View>
+        </TouchableOpacity>
            
         </View>
 
@@ -307,7 +347,7 @@ const FriendsPageStructure = () => {
         </View>
         <View style={{
              height: "15%",
-            //  backgroundColor:"rgba(149,149,149,0.3)",
+          //    backgroundColor:"rgba(149,149,149,0.3)",
             //  borderColor: "rgba(255, 255, 255,0.5)",
              borderWidth: 1,
              borderRadius: 7,
@@ -323,11 +363,12 @@ const FriendsPageStructure = () => {
              
 
         }}>
-              <View style={{
+          {/* Following Label   */}
+          <View style={{
              height: "100%",
              backgroundColor:"rgba(149,149,149,0.3)",
             // backgroundColor:"red",
-             borderColor: "rgba(255, 255, 255,0.5)",
+          //    borderColor: "rgba(255, 255, 255,0.5)",
              borderWidth: 1,
              borderRadius: 7,
              width: "30%",
@@ -345,10 +386,13 @@ const FriendsPageStructure = () => {
 
 
         </View>
-        <View style={{
+
+        
+        {/* Following Number */}
+        <TouchableOpacity style={{
              height: "100%",
              backgroundColor:"rgba(149,149,149,0.3)",
-            // backgroundColor:"red",
+          //   backgroundColor:"red",
              borderColor: "rgba(255, 255, 255,0.5)",
              borderWidth: 1,
              borderRadius: 7,
@@ -357,17 +401,56 @@ const FriendsPageStructure = () => {
              alignItems: "center",
              justifyContent: "center",
              opacity: 0.8,
+          flexDirection: "row"
              
 
         }}>
-             <Text style={{
+           
+         <View style={{
+               width: "70%",
+               height: "100%", 
+               // backgroundColor:"green",
+               display: "flex", 
+               alignItems: "center", 
+               justifyContent: "center", 
+               flexDirection: "row"
+
+
+          }}>
+          <Text style={{
             color: "white", 
             fontWeight: "500"
         }}> 559 </Text>
+          </View>
+
+          <View style={{
+                width: "30%",
+                height: "100%", 
+               //  backgroundColor:"orange",
+                display: "flex", 
+                alignItems: "center", 
+                justifyContent: "center", 
+                flexDirection: "row"
+
+ 
+          }}> 
+                     <View style={{
+                         // backgroundColor: "red", 
+                         borderColor: "rgba(255, 255, 255,0.5)",
+                         borderWidth: 1,
+                         height: "30%",
+                         width: "50%", 
+                         borderRadius: 50
+
+
+                     }}> 
+
+                    </View>
+          </View>
         
 
 
-        </View>
+        </TouchableOpacity>
            
         </View>
 
@@ -393,7 +476,8 @@ const FriendsPageStructure = () => {
         
         <View style={{
              height: "15%",
-            //  backgroundColor:"rgba(149,149,149,0.3)",
+          //    backgroundColor:"rgba(149,149,149,0.3)",
+
             //  borderColor: "rgba(255, 255, 255,0.5)",
              borderWidth: 1,
              borderRadius: 7,
@@ -409,11 +493,13 @@ const FriendsPageStructure = () => {
              
 
         }}>
-              <View style={{
+
+          {/* Friends Label */}
+          <View style={{
              height: "100%",
              backgroundColor:"rgba(149,149,149,0.3)",
             // backgroundColor:"red",
-             borderColor: "rgba(255, 255, 255,0.5)",
+          //    borderColor: "rgba(255, 255, 255,0.5)",
              borderWidth: 1,
              borderRadius: 7,
              width: "30%",
@@ -430,8 +516,10 @@ const FriendsPageStructure = () => {
         
 
 
-        </View>
-        <View style={{
+          </View>
+
+        {/* Friends Number */}
+          <TouchableOpacity style={{
              height: "100%",
              backgroundColor:"rgba(149,149,149,0.3)",
             // backgroundColor:"red",
@@ -443,17 +531,56 @@ const FriendsPageStructure = () => {
              alignItems: "center",
              justifyContent: "center",
              opacity: 0.8,
+             flexDirection: "row"
              
 
         }}>
-             <Text style={{
+            
+          <View style={{
+               width: "70%",
+               height: "100%", 
+               // backgroundColor:"green",
+               display: "flex", 
+               alignItems: "center", 
+               justifyContent: "center", 
+               flexDirection: "row"
+
+
+          }}>
+          <Text style={{
             color: "white", 
             fontWeight: "500"
         }}> 120 </Text>
+          </View>
+
+          <View style={{
+                width: "30%",
+                height: "100%", 
+               //  backgroundColor:"orange",
+                display: "flex", 
+                alignItems: "center", 
+                justifyContent: "center", 
+                flexDirection: "row"
+
+ 
+          }}> 
+                     <View style={{
+                         // backgroundColor: "red", 
+                         borderColor: "rgba(255, 255, 255,0.5)",
+                         borderWidth: 1,
+                         height: "30%",
+                         width: "50%", 
+                         borderRadius: 50
+
+
+                     }}> 
+
+                    </View>
+          </View>
         
 
 
-        </View>
+          </TouchableOpacity>
            
         </View>
         </View>

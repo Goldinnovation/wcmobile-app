@@ -1,10 +1,11 @@
 import React from 'react'
 import { View, Text, StyleSheet} from 'react-native'
+import NotificationPageStructure from '../component/notification_Component/notificationPageStructure';
 
 export default function NotificationScreen() {
   return (
     <View  style={styles.container}>
-        <Text>Hellow</Text>
+        <NotificationPageStructure/>
 
       
     </View>
