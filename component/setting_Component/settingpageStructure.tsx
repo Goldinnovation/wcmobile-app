@@ -439,7 +439,9 @@ export default function SettingPageStructure() {
                 gap: 60,
               }}
             >
-              <TouchableOpacity
+
+              {/* Swap Theme btn */}
+              {/* <TouchableOpacity
                 style={{
                   // backgroundColor: "rgba(141,141,141,1)",
                   height: 40,
@@ -467,17 +469,23 @@ export default function SettingPageStructure() {
                     Chang Theme
                   </Text>
                 </View>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
+
+              {/*  About Company  */}
               <TouchableOpacity
                 style={{
                   // backgroundColor: "rgba(141,141,141,1)",
+                  backgroundColor:"rgba(149,149,149,0.3)",
+                  borderColor: "rgba(255, 255, 255,0.5)",
                   height: 40,
                   width: "70%",
                   borderRadius: 30,
                   alignItems: "center",
                   justifyContent: "center",
                   borderWidth: 1,
-                  borderColor: "rgba(141,141,141,1)",
+                  shadowOffset: { width: 0, height: 2 },
+                  shadowOpacity: 4,
+                  shadowRadius: 2,
                 }}
                 onPress={() => handleWorthsecInfotoggle()}
               >
@@ -497,16 +505,22 @@ export default function SettingPageStructure() {
                   </Text>
                 </View>
               </TouchableOpacity>
+
+              {/* Log Out btn */}
               <TouchableOpacity
                 style={{
                   // backgroundColor: "rgba(141,141,141,1)",
+                  backgroundColor:"rgba(149,149,149,0.3)",
+                  borderColor: "rgba(255, 255, 255,0.5)",
                   height: 40,
                   width: "70%",
                   borderRadius: 30,
                   alignItems: "center",
                   justifyContent: "center",
                   borderWidth: 1,
-                  borderColor: "rgba(141,141,141,1)",
+                  shadowOffset: { width: 0, height: 2 },
+                  shadowOpacity: 4,
+                  shadowRadius: 2,
                 }}
                 // onPress={() => handleLogOut()}
               >

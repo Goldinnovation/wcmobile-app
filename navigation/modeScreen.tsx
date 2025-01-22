@@ -1,5 +1,5 @@
 import { defaultHeaderInterpreter } from "axios-cache-interceptor"
-import { View, Text, TouchableOpacity} from "react-native"
+import { View, Text, TouchableOpacity, Image} from "react-native"
 import { useState } from "react"
 
 import { useNavigation } from "@react-navigation/native";
@@ -12,6 +12,7 @@ import PuzzleIcon from "../icons/puzzleIcon";
 import AddFriendsIcon from "../icons/addFriendsIcon";
 import PlusIcon from "../icons/plusIcon";
 import SwitchIcon from "../icons/switchIcon";
+import MenuBarBurgerIcon from "../icons/menuBarBurgerIcon";
 
 
 const ModeScreen = () => {
@@ -59,18 +60,44 @@ const ModeScreen = () => {
           
               />
 
-            {/* Close Section  */}
 
-              {/* <TouchableOpacity style={{
-            //   backgroundColor:"rgba(149,149,149,0.3)",
+          <View style={{
+              backgroundColor:"rgba(0, 0, 0, 0.76)",
+             borderColor: "rgba(255, 255, 255,0.5)",
+              // borderWidth: 1,
+              width: "100%", 
+              height: "13%",
+              position: "absolute",
+              top: "0%",
+              left: "0%",
+              zIndex: 3,
+              display: "flex",
+              justifyContent: "flex-end",
+              // alignItems: "center",
+              flexDirection: "column"
+
+            }}
+            
+            >
+              <View style={{
+                // backgroundColor:"rgba(160, 29, 29, 0.62)",
+                width: "100%", 
+                height: "65%",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}>
+                 <TouchableOpacity style={{
+              // backgroundColor:"rgba(23, 255, 2, 0.3)",
             //  borderColor: "rgba(255, 255, 255,0.5)",
               // borderWidth: 1,
-              width: "10%", 
-              height: "6%",
-              position: "absolute",
-              top: "6%",
-              left: "87%",
-              zIndex: 3,
+              width: "35%", 
+              height: "100%",
+              // position: "absolute",
+              // top: "66%",
+              // left: "75%",
+              // zIndex: 3,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -80,17 +107,53 @@ const ModeScreen = () => {
             onPress={() => navigation.goBack()}
             
             >
-               <Text style={{
-                  color: "red", 
-                  fontSize: 27, 
-                  fontWeight: "bold"
-                  
-                }}>X</Text>
-            </TouchableOpacity> */}
+              <Image
+                  source={require("../assets/emsfw.png")}
+                  style={{
+                    // width: scale(100),
+                    // height: verticalScale(25),
+                    width: 120,
+                    height: 30
+                    // borderRadius: 100,
+                  }}
+                />
+              
+            </TouchableOpacity>
+
+            <TouchableOpacity style={{
+              backgroundColor:"rgb(255, 255, 255)",
+            //  borderColor: "rgba(255, 255, 255,0.5)",
+              // borderWidth: 1,
+              width: "20%", 
+              height: "6%",
+              // position: "absolute",
+              // top: "66%",
+              // left: "5%",
+              // zIndex: 3,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "row"
+
+            }}
+            onPress={() => navigation.goBack()}
+            
+            >
+             <MenuBarBurgerIcon width="37" height="37" /> 
+              
+            </TouchableOpacity>
+              </View>
+              
+              
+            </View>
+
+            {/* Close Section  */}
+
+             
 
 
             {/* Menu Section */}
-            <View style={{
+            {/* <View style={{
               // backgroundColor:"pink",
               backgroundColor:"rgba(149,149,149,0.3)",
 
@@ -198,48 +261,111 @@ const ModeScreen = () => {
             
 
             
-            </View>
+            {/* </View> */} 
 
 
 
 {/* 
+             <View style={{
+              // backgroundColor:"rgba(149,149,149,0.3)",
+              backgroundColor:"rgba(0, 0, 0, 1)",
+
+              // borderColor: "rgba(255, 255, 255,0.5)",
+              // borderWidth: 1, 
+              width: "100%", 
+              height: "10%",
+              position: "absolute",
+
+              top: "90%",
+              // left: "1%",
+              zIndex: 3,
+              display:  "flex", 
+              flexDirection: "row",
+              justifyContent: "space-around",
+              alignItems: "center",
+              // shadowOffset: { width: 0, height: 2 },
+              // shadowOpacity: 4,
+              // shadowRadius: 2,
+              // borderRadius: 7,
+
+
+            }}
+            
+            >
+              <Text>Hello</Text> 
+          
+
             <View style={{
               backgroundColor:"rgba(149,149,149,0.3)",
               borderColor: "rgba(255, 255, 255,0.5)",
               borderWidth: 1, 
-              width: "100%", 
-              height: "37%",
-              position: "absolute",
-              top: "80%",
-              left: "0%",
-              zIndex: 3,
+              width: "25%", 
+              height: "70%",
+              // position: "absolute",
+              // top: "80%",
+              // left: "40%",
+              // zIndex: 3,
               justifyContent: "space-around",
               shadowOffset: { width: 0, height: 2 },
               shadowOpacity: 4,
               shadowRadius: 2,
-              // borderRadius: 50,
+              borderRadius: 7,
 
 
             }}
             
             ><Text>Hello</Text>
+            </View>
+
+            <View style={{
+              backgroundColor:"rgba(149,149,149,0.3)",
+              borderColor: "rgba(255, 255, 255,0.5)",
+              borderWidth: 1, 
+              width: "25%", 
+              height: "70%",
+              // position: "absolute",
+              // top: "80%",
+              // left: "40%",
+              // zIndex: 3,
+              justifyContent: "space-around",
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 4,
+              shadowRadius: 2,
+              borderRadius: 7,
+
+
+            }}
+            
+            ><Text>Hello</Text>
+            </View>
+
+            <View style={{
+              backgroundColor:"rgba(149,149,149,0.3)",
+              borderColor: "rgba(255, 255, 255,0.5)",
+              borderWidth: 1, 
+              width: "25%", 
+              height: "70%",
+              // position: "absolute",
+              // top: "80%",
+              // left: "40%",
+              // zIndex: 3,
+              justifyContent: "space-around",
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 4,
+              shadowRadius: 2,
+              borderRadius: 7,
+
+
+            }}
+            
+            ><Text>Hello</Text>
+            </View>
             </View>  */}
 
-            {/* <View style={{
-              backgroundColor:"rgba(149,149,149,0.3)",
-             borderColor: "rgba(255, 255, 255,0.5)",
-              borderWidth: 1,
-              width: "16%", 
-              height: "25%",
-              position: "absolute",
-              borderRadius: 50,
-              top: "35%",
-              left: "80%",
-              zIndex: 3
-            }}
-            // onPress={() => navigation.goBack()}
-            
-            ><Text>Hello</Text></View> */}
+
+          
+
+         
            </View>
 
           

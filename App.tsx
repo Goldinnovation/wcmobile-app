@@ -44,6 +44,7 @@ import { reloadAppAsync } from "expo";
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import GameIcon from './icons/gameIcon';
 import WorldIcon from './icons/worldIcon';
+import PlaybtnIcon from './icons/playIbtnIcon';
 
 
 
@@ -145,7 +146,7 @@ function TabNavigator() {
  
     >
       
-     
+     {/* Explore Tab  */}
       <Tab.Screen 
       name='ExploreContent' 
       component={ExploreScreen}
@@ -163,10 +164,10 @@ function TabNavigator() {
           }}>
             {/* Explore Mode Option */}
             
-            <TouchableOpacity style={{
+            <View style={{
               width:  scale(110),
             // height: 25,
-            borderWidth: 1,
+            // borderWidth: 1,
             // borderColor: "rgba(249,249,249,0.9)",
             padding: 1,
             alignItems: "center",
@@ -178,7 +179,7 @@ function TabNavigator() {
 
 
             }}
-             onPress={() => navigation.push("ModeScreen")}
+            //  onPress={() => navigation.push("ModeScreen")}
             >
              
               {/* <Text style={{color: "white", fontSize: 15, fontWeight: "bold", opacity: 0.7}}>MODE</Text> */}
@@ -194,39 +195,14 @@ function TabNavigator() {
                 />
              
               
-              {/* <View style={{
-                 width:  "20%",
-                 height: 20,
-                //  backgroundColor: "green",
-                 display: "flex", 
-                justifyContent: "center", 
-                flexDirection: "row",
-                alignItems: "center",
-                // borderLeftWidth: 1, 
-                // borderLeftColor: "rgba(249,249,249,0.9)"
-              }}>
-                <View style={{
-                  width:  "65%",
-                  height: 10,
-                  backgroundColor: "red",
-                  borderRadius: 50,
-                  opacity: 0.8
-                }}>
-
-                </View>
-              </View> */}
+             
 
              
                
               
-            </TouchableOpacity>
+            </View>
 
-            {/* <Text style={{
-              color: "white", 
-              fontSize: 18, 
-              fontWeight: "bold"
-            }}>Worthsec</Text>
-            */}
+           
           </View>
         ),
         headerRight: () => (
@@ -261,8 +237,8 @@ function TabNavigator() {
 
            </View>
 
-          
-           <TouchableWithoutFeedback  
+          {/* Map button  */}
+           {/* <TouchableOpacity  
           style={{
             position: "relative",
             // top: 1,
@@ -273,22 +249,18 @@ function TabNavigator() {
           
           >
             
-          {/* <Image
-          source={require("./assets/fi1.png")}
-          style={{height: 30, width: 30}}
-          /> */}
+         
           <View>
-          {/* <ExploreEventFilter width={'28'} height={'28'} /> */}
-          {/* <GameIcon width={'22'} height={'22'} /> */}
+      
 
-          <WorldIcon width={'22'} height={'22'} />
+          <PlaybtnIcon width={'24'} height={'24'}/>
           </View>
            
              
-          </TouchableWithoutFeedback>
+          </TouchableOpacity> */}
 
-           
-          <TouchableWithoutFeedback  
+           {/* Filter button  */}
+          <TouchableOpacity  
           style={{
             position: "relative",
             // top: 1,
@@ -306,8 +278,10 @@ function TabNavigator() {
           </View>
            
              
-          </TouchableWithoutFeedback>  
+          </TouchableOpacity>  
 
+
+            {/* Notification button */}
           <TouchableOpacity  onPress={() => navigation.push("NotificationScreen")}>
         
         {/* <SettingIcon width={'21'} height={'21'} /> */}
@@ -328,7 +302,11 @@ function TabNavigator() {
       }}
       
       ></Tab.Screen>
-       <Tab.Screen    
+
+
+
+      {/* SearchScreen Tab */}
+      <Tab.Screen    
       name='Identity'
       component={SearchScreen}
       options={{
@@ -371,7 +349,7 @@ function TabNavigator() {
           }}>
             {/* Explore Mode Option */}
             
-            <TouchableOpacity style={{
+            <View style={{
               width:  scale(110),
             // height: 25,
             // borderWidth: 1,
@@ -387,10 +365,8 @@ function TabNavigator() {
             // backgroundColor: "green"
 
             }}
-             onPress={() => navigation.push("ModeScreen")}
             >
             
-              {/* <Text style={{color: "white", fontSize: 15, fontWeight: "bold", opacity: 0.7}}>EMS</Text> */}
 
               <Image
                   source={require("./assets/emsfw.png")}
@@ -402,33 +378,12 @@ function TabNavigator() {
                     // borderRadius: 100,
                   }}
                 />
-              
-              {/* <View style={{
-                 width:  "20%",
-                 height: 20,
-                //  backgroundColor: "green",
-                 display: "flex", 
-                justifyContent: "center", 
-                flexDirection: "row",
-                alignItems: "center",
-                // borderLeftWidth: 1, 
-                // borderLeftColor: "rgba(249,249,249,0.9)"
-              }}>
-                <View style={{
-                  width:  "65%",
-                  height: 10,
-                  backgroundColor: "red",
-                  borderRadius: 50,
-                  opacity: 0.8
-                }}>
-
-                </View>
-              </View> */}
+            
 
              
                
               
-            </TouchableOpacity>
+            </View>
 
             
           </View>
@@ -442,7 +397,10 @@ function TabNavigator() {
       }}
       
       ></Tab.Screen>
-       <Tab.Screen    
+
+
+      {/* Profile Tab */}
+      <Tab.Screen    
       name='Profile'
       component={ProfileScreen}
       options={{
@@ -459,10 +417,10 @@ function TabNavigator() {
           }}>
             {/* Explore Mode Option */}
             
-            <TouchableOpacity style={{
+            <View style={{
               width:  scale(110),
             // height: 25,
-            borderWidth: 1,
+            // borderWidth: 1,+
             // borderColor: "white",
             padding: 1,
             // marginLeft: 15,
@@ -475,7 +433,7 @@ function TabNavigator() {
             // backgroundColor: "green"
 
             }}
-             onPress={() => navigation.push("ModeScreen")}
+            //  onPress={() => navigation.push("ModeScreen")}
             >
             
               {/* <Text style={{color: "white", fontSize: 15, fontWeight: "bold", opacity: 0.7}}>EMS</Text> */}
@@ -516,7 +474,7 @@ function TabNavigator() {
              
                
               
-            </TouchableOpacity>
+            </View>
 
             
           </View>
@@ -636,10 +594,10 @@ export default function App() {
     <LinearGradient
   
     // colors={['black']} //Infinity 
-    // colors={['black','silver', 'purple', 'green']} //Bubble 
+    colors={['black','silver', 'purple', 'green']} //Bubble 
     // colors={['black','grey', '#000059', "black"]} //Nitro
 
-    colors={[color1,color2, color3, color4]} //Nitro
+    // colors={[color1,color2, color3, color4]} //Nitro
 
     // colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']} //Moon
     style={styles.gradient}
