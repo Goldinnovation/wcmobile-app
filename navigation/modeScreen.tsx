@@ -13,14 +13,36 @@ import AddFriendsIcon from "../icons/addFriendsIcon";
 import PlusIcon from "../icons/plusIcon";
 import SwitchIcon from "../icons/switchIcon";
 import MenuBarBurgerIcon from "../icons/menuBarBurgerIcon";
+import PinIcon from "../icons/pinIcon";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 
 const ModeScreen = () => {
     const [eventMoodtoggle, setEventMoodToggle] = useState(true) 
     const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+    const [pinToggle, setPinToggle] = useState(false)
+    const {userLocationState} = useSelector((state: RootState) => state.userLocationReduxStore)
+    const [locationName, setLocationName] = useState("Location")
+    const [postalCode, setPostalCode] = useState("Code")
+    const [userCountry, SetUserCountry] = useState("Country")
+    const [userCity, setUserCity] = useState("City")
+    const [trigger, setTrigger] = useState(false)
+    
 
 
+    const setfunction = () => {
+      setLocationName(userLocationState[0].name)
+      setPostalCode(userLocationState[0].postalCode)
+      setUserCity(userLocationState[0].city)
+      SetUserCountry(userLocationState[0].country)
+    }
 
+   const handlePinLog= () => { 
+    setPinToggle(!pinToggle)
+    setfunction()
+
+   }
     
   const handleClickEventMood = () => {
     setEventMoodToggle(!eventMoodtoggle)
@@ -153,7 +175,7 @@ const ModeScreen = () => {
 
 
             {/* Menu Section */}
-            {/* <View style={{
+            <View style={{
               // backgroundColor:"pink",
               backgroundColor:"rgba(149,149,149,0.3)",
 
@@ -163,7 +185,7 @@ const ModeScreen = () => {
               height: "30%",
               borderRadius: 50,
               position: "absolute",
-              top: "7%",
+              top: "33%",
               left: "2%",
               zIndex: 3, 
               display: "flex", 
@@ -228,7 +250,7 @@ const ModeScreen = () => {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "space-around",
-            }}> */}
+            }}>
               {/* <Text>3</Text> */}
               {/* <MultiLocation width={'33'} height={'33'}/>
               <Text style={{
@@ -246,42 +268,44 @@ const ModeScreen = () => {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "space-around",
+              opacity: 0.8
+
             }}
-            onPress={() => navigation.goBack()}
+            onPress={() => handlePinLog()}
 
             >
               {/* <Text>3</Text> */}
-              <SwitchIcon width={'30'} height={'30'}/>
+              <PinIcon width={'22'} height={'22'}/>
               <Text style={{
                 color:"white",
                 fontSize: 8
-              }}>Back</Text>
+              }}>Pin</Text>
             </TouchableOpacity>
 
             
 
             
-            {/* </View> */} 
+            </View> 
 
 
 
-{/* 
+            { pinToggle && (
              <View style={{
               // backgroundColor:"rgba(149,149,149,0.3)",
-              backgroundColor:"rgba(0, 0, 0, 1)",
+              // backgroundColor:"rgba(0, 0, 0, 1)",
 
               // borderColor: "rgba(255, 255, 255,0.5)",
               // borderWidth: 1, 
               width: "100%", 
-              height: "10%",
+              height: "40%",
               position: "absolute",
 
-              top: "90%",
+              top: "70%",
               // left: "1%",
               zIndex: 3,
               display:  "flex", 
-              flexDirection: "row",
-              justifyContent: "space-around",
+              // flexDirection: "row",
+              // justifyContent: "center",
               alignItems: "center",
               // shadowOffset: { width: 0, height: 2 },
               // shadowOpacity: 4,
@@ -292,76 +316,153 @@ const ModeScreen = () => {
             }}
             
             >
-              <Text>Hello</Text> 
           
 
-            <View style={{
-              backgroundColor:"rgba(149,149,149,0.3)",
-              borderColor: "rgba(255, 255, 255,0.5)",
-              borderWidth: 1, 
-              width: "25%", 
-              height: "70%",
-              // position: "absolute",
-              // top: "80%",
-              // left: "40%",
-              // zIndex: 3,
-              justifyContent: "space-around",
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 4,
-              shadowRadius: 2,
-              borderRadius: 7,
-
-
-            }}
             
-            ><Text>Hello</Text>
-            </View>
+               <View style={{
+                backgroundColor:"rgba(149,149,149,0.3)",
+                borderColor: "rgba(255, 255, 255,0.5)",
+                borderWidth: 1, 
+                width: "99%", 
+                height: "46%",
+                // position: "absolute",
+                // top: "80%",
+                // left: "40%",
+                // zIndex: 3,
+                marginTop: "16%",
+                // justifyContent: "space-around",
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 4,
+                shadowRadius: 2,
+                borderRadius: 7,
+  
+  
+              }}
+              
+              >
+                <View style={{
+                  width: "100%",
+                  height: "30%", 
+                  // backgroundColor: "green", 
+                  // backgroundColor:"rgba(149,149,149,0.3)",
+                  borderColor: "rgba(255, 255, 255,0.5)",
+                  // alignItems: "center", 
+                  justifyContent: "center", 
+                  paddingLeft: "3%", 
+                  marginTop: "1%", 
+                  flexDirection: "row",
 
-            <View style={{
-              backgroundColor:"rgba(149,149,149,0.3)",
-              borderColor: "rgba(255, 255, 255,0.5)",
-              borderWidth: 1, 
-              width: "25%", 
-              height: "70%",
-              // position: "absolute",
-              // top: "80%",
-              // left: "40%",
-              // zIndex: 3,
-              justifyContent: "space-around",
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 4,
-              shadowRadius: 2,
-              borderRadius: 7,
+                }}>
+                  <View style={{
+                    width: "90%", 
+                    height: "100%",
+                    // backgroundColor: "red",
+                    justifyContent: "center", 
 
+                  }}>
+                  <Text style={{
+                  color: "white", 
+                  fontSize: 20, 
+                  fontWeight: "bold"
+                }}>Location: </Text>
+                  </View>
+                    <TouchableOpacity style={{
+                       width: "10%", 
+                       height: "100%",
+                      //  backgroundColor: "pink",
+                       alignItems: "center", 
+                       justifyContent: "center", 
 
-            }}
-            
-            ><Text>Hello</Text>
-            </View>
+                    }}
+                    onPress={() => handlePinLog()}
+                    >
+                    <Text style={{
+                  color: "red", 
+                  fontSize: 20, 
+                  fontWeight: "bold"
+                }}>X </Text>
+                    </TouchableOpacity>
+                </View>
+  
+                <View style={{
+                  // backgroundColor: "pink", 
+                  width: "100%", 
+                  height: "70%", 
+                  display: "flex",
+                  flexDirection:"row"
+                }}>
+                     <View style={{
+                  // backgroundColor: "green", 
+                  width: "70%", 
+                  height: "100%",
+                  // alignItems: "center",
+                  paddingLeft: "3%", 
+                  paddingTop: "1%",
+                  // justifyContent: "center", 
+                }}>
+                   <View style={{
+                            // backgroundColor: "orange",
+                            // width: "90%"
+                          }}>
+                          <Text
+                          style={{color:"white", 
+                            textAlign:"left", 
+                            fontSize: 19, 
+                            // fontWeight: "bold",
+                            // opacity: 0.7
+                          }}
+                          >
+                          {locationName}, {postalCode} {userCity}, {userCountry}</Text>
+                      </View>
+  
+  
+                </View>
+  
+                <View style={{
+                  // backgroundColor: "brown", 
+                  width: "30%", 
+                  height: "100%", 
+                  alignItems: "center", 
+                  justifyContent: "center",
+                }}>
+  
+                  <TouchableOpacity style={{
+                    backgroundColor: "rgba(33, 151, 255, 0.5)", 
+                    width: "90%", 
+                    height: "40%", 
+                    borderColor: "rgba(255, 255, 255,0.5)",
+                    borderWidth: 1, 
+                    borderRadius: 7,
+                    alignItems: "center", 
+                    justifyContent: "center",
+                  }}
+  
+                  onPress={() => handlePinLog()}
+                  
+                  >
+                    <Text style={{
+                  color: "white", 
+                  fontSize: 15, 
+                  fontWeight: "bold",
+  
+                }}>Pin </Text>
+  
+                  </TouchableOpacity>
+  
+  
+                </View>
+  
+                </View>
+             
+              </View>
+      
+           
 
-            <View style={{
-              backgroundColor:"rgba(149,149,149,0.3)",
-              borderColor: "rgba(255, 255, 255,0.5)",
-              borderWidth: 1, 
-              width: "25%", 
-              height: "70%",
-              // position: "absolute",
-              // top: "80%",
-              // left: "40%",
-              // zIndex: 3,
-              justifyContent: "space-around",
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 4,
-              shadowRadius: 2,
-              borderRadius: 7,
+           
+            </View> 
 
-
-            }}
-            
-            ><Text>Hello</Text>
-            </View>
-            </View>  */}
-
+            )
+            }
 
           
 

@@ -18,7 +18,7 @@ const SignUpScreen = () => {
     <View style={{
         height: "100%",
         // flex: 1,
-        backgroundColor: "green",
+        // backgroundColor: "green",
         paddingTop: 40,
     }}>
 
@@ -79,7 +79,7 @@ const SignUpScreen = () => {
                   height: verticalScale(350),
                    gap: 20,
                    paddingTop: 0,
-                   marginTop: 100,
+                   marginTop: 50,
                    alignItems: "center",
                    display: "flex", 
                    flexDirection: "column",
@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
 
     gradient: {
         ...StyleSheet.absoluteFillObject,
-        paddingTop: 50,
+        // paddingTop: 50,
       },
 })
 

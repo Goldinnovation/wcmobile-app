@@ -162,7 +162,9 @@ export default function LoginScreen() {
           
           onPress={() => navigation.push("SignupScreen")}
           >
-            <Text style={styles.SignUpBtn_text}>Create a New Account</Text>
+            <Text style={{
+              color: "white"
+            }}>Create a New Account</Text>
           </TouchableOpacity>
         </View>
       </View>

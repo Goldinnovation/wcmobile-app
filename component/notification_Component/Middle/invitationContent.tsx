@@ -136,7 +136,7 @@ const InvitationContent: React.FC<InvitationContentProps> = ({item, index}) => {
                               alignItems: "center", 
                               justifyContent: "center",
                               borderRadius: 7,
-                              backgroundColor:  "rgba(13, 114, 30, 0.74)" ,
+                              backgroundColor:  "rgba(2, 237, 41, 0.33)" ,
                             //   borderColor:  "rgba(255, 255, 255,0.5)",
                               borderWidth:  1,
                          }}><Text style={{
@@ -150,10 +150,13 @@ const InvitationContent: React.FC<InvitationContentProps> = ({item, index}) => {
                              alignItems: "center", 
                              justifyContent: "center",
                              borderRadius: 7,
-                             backgroundColor:  "rgba(255, 54, 54, 0.56)" ,
+                             backgroundColor:  "rgba(195, 4, 103, 0.91)" ,
                             //  borderColor:  "rgba(255, 255, 255,0.5)",
                              borderWidth:  1,
-                            //  opacity: 0.7
+                             opacity: 0.7,
+                             shadowOffset: { width: 0, height: 2 },
+                             shadowOpacity: 0.2,
+                             shadowRadius: 4,
 
                          }}><Text style={{
                             color:"white", 
