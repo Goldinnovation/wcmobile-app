@@ -61,8 +61,8 @@ const ModeScreen = () => {
               />
 
 
-          <View style={{
-              backgroundColor:"rgba(0, 0, 0, 0.76)",
+          {/* <View style={{
+              // backgroundColor:"rgba(0, 0, 0, 0.76)",
              borderColor: "rgba(255, 255, 255,0.5)",
               // borderWidth: 1,
               width: "100%", 
@@ -145,7 +145,7 @@ const ModeScreen = () => {
               </View>
               
               
-            </View>
+            </View> */}
 
             {/* Close Section  */}
 

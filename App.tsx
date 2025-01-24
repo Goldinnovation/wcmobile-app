@@ -61,7 +61,7 @@ const MyTheme = {
   },
 };
 
-type RouteName = 'Profile' | 'ExploreContent' | "Identity";
+type RouteName = 'Profile' | 'ExploreContent' | "Connect" | "Map" ;
 
 const icons: Record<RouteName, {focused: any; unfocused: any}> = {
   Profile: {
@@ -75,11 +75,23 @@ const icons: Record<RouteName, {focused: any; unfocused: any}> = {
     unfocused: require('./assets/wind-rose.png')
   },
 
-  Identity: {
+  Connect: {
 
     focused: require('./assets/qr1.png'),
     unfocused: require('./assets/qrg.png')
-  }
+  },
+
+  Map: {
+
+    focused: require('./assets/gl1.png'),
+    unfocused: require('./assets/gl2.png')
+  },
+
+  // Add: {
+
+  //   focused: require('./assets/ad1.png'),
+  //   unfocused: require('./assets/ad2.png')
+  // }
 }
 
 
@@ -304,13 +316,107 @@ function TabNavigator() {
       ></Tab.Screen>
 
 
+      {/* Map Tab */}
+     <Tab.Screen    
+      name='Map'
+      component={ModeScreen}
+      options={{
+        title: 'Map',
+        
+        headerRight: () => (
+          <View style={{
+            // backgroundColor: "pink",
+            width: 150,
+            height: 30,
+            alignItems: "center",
+            marginRight: 15,
+            gap: 30,
+            justifyContent: "flex-end",
+            flexDirection: "row"
+          }}> 
+         
+         
+             
+          
+         <TouchableOpacity  onPress={() => navigation.push("NotificationScreen")}>
+        
+          {/* <SettingIcon width={'21'} height={'21'} /> */}
+          <NotificationIcon  width={'23'} height={'25'}  />
+         </TouchableOpacity>
+
+        
+
+          </View>
+        ),
+         headerLeft: () => (
+          <View style={{
+            // backgroundColor:  filter ?  "pink" : "green",
+            width:  scale(119),
+            height: 30,
+            flexDirection: "row",
+            alignItems: "center",
+            marginLeft: categoryLayoutState ? 9 : 7,
+        
+          }}>
+            {/* Explore Mode Option */}
+            
+            <View style={{
+              width:  scale(110),
+            // height: 25,
+            // borderWidth: 1,
+            // borderColor: "white",
+            padding: 1,
+            // marginLeft: 15,
+
+            // alignItems: "center",
+            display: "flex", 
+            borderRadius: 4,
+            // justifyContent: "center", 
+            flexDirection: "row",
+            // backgroundColor: "green"
+
+            }}
+            >
+            
+
+              <Image
+                  source={require("./assets/emsfw.png")}
+                  style={{
+                    // width: scale(100),
+                    // height: verticalScale(25),
+                    width: scale(90),
+                    height: verticalScale(20)
+                    // borderRadius: 100,
+                  }}
+                />
+            
+
+             
+               
+              
+            </View>
+
+            
+          </View>
+        ),
+        headerStyle: {
+          backgroundColor: 'transparent',},
+          headerTintColor: 'grey',
+          // headerTitleStyle: {
+          //   fontWeight: 'bold'}
+            
+      }}
+      
+      ></Tab.Screen>
+
+    
 
       {/* SearchScreen Tab */}
       <Tab.Screen    
-      name='Identity'
+      name='Connect'
       component={SearchScreen}
       options={{
-        title: 'Identity',
+        title: 'Connect',
         
         headerRight: () => (
           <View style={{
@@ -550,7 +656,9 @@ function AppNavigator() {
             <Stack.Screen name="NotificationScreen" component={NotificationScreen}  /> 
             <Stack.Screen name="UserScreen" component={UserScreen}  options={{ presentation:  "transparentModal"  }}/>
             <Stack.Screen name="FavorScreen" component={FavorScreen}  />
-            <Stack.Screen name="ModeScreen" component={ModeScreen} options={{ presentation:    "transparentModal" }}  />
+            {/* <Stack.Screen name="ModeScreen" component={ModeScreen} options={{ presentation:    "transparentModal" }}  /> */}
+            <Stack.Screen name="ModeScreen" component={ModeScreen}  />
+
 
 
 
