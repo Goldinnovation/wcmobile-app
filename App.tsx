@@ -45,6 +45,7 @@ import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import GameIcon from './icons/gameIcon';
 import WorldIcon from './icons/worldIcon';
 import PlaybtnIcon from './icons/playIbtnIcon';
+import SignUpScreen from './navigation/signUpScreen';
 
 
 
@@ -658,6 +659,9 @@ function AppNavigator() {
             <Stack.Screen name="FavorScreen" component={FavorScreen}  />
             {/* <Stack.Screen name="ModeScreen" component={ModeScreen} options={{ presentation:    "transparentModal" }}  /> */}
             <Stack.Screen name="ModeScreen" component={ModeScreen}  />
+            <Stack.Screen name="SignupScreen" component={SignUpScreen}  options={{ presentation: "modal" }} />
+
+
 
 
 
@@ -704,7 +708,7 @@ export default function App() {
     // colors={['black']} //Infinity 
     // colors={['black','silver', 'purple', 'green']} //Bubble 
     // colors={['black','grey', '#000059', "black"]} //Nitro
-    // colors={['black','brown', 'purple', "purple","black"]} //Nitro
+    // colors={['black','brown', 'purple', "purple","black"]} //somethingelse
 
     colors={[color1,color2, color3, color4]} //Nitro
 

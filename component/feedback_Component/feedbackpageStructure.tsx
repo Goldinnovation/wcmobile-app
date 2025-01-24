@@ -67,7 +67,7 @@ export default function FeedbackPageStructure() {
                             }}>X</Text>
                             </TouchableOpacity>
                            
-                          </View>
+            </View>
         <View style={{
              height: '8%' ,
             // backgroundColor: "red",

@@ -15,6 +15,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { ParamListBase } from "@react-navigation/native";
 import { useLoginPost } from "../api/loginScreen_Api/userLoginApi";
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import SignUpScreen from "./signUpScreen";
 
 interface ResponseType {
   ok: boolean;
@@ -49,6 +50,10 @@ export default function LoginScreen() {
       console.log("Error on handleLoginData submit fetch, Server Res issue", error);
     }
   };
+
+  const handleSignUpScreen = () => {
+
+  }
   return (
     <View style={styles.container}>
       <View style={{
@@ -146,12 +151,17 @@ export default function LoginScreen() {
           height: 90,
         }}>
           <TouchableOpacity style={styles.loginBtn} onPress={handleLoginData}>
-            <Text>Login</Text>
+            <Text style={{
+              color: "white"
+            }}>Login</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.SignBtn_layer}>
-          <TouchableOpacity style={styles.SignUpBtn}>
+          <TouchableOpacity style={styles.SignUpBtn}
+          
+          onPress={() => navigation.push("SignupScreen")}
+          >
             <Text style={styles.SignUpBtn_text}>Create a New Account</Text>
           </TouchableOpacity>
         </View>
