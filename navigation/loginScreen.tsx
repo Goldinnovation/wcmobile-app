@@ -16,6 +16,8 @@ import { ParamListBase } from "@react-navigation/native";
 import { useLoginPost } from "../api/loginScreen_Api/userLoginApi";
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import SignUpScreen from "./signUpScreen";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 
 interface ResponseType {
   ok: boolean;
@@ -67,7 +69,9 @@ export default function LoginScreen() {
         <View style={ {
           // backgroundColor: "pink",
           height: verticalScale(300),
-           gap: 20,
+          gap: hp("2.5%"),
+          //  gap: 20,
+
            paddingTop: 0,
            marginTop: 50,
            alignItems: "center",
@@ -90,7 +94,9 @@ export default function LoginScreen() {
                   source={require("../assets/emsfw.png")}
                   style={{
                     width: scale(280),
+                    // width: wp("90%"),
                     height: verticalScale(65),
+                    // height: hp("11%")
                     // borderRadius: 100,
                   }}
           />

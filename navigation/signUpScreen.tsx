@@ -37,13 +37,7 @@ const SignUpScreen = () => {
         
 
          console.log('message', message);
-        //  message === "new user created" ?  navigation.goBack() :
-        //  message === "User already Exist" && (() => {
-
-        //   console.log('init exist');
-        //   setFlashback("userExist")
-        //   setFlashbackMessage("UserName already Exist")
-        //  })(); 7
+    
 
         if(message ===  "new user created"){
           
@@ -67,7 +61,7 @@ const SignUpScreen = () => {
 
       const handlePasswordInput = () => {
         
-        if(password === repeatedPassword){
+        if(password !== "" && password === repeatedPassword){
           setFlashback("")
           hanldeSubmit()
 
@@ -79,7 +73,7 @@ const SignUpScreen = () => {
       }
 
       const handleEmailInput = () => {
-        if(email != "" 
+        if(email !== "" 
           // && email.includes("@")
         ){
           handlePasswordInput()
@@ -95,7 +89,7 @@ const SignUpScreen = () => {
       const handleEmailUsernameInputCheck = () => {
 
 
-        if(username != ""){
+        if(username !== ""){
           handleEmailInput()
         }else{
           setFlashback("username")
@@ -117,8 +111,8 @@ const SignUpScreen = () => {
      
   return (
     <View style={{
-        // height: "100%",
-        flex: 1,
+        height: "100%",
+        // flex: 1,
         backgroundColor: "green",
         paddingTop: 40,
         borderTopWidth: 1, 
@@ -146,6 +140,7 @@ const SignUpScreen = () => {
                 //  justifyContent: "center",
                 // paddingTop: hp("5%"),
               }}>
+                {/* close btn */}
                 <View
                         style={{
                         height:  hp("4.5%"),
@@ -186,37 +181,55 @@ const SignUpScreen = () => {
                         
               </View>
 
+
+              {/* created Accound Pop Up */}
+
             {
               approvalMessage && (
-                <BlurView intensity={100} style={{
+              <View style={{
+                backgroundColor: "rgba(14,14,14,0.71)",
+                height: hp("90%"),
+                width: wp("100%"),
+                justifyContent: "center",
+                alignItems: "center",
+                position: "absolute", 
+                top: "5%",
+                left: "0%",
+                  
+                  zIndex: 5
+              }}>
+              <BlurView intensity={100} style={{
                   // flex: 1,
-                  height: hp("10%"),
+                  height: hp("15%"),
                   width: wp("90%"),
                   padding: 20,
                   margin: 16,
                   justifyContent: 'center',
                   overflow: 'hidden',
                   borderRadius: 20,
-                  position: "absolute", 
-                  top: "5%",
-                  left: "0%",
+                  // position: "absolute", 
+                  // top: "5%",
+                  // left: "0%",
      
                   zIndex: 5
                 }}>
                 <Text style={{color: "white", textAlign: "center"}}>Congratulations!! You have successfully created your Account</Text>
 
                 </BlurView>
-              )
-           } 
+
+              </View>
+              
+              )  
+            }   
                
                
               
                 <View style={ {
                   // backgroundColor: "pink",
                   // height: verticalScale(350),
-                  height: hp("48%"),
+                  height: hp("55%"),
                   width: wp("100%"),
-                   gap: 20,
+                   gap: hp("3%"),
                   //  paddingTop: 0,
                   //  marginTop: 50,
                    marginTop: hp("2%"),
@@ -224,7 +237,9 @@ const SignUpScreen = () => {
                    alignItems: "center",
                    display: "flex", 
                    flexDirection: "column",
-                   justifyContent: "center"
+                   justifyContent: "center", 
+                  //  marginBottom: hp("1%")
+
         
                 }}>
                    <View style={{
@@ -325,6 +340,7 @@ const SignUpScreen = () => {
                         backgroundColor: "#c7c7c7",
                         borderRadius: 7,
                         // borderColor: flashback === "password" ?  "red" : "none" 
+                        marginBottom: hp("1%")
 
                     }}
                     onChangeText={setRepeatedPassword}
@@ -335,7 +351,7 @@ const SignUpScreen = () => {
                   />
                   {/*  */}
 
-
+               
                   {flashback && (
                       <View>
                         {flashback === "password" ?
@@ -376,6 +392,7 @@ const SignUpScreen = () => {
                      
                     </View>
                   )}
+
                 
                 </View>
 
@@ -384,8 +401,9 @@ const SignUpScreen = () => {
                   justifyContent: "center",
                   alignItems: "center",
                   // height: verticalScale(90),
-                  height: hp("12%"),
-                  width: wp("100%")
+                  height: hp("9%"),
+                  width: wp("100%"),
+                  marginTop: hp("1%")
                 }}>
                   <TouchableOpacity style={{
                     backgroundColor: "grey",

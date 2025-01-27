@@ -14,6 +14,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { useInterestPost } from "../../api/interestScreen_Api/interestDataApi";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+
 
 
 
@@ -117,9 +120,14 @@ export default function InterestPageStructure() {
           </View>
           <View
             style={{
-              height: 350,
-              justifyContent: "center",
-              alignItems: "center",
+              // height: 350,
+              // height: verticalScale(350),
+              height: hp("39%"),
+              width: wp("100%"),
+
+              // justifyContent: "center",
+              // alignItems: "center",
+              // backgroundColor: "pink",
             }}
           >
             <View style={styles.selectOptions}>
@@ -213,7 +221,7 @@ const styles = StyleSheet.create({
     // backgroundColor: "pink",
     // paddingTop: 40,
     justifyContent: "center",
-    position: "relative",
+    // position: "relative",
   },
   gradient: {
       ...StyleSheet.absoluteFillObject,
@@ -221,7 +229,7 @@ const styles = StyleSheet.create({
   },
   selectLayer: {
     // backgroundColor: "yellow",
-    width: "100%",
+    width: wp("100%"),
     // height: 300,
     flex: 1,
     paddingBottom: 40,
@@ -232,7 +240,7 @@ const styles = StyleSheet.create({
   },
   selectHeader: {
     // backgroundColor: "lightblue",
-    width: "100%",
+    // width: wp("100%"),
     height: 80,
     justifyContent: "center",
     alignItems: "center",
@@ -244,14 +252,19 @@ const styles = StyleSheet.create({
   },
   selectOptions: {
     // backgroundColor: "rgba(255, 255, 255, 0.1)",
-    // backgroundColor: "green",
+    // backgroundColor: "red",
 
-    width: "100%",
-    height: 400,
+    width: wp("100%"),
+    // height: 400,
+    height: hp("37%"),
     // shadowColor: " rgba(0, 0, 0, 0.1)",
     // shadowRadius: 4,
-    flex: 1,
-    marginTop: 15,
+    // flex: 1,
+    // marginTop: 15,
+    display: "flex", 
+    marginTop: hp("1%"),
+    alignItems: "center",
+    justifyContent: "center"
   },
   // Selectlist:{
   // backgroundColor: "pink",
