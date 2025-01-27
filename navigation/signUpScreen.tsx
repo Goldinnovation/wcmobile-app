@@ -1,6 +1,6 @@
 
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image, TextInput} from 'react-native'
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -8,18 +8,122 @@ import { ParamListBase } from "@react-navigation/native";
 import { LinearGradient } from 'expo-linear-gradient';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { useState } from 'react';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
+import { userSignUp } from '../api/signUpScreen_Api/userSignUp';
+import { BlurView } from 'expo-blur';
 
 const SignUpScreen = () => {
       const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-       const [email, setonChangeEmail] = useState("");
-        const [password, setonChangePassword] = useState("");
-    
+      const [email, setonChangeEmail] = useState("");
+      const [password, setonChangePassword] = useState("")
+      const [username, setUserName] = useState("")
+      const [repeatedPassword, setRepeatedPassword] = useState("")
+      const [flashback, setFlashback] = useState("")
+      const [flashbackMessage, setFlashbackMessage] = useState("")
+      const [approvalMessage, setApprovalMessage] = useState(false)
+
+
+
+
+
+
+      const hanldeSubmit = async() => { 
+        
+        console.log("data is send");
+
+        const signUpState = await userSignUp(username, email, password)
+        const message = signUpState
+        
+
+         console.log('message', message);
+        //  message === "new user created" ?  navigation.goBack() :
+        //  message === "User already Exist" && (() => {
+
+        //   console.log('init exist');
+        //   setFlashback("userExist")
+        //   setFlashbackMessage("UserName already Exist")
+        //  })(); 7
+
+        if(message ===  "new user created"){
+          
+          console.log('in new user');
+          setApprovalMessage(true)
+          setTimeout(() => {
+            
+            setApprovalMessage(false)
+            navigation.goBack()
+          },1000)
+        }else if(message === "User already Exist"){
+
+             console.log('init exist');
+          setFlashback("userExist")
+          setFlashbackMessage("UserName already Exist")
+        } 
+         
+
+
+        }
+
+      const handlePasswordInput = () => {
+        
+        if(password === repeatedPassword){
+          setFlashback("")
+          hanldeSubmit()
+
+       }else{
+            setFlashback("password")
+            setFlashbackMessage("Password don't match")
+       }
+
+      }
+
+      const handleEmailInput = () => {
+        if(email != "" 
+          // && email.includes("@")
+        ){
+          handlePasswordInput()
+        }else{
+          setFlashback("email")
+          setFlashbackMessage("Invalid Email field")
+        }
+
+
+      }
+
+
+      const handleEmailUsernameInputCheck = () => {
+
+
+        if(username != ""){
+          handleEmailInput()
+        }else{
+          setFlashback("username")
+          setFlashbackMessage("Please fill out the Username field")
+
+        }
+
+
+
+      }
+
+      const handleInputData= () => {
+        handleEmailUsernameInputCheck()
+      
+      }
+
+
+
+     
   return (
     <View style={{
-        height: "100%",
-        // flex: 1,
-        // backgroundColor: "green",
+        // height: "100%",
+        flex: 1,
+        backgroundColor: "green",
         paddingTop: 40,
+        borderTopWidth: 1, 
+        borderColor: "rgba(179,179,179,1)",
+        borderRadius: 11
     }}>
 
         <LinearGradient
@@ -29,57 +133,94 @@ const SignUpScreen = () => {
         end={{ x: 0, y: 0 }}
         >
 
-        <View
+          {/* Close btn */}
+
+        
+          
+          
+        <View style={{
+                //  backgroundColor: "green",
+        
+                 width: wp("100%"), //"100%"
+                 height: hp("100%"),
+                //  justifyContent: "center",
+                // paddingTop: hp("5%"),
+              }}>
+                <View
                         style={{
-                        height: "5%",
-                        width: "100%",
+                        height:  hp("4.5%"),
+                        // height: verticalScale(50),
+                        width: wp("100%"),
+                        // width: scale(350),
+                        // marginTop: verticalScale(40),
                         // backgroundColor: "skyblue",
                         // position: "absolute",
                         // top: "1%",
                         // left: "80%",
                         // zIndex: 3,
                         display: "flex",
-                        justifyContent: "flex-end",
-                        flexDirection: "row"
+                        justifyContent: "center",
+                        flexDirection: "row", 
+                        alignItems: "center",
+
                         }}
                     >
                         <TouchableOpacity style={{
-                            height: "100%",
-                            width: "15%",
-                            // backgroundColor: "orange",
+                            height: hp("1%"),
+                            width: wp("30%"),
+                            backgroundColor: "grey",
                             display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
-                        flexDirection: "row"
+                        flexDirection: "row",
+                        borderRadius: 50,
                         }}
                         // onPress={handleQCloseEvent}
-                        onPress={() => navigation.goBack()}
+                        // onPress={() => navigation.goBack()}
     
                         >
-                        <Text style={{
-                        color: "red", 
-                        fontSize: 23, 
-                        fontWeight: "bold"
-                        
-                        }}>X</Text>
+                        <View>
+
+                        </View>
                         </TouchableOpacity>
                         
-        </View>
+              </View>
 
-        <View style={{
-                //  backgroundColor: "green",
-        
-                 width: scale(350), //"100%"
-                 height: verticalScale(500),
-                 justifyContent: "center",
-              }}>
+            {
+              approvalMessage && (
+                <BlurView intensity={100} style={{
+                  // flex: 1,
+                  height: hp("10%"),
+                  width: wp("90%"),
+                  padding: 20,
+                  margin: 16,
+                  justifyContent: 'center',
+                  overflow: 'hidden',
+                  borderRadius: 20,
+                  position: "absolute", 
+                  top: "5%",
+                  left: "0%",
+     
+                  zIndex: 5
+                }}>
+                <Text style={{color: "white", textAlign: "center"}}>Congratulations!! You have successfully created your Account</Text>
+
+                </BlurView>
+              )
+           } 
+               
+               
               
                 <View style={ {
-                //   backgroundColor: "pink",
-                  height: verticalScale(350),
+                  // backgroundColor: "pink",
+                  // height: verticalScale(350),
+                  height: hp("48%"),
+                  width: wp("100%"),
                    gap: 20,
-                   paddingTop: 0,
-                   marginTop: 50,
+                  //  paddingTop: 0,
+                  //  marginTop: 50,
+                   marginTop: hp("2%"),
+
                    alignItems: "center",
                    display: "flex", 
                    flexDirection: "column",
@@ -89,21 +230,7 @@ const SignUpScreen = () => {
                    <View style={{
                     // backgroundColor: "green",
                   }}> 
-                    {/* // <Text style={{
-                    //   fontWeight: "bold",
-                    //   fontSize: 27,
-                    //   textAlign: "center",
-                    //   color: "white",
-                    // }}>Worthsec</Text> */}
-{/*                  
-                  <Image
-                          source={require("../assets/emsfw.png")}
-                          style={{
-                            width: scale(280),
-                            height: verticalScale(65),
-                            // borderRadius: 100,
-                          }}
-                  /> */}
+                
                   <Text
                     style={{
                       fontWeight: "bold",
@@ -116,6 +243,8 @@ const SignUpScreen = () => {
                     Sign up
                   </Text>
                    </View> 
+
+
                   <View style={{
                     // backgroundColor: "orange",
                     marginTop: "2%"
@@ -137,29 +266,29 @@ const SignUpScreen = () => {
                  
                   <TextInput
                     style={{
-                        height: 40,
+                        height: hp("4.5%"),
 
                         borderWidth: 1,
                         padding: 5,
                         // margin: 30,
-                        width: "80%",
+                        width: wp("80%"),
                         backgroundColor: "#c7c7c7",
                         borderRadius: 7,
                         marginTop: 20,
                     }}
-                    onChangeText={setonChangeEmail}
-                    value={email}
+                    onChangeText={setUserName}
+                    value={username}
                     placeholder="Username"
                     placeholderTextColor="#000" 
                   />
                    <TextInput
                     style={{
-                        height: 40,
+                        height: hp("4.5%"),
 
                         borderWidth: 1,
                         padding: 5,
                         // margin: 30,
-                        width: "80%",
+                        width:  wp("80%"),
                         backgroundColor: "#c7c7c7",
                         borderRadius: 7,
                         // marginTop: 20,
@@ -171,13 +300,14 @@ const SignUpScreen = () => {
                   />
                   <TextInput
                     style={{
-                        height: 40,
+                        height: hp("4.5%"),
                         borderWidth: 1,
                         padding: 5,
-                        width: "80%",
+                        width: wp("80%"),
                         // margin: 30,
                         backgroundColor: "#c7c7c7",
                         borderRadius: 7,
+                      
                     }}
                     onChangeText={setonChangePassword}
                     value={password}
@@ -187,36 +317,86 @@ const SignUpScreen = () => {
                   />
                    <TextInput
                     style={{
-                        height: 40,
+                        height: hp("4.5%"),
                         borderWidth: 1,
                         padding: 5,
-                        width: "80%",
+                        width: wp("80%"),
                         // margin: 30,
                         backgroundColor: "#c7c7c7",
                         borderRadius: 7,
+                        // borderColor: flashback === "password" ?  "red" : "none" 
+
                     }}
-                    onChangeText={setonChangePassword}
-                    value={password}
+                    onChangeText={setRepeatedPassword}
+                    value={repeatedPassword}
                     placeholder="Confirm Password"
                     secureTextEntry={true}
                     placeholderTextColor="#000" 
                   />
                   {/*  */}
+
+
+                  {flashback && (
+                      <View>
+                        {flashback === "password" ?
+                        (
+                          <View>
+                                  <Text style={{
+                                    color: "white"
+                                  }}>
+                                  {flashbackMessage}
+                                  </Text>
+                          </View>
+                        ): flashback === "username" ?
+                        (
+                          <View>
+                            <Text style={{
+                               color: "white"
+                          }}>{flashbackMessage}</Text>
+                          </View>
+                        ):
+                        flashback === "userExist" ? 
+                         (
+                          <View>
+                              <Text style={{
+                               color: "white"
+                          }}>{flashbackMessage}</Text>
+
+                          </View>
+                        ): flashback === "email" && 
+                        (
+                          <View>
+                              <Text style={{
+                               color: "white"
+                          }}>{flashbackMessage}</Text>
+                          </View>
+                        )
+
+                      }
+                     
+                    </View>
+                  )}
+                
                 </View>
+
                 <View style={{
-                   // backgroundColor: "orange",
+                  //  backgroundColor: "orange",
                   justifyContent: "center",
                   alignItems: "center",
-                  height: 90,
+                  // height: verticalScale(90),
+                  height: hp("12%"),
+                  width: wp("100%")
                 }}>
                   <TouchableOpacity style={{
                     backgroundColor: "grey",
-                    height: 40,
-                    width: "60%",
+                    height: hp("5%"),
+                    width: wp("60%"),
                     borderRadius: 100,
                     alignItems: "center",
                     justifyContent: "center",
-                  }} >
+                  }} 
+                  onPress={() => handleInputData()}
+                  >
                     <Text style={{
                         color: "white"
                     }}>Sign up</Text>
@@ -226,7 +406,7 @@ const SignUpScreen = () => {
                 <View style={{
                     //  justifyContent: "center",
                     //  alignItems: "center",
-                     height: 100,
+                     height: hp("15%"),
                     //  backgroundColor: "grey",
                      display: "flex", 
                      flexDirection: "row", 
@@ -266,7 +446,9 @@ const styles = StyleSheet.create({
 
     gradient: {
         ...StyleSheet.absoluteFillObject,
-        // paddingTop: 50,
+        // paddingTop: verticalScale(40),
+        flex: 1,
+        
       },
 })
 
