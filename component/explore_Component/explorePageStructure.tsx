@@ -257,6 +257,7 @@ const  ExplorePageStructure = ()  => {
         })();
     };
 
+   
     // gets the location of the user and stores it
     const getUserLocation = async () => {
       const userLocationData = await handleUserLocation();

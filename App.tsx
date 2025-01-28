@@ -47,6 +47,7 @@ import WorldIcon from './icons/worldIcon';
 import PlaybtnIcon from './icons/playIbtnIcon';
 import SignUpScreen from './navigation/signUpScreen';
 import RobotIcon from './icons/robotIcon';
+import UploadProfileImageScreen from './navigation/uploadProfileImageScree';
 
 
 
@@ -653,8 +654,9 @@ function AppNavigator() {
      
    
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-           <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="interestScreeen" component={UserInterestScreen} />
+           {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
+            {/* <Stack.Screen name="interestScreeen" component={UserInterestScreen} /> */}
+            <Stack.Screen name="ProfileImageScreen" component={UploadProfileImageScreen} />
             <Stack.Screen name="UserExploreScreen" component={TabNavigator} options={{gestureDirection: 'vertical' }} />
             <Stack.Screen name="settingScreen" component={SettingScreen}  />
             <Stack.Screen name="FeedbackScreen" component={FeedbackScreen}  options={{ presentation: "modal" }} />

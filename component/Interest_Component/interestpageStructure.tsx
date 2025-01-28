@@ -82,7 +82,8 @@ export default function InterestPageStructure() {
       console.log("result arrived:",result);
 
       result?.message === "Interests are successfully stored" 
-      ? navigation.navigate('UserExploreScreen' as never)
+      // ? navigation.navigate('UserExploreScreen' as never)
+      ? navigation.navigate('ProfileImageScreen' as never)
       : navigation.navigate('Login' as never)
 
 
@@ -232,9 +233,10 @@ const styles = StyleSheet.create({
     width: wp("100%"),
     // height: 300,
     flex: 1,
-    paddingBottom: 40,
+    paddingTop: 40,
+    // paddingBottom: 40,
 
-    justifyContent: "center",
+    // justifyContent: "center",
 
     // flexDirection: "row"
   },
@@ -244,6 +246,7 @@ const styles = StyleSheet.create({
     height: 80,
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 70,
   },
   selectHeader_Text: {
     color: "white",
