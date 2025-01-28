@@ -15,7 +15,7 @@ const initialStateEventFavor = {
 
 
 
- export default (state = initialStateEventFavor, {type , payload}) => {
+ export default (state = initialStateEventFavor, {type , payload}: any) => {
 
     // console.log("payload:", payload);
     switch (type) {

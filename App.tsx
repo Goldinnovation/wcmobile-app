@@ -46,6 +46,7 @@ import GameIcon from './icons/gameIcon';
 import WorldIcon from './icons/worldIcon';
 import PlaybtnIcon from './icons/playIbtnIcon';
 import SignUpScreen from './navigation/signUpScreen';
+import RobotIcon from './icons/robotIcon';
 
 
 
@@ -221,7 +222,7 @@ function TabNavigator() {
         headerRight: () => (
           <View style={{
           //  backgroundColor:  filter ?  "pink" : "red",
-            width:  135,
+            width:  140,
             // display: filter ? "flex" : "flex",
             height: 30,
 
@@ -251,14 +252,18 @@ function TabNavigator() {
            </View>
 
           {/* Map button  */}
-           {/* <TouchableOpacity  
+           <TouchableOpacity  
           style={{
             position: "relative",
             // top: 1,
+            width: "25%",
             flexDirection: filter ? "row" : "column",
-            // backgroundColor: "skyblue"
+            // backgroundColor: "skyblue",
+            justifyContent: "center",
+            alignItems: "center"
+
           }}
-          onPress={() => navigation.push("ModeScreen")}
+          onPress={() => alert("connected with ai")}
           
           >
             
@@ -266,11 +271,11 @@ function TabNavigator() {
           <View>
       
 
-          <PlaybtnIcon width={'24'} height={'24'}/>
+          <RobotIcon width={'26'} height={'26'}/>
           </View>
            
              
-          </TouchableOpacity> */}
+          </TouchableOpacity>
 
            {/* Filter button  */}
           <TouchableOpacity  
@@ -705,12 +710,12 @@ export default function App() {
     <View  style={styles.container} >
     <LinearGradient
   
-    // colors={['black']} //Infinity 
+    // colors={['black', 'black']} //Infinity 
     // colors={['black','silver', 'purple', 'green']} //Bubble 
-    // colors={['black','grey', '#000059', "black"]} //Nitro
+    colors={['black','grey', '#000059', "black"]} //Nitro
     // colors={['black','brown', 'purple', "purple","black"]} //somethingelse
 
-    colors={[color1,color2, color3, color4]} //Nitro
+    // colors={[color1,color2, color3, color4]} //Nitro
 
     // colors={['#000000', '#000000bb', 'rgba(35, 32, 32, 0.447)', '#000000']} //Moon
     style={styles.gradient}

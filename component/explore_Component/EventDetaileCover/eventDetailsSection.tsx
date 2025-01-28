@@ -1,6 +1,11 @@
 import { View, TouchableOpacity, Text, Image } from "react-native";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+import CalenderIcon from "../../../icons/calenderIcon";
+import TimeIcon from "../../../icons/timeIcon";
+import CloudIcon from "../../../icons/cloudIcon";
+import MoneyEuroIcon from "../../../icons/MoneyIcon";
+import HouseIcon from "../../../icons/houseIcon";
 
 interface eventProps {
   eventId: string;
@@ -135,14 +140,15 @@ const EventDetailsSection: React.FC<eventDetailsProps> = ({ data, state }) => {
                 padding: 3,
               }}
             >
-              <Image
+              {/* <Image
                 source={require("../../../assets/k2.png")}
                 style={{
                   width: 13,
                   height: 13,
                   // borderRadius: 100,
                 }}
-              />
+              /> */}
+              <CalenderIcon width={'15'} height={'15'}/>
               <Text
                 style={{
                   color: "white",
@@ -167,14 +173,7 @@ const EventDetailsSection: React.FC<eventDetailsProps> = ({ data, state }) => {
                 // borderBottomColor: "rgba(255, 255, 255,0.5)",
               }}
             >
-              <Image
-                source={require("../../../assets/t1.png")}
-                style={{
-                  width: 13,
-                  height: 13,
-                  // borderRadius: 100,
-                }}
-              />
+             <TimeIcon width={'13'} height={'13'}/>
               <Text
                 style={{
                   color: "white",
@@ -208,14 +207,7 @@ const EventDetailsSection: React.FC<eventDetailsProps> = ({ data, state }) => {
                 flexDirection: "row",
               }}
             >
-              <Image
-                source={require("../../../assets/wo1.png")}
-                style={{
-                  width: 15,
-                  height: 15,
-                  // borderRadius: 100,
-                }}
-              />
+            <CloudIcon width={'14'} height={'14'}/>
               <Text
                 style={{
                   color: "white",
@@ -278,14 +270,8 @@ const EventDetailsSection: React.FC<eventDetailsProps> = ({ data, state }) => {
                 flexDirection: "row",
               }}
             >
-              <Image
-                source={require("../../../assets/e1.png")}
-                style={{
-                  width: 15,
-                  height: 15,
-                  // borderRadius: 100,
-                }}
-              />
+              <MoneyEuroIcon width={'14'} height={'14'}/>
+
               <Text
                 style={{
                   color: "white",
@@ -369,14 +355,15 @@ const EventDetailsSection: React.FC<eventDetailsProps> = ({ data, state }) => {
                   }
                 }
               >
-                <Image
+                {/* <Image
                   source={require("../../../assets/ci.png")}
                   style={{
                     width: 15,
                     height: 15,
                     // borderRadius: 100,
                   }}
-                />
+                /> */}
+                <HouseIcon width={'14'} height={'14'}/>
               </View>
               <View
                 style={{
@@ -386,7 +373,7 @@ const EventDetailsSection: React.FC<eventDetailsProps> = ({ data, state }) => {
                   flexWrap: "wrap",
                   width: "70%",
                   position: "relative",
-                  left: "-10%",
+                  left: "0%",
                 }}
               >
                 <View>
