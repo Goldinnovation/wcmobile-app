@@ -24,6 +24,203 @@ const UploadProfileImageScreen = () => {
             // marginLeft: 2, 
             // paddingRight: 2
         }}>
+
+            {/* Head */}
+              <View style={{
+                    // backgroundColor: "green",
+                // width: wp("95%"),
+                height: hp("10%"),
+                // justifyContent: "center",
+                // alignItems: "center",
+                // marginTop: 70,
+                // height: 80,
+                display: "flex", 
+                flexDirection: "row", 
+                // justifyContent: "space-around",
+                alignItems: "center",
+                marginTop: 20,
+                // padding: 5,
+                // marginLeft: 2,
+                // borderBottomWidth: 1, 
+                // borderBottomColor: "white"
+        }}>
+                    <View style={{
+                        // backgroundColor: "pink",
+                        width: wp("20%"),
+                        height: "100%", 
+                        alignItems: "center",
+                        justifyContent: "center",
+
+                        // borderRadius: 50
+
+                    }}>
+
+                    <View style={{
+                                    backgroundColor: "rgba(24,116,205, 0.7)",
+                                    width: wp("20%"),
+                                    height: "45%", 
+                                    borderRadius: 100, 
+                                    borderWidth: 1, 
+                                    borderColor:  "rgba(24,116,205, 0.7)", 
+                                    alignItems: "center",
+                                    justifyContent: "center",
+
+
+                    }}>
+                     <Image
+                            source={require("../assets/profileImg/smile.png")}
+                            style={{
+                            width: 24,
+                            height: 24,
+                            // width: scale(110),
+                            // height: verticalScale(26),
+                            // borderRadius: 100,
+                            }}
+                />
+                    
+                    
+                    </View>
+                  
+
+
+                    </View>
+
+
+                    {/* Between */}
+                     <View style={{
+                        // backgroundColor: "green",
+                        width: wp("20%"),
+                        height: "100%", 
+                        justifyContent: "center",
+                        alignItems: "center",
+                        // borderRadius: 50
+
+                    }}>
+                        
+                        <View style={{
+                        backgroundColor: "rgba(24,116,205, 0.7)",
+                        width: wp("20%"),
+                        height: "5%", 
+                        borderWidth: 1, 
+                        borderColor:  "rgba(24,116,205, 0.7)"
+                        // borderRadius: 50
+
+                    }}>
+                    
+                    
+                    </View>
+
+                    
+                    </View>
+
+                    <View style={{
+                        // backgroundColor: "brown",
+                        width: wp("20%"),
+                        height: "100%", 
+                        alignItems: "center",
+                        justifyContent: "center",
+                        // opacity: 0.7
+
+                        // borderRadius: 50
+                    }}>
+                         <View style={{
+                                    backgroundColor: "rgba(24,116,205, 0.7)",
+                                    width: wp("20%"),
+                                    height: "45%", 
+                                    borderRadius: 100, 
+                                    borderWidth: 1, 
+                                    borderColor:  "rgba(24,116,205, 0.7)",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+
+                    }}>
+                         <Image
+                            source={require("../assets/profileImg/g.png")}
+                            style={{
+                            width: 25,
+                            height: 25,
+                            // width: scale(110),
+                            // height: verticalScale(26),
+                            // borderRadius: 100,
+                            }}
+                />
+                    
+                    
+                    </View>
+                  
+
+                    </View>
+
+
+                     {/* Between */}
+                     <View style={{
+                        // backgroundColor: "green",
+                        width: wp("20%"),
+                        height: "100%", 
+                        justifyContent: "center",
+                        alignItems: "center",
+                        // borderRadius: 50
+
+                    }}>
+                          <View style={{
+                        // backgroundColor: "white",
+                        width: wp("20%"),
+                        height: "5%", 
+                        borderWidth: 1, 
+                        borderColor: "rgba(24,116,205, 0.7)",
+                        opacity: 0.7
+
+                        // borderRadius: 50
+
+                    }}>
+                    
+                    
+                    </View>
+                    </View>
+
+                    <View style={{
+                        // backgroundColor: "skyblue",
+                        width: wp("20%"),
+                        height: "100%", 
+                        alignItems: "center",
+                        justifyContent: "center",
+                        opacity: 0.7
+
+                        // borderRadius: 50
+                    }}>
+                           <View style={{
+                                    // backgroundColor: "grey",
+                                    width: wp("20%"),
+                                    height: "45%", 
+                                    borderRadius: 100, 
+                                    borderWidth: 1, 
+                                    borderColor: "rgba(24,116,205, 0.7)",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+
+
+                    }}>
+                              <Image
+                            source={require("../assets/profileImg/f.png")}
+                            style={{
+                            width: 24,
+                            height: 24,
+                            // width: scale(110),
+                            // height: verticalScale(26),
+                            // borderRadius: 100,
+                            }}
+                            />
+                    
+                    
+                    </View>
+                    </View>
+                   
+                   
+
+                 </View>
+
+
+                 {/* Body */}
              <View style={{
                     // backgroundColor: "lightblue",
                 // width: wp("95%"),
@@ -34,7 +231,7 @@ const UploadProfileImageScreen = () => {
                 // height: 80,
                 justifyContent: "center",
                 alignItems: "center",
-                marginTop: 70,
+                // marginTop: 70,
                 // padding: 5,
                 // marginLeft: 2,
                 // borderBottomWidth: 1, 
@@ -115,6 +312,7 @@ const UploadProfileImageScreen = () => {
                     alignItems: "center",
                     justifyContent: "center",
                     borderColor: "rgba(2, 35, 214, 0.2)",
+                    
                 }}
                           
                 >
