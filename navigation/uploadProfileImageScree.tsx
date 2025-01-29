@@ -4,8 +4,17 @@
 import { View, Text, TouchableOpacity, Image } from "react-native"
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import UploadProfilePicIcon from "../icons/uploadProfilePicIcon";
+import { useNavigation } from "@react-navigation/native";
+
 
 const UploadProfileImageScreen = () => {
+
+      const navigation = useNavigation()
+    
+
+      const handleUploadImage = () => { 
+        navigation.navigate('BackgroundScreen' as never)
+      }
   return (
     <View style={{
           backgroundColor: "black",
@@ -490,7 +499,8 @@ const UploadProfileImageScreen = () => {
                     justifyContent: "center",
                     borderColor: "rgba(2, 35, 214, 0.2)",
                 }}
-                          
+                onPress={() => handleUploadImage()}
+  
                 >
                 <Text
                 style={{

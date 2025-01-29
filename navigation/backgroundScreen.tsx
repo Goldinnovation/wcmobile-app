@@ -1,11 +1,21 @@
 import { View, Text, TouchableOpacity, Image } from "react-native"
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import UploadProfilePicIcon from "../icons/uploadProfilePicIcon";
+import { useNavigation } from "@react-navigation/native";
+
 
 
 
 
 const BackgroundScreen = () => {
+      const navigation = useNavigation();
+
+      const handleBackgroundScreen = () => {
+
+        console.log("init")
+        navigation.navigate('UserExploreScreen' as never)
+    }
+      
   return (
     <View style={{
         backgroundColor: "black",
@@ -273,36 +283,78 @@ const BackgroundScreen = () => {
 
 
              <View style={{
-                backgroundColor: "green",
+                // backgroundColor: "green",
                 width: wp("90%"),
                 height: hp("10%"),
-                borderRadius: 7
+                borderRadius: 7,
+               
 
              }}>
-                <Text>1</Text>
+                  <Image
+                            source={require("../assets/profileImg/4b.gif")}
+                            style={{
+                            width: wp("90%"),
+                            height:  hp("10%"),
+                            borderRadius: 7,
+                            borderWidth: 1, 
+                            borderColor: "white",
+                            opacity: 0.7
+
+                            // width: scale(110),
+                            // height: verticalScale(26),
+                            // borderRadius: 100,
+                            }}
+                            />
              </View>
 
 
              <View style={{
-                backgroundColor: "pink",
+                // backgroundColor: "pink",
                 width: wp("90%"),
                 height: hp("10%"),
                 borderRadius: 7
 
 
              }}>
-                <Text>1</Text>
+                  <Image
+                            source={require("../assets/profileImg/4i.gif")}
+                            style={{
+                            width: wp("90%"),
+                            height:  hp("10%"),
+                            borderRadius: 7,
+                            borderWidth: 1, 
+                            borderColor: "white",
+                            opacity: 0.7
+
+                            // width: scale(110),
+                            // height: verticalScale(26),
+                            // borderRadius: 100,
+                            }}
+                            />
              </View>
 
              <View style={{
-                backgroundColor: "blue",
+                // backgroundColor: "blue",
                 width: wp("90%"),
                 height: hp("10%"),
                 borderRadius: 7
 
 
              }}>
-                <Text>1</Text>
+                   <Image
+                            source={require("../assets/profileImg/4IER.gif")}
+                            style={{
+                            width: wp("90%"),
+                            height:  hp("10%"),
+                            borderRadius: 7,
+                            borderWidth: 1, 
+                            borderColor: "white", 
+                            opacity: 0.7
+                            // width: scale(110),
+                            // height: verticalScale(26),
+                            // borderRadius: 100,
+                            }}
+                            />
              </View>
 
             
@@ -331,7 +383,8 @@ const BackgroundScreen = () => {
                 justifyContent: "center",
                 borderColor: "rgba(2, 35, 214, 0.2)",
             }}
-                    
+            onPress={() => handleBackgroundScreen()}
+     
             >
             <Text
             style={{

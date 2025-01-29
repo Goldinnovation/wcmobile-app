@@ -655,10 +655,10 @@ function AppNavigator() {
      
    
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-           {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
-            {/* <Stack.Screen name="interestScreeen" component={UserInterestScreen} /> */}
+           <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="interestScreeen" component={UserInterestScreen} />
 
-            {/* <Stack.Screen name="ProfileImageScreen" component={UploadProfileImageScreen} /> */}
+            <Stack.Screen name="ProfileImageScreen" component={UploadProfileImageScreen} />
             <Stack.Screen name="BackgroundScreen" component={BackgroundScreen} />
 
             <Stack.Screen name="UserExploreScreen" component={TabNavigator} options={{gestureDirection: 'vertical' }} />
