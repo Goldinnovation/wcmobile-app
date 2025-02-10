@@ -40,7 +40,7 @@ const UploadProfileImageScreen = () => {
         setFlatMessage(true)
         setInterval(() => {
             setFlatMessage(false)
-        }, 1000)
+        }, 900)
 
         }
 
@@ -614,16 +614,42 @@ const UploadProfileImageScreen = () => {
                     // backgroundColor: "pink",
                 width: wp("100%"),
                 height: hp("20%"),
-                justifyContent: "center",
+                display: "flex", 
+                flexDirection: "row",
+                justifyContent: "space-around",
                 alignItems: "center",
                 // padding: 5,
                 // marginLeft: 2,
                 // marginRight: 2
         }}>
+                <TouchableOpacity
+            style={{
+                backgroundColor:  "rgba(226, 74, 8, 0.91)" ,	
+                width: "30%",
+                height: 50,
+                borderWidth: 2,
+                borderRadius: 7,
+                alignItems: "center",
+                justifyContent: "center",
+                borderColor: "rgba(2, 35, 214, 0.2)",
+            }}
+            onPress={() => navigation.goBack()}
+
+            // disabled={disabletoggle}
+            >
+            <Text
+            style={{
+                color: "white"
+            }}
+            >
+            Go Back
+            </Text>
+        </TouchableOpacity>
+
               <TouchableOpacity
                 style={{
-                    backgroundColor: image ? "rgba(24,116,205, 0.7)":  "rgba(207, 202, 202, 0.83)",
-                    width: "70%",
+                    backgroundColor: image ? "rgba(24,116,205, 0.7)":  "rgba(24,116,205, 0.2)",
+                    width: "50%",
                     height: 50,
                     borderWidth: 2,
                     borderRadius: 7,

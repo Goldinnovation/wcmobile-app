@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, Image } from "react-native"
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import UploadProfilePicIcon from "../icons/uploadProfilePicIcon";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
 
 
@@ -9,6 +10,10 @@ import { useNavigation } from "@react-navigation/native";
 
 const BackgroundScreen = () => {
       const navigation = useNavigation();
+      const [thunderToggle, setThunderToggle] = useState(false);
+      const [underwaterToggle, setUnderwaterToggle] = useState(false);
+      const [firefliesToggle, setFirefliesToggle] = useState(false);
+      const [disabletoggle, setDisableToggle] = useState(true);
 
       const handleBackgroundScreen = () => {
 
@@ -16,6 +21,35 @@ const BackgroundScreen = () => {
         navigation.navigate('UserExploreScreen' as never)
     }
       
+
+    const hanldeBackgroundUpload = (uploadedItem: string, itemName: string) => { 
+        console.log('upload', uploadedItem);
+
+
+        if(itemName === "Thunder") {
+            setThunderToggle(!thunderToggle);
+            setUnderwaterToggle(false);
+            setFirefliesToggle(false);
+            setDisableToggle(false);
+        }else if(itemName === "Underwater") { 
+            setUnderwaterToggle(!underwaterToggle);
+            setThunderToggle(false);
+            setFirefliesToggle(false);
+            setDisableToggle(false);
+
+        }
+         else if(itemName === "Fireflies") {
+            setFirefliesToggle(!firefliesToggle);
+            setThunderToggle(false);
+            setUnderwaterToggle(false);
+            setDisableToggle(false);
+
+        }   
+        
+    }
+
+
+
   return (
     <View style={{
         backgroundColor: "black",
@@ -282,80 +316,148 @@ const BackgroundScreen = () => {
 
 
 
-             <View style={{
+             <TouchableOpacity style={{
                 // backgroundColor: "green",
                 width: wp("90%"),
                 height: hp("10%"),
                 borderRadius: 7,
-               
+                position: "relative"
+                
 
-             }}>
+             }}
+             onPress={() => hanldeBackgroundUpload("https://firebasestorage.googleapis.com/v0/b/worthsec-3345b.appspot.com/o/userBackground%2F2024-10-21T18%3A28%3A16.498Z_tumblr_n80f38Enls1syw1wdo1_500.gif?alt=media&token=4c4ae519-c4c8-4c7f-8c41-ee481f10ef44", "Thunder")}
+             >
+                <View style={{
+                    position: "absolute",
+                    top: "50%", 
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 1,
+
+                }}>
+                    <Text style={{
+                        color: "white",
+                        fontWeight: "bold",
+                        fontSize: 19, 
+                        opacity: 0.7
+                    }}>Thunder</Text>
+                </View>
                   <Image
-                            source={require("../assets/profileImg/4b.gif")}
+                            // source={require("../assets/profileImg/4b.gif")}
+                            source={{uri:"https://firebasestorage.googleapis.com/v0/b/worthsec-3345b.appspot.com/o/userBackground%2F2024-10-21T18%3A28%3A16.498Z_tumblr_n80f38Enls1syw1wdo1_500.gif?alt=media&token=4c4ae519-c4c8-4c7f-8c41-ee481f10ef44"}}
                             style={{
                             width: wp("90%"),
                             height:  hp("10%"),
                             borderRadius: 7,
-                            borderWidth: 1, 
-                            borderColor: "white",
-                            opacity: 0.7
+                            borderWidth: thunderToggle ? 1 : 0, 
+                            borderColor: thunderToggle ? "white" : "none", 
+                            opacity: thunderToggle ? 1 :  0.7
 
                             // width: scale(110),
                             // height: verticalScale(26),
                             // borderRadius: 100,
                             }}
                             />
-             </View>
+             </TouchableOpacity>
 
 
-             <View style={{
+             <TouchableOpacity style={{
                 // backgroundColor: "pink",
                 width: wp("90%"),
                 height: hp("10%"),
-                borderRadius: 7
+                // borderRadius: 7, 
+                // borderWidth: 1,
+                // borderColor: "white",
+                position: "relative"
 
 
-             }}>
+             }}
+
+             onPress={() => hanldeBackgroundUpload("https://firebasestorage.googleapis.com/v0/b/worthsec-3345b.appspot.com/o/userBackground%2F2024-12-09T10%3A37%3A21.460Z_TQUx.gif?alt=media&token=13459fd9-e3c8-4545-9c94-850efffc438a", "Underwater")}
+             >
+                 <View style={{
+                    // backgroundColor: "rgba(0, 0, 0, 0.87)",
+                    width:"100%",
+                    height:"100%",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    position: "absolute",
+                    top: "50%", 
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 1,
+
+                }}>
+                    <Text style={{
+                        color: "white",
+                        fontWeight: "bold",
+                        fontSize: 19, 
+                        opacity: 0.7
+                    }}>Underwater</Text>
+                </View>
                   <Image
-                            source={require("../assets/profileImg/4i.gif")}
+                            // source={require("../assets/profileImg/4i.gif")}
+                            source={{uri: "https://firebasestorage.googleapis.com/v0/b/worthsec-3345b.appspot.com/o/userBackground%2F2024-12-09T10%3A37%3A21.460Z_TQUx.gif?alt=media&token=13459fd9-e3c8-4545-9c94-850efffc438a"}}
+
                             style={{
                             width: wp("90%"),
                             height:  hp("10%"),
                             borderRadius: 7,
-                            borderWidth: 1, 
-                            borderColor: "white",
-                            opacity: 0.7
+                            borderWidth: underwaterToggle ? 1 : 0, 
+                            borderColor: underwaterToggle ? "white" : "none", 
+                            opacity: underwaterToggle ? 1 :  0.7
 
                             // width: scale(110),
                             // height: verticalScale(26),
                             // borderRadius: 100,
                             }}
                             />
-             </View>
+             </TouchableOpacity>
 
-             <View style={{
+             <TouchableOpacity style={{
                 // backgroundColor: "blue",
                 width: wp("90%"),
                 height: hp("10%"),
-                borderRadius: 7
+                borderRadius: 7, 
+                position: "relative"
 
 
-             }}>
+
+             }}
+             onPress={() => hanldeBackgroundUpload("https://firebasestorage.googleapis.com/v0/b/worthsec-3345b.appspot.com/o/userBackground%2F2024-12-09T12%3A28%3A15.154Z_8vnz.gif?alt=media&token=58439032-c046-492e-bfec-dcaf0df3c225", "Fireflies")}
+             
+             >
+                <View style={{
+                    position: "absolute",
+                    top: "50%", 
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 1,
+
+                }}>
+                    <Text style={{
+                        color: "white",
+                        fontWeight: "bold",
+                        fontSize: 19, 
+                        opacity: 0.7
+                    }}>Fireflies</Text>
+                </View>
                    <Image
-                            source={require("../assets/profileImg/4IER.gif")}
+                            // source={require("../assets/profileImg/4IER.gif")}
+                            source={{uri: "https://firebasestorage.googleapis.com/v0/b/worthsec-3345b.appspot.com/o/userBackground%2F2024-12-09T12%3A28%3A15.154Z_8vnz.gif?alt=media&token=58439032-c046-492e-bfec-dcaf0df3c225"}}
                             style={{
                             width: wp("90%"),
                             height:  hp("10%"),
                             borderRadius: 7,
-                            borderWidth: 1, 
-                            borderColor: "white", 
-                            opacity: 0.7
+                            borderWidth: firefliesToggle ? 1 : 0, 
+                            borderColor: firefliesToggle ? "white" : "none", 
+                            opacity: firefliesToggle ? 1 :  0.7
                             // width: scale(110),
                             // height: verticalScale(26),
                             // borderRadius: 100,
                             }}
                             />
-             </View>
+             </TouchableOpacity>
 
             
 
@@ -366,7 +468,9 @@ const BackgroundScreen = () => {
                 // backgroundColor: "pink",
             width: wp("100%"),
             height: hp("20%"),
-            justifyContent: "center",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around",
             alignItems: "center",
             // padding: 5,
             // marginLeft: 2,
@@ -374,8 +478,32 @@ const BackgroundScreen = () => {
         }}>
         <TouchableOpacity
             style={{
-                backgroundColor: "rgba(24,116,205, 0.7)",
-                width: "70%",
+                backgroundColor:  "rgba(226, 74, 8, 0.91)" ,	
+                width: "30%",
+                height: 50,
+                borderWidth: 2,
+                borderRadius: 7,
+                alignItems: "center",
+                justifyContent: "center",
+                borderColor: "rgba(2, 35, 214, 0.2)",
+            }}
+            onPress={() => navigation.goBack()}
+
+            // disabled={disabletoggle}
+            >
+            <Text
+            style={{
+                color: "white"
+            }}
+            >
+            Go Back
+            </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+            style={{
+                backgroundColor: !disabletoggle ? "rgba(24,116,205, 0.7)" : "rgba(24,116,205, 0.2)",
+                width: "50%",
                 height: 50,
                 borderWidth: 2,
                 borderRadius: 7,
@@ -384,7 +512,7 @@ const BackgroundScreen = () => {
                 borderColor: "rgba(2, 35, 214, 0.2)",
             }}
             onPress={() => handleBackgroundScreen()}
-     
+            disabled={disabletoggle}
             >
             <Text
             style={{
