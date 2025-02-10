@@ -5,16 +5,41 @@ import { View, Text, TouchableOpacity, Image } from "react-native"
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import UploadProfilePicIcon from "../icons/uploadProfilePicIcon";
 import { useNavigation } from "@react-navigation/native";
-
+import * as ImagePicker from 'expo-image-picker';
+import { useState } from "react";
 
 const UploadProfileImageScreen = () => {
+    const [image, setImage] = useState<string | null>(null)
 
       const navigation = useNavigation()
     
 
-      const handleUploadImage = () => { 
+      const handlenextScreen = () => { 
         navigation.navigate('BackgroundScreen' as never)
       }
+
+      const handleImageUpload = async() => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ['images', 'videos'],
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+          });
+
+          console.log('result', result);
+
+        
+        if (!result.canceled) {
+        setImage(result.assets[0].uri);
+        }
+    
+      }
+
+      console.log('image', image);
+
+
+
+
   return (
     <View style={{
           backgroundColor: "black",
@@ -295,12 +320,18 @@ const UploadProfileImageScreen = () => {
                 height: hp("15%"),
                 justifyContent: "center",
                 alignItems: "center",
-                borderWidth: 1, 
+                borderWidth: image ? 0 : 1, 
                 borderColor: "white",
                 borderRadius: 7, 
             }}>
-
-                 <UploadProfilePicIcon  width={'63'} height={'65'}  />
+            {image ? 
+            <Image source={{ uri: image }} style={{
+                width: 130,
+                height: 130,
+                borderRadius: 7 
+            }}  /> :
+            <UploadProfilePicIcon  width={'63'} height={'65'}  />
+            }
             </View>
              <View style={{
                 // backgroundColor: "yellow", 
@@ -323,7 +354,7 @@ const UploadProfileImageScreen = () => {
                     borderColor: "rgba(2, 35, 214, 0.2)",
                     
                 }}
-                          
+                onPress={()=> handleImageUpload()}
                 >
                 <Text
                 style={{
@@ -499,7 +530,7 @@ const UploadProfileImageScreen = () => {
                     justifyContent: "center",
                     borderColor: "rgba(2, 35, 214, 0.2)",
                 }}
-                onPress={() => handleUploadImage()}
+                onPress={() => handlenextScreen()}
   
                 >
                 <Text

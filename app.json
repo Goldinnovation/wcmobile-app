@@ -40,7 +40,16 @@
         }
        
       ],
-      
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow $(EMS) to access your photos",
+          "cameraPermission": "Allow $(EMS) to open the camera",
+
+          "//": "Disables the microphone permission",
+          "microphonePermission": false
+        }
+      ], 
       [
         "expo-camera",
         {

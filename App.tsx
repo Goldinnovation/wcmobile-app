@@ -324,98 +324,7 @@ function TabNavigator() {
       ></Tab.Screen>
 
 
-      {/* Map Tab */}
-     <Tab.Screen    
-      name='Map'
-      component={ModeScreen}
-      options={{
-        title: 'Map',
-        
-        headerRight: () => (
-          <View style={{
-            // backgroundColor: "pink",
-            width: 150,
-            height: 30,
-            alignItems: "center",
-            marginRight: 15,
-            gap: 30,
-            justifyContent: "flex-end",
-            flexDirection: "row"
-          }}> 
-         
-         
-             
-          
-         <TouchableOpacity  onPress={() => navigation.push("NotificationScreen")}>
-        
-          {/* <SettingIcon width={'21'} height={'21'} /> */}
-          <NotificationIcon  width={'23'} height={'25'}  />
-         </TouchableOpacity>
 
-        
-
-          </View>
-        ),
-         headerLeft: () => (
-          <View style={{
-            // backgroundColor:  filter ?  "pink" : "green",
-            width:  scale(119),
-            height: 30,
-            flexDirection: "row",
-            alignItems: "center",
-            marginLeft: categoryLayoutState ? 9 : 7,
-        
-          }}>
-            {/* Explore Mode Option */}
-            
-            <View style={{
-              width:  scale(110),
-            // height: 25,
-            // borderWidth: 1,
-            // borderColor: "white",
-            padding: 1,
-            // marginLeft: 15,
-
-            // alignItems: "center",
-            display: "flex", 
-            borderRadius: 4,
-            // justifyContent: "center", 
-            flexDirection: "row",
-            // backgroundColor: "green"
-
-            }}
-            >
-            
-
-              <Image
-                  source={require("./assets/emsfw.png")}
-                  style={{
-                    // width: scale(100),
-                    // height: verticalScale(25),
-                    width: scale(90),
-                    height: verticalScale(20)
-                    // borderRadius: 100,
-                  }}
-                />
-            
-
-             
-               
-              
-            </View>
-
-            
-          </View>
-        ),
-        headerStyle: {
-          backgroundColor: 'transparent',},
-          headerTintColor: 'grey',
-          // headerTitleStyle: {
-          //   fontWeight: 'bold'}
-            
-      }}
-      
-      ></Tab.Screen>
 
     
 
@@ -655,8 +564,8 @@ function AppNavigator() {
      
    
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-           <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="interestScreeen" component={UserInterestScreen} />
+           {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
+            {/* <Stack.Screen name="interestScreeen" component={UserInterestScreen} /> */}
 
             <Stack.Screen name="ProfileImageScreen" component={UploadProfileImageScreen} />
             <Stack.Screen name="BackgroundScreen" component={BackgroundScreen} />
