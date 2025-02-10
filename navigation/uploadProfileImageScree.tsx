@@ -7,14 +7,19 @@ import UploadProfilePicIcon from "../icons/uploadProfilePicIcon";
 import { useNavigation } from "@react-navigation/native";
 import * as ImagePicker from 'expo-image-picker';
 import { useState } from "react";
+import { BlurView } from 'expo-blur';
+ 
 
 const UploadProfileImageScreen = () => {
     const [image, setImage] = useState<string | null>(null)
+    const [flashMessage, setFlatMessage] = useState(false)
+  
 
       const navigation = useNavigation()
     
 
       const handlenextScreen = () => { 
+        
         navigation.navigate('BackgroundScreen' as never)
       }
 
@@ -24,6 +29,7 @@ const UploadProfileImageScreen = () => {
             allowsEditing: true,
             aspect: [4, 3],
             quality: 1,
+            
           });
 
           console.log('result', result);
@@ -31,11 +37,18 @@ const UploadProfileImageScreen = () => {
         
         if (!result.canceled) {
         setImage(result.assets[0].uri);
+        setFlatMessage(true)
+        setInterval(() => {
+            setFlatMessage(false)
+        }, 1000)
+
         }
+
+
     
       }
 
-      console.log('image', image);
+
 
 
 
@@ -295,7 +308,54 @@ const UploadProfileImageScreen = () => {
                 <View style={{
                     // backgroundColor: "brown",
                 // width: wp("95%"),
-                height: hp("15%"),
+                height: hp("39%"),
+                // justifyContent: "center",
+                // alignItems: "center",
+                // marginTop: 70,
+                // height: 80,
+                display: "flex", 
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 10,
+                // marginTop: 20,
+
+                // padding: 5,
+                // marginLeft: 2,
+                // marginRight: 2
+                //  borderBottomWidth: 1, 
+                // borderBottomColor: "white"
+        }}>
+
+            <View style={{
+                // backgroundColor: "grey", 
+                width: wp("75%"),
+                height: hp("35%"),
+                justifyContent: "center",
+                alignItems: "center",
+                borderWidth: image ? 0 : 1, 
+                borderColor: "white",
+                borderRadius: 7, 
+            }}>
+            {image ? 
+            <Image source={{ uri: image }} style={{
+                width: 250,
+                height: 250,
+                borderRadius: 7 
+            }}  /> :
+            <UploadProfilePicIcon  width={'163'} height={'165'}  />
+            }
+            </View>
+          
+
+         
+
+                </View>
+
+                <View style={{
+                    // backgroundColor: "green",
+                // width: wp("95%"),
+                height: hp("5%"),
                 // justifyContent: "center",
                 // alignItems: "center",
                 // marginTop: 70,
@@ -314,7 +374,7 @@ const UploadProfileImageScreen = () => {
                 // borderBottomColor: "white"
         }}>
 
-            <View style={{
+            {/* <View style={{
                 // backgroundColor: "grey", 
                 width: wp("35%"),
                 height: hp("15%"),
@@ -332,16 +392,20 @@ const UploadProfileImageScreen = () => {
             }}  /> :
             <UploadProfilePicIcon  width={'63'} height={'65'}  />
             }
-            </View>
+            </View> */}
              <View style={{
                 // backgroundColor: "yellow", 
                 width: wp("60%"),
                 height: hp("10%"),
                 justifyContent: "center",
                 alignItems: "center",
+                gap: 2
                 // borderWidth: 1, 
                 // borderColor: "white", 
             }}>
+
+               
+                
                 <TouchableOpacity
                 style={{
                     backgroundColor: "rgb(68, 68, 68)",
@@ -361,7 +425,7 @@ const UploadProfileImageScreen = () => {
                     color: "white"
                 }}
                 >
-                    choose a file
+                    Upload an Image
                 </Text>
             </TouchableOpacity>
             </View>
@@ -374,7 +438,7 @@ const UploadProfileImageScreen = () => {
 
 
 
-                <View style={{
+                {/* <View style={{
                     // backgroundColor: "lightblue",
                 // width: wp("95%"),
                 height: hp("10%"),
@@ -398,9 +462,9 @@ const UploadProfileImageScreen = () => {
 
           }}>Not Now? Decide for a default profile picture </Text>
 
-                </View>
+                </View> */}
 
-                <View style={{
+                {/* <View style={{
                     // backgroundColor: "brown",
                 width: wp("100%"),
                 height: hp("15%"),
@@ -428,6 +492,7 @@ const UploadProfileImageScreen = () => {
                 alignItems: "center",
             }}>
                  <View style={{
+                    backgroundColor: "green", 
                     borderWidth: 1, 
                     borderColor: "white", 
                     padding: 7,
@@ -439,6 +504,7 @@ const UploadProfileImageScreen = () => {
                             style={{
                             width: 90,
                             height: 100,
+                            opacity: 0.8
                             // width: scale(110),
                             // height: verticalScale(26),
                             // borderRadius: 100,
@@ -504,11 +570,46 @@ const UploadProfileImageScreen = () => {
 
          
 
-                </View>
+                </View> */}
          
 
         </View>
 
+                    {flashMessage && 
+                    <View style={{
+                        // backgroundColor: "rgba(14,14,14,0.71)",
+                        height: hp("90%"),
+                        width: wp("100%"),
+                        justifyContent: "center",
+                        alignItems: "center",
+                        position: "absolute", 
+                        top: "5%",
+                        left: "0%",
+                        zIndex: 5
+                    }}>
+                    <BlurView intensity={100} style={{
+                                    // flex: 1,
+                                    height: hp("15%"),
+                                    width: wp("90%"),
+                                    padding: 20,
+                                    margin: 16,
+                                    justifyContent: 'center',
+                                    overflow: 'hidden',
+                                    alignItems: "center",
+
+                                    borderRadius: 20,
+                                    // position: "absolute", 
+                                    // top: "5%",
+                                    // left: "0%",
+                        
+                                    zIndex: 5
+                                }}>
+                                <Text style={{
+                                    color:"white"
+                                }}> successfully uploaded an Image</Text>
+
+                                </BlurView>
+                    </View>}
         <View style={{
                     // backgroundColor: "pink",
                 width: wp("100%"),
@@ -521,7 +622,7 @@ const UploadProfileImageScreen = () => {
         }}>
               <TouchableOpacity
                 style={{
-                    backgroundColor: "rgba(24,116,205, 0.7)",
+                    backgroundColor: image ? "rgba(24,116,205, 0.7)":  "rgba(207, 202, 202, 0.83)",
                     width: "70%",
                     height: 50,
                     borderWidth: 2,
@@ -531,7 +632,7 @@ const UploadProfileImageScreen = () => {
                     borderColor: "rgba(2, 35, 214, 0.2)",
                 }}
                 onPress={() => handlenextScreen()}
-  
+                disabled={!image}
                 >
                 <Text
                 style={{
