@@ -335,12 +335,16 @@ const BackgroundScreen = () => {
                     zIndex: 1,
 
                 }}>
-                    <Text style={{
+
+                    {thunderToggle &&
+                      <Text style={{
                         color: "white",
                         fontWeight: "bold",
                         fontSize: 19, 
                         opacity: 0.7
                     }}>Thunder</Text>
+                    }
+                  
                 </View>
                   <Image
                             // source={require("../assets/profileImg/4b.gif")}
@@ -388,12 +392,15 @@ const BackgroundScreen = () => {
                     zIndex: 1,
 
                 }}>
-                    <Text style={{
+                    {underwaterToggle && 
+                     <Text style={{
                         color: "white",
                         fontWeight: "bold",
                         fontSize: 19, 
                         opacity: 0.7
                     }}>Underwater</Text>
+                    }
+                  
                 </View>
                   <Image
                             // source={require("../assets/profileImg/4i.gif")}
@@ -435,12 +442,16 @@ const BackgroundScreen = () => {
                     zIndex: 1,
 
                 }}>
-                    <Text style={{
-                        color: "white",
-                        fontWeight: "bold",
-                        fontSize: 19, 
-                        opacity: 0.7
-                    }}>Fireflies</Text>
+
+                    {firefliesToggle && 
+                         <Text style={{
+                            color: "white",
+                            fontWeight: "bold",
+                            fontSize: 19, 
+                            opacity: 0.7
+                        }}>Fireflies</Text>
+                    }
+                   
                 </View>
                    <Image
                             // source={require("../assets/profileImg/4IER.gif")}

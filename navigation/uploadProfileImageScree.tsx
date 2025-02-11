@@ -8,11 +8,14 @@ import { useNavigation } from "@react-navigation/native";
 import * as ImagePicker from 'expo-image-picker';
 import { useState } from "react";
 import { BlurView } from 'expo-blur';
- 
+import { uploadProfileImageAPi } from "../api/uploadProfileImage_Api/uploadProfileImage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 const UploadProfileImageScreen = () => {
-    const [image, setImage] = useState<string | null>(null)
+    const [imageUri, setImageUri] = useState<string | null>(null)
     const [flashMessage, setFlatMessage] = useState(false)
+    const [imageObj, setImageObj] = useState({}) as any
   
 
       const navigation = useNavigation()
@@ -23,6 +26,44 @@ const UploadProfileImageScreen = () => {
         navigation.navigate('BackgroundScreen' as never)
       }
 
+
+      const handleprocessImage =  async(imageFile: any) => { 
+        const imageUrl = imageFile.assets[0].uri
+        const imageName = imageFile.assets[0].uri.split('/').pop();
+        const imagemimetype = imageFile.assets[0].mimeType
+
+        const formData = new FormData();
+
+        formData.append('image',{
+            uri: imageUrl,
+            name: imageName,
+            type: imagemimetype
+        } as any )
+
+
+        
+        return formData
+
+      }
+    //   Handles the image submittion
+      const handleSubmit = async() => {
+        const imageFile = imageObj
+        const encodedFormImageData = handleprocessImage(imageFile)
+         console.log('encodedFormImageData', encodedFormImageData);
+        if(encodedFormImageData){
+
+            const storedToken = await AsyncStorage.getItem("token");
+            const token = storedToken ? JSON.parse(storedToken).token : null;
+            const userToken = token.token;
+            const imageRes = await uploadProfileImageAPi(encodedFormImageData, userToken)
+        }
+        
+      }
+
+
+
+
+    //   Handels the image upload - user can view the image on the page
       const handleImageUpload = async() => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ['images', 'videos'],
@@ -36,7 +77,8 @@ const UploadProfileImageScreen = () => {
 
         
         if (!result.canceled) {
-        setImage(result.assets[0].uri);
+        setImageUri(result.assets[0].uri);
+        setImageObj(result)
         setFlatMessage(true)
         setInterval(() => {
             setFlatMessage(false)
@@ -45,7 +87,8 @@ const UploadProfileImageScreen = () => {
         }
 
 
-    
+        
+
       }
 
 
@@ -333,12 +376,12 @@ const UploadProfileImageScreen = () => {
                 height: hp("35%"),
                 justifyContent: "center",
                 alignItems: "center",
-                borderWidth: image ? 0 : 1, 
+                borderWidth: imageUri ? 0 : 1, 
                 borderColor: "white",
                 borderRadius: 7, 
             }}>
-            {image ? 
-            <Image source={{ uri: image }} style={{
+            {imageUri ? 
+            <Image source={{ uri: imageUri }} style={{
                 width: 250,
                 height: 250,
                 borderRadius: 7 
@@ -648,7 +691,7 @@ const UploadProfileImageScreen = () => {
 
               <TouchableOpacity
                 style={{
-                    backgroundColor: image ? "rgba(24,116,205, 0.7)":  "rgba(24,116,205, 0.2)",
+                    backgroundColor: imageUri ? "rgba(24,116,205, 0.7)":  "rgba(24,116,205, 0.2)",
                     width: "50%",
                     height: 50,
                     borderWidth: 2,
@@ -657,8 +700,8 @@ const UploadProfileImageScreen = () => {
                     justifyContent: "center",
                     borderColor: "rgba(2, 35, 214, 0.2)",
                 }}
-                onPress={() => handlenextScreen()}
-                disabled={!image}
+                onPress={() => handleSubmit()}
+                disabled={!imageUri}
                 >
                 <Text
                 style={{
