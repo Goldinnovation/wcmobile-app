@@ -10,6 +10,7 @@ import { useState } from "react";
 import { BlurView } from 'expo-blur';
 import { uploadProfileImageAPi } from "../api/uploadProfileImage_Api/uploadProfileImage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as FileSystem from 'expo-file-system';
 
 
 const UploadProfileImageScreen = () => {
@@ -17,7 +18,6 @@ const UploadProfileImageScreen = () => {
     const [flashMessage, setFlatMessage] = useState(false)
     const [imageObj, setImageObj] = useState({}) as any
   
-
       const navigation = useNavigation()
     
 
@@ -27,36 +27,43 @@ const UploadProfileImageScreen = () => {
       }
 
 
-      const handleprocessImage =  async(imageFile: any) => { 
+      const handleprocessImage = async(imageFile: any) => { 
         const imageUrl = imageFile.assets[0].uri
-        const imageName = imageFile.assets[0].uri.split('/').pop();
-        const imagemimetype = imageFile.assets[0].mimeType
-
-        const formData = new FormData();
-
-        formData.append('image',{
-            uri: imageUrl,
-            name: imageName,
-            type: imagemimetype
-        } as any )
+        const base64 = await FileSystem.readAsStringAsync(imageFile, { encoding: 'base64' });
+        console.log('base64', base64);
 
 
-        
-        return formData
+        // const imageName = imageFile.assets[0].uri.split('/').pop();
+        // const imagemimetype = imageFile.assets[0].mimeType
+
+        // const base64Data = await RNFS.readFile(imageUrl, 'base64');
+
+        // return base64Data
+
+        // const formData = new FormData();
+
+        // formData.append('image',{
+        //     uri: imageUrl,
+        //     name: imageName,
+        //     type: imagemimetype
+        // } as any )
+
+
+        // return  formData
 
       }
     //   Handles the image submittion
       const handleSubmit = async() => {
         const imageFile = imageObj
-        const encodedFormImageData = handleprocessImage(imageFile)
+        const encodedFormImageData = await handleprocessImage(imageFile)
          console.log('encodedFormImageData', encodedFormImageData);
-        if(encodedFormImageData){
+        // if(encodedFormImageData){
 
-            const storedToken = await AsyncStorage.getItem("token");
-            const token = storedToken ? JSON.parse(storedToken).token : null;
-            const userToken = token.token;
-            const imageRes = await uploadProfileImageAPi(encodedFormImageData, userToken)
-        }
+        //     const storedToken = await AsyncStorage.getItem("token");
+        //     const token = storedToken ? JSON.parse(storedToken).token : null;
+        //     const userToken = token.token;
+        //     const imageRes = await uploadProfileImageAPi(encodedFormImageData, userToken)
+        // }
         
       }
 
