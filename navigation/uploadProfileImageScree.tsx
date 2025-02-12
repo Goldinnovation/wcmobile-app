@@ -11,7 +11,7 @@ import { BlurView } from 'expo-blur';
 import { uploadProfileImageAPi } from "../api/uploadProfileImage_Api/uploadProfileImage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as FileSystem from 'expo-file-system';
-
+import * as ImageManipulator from 'expo-image-manipulator';
 
 const UploadProfileImageScreen = () => {
     const [imageUri, setImageUri] = useState<string | null>(null)
@@ -27,43 +27,47 @@ const UploadProfileImageScreen = () => {
       }
 
 
-      const handleprocessImage = async(imageFile: any) => { 
+      const convertImageToBase64 = async(imageFile: any) => { 
         const imageUrl = imageFile.assets[0].uri
-        const base64 = await FileSystem.readAsStringAsync(imageFile, { encoding: 'base64' });
-        console.log('base64', base64);
+      
+
+      
+
+        try{
+            const manipResult = await ImageManipulator.manipulateAsync(
+                imageFile.localUri || imageUrl,
+                [{ resize: { width: 800, height: 1050 } }],
+                { compress: 1, format: ImageManipulator.SaveFormat.WEBP  }
+              );
+
+              const base64 = await FileSystem.readAsStringAsync(manipResult.uri, { encoding: 'base64' });
+              return base64
+
+        }catch(error){
+            console.error('Error on resizing Image, function: convertImageToBase64 ', error);
+        }
+   
 
 
-        // const imageName = imageFile.assets[0].uri.split('/').pop();
-        // const imagemimetype = imageFile.assets[0].mimeType
 
-        // const base64Data = await RNFS.readFile(imageUrl, 'base64');
-
-        // return base64Data
-
-        // const formData = new FormData();
-
-        // formData.append('image',{
-        //     uri: imageUrl,
-        //     name: imageName,
-        //     type: imagemimetype
-        // } as any )
-
-
-        // return  formData
 
       }
     //   Handles the image submittion
       const handleSubmit = async() => {
+        console.log('init');
         const imageFile = imageObj
-        const encodedFormImageData = await handleprocessImage(imageFile)
-         console.log('encodedFormImageData', encodedFormImageData);
-        // if(encodedFormImageData){
+        const encodedFormImageData = await convertImageToBase64(imageFile)
 
-        //     const storedToken = await AsyncStorage.getItem("token");
-        //     const token = storedToken ? JSON.parse(storedToken).token : null;
-        //     const userToken = token.token;
-        //     const imageRes = await uploadProfileImageAPi(encodedFormImageData, userToken)
-        // }
+        console.log('encodedFormImageData', encodedFormImageData);
+        if(encodedFormImageData){
+            console.log('in api');
+            const storedToken = await AsyncStorage.getItem("token");
+            const token = storedToken ? JSON.parse(storedToken).token : null;
+            const userToken = token.token;
+            const imageName = imageFile.assets[0].uri.split('/').pop();
+            const imageMimeType = imageFile.assets[0].mimeType
+            const imageRes = await uploadProfileImageAPi(encodedFormImageData, userToken, imageName, imageMimeType)
+        }
         
       }
 
@@ -80,7 +84,7 @@ const UploadProfileImageScreen = () => {
             
           });
 
-          console.log('result', result);
+      
 
         
         if (!result.canceled) {

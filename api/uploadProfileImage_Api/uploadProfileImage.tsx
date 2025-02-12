@@ -2,7 +2,7 @@ import { View } from "react-native"
 import axios from "axios"
 
 
-export async function uploadProfileImageAPi( imageFormData: any, token: string) {
+export async function uploadProfileImageAPi( imageFormData: any, token: string, imageName: string, imageMimeType: string) {
 
     try {
         const API_URL = process.env.EXPO_PUBLIC_API_URL;
@@ -10,6 +10,10 @@ export async function uploadProfileImageAPi( imageFormData: any, token: string) 
           .post(`${API_URL}/api/userProfilePictureMobileUpload`, {
             token: token, 
             image: imageFormData,
+            imageName: imageName, 
+            imageMimeType: imageMimeType
+
+            
           })
           .then(function (response) {
             return response.data;
