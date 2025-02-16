@@ -2,19 +2,24 @@ import { View } from "react-native"
 import axios from "axios"
 
 
-export async function uploadProfileImageAPi( imageFormData: any, token: string, imageName: string, imageMimeType: string) {
+export async function uploadProfileImageAPi( formData: any ) {
 
     try {
         const API_URL = process.env.EXPO_PUBLIC_API_URL;
         const res = axios
-          .post(`${API_URL}/api/userProfilePictureMobileUpload`, {
-            token: token, 
-            image: imageFormData,
-            imageName: imageName, 
-            imageMimeType: imageMimeType
-
-            
-          })
+          .post(`${API_URL}/api/userProfilePictureMobileUpload`,
+            formData
+            ,
+          {
+              
+               headers: {
+              'Content-Type': 'multipart/form-data',
+               
+            },
+        
+          },
+         
+        )
           .then(function (response) {
             return response.data;
           })

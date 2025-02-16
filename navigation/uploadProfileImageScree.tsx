@@ -12,6 +12,7 @@ import { uploadProfileImageAPi } from "../api/uploadProfileImage_Api/uploadProfi
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as FileSystem from 'expo-file-system';
 import * as ImageManipulator from 'expo-image-manipulator';
+import { manipulateAsync, FlipType, SaveFormat } from 'expo-image-manipulator';
 
 const UploadProfileImageScreen = () => {
     const [imageUri, setImageUri] = useState<string | null>(null)
@@ -27,21 +28,33 @@ const UploadProfileImageScreen = () => {
       }
 
 
-      const convertImageToBase64 = async(imageFile: any) => { 
-        const imageUrl = imageFile.assets[0].uri
-      
-
-      
-
+      const wrapFileInToFormdata = async(imageFile: any) => { 
         try{
-            const manipResult = await ImageManipulator.manipulateAsync(
-                imageFile.localUri || imageUrl,
-                [{ resize: { width: 800, height: 1050 } }],
-                { compress: 1, format: ImageManipulator.SaveFormat.WEBP  }
-              );
 
-              const base64 = await FileSystem.readAsStringAsync(manipResult.uri, { encoding: 'base64' });
-              return base64
+         
+            const formData = new FormData();
+
+            const storedToken = await AsyncStorage.getItem("token");
+            const token = storedToken ? JSON.parse(storedToken).token : null;
+            const userToken = token.token;
+
+            const imageUrl = imageFile.assets[0].uri
+            const imageName = imageFile.assets[0].uri.split('/').pop();
+            const imagemimetype = imageFile.assets[0].mimeType
+
+
+            formData.append('image',{
+                uri: imageUrl,
+                name: imageName,
+                type: imagemimetype
+            } as any )
+            
+   
+            formData.append('token',  userToken)
+
+
+        
+        return formData
 
         }catch(error){
             console.error('Error on resizing Image, function: convertImageToBase64 ', error);
@@ -56,17 +69,10 @@ const UploadProfileImageScreen = () => {
       const handleSubmit = async() => {
         console.log('init');
         const imageFile = imageObj
-        const encodedFormImageData = await convertImageToBase64(imageFile)
-
-        console.log('encodedFormImageData', encodedFormImageData);
-        if(encodedFormImageData){
-            console.log('in api');
-            const storedToken = await AsyncStorage.getItem("token");
-            const token = storedToken ? JSON.parse(storedToken).token : null;
-            const userToken = token.token;
-            const imageName = imageFile.assets[0].uri.split('/').pop();
-            const imageMimeType = imageFile.assets[0].mimeType
-            const imageRes = await uploadProfileImageAPi(encodedFormImageData, userToken, imageName, imageMimeType)
+        const encodedFormImageData = await wrapFileInToFormdata(imageFile)
+        if(encodedFormImageData){ 
+            const imageRes = await uploadProfileImageAPi(encodedFormImageData)
+            console.log('imageRes', imageRes);
         }
         
       }
