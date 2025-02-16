@@ -8,7 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import * as ImagePicker from 'expo-image-picker';
 import { useState } from "react";
 import { BlurView } from 'expo-blur';
-import { uploadProfileImageAPi } from "../api/uploadProfileImage_Api/uploadProfileImage";
+import { uploadProfileImageAPi } from "../api/userFirstLoginSteps/uploadProfileImage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as FileSystem from 'expo-file-system';
 import * as ImageManipulator from 'expo-image-manipulator';
@@ -18,14 +18,10 @@ const UploadProfileImageScreen = () => {
     const [imageUri, setImageUri] = useState<string | null>(null)
     const [flashMessage, setFlatMessage] = useState(false)
     const [imageObj, setImageObj] = useState({}) as any
-  
-      const navigation = useNavigation()
+    const navigation = useNavigation()
     
 
-      const handlenextScreen = () => { 
-        
-        navigation.navigate('BackgroundScreen' as never)
-      }
+     
 
 
       const wrapFileInToFormdata = async(imageFile: any) => { 
@@ -72,7 +68,11 @@ const UploadProfileImageScreen = () => {
         const encodedFormImageData = await wrapFileInToFormdata(imageFile)
         if(encodedFormImageData){ 
             const imageRes = await uploadProfileImageAPi(encodedFormImageData)
-            console.log('imageRes', imageRes);
+            console.log('image respond from api uploadProfileImageAPi', imageRes );
+            imageRes.message == "Image was successfully stored" ? 
+            navigation.navigate('BackgroundScreen' as never) : 
+            alert("Please repeat your upload, issue accured")
+
         }
         
       }
