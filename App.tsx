@@ -705,11 +705,11 @@ function AppNavigator() {
      
    
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-           {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
-            {/* <Stack.Screen name="interestScreeen" component={UserInterestScreen} /> */}
+           <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="interestScreeen" component={UserInterestScreen} />
 
-            {/* <Stack.Screen name="ProfileImageScreen" component={UploadProfileImageScreen}/> */}
-            {/* <Stack.Screen name="BackgroundScreen" component={BackgroundScreen} /> */}
+            <Stack.Screen name="ProfileImageScreen" component={UploadProfileImageScreen}/>
+            <Stack.Screen name="BackgroundScreen" component={BackgroundScreen} />
 
             <Stack.Screen name="UserExploreScreen" component={TabNavigator} options={{gestureDirection: 'vertical' }} />
             <Stack.Screen name="settingScreen" component={SettingScreen}  />
@@ -768,9 +768,9 @@ export default function App() {
     <View  style={styles.container} >
     <LinearGradient
   
-    // colors={['black', 'black']} //Infinity 
+    colors={['black', 'black']} //Infinity 
     // colors={['black','silver', 'purple', 'green']} //Bubble 
-    colors={['black','grey', '#000059', "black"]} //Nitro
+    // colors={['black','grey', '#000059', "black"]} //Nitro
     // colors={['black','brown', 'purple', "purple","black"]} //somethingelse
 
     // colors={[color1,color2, color3, color4]} //Nitro

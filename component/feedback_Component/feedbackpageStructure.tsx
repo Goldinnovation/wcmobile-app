@@ -78,6 +78,7 @@ export default function FeedbackPageStructure() {
         <Text style={{color: "white", fontSize: 25, textAlign: "center"}}>Feedback</Text>
         </View>
 
+
         {/* Link Section */}
         <View style={{
             height: '87%' ,

@@ -84,12 +84,12 @@ const RadarScreen = () => {
               />
 
 
-          {/* <View style={{
-              // backgroundColor:"rgba(0, 0, 0, 0.76)",
+         {/* <View style={{
+              backgroundColor:"rgb(0, 0, 0)",
              borderColor: "rgba(255, 255, 255,0.5)",
               // borderWidth: 1,
               width: "100%", 
-              height: "13%",
+              height: "10%",
               position: "absolute",
               top: "0%",
               left: "0%",
@@ -102,70 +102,30 @@ const RadarScreen = () => {
             }}
             
             >
-              <View style={{
-                // backgroundColor:"rgba(160, 29, 29, 0.62)",
-                width: "100%", 
-                height: "65%",
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}>
-                 <TouchableOpacity style={{
-              // backgroundColor:"rgba(23, 255, 2, 0.3)",
-            //  borderColor: "rgba(255, 255, 255,0.5)",
+             
+              
+              
+            </View>  */}
+
+            {/* <View style={{
+              backgroundColor:"rgba(0, 0, 0, 0.89)",
+             borderColor: "rgba(255, 255, 255,0.5)",
               // borderWidth: 1,
-              width: "35%", 
-              height: "100%",
-              // position: "absolute",
-              // top: "66%",
-              // left: "75%",
-              // zIndex: 3,
+              width: "100%", 
+              height: "15%",
+              position: "absolute",
+              bottom: "0%",
+              left: "0%",
+              zIndex: 3,
               display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "row"
+              justifyContent: "flex-end",
+              // alignItems: "center",
+              flexDirection: "column"
 
             }}
-            onPress={() => navigation.goBack()}
             
             >
-              <Image
-                  source={require("../assets/emsfw.png")}
-                  style={{
-                    // width: scale(100),
-                    // height: verticalScale(25),
-                    width: 120,
-                    height: 30
-                    // borderRadius: 100,
-                  }}
-                />
-              
-            </TouchableOpacity>
-
-            <TouchableOpacity style={{
-              backgroundColor:"rgb(255, 255, 255)",
-            //  borderColor: "rgba(255, 255, 255,0.5)",
-              // borderWidth: 1,
-              width: "20%", 
-              height: "6%",
-              // position: "absolute",
-              // top: "66%",
-              // left: "5%",
-              // zIndex: 3,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "row"
-
-            }}
-            onPress={() => navigation.goBack()}
-            
-            >
-             <MenuBarBurgerIcon width="37" height="37" /> 
-              
-            </TouchableOpacity>
-              </View>
+             
               
               
             </View> */}
