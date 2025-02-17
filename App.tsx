@@ -39,7 +39,7 @@ import NotificationScreen from './navigation/notificationScreen';
 import UserScreen from './navigation/userScreen';
 import SearchScreen from './navigation/searchScreen';
 import FavorScreen from './navigation/favorScreen';
-import ModeScreen from './navigation/modeScreen';
+import RadarScreen from './navigation/modeScreen';
 import { reloadAppAsync } from "expo";
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import GameIcon from './icons/gameIcon';
@@ -49,7 +49,7 @@ import SignUpScreen from './navigation/signUpScreen';
 import RobotIcon from './icons/robotIcon';
 import UploadProfileImageScreen from './navigation/uploadProfileImageScree';
 import BackgroundScreen from './navigation/backgroundScreen';
-
+import AddEventScreen from './navigation/addEventScreen';
 
 
 
@@ -65,7 +65,7 @@ const MyTheme = {
   },
 };
 
-type RouteName = 'Profile' | 'ExploreContent' | "Connect" | "Map" ;
+type RouteName = 'Profile' | 'ExploreContent' | "Connect" | "Radar"|"Add" ;
 
 const icons: Record<RouteName, {focused: any; unfocused: any}> = {
   Profile: {
@@ -85,17 +85,17 @@ const icons: Record<RouteName, {focused: any; unfocused: any}> = {
     unfocused: require('./assets/qrg.png')
   },
 
-  Map: {
+  Radar: {
 
-    focused: require('./assets/gl1.png'),
-    unfocused: require('./assets/gl2.png')
+    focused: require('./assets/li1.png'),
+    unfocused: require('./assets/li2.png')
   },
 
-  // Add: {
+  Add: {
 
-  //   focused: require('./assets/ad1.png'),
-  //   unfocused: require('./assets/ad2.png')
-  // }
+    focused: require('./assets/pl1.png'),
+    unfocused: require('./assets/pl2.png')
+  }
 }
 
 
@@ -325,8 +325,146 @@ function TabNavigator() {
 
 
 
+         {/* Radar Tab */}
+      <Tab.Screen    
+      name='Radar'
+      component={RadarScreen}
+      options={{
+        title: 'Frequenz',
+        headerLeft: () => (
+          <View style={{
+            // backgroundColor:  filter ?  "pink" : "green",
+            width:  199,
+            height: 30,
+            flexDirection: "row",
+            alignItems: "center",
+            marginLeft: categoryLayoutState ? 9 : 7,
+        
+          }}>
+            {/* Explore Mode Option */}
+            
+            <View style={{
+              width:  scale(110),
+            // height: 25,
+            // borderWidth: 1,+
+            // borderColor: "white",
+            padding: 1,
+            // marginLeft: 15,
 
+            // alignItems: "center",
+            display: "flex", 
+            borderRadius: 4,
+            // justifyContent: "center", 
+            flexDirection: "row",
+            // backgroundColor: "green"
+
+            }}
+            //  onPress={() => navigation.push("ModeScreen")}
+            >
+            
+              {/* <Text style={{color: "white", fontSize: 15, fontWeight: "bold", opacity: 0.7}}>EMS</Text> */}
+
+              <Image
+                  source={require("./assets/emsfw.png")}
+                  style={{
+                    // width: scale(100),
+                    // height: verticalScale(25),
+                    width: scale(90),
+                    height: verticalScale(20)
+                    // borderRadius: 100,
+                  }}
+                />
+              
+              {/* <View style={{
+                 width:  "20%",
+                 height: 20,
+                //  backgroundColor: "green",
+                 display: "flex", 
+                justifyContent: "center", 
+                flexDirection: "row",
+                alignItems: "center",
+                // borderLeftWidth: 1, 
+                // borderLeftColor: "rgba(249,249,249,0.9)"
+              }}>
+                <View style={{
+                  width:  "65%",
+                  height: 10,
+                  backgroundColor: "red",
+                  borderRadius: 50,
+                  opacity: 0.8
+                }}>
+
+                </View>
+              </View> */}
+
+             
+               
+              
+            </View>
+
+            
+          </View>
+        ),
+        headerRight: () => (
+          <View style={{
+            // backgroundColor: "pink",
+            width: 150,
+            height: 30,
+            alignItems: "center",
+            marginRight: 15,
+            gap: 30,
+            justifyContent: "flex-end",
+            flexDirection: "row"
+          }}> 
+         
+         
+             
+          
+         <TouchableOpacity  onPress={() => navigation.push("NotificationScreen")}>
+        
+          {/* <SettingIcon width={'21'} height={'21'} /> */}
+          <NotificationIcon  width={'23'} height={'25'}  />
+         </TouchableOpacity>
+
+        
+
+          </View>
+        ),
+        headerStyle: {
+          backgroundColor: 'transparent',},
+          headerTintColor: 'grey',
+          // headerTitleStyle: {
+          //   fontWeight: 'bold'}
+            
+      }}
+      
+       ></Tab.Screen>
     
+        {/* Add Tab */}
+      <Tab.Screen    
+      name='Add'
+      component={AddEventScreen}
+      options={{
+        title:' ',
+        tabBarButton: (props) => (
+          <TouchableOpacity
+          {...props}
+          onPress={() =>  navigation.navigate('AddEventScreen')}
+          >
+
+          </TouchableOpacity>
+        ),
+       
+       
+        headerStyle: {
+          backgroundColor: 'transparent',},
+          headerTintColor: 'grey',
+          // headerTitleStyle: {
+          //   fontWeight: 'bold'}
+            
+      }}
+      
+      ></Tab.Screen>
 
       {/* SearchScreen Tab */}
       <Tab.Screen    
@@ -421,6 +559,7 @@ function TabNavigator() {
       
       ></Tab.Screen>
 
+      
 
       {/* Profile Tab */}
       <Tab.Screen    
@@ -536,6 +675,8 @@ function TabNavigator() {
       }}
       
       ></Tab.Screen>
+
+     
      
       
 
@@ -564,11 +705,11 @@ function AppNavigator() {
      
    
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-           <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="interestScreeen" component={UserInterestScreen} />
+           {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
+            {/* <Stack.Screen name="interestScreeen" component={UserInterestScreen} /> */}
 
-            <Stack.Screen name="ProfileImageScreen" component={UploadProfileImageScreen}/>
-            <Stack.Screen name="BackgroundScreen" component={BackgroundScreen} />
+            {/* <Stack.Screen name="ProfileImageScreen" component={UploadProfileImageScreen}/> */}
+            {/* <Stack.Screen name="BackgroundScreen" component={BackgroundScreen} /> */}
 
             <Stack.Screen name="UserExploreScreen" component={TabNavigator} options={{gestureDirection: 'vertical' }} />
             <Stack.Screen name="settingScreen" component={SettingScreen}  />
@@ -577,8 +718,10 @@ function AppNavigator() {
             <Stack.Screen name="NotificationScreen" component={NotificationScreen}  /> 
             <Stack.Screen name="UserScreen" component={UserScreen}  options={{ presentation:  "transparentModal"  }}/>
             <Stack.Screen name="FavorScreen" component={FavorScreen}  />
-            {/* <Stack.Screen name="ModeScreen" component={ModeScreen} options={{ presentation:    "transparentModal" }}  /> */}
-            <Stack.Screen name="ModeScreen" component={ModeScreen}  />
+            <Stack.Screen name="RadarScreen" component={RadarScreen} options={{ presentation:    "transparentModal" }}  />
+            {/* <Stack.Screen name="ModeScreen" component={RadarScreen}  /> */}
+            <Stack.Screen name="AddEventScreen" component={AddEventScreen}  options={{ presentation: "modal" }} />
+
             <Stack.Screen name="SignupScreen" component={SignUpScreen}  options={{ presentation: "modal" }} />
 
 

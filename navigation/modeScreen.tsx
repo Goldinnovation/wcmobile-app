@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 
 
-const ModeScreen = () => {
+const RadarScreen = () => {
     const [eventMoodtoggle, setEventMoodToggle] = useState(true) 
     const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
     const [pinToggle, setPinToggle] = useState(false)
@@ -73,6 +73,7 @@ const ModeScreen = () => {
               
 
              }}
+             userInterfaceStyle="dark"
              initialRegion={{
               latitude: 52.5200, // Berlin's latitude
               longitude: 13.4050, // Berlin's longitude
@@ -474,4 +475,4 @@ const ModeScreen = () => {
     )
 }
 
-export default ModeScreen
+export default RadarScreen
