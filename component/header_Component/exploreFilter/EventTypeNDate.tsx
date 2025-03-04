@@ -457,6 +457,7 @@ const styles = StyleSheet.create({
       color: "white",
       // backgroundColor:"red"
     },
+    
     itemContainerStyles:{
       // backgroundColor: "grey",
       borderBottomWidth: 1,
