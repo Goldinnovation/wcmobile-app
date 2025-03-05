@@ -1,4 +1,5 @@
 import { View, Text } from "react-native"
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 
@@ -10,10 +11,10 @@ const RL_EventlLayer = () => {
   return (
     <View style={{
         backgroundColor: "pink", 
-        height: "100%",
-        width: "100%",
+        height: hp(70),
+        width:  wp(100),
     }}>
-                    <Text>Event Box Area 1</Text>
+                    <Text>Enter Event Name RL</Text>
 
       
     </View>
