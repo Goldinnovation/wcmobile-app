@@ -7,6 +7,10 @@ import { Dropdown } from "react-native-element-dropdown";
 import { StyleSheet } from "react-native";
 import { useState } from "react";
 import DayNightIcon from "../../icons/DayNightIcon";
+import RL_EventlLayer from "./realLifeEvent/RL_EventlLayer";
+import Digital_EventLayer from "./digitalEvent/digitalEventLayer";
+import NH_EventLayer from "./NHEvent/NH_EventLayer";
+import EventCoverLayer from "./addEventHeader/eventCoverLayer";
 
 const AddPageStructure = () => {
   const [isFocus, setIsFocus] = useState(false);
@@ -87,66 +91,7 @@ const AddPageStructure = () => {
 
       {/* Image Upload or Create Image Section */}
 
-      <View
-        style={{
-          // backgroundColor: "green",
-          height: "30%",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <View
-          style={{
-            // backgroundColor: "blue",
-            height: "20%",
-            width: "98%",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Text
-            style={{
-              color: "white",
-              fontSize: 12,
-              fontWeight: 200,
-            }}
-          >
-            Upload an event cover
-          </Text>
-
-          <View></View>
-        </View>
-
-        <View
-          style={{
-            // backgroundColor: "grey",
-            width: "98%",
-            height: "70%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <TouchableOpacity
-            style={{
-              //  backgroundColor: "yellow",
-              height: "80%",
-              width: "50%",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              borderRadius: 7,
-              borderWidth: 1,
-              borderColor: "white",
-            }}
-          >
-            <UploadProfilePicIcon height="80" width="45" />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <EventCoverLayer/>
 
       <View
         style={{
@@ -232,7 +177,7 @@ const AddPageStructure = () => {
         </View>
       </View>
 
-      {/* Content Are   a */}
+      {/* Content Area */}
       <View
         style={{
         //   backgroundColor: "grey",
@@ -244,17 +189,11 @@ const AddPageStructure = () => {
         }}
       >
         {value == 1 ? (
-          <View>
-            <Text>Event Box Area 1</Text>
-            </View>
+           <RL_EventlLayer/>
         ) : value == 2 ? (
-          <View>
-            <Text>Event Box Area 2</Text>
-            </View>
+          <Digital_EventLayer/>
         ) : value == 3 ? (
-          <View>
-            <Text>Event Box Area 3</Text>
-          </View>
+           <NH_EventLayer/>
         ) :
          <View style={{
             // backgroundColor: "green", 
