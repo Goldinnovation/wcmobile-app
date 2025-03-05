@@ -16,6 +16,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { TextInput } from "react-native";
+import PuzzleIcon from "../../icons/puzzleIcon";
 
 const AddPageStructure = () => {
   const [isFocus, setIsFocus] = useState(false);
@@ -108,8 +109,9 @@ const AddPageStructure = () => {
         // flex: 1,
         backgroundColor: "black",
         // paddingTop: 40,
-        borderTopWidth: 1,
-        borderColor: "rgba(179,179,179,1)",
+        // borderTopWidth: 1,
+        borderWidth: 1,
+        borderColor: "rgba(179, 179, 179, 0.5)",
         borderRadius: 11,
         marginTop: hp(5),
         // gap: 10
@@ -249,7 +251,9 @@ const AddPageStructure = () => {
                     }}
                   />
                 ) : (
-                  <UploadProfilePicIcon height="140" width="145" />
+                 
+                     <UploadProfilePicIcon height="140" width="145" />
+                 
                 )}
               </TouchableOpacity>
             </View>
@@ -310,10 +314,10 @@ const AddPageStructure = () => {
                   zIndex: 3,
                 }}
               >
-                <DayNightIcon height={"15"} width={"15"} />
+                <PuzzleIcon height={"15"} width={"15"} />
               </View>
               <Dropdown
-                style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
+                style={[styles.dropdown, isFocus && { borderColor: "white" }]}
                 placeholderStyle={styles.placeholderStyle}
                 selectedTextStyle={styles.selectedTextStyle}
                 inputSearchStyle={styles.inputSearchStyle}
@@ -328,7 +332,7 @@ const AddPageStructure = () => {
                 maxHeight={200}
                 labelField="label"
                 valueField="value"
-                placeholder={!isFocus ? `Default Mood: Real` : "..."}
+                placeholder={!isFocus ? `Select a event type` : "..."}
                 searchPlaceholder="Search..."
                 value={value}
                 onFocus={() => setIsFocus(true)}
@@ -526,14 +530,15 @@ const styles = StyleSheet.create({
 
   itemContainerStyles: {
     borderBottomWidth: 1,
-    borderBottomColor: "rgba(255, 255, 255,0.1)",
+    borderBottomColor: "rgba(255, 255, 255, 0.76)",
+
   },
 
   ContainerStyles: {
     borderRadius: 8,
     marginBottom: 15,
     backgroundColor: "rgba(18, 18, 18, 0.77)", //"rgba(255, 255, 255,0.98)"
-    borderColor: "blue",
+    borderColor: "white",
   },
   itemTextStyle: {
     color: "white",

@@ -11,7 +11,7 @@ const NH_EventLayer = () => {
            height: hp(70),
            width:  wp(100),
    }}>
-                       <Text>Enter Event Name NH</Text>
+                  {/* <View></View> */}
    
          
        </View>

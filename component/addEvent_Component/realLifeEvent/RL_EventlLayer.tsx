@@ -13,8 +13,42 @@ const RL_EventlLayer = () => {
         backgroundColor: "pink", 
         height: hp(70),
         width:  wp(100),
+        display: "flex", 
+        alignItems: "center"
     }}>
-                    <Text>Enter Event Name RL</Text>
+             <View style={{
+                height: hp(10),
+                width:  wp(98),
+                backgroundColor: "green", 
+
+             }}>
+                <Text>1</Text>
+             </View>
+             <View style={{
+                height: hp(10),
+                width:  wp(98),
+                backgroundColor: "blue", 
+
+             }}>
+                <Text>1</Text>
+             </View>
+             <View style={{
+                height: hp(20),
+                width:  wp(98),
+                backgroundColor: "orange", 
+             }}>
+               <Text>2</Text>
+
+             </View>
+             <View style={{
+                height: hp(10),
+                width:  wp(98),
+                backgroundColor: "grey", 
+             }}>
+                  <Text>3</Text>
+
+             </View>
+             
 
       
     </View>
