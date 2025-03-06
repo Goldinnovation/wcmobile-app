@@ -212,7 +212,7 @@ const AddPageStructure = () => {
                   fontWeight: 200,
                 }}
               >
-                Upload an event cover
+                Upload an Cover
               </Text>
             </View>
 
@@ -286,10 +286,9 @@ const AddPageStructure = () => {
                   fontWeight: 200,
                 }}
               >
-                Choose an event type
+                Choose your Zone
               </Text>
 
-              <View></View>
             </View>
 
             <View
