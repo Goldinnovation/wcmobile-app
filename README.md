@@ -21,7 +21,6 @@ Worthsec is a social media platform for events that offers accessibility for div
 
 <img src="img4.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink: 0;"/>
 
-<img src="img5.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink: 0;"/>
 
 <img src="img6.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink: 0;"/>
 

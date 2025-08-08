@@ -20,8 +20,8 @@ const axiosCache  = setupCache(instance, {
 
 export async function userCategoryReq(token: string, cateogory: string) {
   try {
-    // console.log("inside api:", token);
-    // console.log("inside api:", cateogory);
+    console.log("inside token:", token);
+    console.log("inside api:", cateogory);
     const API_URL = process.env.EXPO_PUBLIC_API_URL;
     const res = axios
       .post(`${API_URL}/api/eventCategory`, {

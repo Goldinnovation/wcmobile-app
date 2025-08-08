@@ -5,7 +5,7 @@ import type { Modalize as ModalizeType } from 'react-native-modalize'
 import { useRef, forwardRef, useImperativeHandle} from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import MoreEventsArrow from '../../../icons/moreEventsArrow';
-import { useScroll } from 'framer-motion';
+// import { useScroll } from 'framer-motion';
 import MenuBarBurgerIcon from '../../../icons/menuBarBurgerIcon';
 import InfoEventIcon from '../../../icons/InfoIcon';
 import SoundIcon from '../../../icons/soundIcon';

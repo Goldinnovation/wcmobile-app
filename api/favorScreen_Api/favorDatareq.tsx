@@ -34,11 +34,12 @@ export async function getUserFavoredEvent(token: string) {
          
 
           console.log("Favored Event Cache State", response.cached);
+          console.log('response.data', response.data);
           return response.data ;
         })
         .catch(function (error) {
           console.log(
-            "Error on Get Method API request from useFavorGetEvent function"
+            "Error on Get Method API request from useFavorGetEvent function", error
           );
         });
       return res;
